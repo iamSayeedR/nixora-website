@@ -4,7 +4,7 @@
   <!-- Section Heading Wash Glow -->
   <div style="position:absolute;top:0;left:50%;transform:translateX(-50%);width:100%;max-width:800px;height:240px;background:radial-gradient(ellipse 70% 50% at 50% 0%,rgba(139,92,246,0.14),transparent 70%);pointer-events:none;z-index:0;"></div>
 
-  <div style="max-width:900px;margin:0 auto;position:relative;z-index:1;display:flex;flex-direction:column;gap:3.5rem;">
+  <div style="max-width:900px;margin:0 auto;position:relative;z-index:1;display:flex;flex-direction:column;gap:3rem;">
 
     <!-- Headline -->
     <div style="text-align:center;display:flex;flex-direction:column;align-items:center;gap:1rem;">
@@ -49,38 +49,61 @@
       <!-- Row 2: With Nixora -->
       <div style="background:#0d0d0d;padding:2rem 2rem 1.5rem;">
         <div style="font-size:0.7rem;color:#a78bfa;text-transform:uppercase;letter-spacing:0.1em;font-weight:700;margin-bottom:1.5rem;display:flex;align-items:center;gap:0.5rem;">
-          <span>✔</span> With Nixora: automated, self-healing
+          <span>✔</span> With Nixora: automated lifecycle management
         </div>
-        <div style="display:flex;align-items:center;gap:0;flex-wrap:wrap;gap:0;">
+        <div style="display:flex;align-items:center;gap:1.5rem;flex-wrap:wrap;">
+          
+          <!-- Node 1: AI generates code -->
           <div style="flex-shrink:0;padding:0.6rem 0.9rem;border:1px solid #27272a;border-radius:6px;background:rgba(0,0,0,0.4);text-align:center;min-width:90px;">
             <div style="font-size:0.78rem;font-weight:600;color:#a1a1aa;">AI generates code</div>
             <div style="font-size:0.65rem;color:#52525b;margin-top:0.15rem;">agent outputs</div>
           </div>
-          <div style="flex-shrink:0;padding:0 0.5rem;color:#a78bfa;font-size:1.1rem;">→</div>
+          <div style="flex-shrink:0;color:#a78bfa;font-size:1.1rem;">→</div>
           
-          <!-- 8c: De-emphasized nixora deploy step node (flow step styling instead of terminal box) -->
-          <div style="flex-shrink:0;padding:0.6rem 1rem;border:1px solid rgba(167,139,250,0.3);border-radius:6px;background:rgba(167,139,250,0.08);text-align:center;min-width:120px;">
-            <div style="font-size:0.78rem;font-weight:700;color:#a78bfa;">nixora deploy</div>
-            <div style="font-size:0.65rem;color:#c4b5fd;margin-top:0.15rem;">one command</div>
+          <!-- Node 2: nixora deploy (8c/8f: clean flow action node without terminal box styling or 'one command' caption) -->
+          <div style="flex-shrink:0;padding:0.65rem 1.1rem;border:1px solid rgba(167,139,250,0.35);border-radius:6px;background:rgba(167,139,250,0.08);text-align:center;min-width:120px;">
+            <div style="font-size:0.8rem;font-weight:700;color:#a78bfa;font-family:'Fira Code',monospace;">nixora deploy</div>
           </div>
           
-          <div style="flex-shrink:0;padding:0 0.5rem;color:#a78bfa;font-size:1.1rem;">→</div>
+          <div style="flex-shrink:0;color:#a78bfa;font-size:1.1rem;">→</div>
           
-          <!-- 8a: Confirmed live provisioned outputs (Hosting provisioned & HTTPS certificate issued) -->
-          <div style="display:flex;flex-direction:column;gap:0.4rem;flex:1;min-width:200px;">
-            {[
-              "Hosting provisioned",
-              "HTTPS certificate issued"
-            ].map(item => (
-              <div style="display:flex;align-items:center;gap:0.5rem;font-size:0.78rem;color:#71717a;">
-                <span style="color:#a78bfa;flex-shrink:0;">✔</span>
-                {item}
-              </div>
-            ))}
+          <!-- Node 3: Live & monitored (8b: End-State Box with 8a 4-item checklist) -->
+          <div style="flex:1;min-width:260px;padding:0.85rem 1.1rem;border:1px solid rgba(167,139,250,0.25);border-radius:8px;background:rgba(167,139,250,0.04);display:flex;flex-direction:column;gap:0.5rem;">
+            <div style="font-size:0.8rem;font-weight:700;color:#fff;display:flex;align-items:center;gap:0.4rem;">
+              <span style="width:7px;height:7px;border-radius:50%;background:#28c840;display:inline-block;"></span>
+              Live & monitored
+            </div>
+            
+            <!-- 8a: Approved 4-item checklist -->
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.35rem 0.75rem;">
+              {[
+                "Container built automatically",
+                "Compute provisioned",
+                "HTTPS certificate issued",
+                "Hosting provisioned"
+              ].map(item => (
+                <div style="display:flex;align-items:center;gap:0.4rem;font-size:0.75rem;color:#a1a1aa;">
+                  <span style="color:#a78bfa;flex-shrink:0;">✔</span>
+                  {item}
+                </div>
+              ))}
+            </div>
           </div>
+
         </div>
       </div>
 
+    </div>
+
+    <!-- 8d: Clearly-separated Coming Soon teaser for Lifecycle Intelligence -->
+    <div style="background:#0a0a0a;border:1px solid #1f1f1f;border-radius:10px;padding:1.25rem 1.5rem;display:flex;flex-direction:column;gap:0.5rem;text-align:left;">
+      <div style="display:flex;align-items:center;gap:0.6rem;">
+        <span class="coming-soon-badge">Coming soon</span>
+        <span style="color:#fff;font-size:0.875rem;font-weight:600;">Lifecycle Intelligence</span>
+      </div>
+      <p style="color:#71717a;font-size:0.825rem;line-height:1.6;margin:0;">
+        Nixora will learn from every deployment, tracking what changed, how it affects your app, and surfacing issues before they become failures.
+      </p>
     </div>
 
   </div>

@@ -16,7 +16,7 @@
       {[
         { step:"01", title:"Install the CLI", desc:"Install the lightweight Nixora agent globally to orchestrate all your builds.", cmd:"npm install -g nixora-cli" },
         { step:"02", title:"Initialize project", desc:"Run init inside your generated code directory. Nixora auto-detects environment requirements.", cmd:"nixora init" },
-        { step:"03", title:"Deploy & manage", desc:"Ship to our managed control plane. Auto-scaling, health checks, and self-healing built in.", cmd:"nixora deploy" },
+        { step:"03", title:"Deploy & manage", desc:"Ship to our managed control plane. Hosting, HTTPS, and uptime handled automatically.", cmd:"nixora deploy" },
       ].map(s => (
         <div class="workflow-card">
           <span style="font-size:0.75rem;color:#a78bfa;font-weight:700;letter-spacing:0.08em;">{s.step}</span>
