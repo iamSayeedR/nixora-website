@@ -1,0 +1,42 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Hero from '../components/Hero.astro';
+import DeployIntro from '../components/DeployIntro.astro';
+import Traction from '../components/Traction.astro';
+import AssistantSection from '../components/AssistantSection.astro';
+import Features from '../components/Features.astro';
+import HowItWorks from '../components/HowItWorks.astro';
+import Architecture from '../components/Architecture.astro';
+import Vision from '../components/Vision.astro';
+import EarlyAccess from '../components/EarlyAccess.astro';
+import Founder from '../components/Founder.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout title="Nixora: The Control Plane for AI-generated Software">
+  <Header />
+  <main>
+    <!-- 1. Hero: headline + announcement pill + CTA + terminal visual -->
+    <Hero />
+    <!-- 2. Feature intro: "It all starts with nixora deploy" -->
+    <DeployIntro />
+    <!-- 3. Traction: animated stats counters with SVG gauge rings -->
+    <Traction />
+    <!-- 4. CLI Orchestration section -->
+    <AssistantSection />
+    <!-- 5. Features: 6 Hero Cards grid with approved list -->
+    <Features />
+    <!-- 6. How It Works: 3-step CLI flow -->
+    <HowItWorks />
+    <!-- 7. Architecture: traditional infra vs Nixora comparison -->
+    <Architecture />
+    <!-- 8. Vision: "The control plane for AI-generated software" closer -->
+    <Vision />
+    <!-- 9. Early Access: Name + Email capture form -->
+    <EarlyAccess />
+    <!-- 10. Founder: bio + LinkedIn -->
+    <Founder />
+  </main>
+  <Footer />
+</Layout>

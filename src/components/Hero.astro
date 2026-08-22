@@ -1,0 +1,100 @@
+---
+---
+<section style="
+  position: relative;
+  overflow: hidden;
+  padding: 5rem 2rem 4rem;
+  text-align: center;
+">
+  <!-- Purple radial background glow (cap.vc bgGradient equivalent) -->
+  <div style="
+    position: absolute; inset: 0; z-index: 0; pointer-events: none;
+    background: radial-gradient(ellipse 70% 55% at 50% 0%, rgba(139,92,246,0.13), transparent 65%);
+  "></div>
+
+  <div style="position:relative;z-index:1;max-width:800px;margin:0 auto;display:flex;flex-direction:column;align-items:center;gap:2rem;">
+
+    <!-- Announcement pill (cap.vc "Now onboarding" pattern) -->
+    <div class="announcement-pill">
+      <span class="new-badge">Live</span>
+      Now onboarding developers for early access
+    </div>
+
+    <!-- Main headline -->
+    <h1 class="section-headline" style="text-align:center;max-width:700px;">
+      The <span class="accent">Control Plane</span><br>for AI-generated software
+    </h1>
+
+    <!-- Subhead -->
+    <p class="section-para" style="text-align:center;margin:0 auto;">
+      AI writes the code. Nixora deploys it, keeps it running, and manages its lifecycle, so you're not left babysitting what the model built.
+    </p>
+
+    <!-- CTAs -->
+    <div style="display:flex;align-items:center;gap:1rem;flex-wrap:wrap;justify-content:center;">
+      <a href="#early-access" class="shiny-cta">
+        Get early access
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:14px;height:14px;">
+          <path d="M15.187 11.2362L11.0895 7.13873L12.1696 6.05859L18.1111 12.0001L12.1696 17.9416L11.0895 16.8615L15.187 12.764H5.88892V11.2362H15.187Z" fill="currentColor"/>
+        </svg>
+      </a>
+      <a href="#install-cli"
+         style="color:#a1a1aa;font-size:0.875rem;text-decoration:none;transition:color 0.2s;"
+         onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#a1a1aa'">
+        Install CLI ↓
+      </a>
+    </div>
+
+    <!-- Terminal visual -->
+    <div id="install-cli" style="
+      width:100%;max-width:640px;
+      margin-top:1rem;
+      border-radius:10px;
+      border:1px solid #222;
+      background:#0a0a0a;
+      overflow:hidden;
+      text-align:left;
+      box-shadow: 0 0 0 1px #1a1a1a, 0 24px 60px rgba(0,0,0,0.5);
+    ">
+      <!-- Terminal titlebar -->
+      <div style="
+        display:flex;align-items:center;justify-content:space-between;
+        padding:0.65rem 1rem;
+        border-bottom:1px solid #1a1a1a;
+        background:#111;
+      ">
+        <div style="display:flex;gap:6px;">
+          <span style="width:12px;height:12px;border-radius:50%;background:#2a2a2a;display:block;"></span>
+          <span style="width:12px;height:12px;border-radius:50%;background:#2a2a2a;display:block;"></span>
+          <span style="width:12px;height:12px;border-radius:50%;background:#2a2a2a;display:block;"></span>
+        </div>
+        <span style="font-size:0.75rem;color:#555;font-family:'Fira Code',monospace;">bash</span>
+        <button id="copy-btn" title="Copy install command" style="
+          background:none;border:1px solid #2a2a2a;border-radius:5px;
+          padding:3px 7px;cursor:pointer;color:#666;font-size:0.7rem;
+          transition:border-color 0.2s,color 0.2s;
+        " onmouseover="this.style.borderColor='#a78bfa';this.style.color='#a78bfa';" onmouseout="this.style.borderColor='#2a2a2a';this.style.color='#666';">
+          <span id="copy-label">Copy</span>
+        </button>
+      </div>
+      <!-- Terminal body -->
+      <div style="padding:1.5rem;font-family:'Fira Code','Geist Mono',monospace;font-size:0.85rem;line-height:2;color:#666;">
+        <div><span style="color:#444;">$</span> <span style="color:#e4e4e7;">npm install -g nixora-cli</span></div>
+        <div><span style="color:#444;">$</span> <span style="color:#e4e4e7;">nixora init</span></div>
+        <div><span style="color:#444;">$</span> <span style="color:#e4e4e7;">nixora deploy</span></div>
+        <div style="margin-top:0.5rem;color:#a78bfa;">✔ Deployed. Nixora is now managing your app's lifecycle.</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<script>
+  const btn = document.getElementById('copy-btn');
+  const label = document.getElementById('copy-label');
+  btn?.addEventListener('click', () => {
+    navigator.clipboard.writeText('npm install -g nixora-cli');
+    if (label) label.textContent = '✓ Copied';
+    setTimeout(() => { if (label) label.textContent = 'Copy'; }, 2000);
+  });
+</script>

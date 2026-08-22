@@ -1,0 +1,76 @@
+---
+const currentPath = Astro.url.pathname;
+const navLinks = [
+  { href: '/product', label: 'Product' },
+  { href: '/traction', label: 'Traction' },
+  { href: '/founder', label: 'Founder' },
+];
+---
+<header id="site-header" class="site-header">
+  <!-- Logo (SVG: crisp at all sizes) -->
+  <a href="/" aria-label="Home" style="display:flex;align-items:center;text-decoration:none;">
+    <img src="/logo.svg" alt="Nixora" style="height:30px;width:auto;" />
+  </a>
+
+  <!-- Center nav: real routed pages -->
+  <nav class="header-nav" style="display:flex;gap:2rem;">
+    {navLinks.map(link => (
+      <a
+        href={link.href}
+        style={`color:${currentPath === link.href ? '#fff' : '#a1a1aa'};font-size:0.875rem;text-decoration:none;transition:color 0.2s;`}
+        onmouseover="this.style.color='#fff'"
+        onmouseout={`this.style.color='${currentPath === link.href ? '#fff' : '#a1a1aa'}'`}
+      >
+        {link.label}
+      </a>
+    ))}
+  </nav>
+
+  <!-- Right CTAs -->
+  <div style="display:flex;align-items:center;gap:1rem;">
+    <a
+      href="mailto:hello@nixora.co.in?subject=Nixora%20Investor%20Deck%20Request"
+      style="color:#a1a1aa;font-size:0.875rem;text-decoration:none;transition:color 0.2s;"
+      onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#a1a1aa'"
+    >
+      Request deck
+    </a>
+    <a href="/#early-access" class="shiny-cta">
+      Get early access
+      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:14px;height:14px;">
+        <path d="M15.187 11.2362L11.0895 7.13873L12.1696 6.05859L18.1111 12.0001L12.1696 17.9416L11.0895 16.8615L15.187 12.764H5.88892V11.2362H15.187Z" fill="currentColor"/>
+      </svg>
+    </a>
+  </div>
+</header>
+
+<script>
+  function initHeaderScroll() {
+    const header = document.getElementById('site-header');
+    if (!header) return;
+
+    let ticking = false;
+    const scrollThreshold = 80;
+
+    function updateHeader() {
+      if (window.scrollY > scrollThreshold) {
+        header?.classList.add('scrolled');
+      } else {
+        header?.classList.remove('scrolled');
+      }
+      ticking = false;
+    }
+
+    window.addEventListener('scroll', () => {
+      if (!ticking) {
+        window.requestAnimationFrame(updateHeader);
+        ticking = true;
+      }
+    }, { passive: true });
+
+    // Initial check on load
+    updateHeader();
+  }
+
+  initHeaderScroll();
+</script>

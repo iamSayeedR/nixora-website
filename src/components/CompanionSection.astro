@@ -1,0 +1,58 @@
+---
+import AnimatedBgSvg from './AnimatedBgSvg.astro';
+---
+<section id="companion" style="padding:6rem 2rem;position:relative;overflow:hidden;text-align:center;">
+  <AnimatedBgSvg />
+
+  <div style="max-width:800px;margin:0 auto;position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;gap:1.75rem;">
+    
+    <!-- Roadmap Badge -->
+    <div class="coming-soon-badge" style="font-size:0.8rem;padding:0.35rem 0.85rem;">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25ZM12.75 6a.75.75 0 0 0-1.5 0v6c0 .414.336.75.75.75h4.5a.75.75 0 0 0 0-1.5h-3.75V6Z"/></svg>
+      Roadmap Item · Phase 4
+    </div>
+
+    <h2 class="section-headline">Agent Context <span class="accent">Protocol</span></h2>
+
+    <p style="font-size:1.0625rem;line-height:1.75;color:#a1a1aa;max-width:620px;display:block;margin:0 auto;">
+      <span style="color:#fff;font-weight:600;">Planned agent-native integration layer.</span> Future releases will expose Model Context Protocol (MCP) servers and command palette hooks to trigger Nixora deployments directly from IDEs and AI coding tools.
+    </p>
+
+    <!-- Visual Mock Card -->
+    <div style="
+      width:100%;max-width:680px;
+      margin-top:1.5rem;
+      border:1px solid #222;
+      border-radius:12px;
+      background:#0a0a0a;
+      padding:2rem;
+      box-shadow:0 20px 60px rgba(0,0,0,0.5);
+      text-align:left;
+      font-family:'Fira Code',monospace;
+      font-size:0.85rem;
+    ">
+      <div style="display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #1a1a1a;padding-bottom:1rem;margin-bottom:1rem;">
+        <div style="display:flex;align-items:center;gap:0.6rem;">
+          <img src="/logo-mark.svg" alt="Nixora" style="height:18px;width:18px;" />
+          <span style="color:#a78bfa;font-weight:600;">Nixora MCP Server Protocol (Planned)</span>
+        </div>
+        <span style="color:#555;font-size:0.75rem;">ROADMAP CONCEPT</span>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:0.75rem;color:#a1a1aa;">
+        <div style="padding:0.5rem 0.75rem;background:rgba(167,139,250,0.08);border:1px solid rgba(167,139,250,0.2);border-radius:6px;color:#fff;display:flex;justify-content:space-between;">
+          <span>⚡ mcp.nixora.deploy()</span>
+          <span style="color:#a78bfa;font-size:0.75rem;">PLANNED API</span>
+        </div>
+        <div style="padding:0.5rem 0.75rem;border:1px solid transparent;border-radius:6px;display:flex;justify-content:space-between;">
+          <span>🔍 mcp.nixora.getLogs()</span>
+          <span style="color:#555;font-size:0.75rem;">PLANNED API</span>
+        </div>
+        <div style="padding:0.5rem 0.75rem;border:1px solid transparent;border-radius:6px;display:flex;justify-content:space-between;">
+          <span>🛡️ mcp.nixora.heal()</span>
+          <span style="color:#555;font-size:0.75rem;">PLANNED API</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>

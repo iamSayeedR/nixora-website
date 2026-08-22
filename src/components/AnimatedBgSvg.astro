@@ -1,0 +1,43 @@
+---
+---
+<div class="pointer-events-none absolute inset-0 z-0 overflow-hidden opacity-30 flex items-center justify-center">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 350 410" fill="none" class="w-full max-w-4xl h-full object-cover">
+    
+    <!-- Primary Layer: Animated stroke-dashoffset tracing along block N contour -->
+    <path 
+      stroke-dashoffset="250" 
+      stroke-dasharray="250 150" 
+      stroke-width="0.6" 
+      fill="none" 
+      stroke="#a78bfa" 
+      d="M 35 375 L 35 35 L 115 35 L 235 255 L 235 35 L 315 35 L 315 375 L 235 375 L 115 155 L 115 375 Z"
+    >
+      <animate attributeName="stroke-dashoffset" values="2008;0;2008" dur="30s" repeatCount="indefinite" calcMode="linear"></animate>
+    </path>
+    
+    <!-- Secondary Layer: Offset animated dash stroke in dark purple -->
+    <path 
+      stroke-dashoffset="300" 
+      stroke-dasharray="100 100" 
+      stroke-width="0.4" 
+      fill="none" 
+      stroke="#7c3aed" 
+      d="M 35 375 L 35 35 L 115 35 L 235 255 L 235 35 L 315 35 L 315 375 L 235 375 L 115 155 L 115 375 Z"
+    >
+      <animate attributeName="stroke-dashoffset" values="2008;0;2008" dur="25s" repeatCount="indefinite" calcMode="linear"></animate>
+    </path>
+
+    <!-- Subtle inner accent line tracing the diagonal -->
+    <path
+      stroke-dashoffset="150"
+      stroke-dasharray="150 100"
+      stroke-width="0.4"
+      fill="none"
+      stroke="#c4b5fd"
+      d="M 75 75 L 275 335"
+    >
+      <animate attributeName="stroke-dashoffset" values="800;0;800" dur="20s" repeatCount="indefinite" calcMode="linear"></animate>
+    </path>
+
+  </svg>
+</div>

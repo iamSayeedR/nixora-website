@@ -1,0 +1,329 @@
+---
+---
+<section id="features" style="padding:5rem 2rem;position:relative;overflow:hidden;">
+  <!-- Section Heading Background Wash Glow -->
+  <div style="position:absolute;top:0;left:50%;transform:translateX(-50%);width:100%;max-width:800px;height:240px;background:radial-gradient(ellipse 65% 50% at 50% 0%, rgba(139,92,246,0.14), transparent 75%);pointer-events:none;z-index:0;"></div>
+
+  <div style="max-width:1200px;margin:0 auto;position:relative;z-index:1;display:flex;flex-direction:column;gap:3.5rem;">
+
+    <!-- Section Intro -->
+    <div style="text-align:center;display:flex;flex-direction:column;align-items:center;gap:1rem;">
+      <h2 class="section-headline" style="text-align:center;">One unified system for <span class="accent">AI-driven operations</span></h2>
+      <p style="font-size:1.0625rem;line-height:1.75;color:#a1a1aa;max-width:620px;display:block;margin:0 auto;">
+        From first deploy to fleet-level governance, Nixora is the control plane your AI-built software has been missing.
+      </p>
+    </div>
+
+    <!-- ── 6 Hero Cards Grid (3 Columns on Desktop) ── -->
+    <div class="hero-cards-grid">
+
+      <!-- 1. Deploy & Run (LIVE) -->
+      <div class="hero-card">
+        <div style="display:flex;flex-direction:column;gap:1rem;">
+          <!-- Status Badge -->
+          <div style="display:flex;align-items:center;justify-content:space-between;">
+            <div class="badge-live">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#a78bfa" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              Live
+            </div>
+            <span style="font-size:0.7rem;color:#52525b;font-family:'Fira Code',monospace;">GROUP 01</span>
+          </div>
+
+          <h3 style="font-size:1.35rem;font-weight:700;color:#fff;margin:0;">Deploy & Run</h3>
+          <p style="font-size:0.875rem;line-height:1.6;color:#a1a1aa;margin:0;">
+            Go from AI-generated code to a live, running application in one command.
+          </p>
+
+          <!-- Feature Tag List (Approved List) -->
+          <div style="display:flex;flex-wrap:wrap;gap:0.4rem;margin-top:0.5rem;">
+            {["CLI", "One-command deployment", "Hosting", "Authentication", "HTTPS", "Shareable URLs"].map(item => (
+              <span class="feature-chip live-chip">{item}</span>
+            ))}
+          </div>
+        </div>
+
+        <!-- Visual: Real CLI Output (Updated to .co.in domain) -->
+        <div class="card-visual">
+          <div style="font-family:'Fira Code',monospace;font-size:0.72rem;line-height:1.7;color:#555;">
+            <div><span style="color:#a78bfa;">$</span> <span style="color:#fff;">nixora deploy</span></div>
+            <div style="color:#52525b;">✔ Container built</div>
+            <div style="color:#52525b;">✔ HTTPS SSL issued</div>
+            <div style="color:#a78bfa;font-weight:600;margin-top:0.2rem;">✔ Live: https://my-app.nixora.co.in</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2. Lifecycle & Updates (COMING SOON) -->
+      <div class="hero-card">
+        <div style="display:flex;flex-direction:column;gap:1rem;">
+          <!-- Status Badge -->
+          <div style="display:flex;align-items:center;justify-content:space-between;">
+            <div class="badge-soon">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#71717a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              Coming soon
+            </div>
+            <span style="font-size:0.7rem;color:#52525b;font-family:'Fira Code',monospace;">GROUP 02</span>
+          </div>
+
+          <h3 style="font-size:1.35rem;font-weight:700;color:#fff;margin:0;">Lifecycle & Updates</h3>
+          <p style="font-size:0.875rem;line-height:1.6;color:#a1a1aa;margin:0;">
+            Keep AI-generated software healthy long after it ships.
+          </p>
+
+          <!-- Feature Tag List (Approved List) -->
+          <div style="display:flex;flex-wrap:wrap;gap:0.4rem;margin-top:0.5rem;">
+            {["Version history", "Rollbacks", "Auto updates", "Auto sleep", "Auto retirement", "Environment management", "Secrets management"].map(item => (
+              <span class="feature-chip soon-chip">{item}</span>
+            ))}
+          </div>
+        </div>
+
+        <!-- Visual: Abstract Step Diagram Flow -->
+        <div class="card-visual" style="display:flex;align-items:center;justify-content:space-between;padding:1rem;font-family:'Fira Code',monospace;font-size:0.7rem;">
+          <div style="padding:0.35rem 0.6rem;border:1px solid rgba(167,139,250,0.3);border-radius:5px;background:rgba(167,139,250,0.06);color:#a78bfa;">v1.0</div>
+          <span style="color:#3f3f46;">→</span>
+          <div style="padding:0.35rem 0.6rem;border:1px solid #2a2a2a;border-radius:5px;background:#0d0d0d;color:#a1a1aa;">v1.1</div>
+          <span style="color:#3f3f46;">→</span>
+          <div style="padding:0.35rem 0.6rem;border:1px solid #2a2a2a;border-radius:5px;background:#0d0d0d;color:#71717a;">Rollback</div>
+        </div>
+      </div>
+
+      <!-- 3. Insights & Cost (COMING SOON) -->
+      <div class="hero-card">
+        <div style="display:flex;flex-direction:column;gap:1rem;">
+          <!-- Status Badge -->
+          <div style="display:flex;align-items:center;justify-content:space-between;">
+            <div class="badge-soon">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#71717a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              Coming soon
+            </div>
+            <span style="font-size:0.7rem;color:#52525b;font-family:'Fira Code',monospace;">GROUP 03</span>
+          </div>
+
+          <h3 style="font-size:1.35rem;font-weight:700;color:#fff;margin:0;">Insights & Cost</h3>
+          <p style="font-size:0.875rem;line-height:1.6;color:#a1a1aa;margin:0;">
+            Real-time visibility into application performance and cloud spend.
+          </p>
+
+          <!-- Feature Tag List (Approved List: Usage analytics, Analytics, Cost optimization, Audit logs) -->
+          <div style="display:flex;flex-wrap:wrap;gap:0.4rem;margin-top:0.5rem;">
+            {["Usage analytics", "Analytics", "Cost optimization", "Audit logs"].map(item => (
+              <span class="feature-chip soon-chip">{item}</span>
+            ))}
+          </div>
+        </div>
+
+        <!-- Visual: Conceptual Abstract Chart Shape -->
+        <div class="card-visual" style="display:flex;align-items:flex-end;justify-content:space-around;height:65px;padding:0.75rem 1rem 0;">
+          <div style="width:14%;height:35%;background:#222;border-radius:3px 3px 0 0;"></div>
+          <div style="width:14%;height:65%;background:#2a2a2a;border-radius:3px 3px 0 0;"></div>
+          <div style="width:14%;height:45%;background:#222;border-radius:3px 3px 0 0;"></div>
+          <div style="width:14%;height:85%;background:linear-gradient(to top, #7c3aed, #a78bfa);border-radius:3px 3px 0 0;"></div>
+          <div style="width:14%;height:60%;background:#2a2a2a;border-radius:3px 3px 0 0;"></div>
+        </div>
+      </div>
+
+      <!-- 4. Governance & Security (COMING SOON) -->
+      <div class="hero-card">
+        <div style="display:flex;flex-direction:column;gap:1rem;">
+          <!-- Status Badge -->
+          <div style="display:flex;align-items:center;justify-content:space-between;">
+            <div class="badge-soon">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#71717a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              Coming soon
+            </div>
+            <span style="font-size:0.7rem;color:#52525b;font-family:'Fira Code',monospace;">GROUP 04</span>
+          </div>
+
+          <h3 style="font-size:1.35rem;font-weight:700;color:#fff;margin:0;">Governance & Security</h3>
+          <p style="font-size:0.875rem;line-height:1.6;color:#a1a1aa;margin:0;">
+            Policy enforcement, security scanning, and audit compliance for agents.
+          </p>
+
+          <!-- Feature Tag List (Approved List: Governance, Compliance, Security, Organization policies) -->
+          <div style="display:flex;flex-wrap:wrap;gap:0.4rem;margin-top:0.5rem;">
+            {["Governance", "Compliance", "Security", "Organization policies"].map(item => (
+              <span class="feature-chip soon-chip">{item}</span>
+            ))}
+          </div>
+        </div>
+
+        <!-- Visual: Icon-based Visual Grid -->
+        <div class="card-visual" style="display:grid;grid-template-columns:1fr 1fr;gap:0.6rem;font-size:0.75rem;color:#a1a1aa;padding:0.85rem;">
+          <div style="display:flex;align-items:center;gap:0.4rem;"><span style="color:#a78bfa;">🏛️</span> Governance</div>
+          <div style="display:flex;align-items:center;gap:0.4rem;"><span style="color:#a78bfa;">🛡️</span> Security</div>
+          <div style="display:flex;align-items:center;gap:0.4rem;"><span style="color:#a78bfa;">📜</span> Compliance</div>
+          <div style="display:flex;align-items:center;gap:0.4rem;"><span style="color:#a78bfa;">🔒</span> Org Policies</div>
+        </div>
+      </div>
+
+      <!-- 5. Fleet & Scale (COMING SOON) -->
+      <div class="hero-card">
+        <div style="display:flex;flex-direction:column;gap:1rem;">
+          <!-- Status Badge -->
+          <div style="display:flex;align-items:center;justify-content:space-between;">
+            <div class="badge-soon">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#71717a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              Coming soon
+            </div>
+            <span style="font-size:0.7rem;color:#52525b;font-family:'Fira Code',monospace;">GROUP 05</span>
+          </div>
+
+          <h3 style="font-size:1.35rem;font-weight:700;color:#fff;margin:0;">Fleet & Scale</h3>
+          <p style="font-size:0.875rem;line-height:1.6;color:#a1a1aa;margin:0;">
+            Orchestrate, organize, and auto-scale hundreds of agent-built apps.
+          </p>
+
+          <!-- Feature Tag List (Approved List: Fleet inventory, Collaboration, Workflow automation, Enterprise governance) -->
+          <div style="display:flex;flex-wrap:wrap;gap:0.4rem;margin-top:0.5rem;">
+            {["Fleet inventory", "Collaboration", "Workflow automation", "Enterprise governance"].map(item => (
+              <span class="feature-chip soon-chip">{item}</span>
+            ))}
+          </div>
+        </div>
+
+        <!-- Visual: Abstract Node Diagram -->
+        <div class="card-visual" style="display:flex;align-items:center;justify-content:center;gap:0.75rem;font-family:'Fira Code',monospace;font-size:0.7rem;padding:0.85rem;">
+          <div style="display:flex;flex-direction:column;gap:0.25rem;">
+            <span style="padding:2px 6px;border:1px solid #222;border-radius:3px;color:#71717a;background:#0d0d0d;">App 1</span>
+            <span style="padding:2px 6px;border:1px solid #222;border-radius:3px;color:#71717a;background:#0d0d0d;">App 2</span>
+            <span style="padding:2px 6px;border:1px solid #222;border-radius:3px;color:#71717a;background:#0d0d0d;">App N</span>
+          </div>
+          <span style="color:#a78bfa;font-size:1rem;">➔</span>
+          <div style="padding:0.5rem 0.75rem;border:1px solid rgba(167,139,250,0.3);border-radius:6px;background:rgba(167,139,250,0.06);color:#a78bfa;font-weight:600;text-align:center;">
+            Fleet Control
+          </div>
+        </div>
+      </div>
+
+      <!-- 6. Platform & Integrations (COMING SOON) -->
+      <div class="hero-card">
+        <div style="display:flex;flex-direction:column;gap:1rem;">
+          <!-- Status Badge -->
+          <div style="display:flex;align-items:center;justify-content:space-between;">
+            <div class="badge-soon">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#71717a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              Coming soon
+            </div>
+            <span style="font-size:0.7rem;color:#52525b;font-family:'Fira Code',monospace;">GROUP 06</span>
+          </div>
+
+          <h3 style="font-size:1.35rem;font-weight:700;color:#fff;margin:0;">Platform & Integrations</h3>
+          <p style="font-size:0.875rem;line-height:1.6;color:#a1a1aa;margin:0;">
+            Connect Nixora into developer tools, AI coding agents, and web interfaces.
+          </p>
+
+          <!-- Feature Tag List (Approved List: Marketplace, Agent APIs, MCP Server / Tools, REST APIs & SDKs, No-code web interface) -->
+          <div style="display:flex;flex-wrap:wrap;gap:0.4rem;margin-top:0.5rem;">
+            {["Marketplace", "Agent APIs", "MCP Server / Tools", "REST APIs & SDKs", "No-code web interface"].map(item => (
+              <span class="feature-chip soon-chip">{item}</span>
+            ))}
+          </div>
+        </div>
+
+        <!-- Visual: Integration Tool Grid -->
+        <div class="card-visual" style="display:grid;grid-template-columns:repeat(3, 1fr);gap:0.4rem;text-align:center;font-size:0.7rem;color:#a1a1aa;font-family:'Fira Code',monospace;padding:0.75rem;">
+          <div style="padding:0.35rem;border:1px solid #222;border-radius:5px;background:#0d0d0d;">Claude</div>
+          <div style="padding:0.35rem;border:1px solid #222;border-radius:5px;background:#0d0d0d;">Cursor</div>
+          <div style="padding:0.35rem;border:1px solid #222;border-radius:5px;background:#0d0d0d;">Codex</div>
+          <div style="padding:0.35rem;border:1px solid #222;border-radius:5px;background:#0d0d0d;">Gemini</div>
+          <div style="padding:0.35rem;border:1px solid rgba(167,139,250,0.3);border-radius:5px;background:rgba(167,139,250,0.06);color:#a78bfa;grid-column:span 2;">MCP Tools</div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .hero-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+
+  .hero-card {
+    background: #0a0a0a;
+    border: 1px solid #1f1f1f;
+    border-radius: 14px;
+    padding: 1.75rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 1.75rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4), 0 0 20px rgba(139, 92, 246, 0.04);
+    transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+  }
+
+  .hero-card:hover {
+    transform: translateY(-2px);
+    border-color: rgba(167, 139, 250, 0.4);
+    box-shadow: 0 14px 40px rgba(0, 0, 0, 0.6), 0 0 25px rgba(139, 92, 246, 0.12);
+  }
+
+  .badge-live {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.25rem 0.65rem;
+    border-radius: 9999px;
+    border: 1px solid rgba(167, 139, 250, 0.4);
+    background: rgba(167, 139, 250, 0.1);
+    font-size: 0.72rem;
+    color: #a78bfa;
+    font-weight: 600;
+  }
+
+  .badge-soon {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.25rem 0.65rem;
+    border-radius: 9999px;
+    border: 1px solid #2a2a2a;
+    background: rgba(255, 255, 255, 0.03);
+    font-size: 0.72rem;
+    color: #71717a;
+    font-weight: 500;
+  }
+
+  .feature-chip {
+    font-size: 0.72rem;
+    padding: 0.2rem 0.55rem;
+    border-radius: 5px;
+    font-family: 'Fira Code', 'Geist Mono', monospace;
+  }
+
+  .live-chip {
+    border: 1px solid rgba(167, 139, 250, 0.25);
+    background: rgba(167, 139, 250, 0.05);
+    color: #c4b5fd;
+  }
+
+  .soon-chip {
+    border: 1px solid #222;
+    background: #111;
+    color: #71717a;
+  }
+
+  .card-visual {
+    background: #111;
+    border: 1px solid #1f1f1f;
+    border-radius: 8px;
+    padding: 1rem;
+    overflow: hidden;
+  }
+
+  @media (max-width: 992px) {
+    .hero-cards-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 640px) {
+    .hero-cards-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

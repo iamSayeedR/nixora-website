@@ -1,0 +1,35 @@
+<svg viewBox="0 0 210 52" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Nixora Arch Logomark -->
+  <g transform="translate(0, 2) scale(0.48)">
+    <path fill-rule="evenodd" clip-rule="evenodd" d="
+      M 15,92 
+      L 15,38 
+      C 15,18.67 30.67,3 50,3 
+      C 69.33,3 85,18.67 85,38 
+      L 85,92 
+      L 65,92 
+      L 65,38 
+      C 65,29.72 58.28,23 50,23 
+      C 41.72,23 35,29.72 35,38 
+      L 35,92 
+      Z" fill="#FFFFFF"/>
+    
+    <path d="
+      M 50,68 
+      C 50,68 45,58 36,52 
+      C 45,54 50,44 50,44 
+      C 50,44 55,54 64,52 
+      C 55,58 50,68 50,68 
+      Z" fill="#8B5CF6"/>
+  </g>
+
+  <!-- "nixora" Wordmark in lowercase bold sans-serif -->
+  <text
+    x="52"
+    y="36"
+    font-family="'Inter', -apple-system, BlinkMacSystemFont, sans-serif"
+    font-weight="700"
+    font-size="28"
+    fill="#FFFFFF"
+    letter-spacing="-0.6">nixora</text>
+</svg>

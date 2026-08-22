@@ -1,0 +1,87 @@
+---
+---
+<section id="architecture" style="padding:5rem 2rem;position:relative;overflow:hidden;">
+  <!-- Section Heading Wash Glow -->
+  <div style="position:absolute;top:0;left:50%;transform:translateX(-50%);width:100%;max-width:800px;height:240px;background:radial-gradient(ellipse 70% 50% at 50% 0%,rgba(139,92,246,0.14),transparent 70%);pointer-events:none;z-index:0;"></div>
+
+  <div style="max-width:900px;margin:0 auto;position:relative;z-index:1;display:flex;flex-direction:column;gap:3.5rem;">
+
+    <!-- Headline -->
+    <div style="text-align:center;display:flex;flex-direction:column;align-items:center;gap:1rem;">
+      <h2 class="section-headline">Why traditional infra <span class="accent">fails AI code</span></h2>
+      <p style="font-size:1.0625rem;line-height:1.75;color:#a1a1aa;max-width:560px;display:block;margin:0 auto;">
+        AI generates apps faster than any team can manually configure, containerize, and maintain. Nixora automates the entire operations layer.
+      </p>
+    </div>
+
+    <!-- ── Large comparison diagram ── -->
+    <div style="display:grid;gap:1px;border:1px solid #1f1f1f;border-radius:14px;overflow:hidden;background:#1f1f1f;box-shadow:0 16px 40px rgba(0,0,0,0.5), 0 0 30px rgba(139,92,246,0.06);">
+
+      <!-- Row 1: Without Nixora -->
+      <div style="background:#111;padding:2rem 2rem 1.5rem;">
+        <div style="font-size:0.7rem;color:#ef4444;text-transform:uppercase;letter-spacing:0.1em;font-weight:700;margin-bottom:1.5rem;display:flex;align-items:center;gap:0.5rem;">
+          <span>✕</span> Without Nixora: manual, fragile
+        </div>
+        <div style="display:flex;align-items:center;gap:0;overflow-x:auto;padding-bottom:0.5rem;">
+          {[
+            { label:"AI generates code", sub:"agent outputs", color:"#27272a", text:"#a1a1aa" },
+            null,
+            { label:"Write Dockerfile", sub:"manual", color:"#3f1515", text:"#ef4444" },
+            null,
+            { label:"Debug ports", sub:"manual", color:"#3f1515", text:"#ef4444" },
+            null,
+            { label:"Deploy", sub:"manual", color:"#3f1515", text:"#ef4444" },
+            null,
+            { label:"App crashes", sub:"babysit", color:"#3f1515", text:"#ef4444" },
+          ].map((node) =>
+            node === null ? (
+              <div style="flex-shrink:0;padding:0 0.5rem;color:#3f3f46;font-size:1.1rem;">→</div>
+            ) : (
+              <div style={`flex-shrink:0;padding:0.6rem 0.9rem;border:1px solid ${node.color};border-radius:6px;background:rgba(0,0,0,0.4);text-align:center;min-width:90px;`}>
+                <div style={`font-size:0.78rem;font-weight:600;color:${node.text};`}>{node.label}</div>
+                <div style="font-size:0.65rem;color:#52525b;margin-top:0.15rem;">{node.sub}</div>
+              </div>
+            )
+          )}
+        </div>
+      </div>
+
+      <!-- Row 2: With Nixora -->
+      <div style="background:#0d0d0d;padding:2rem 2rem 1.5rem;">
+        <div style="font-size:0.7rem;color:#a78bfa;text-transform:uppercase;letter-spacing:0.1em;font-weight:700;margin-bottom:1.5rem;display:flex;align-items:center;gap:0.5rem;">
+          <span>✔</span> With Nixora: automated, self-healing
+        </div>
+        <div style="display:flex;align-items:center;gap:0;flex-wrap:wrap;gap:0;">
+          <div style="flex-shrink:0;padding:0.6rem 0.9rem;border:1px solid #27272a;border-radius:6px;background:rgba(0,0,0,0.4);text-align:center;min-width:90px;">
+            <div style="font-size:0.78rem;font-weight:600;color:#a1a1aa;">AI generates code</div>
+            <div style="font-size:0.65rem;color:#52525b;margin-top:0.15rem;">agent outputs</div>
+          </div>
+          <div style="flex-shrink:0;padding:0 0.5rem;color:#a78bfa;font-size:1.1rem;">→</div>
+          
+          <!-- 8c: De-emphasized nixora deploy step node (flow step styling instead of terminal box) -->
+          <div style="flex-shrink:0;padding:0.6rem 1rem;border:1px solid rgba(167,139,250,0.3);border-radius:6px;background:rgba(167,139,250,0.08);text-align:center;min-width:120px;">
+            <div style="font-size:0.78rem;font-weight:700;color:#a78bfa;">nixora deploy</div>
+            <div style="font-size:0.65rem;color:#c4b5fd;margin-top:0.15rem;">one command</div>
+          </div>
+          
+          <div style="flex-shrink:0;padding:0 0.5rem;color:#a78bfa;font-size:1.1rem;">→</div>
+          
+          <!-- 8a: Confirmed live provisioned outputs (Hosting provisioned & HTTPS certificate issued) -->
+          <div style="display:flex;flex-direction:column;gap:0.4rem;flex:1;min-width:200px;">
+            {[
+              "Hosting provisioned",
+              "HTTPS certificate issued"
+            ].map(item => (
+              <div style="display:flex;align-items:center;gap:0.5rem;font-size:0.78rem;color:#71717a;">
+                <span style="color:#a78bfa;flex-shrink:0;">✔</span>
+                {item}
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>

@@ -1,0 +1,22 @@
+---
+import InnerLayout from '../layouts/InnerLayout.astro';
+import Founder from '../components/Founder.astro';
+import Vision from '../components/Vision.astro';
+import EarlyAccess from '../components/EarlyAccess.astro';
+---
+
+<InnerLayout title="Founder | Nixora" description="Meet Sayeed Rizwan, solo technical founder building Nixora.">
+
+  <!-- Page Header -->
+  <div style="padding:4rem 2rem 2rem;max-width:900px;margin:0 auto;">
+    <div style="font-size:0.72rem;color:#52525b;text-transform:uppercase;letter-spacing:0.1em;font-weight:700;margin-bottom:0.75rem;">Founder</div>
+    <h1 class="section-headline" style="max-width:600px;">Built by an engineer <span class="accent">for the AI era.</span></h1>
+  </div>
+  
+  <Founder />
+  
+  <Vision />
+
+  <EarlyAccess />
+
+</InnerLayout>

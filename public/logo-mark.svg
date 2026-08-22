@@ -1,0 +1,24 @@
+<svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Nixora Arch shape: White fill -->
+  <path fill-rule="evenodd" clip-rule="evenodd" d="
+    M 15,92 
+    L 15,38 
+    C 15,18.67 30.67,3 50,3 
+    C 69.33,3 85,18.67 85,38 
+    L 85,92 
+    L 65,92 
+    L 65,38 
+    C 65,29.72 58.28,23 50,23 
+    C 41.72,23 35,29.72 35,38 
+    L 35,92 
+    Z" fill="#FFFFFF"/>
+  
+  <!-- Purple 4-Point Sparkle Star inside arch cavity -->
+  <path d="
+    M 50,68 
+    C 50,68 45,58 36,52 
+    C 45,54 50,44 50,44 
+    C 50,44 55,54 64,52 
+    C 55,58 50,68 50,68 
+    Z" fill="#8B5CF6"/>
+</svg>

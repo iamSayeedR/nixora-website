@@ -1,0 +1,157 @@
+---
+---
+<section id="deploy-intro" style="padding:5rem 2rem;position:relative;overflow:hidden;">
+  <!-- Section Heading Wash Glow -->
+  <div style="position:absolute;top:0;left:50%;transform:translateX(-50%);width:100%;max-width:800px;height:240px;background:radial-gradient(ellipse 70% 50% at 50% 0%,rgba(139,92,246,0.14),transparent 70%);pointer-events:none;z-index:0;"></div>
+
+  <div style="max-width:900px;margin:0 auto;position:relative;z-index:1;display:flex;flex-direction:column;gap:3.5rem;">
+
+    <!-- Icon + headline -->
+    <div style="display:flex;flex-direction:column;align-items:center;text-align:center;gap:1.25rem;">
+      <div style="width:48px;height:48px;border-radius:50%;border:1px solid #2a2a2a;background:#0a0a0a;display:flex;align-items:center;justify-content:center;box-shadow:0 0 20px rgba(139,92,246,0.15);">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#a78bfa" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="4 17 10 11 4 5"></polyline>
+          <line x1="12" y1="19" x2="20" y2="19"></line>
+        </svg>
+      </div>
+      <h2 class="section-headline">It all starts with <span class="accent">nixora deploy</span></h2>
+      <p style="font-size:1.0625rem;line-height:1.75;color:#a1a1aa;max-width:560px;display:block;margin:0 auto;">
+        One command bridges the gap between AI-generated code and a live, managed application, with hosting, HTTPS, and authentication handled automatically.
+      </p>
+    </div>
+
+    <!-- Large featured terminal: the primary product visual -->
+    <div style="
+      border:1px solid #2a2a2a;
+      border-radius:14px;
+      background:#0a0a0a;
+      overflow:hidden;
+      box-shadow:
+        0 0 0 1px #1a1a1a,
+        0 0 60px rgba(139,92,246,0.12),
+        0 40px 100px rgba(0,0,0,0.6);
+    ">
+      <!-- Title bar -->
+      <div style="display:flex;align-items:center;gap:0.5rem;padding:0.85rem 1.25rem;border-bottom:1px solid #1a1a1a;background:#0f0f0f;">
+        <span style="width:12px;height:12px;border-radius:50%;background:#ff5f57;opacity:0.7;"></span>
+        <span style="width:12px;height:12px;border-radius:50%;background:#febc2e;opacity:0.7;"></span>
+        <span style="width:12px;height:12px;border-radius:50%;background:#28c840;opacity:0.7;"></span>
+        <span style="flex:1;text-align:center;font-size:0.72rem;color:#3f3f46;font-family:'Fira Code',monospace;letter-spacing:0.02em;">nixora: bash</span>
+      </div>
+
+      <!-- Two-panel terminal: command + output -->
+      <div style="display:grid;grid-template-columns:1fr 1fr;min-height:340px;" class="terminal-grid">
+
+        <!-- Left: Command input -->
+        <div style="padding:2rem;border-right:1px solid #1a1a1a;font-family:'Fira Code','Geist Mono',monospace;font-size:0.82rem;line-height:1.9;">
+          <div style="color:#3f3f46;font-size:0.7rem;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:1.25rem;">INPUT</div>
+          <div style="display:flex;flex-direction:column;gap:0.2rem;">
+            <div>
+              <span style="color:#52525b;">~/my-ai-app</span>
+              <span style="color:#3f3f46;"> $</span>
+              <span style="color:#e4e4e7;"> nixora deploy</span>
+            </div>
+            <div style="color:#52525b;padding-left:0.5rem;">└─ scanning project root</div>
+            <div style="color:#52525b;padding-left:0.5rem;">└─ detecting runtime: <span style="color:#a1a1aa;">node@20</span></div>
+            <div style="color:#52525b;padding-left:0.5rem;">└─ entry point: <span style="color:#a1a1aa;">server.js</span></div>
+            <div style="color:#52525b;padding-left:0.5rem;">└─ dependencies: <span style="color:#a1a1aa;">62 packages</span></div>
+          </div>
+
+          <div style="margin-top:1.5rem;display:flex;flex-direction:column;gap:0.2rem;">
+            <div style="color:#52525b;">building container...</div>
+            <div style="
+              height:4px;width:100%;background:#1a1a1a;border-radius:2px;overflow:hidden;margin-top:0.3rem;
+            ">
+              <div style="height:100%;width:100%;background:linear-gradient(90deg,#7c3aed,#a78bfa);border-radius:2px;animation:progress-fill 1.6s ease-out both;" id="build-bar"></div>
+            </div>
+            <div style="color:#3f3f46;font-size:0.72rem;margin-top:0.25rem;">image built in 8.4s</div>
+          </div>
+
+          <div style="margin-top:1.5rem;display:flex;flex-direction:column;gap:0.15rem;">
+            <div style="color:#52525b;">provisioning compute...</div>
+            <div style="color:#52525b;">issuing TLS certificate...</div>
+            <div style="color:#52525b;">routing traffic...</div>
+          </div>
+        </div>
+
+        <!-- Right: Live output -->
+        <div style="padding:2rem;font-family:'Fira Code','Geist Mono',monospace;font-size:0.82rem;line-height:1.9;">
+          <div style="color:#3f3f46;font-size:0.7rem;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:1.25rem;">OUTPUT</div>
+
+          <div style="display:flex;flex-direction:column;gap:0.15rem;">
+            <div style="color:#a78bfa;">✔ <span style="color:#71717a;">Container image pushed</span></div>
+            <div style="color:#a78bfa;">✔ <span style="color:#71717a;">Compute provisioned (us-east)</span></div>
+            <div style="color:#a78bfa;">✔ <span style="color:#71717a;">HTTPS certificate issued</span></div>
+            <div style="color:#a78bfa;">✔ <span style="color:#71717a;">Auth layer attached</span></div>
+            <div style="color:#a78bfa;">✔ <span style="color:#71717a;">Health check passed</span></div>
+          </div>
+
+          <div style="margin-top:1.5rem;padding:1rem;border:1px solid rgba(167,139,250,0.15);border-radius:8px;background:rgba(167,139,250,0.04);">
+            <div style="color:#52525b;font-size:0.72rem;margin-bottom:0.5rem;">LIVE URL</div>
+            <div style="color:#a78bfa;word-break:break-all;">https://my-app.nixora.co.in</div>
+            <div style="color:#3f3f46;font-size:0.72rem;margin-top:0.5rem;">deployed in 12.3s · managed by Nixora</div>
+          </div>
+
+          <div style="margin-top:1.25rem;padding-top:1.25rem;border-top:1px solid #1a1a1a;color:#a78bfa;font-weight:500;">
+            ✔ Nixora is now managing your app's lifecycle.
+          </div>
+        </div>
+      </div>
+
+      <!-- Bottom bar: status strip -->
+      <div style="padding:0.6rem 1.5rem;border-top:1px solid #1a1a1a;background:#0f0f0f;display:flex;align-items:center;justify-content:space-between;font-family:'Fira Code',monospace;font-size:0.7rem;color:#3f3f46;">
+        <div style="display:flex;align-items:center;gap:1.5rem;">
+          <span style="display:flex;align-items:center;gap:0.4rem;">
+            <span style="width:6px;height:6px;border-radius:50%;background:#28c840;display:inline-block;"></span>
+            running
+          </span>
+          <span>uptime: 100%</span>
+          <span>region: us-east-1</span>
+        </div>
+        <span>nixora-cli v0.1.0</span>
+      </div>
+    </div>
+
+    <!-- Feature bullet list -->
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1px;border:1px solid #1f1f1f;border-radius:10px;overflow:hidden;background:#1f1f1f;box-shadow:0 10px 30px rgba(0,0,0,0.4);" class="bullet-grid">
+      {[
+        { icon: "⚡", label: "Zero-config deploy", body: "Auto-detects runtime, containerizes, and ships with no Dockerfile required." },
+        { icon: "🔒", label: "HTTPS by default", body: "TLS certificate issued and attached to every deployment automatically." },
+        { icon: "♾️", label: "Persistent hosting", body: "Nixora handles uptime, restarts, and availability so you don't have to." },
+      ].map(item => (
+        <div class="deploy-bullet-cell">
+          <div style="font-size:1.2rem;">{item.icon}</div>
+          <div style="color:#fff;font-weight:600;font-size:0.9375rem;">{item.label}</div>
+          <div style="color:#71717a;font-size:0.875rem;line-height:1.6;">{item.body}</div>
+        </div>
+      ))}
+    </div>
+
+  </div>
+</section>
+<hr class="separator" />
+
+<style>
+  @keyframes progress-fill {
+    from { transform: scaleX(0); transform-origin: left; }
+    to   { transform: scaleX(1); transform-origin: left; }
+  }
+
+  .deploy-bullet-cell {
+    background: #111;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    transition: background 0.2s ease;
+  }
+
+  .deploy-bullet-cell:hover {
+    background: #141414;
+  }
+
+  @media (max-width: 768px) {
+    .terminal-grid { grid-template-columns: 1fr !important; }
+    .bullet-grid { grid-template-columns: 1fr !important; }
+  }
+</style>

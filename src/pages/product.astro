@@ -1,0 +1,25 @@
+---
+import InnerLayout from '../layouts/InnerLayout.astro';
+import Features from '../components/Features.astro';
+import HowItWorks from '../components/HowItWorks.astro';
+import Architecture from '../components/Architecture.astro';
+import DeployIntro from '../components/DeployIntro.astro';
+---
+<InnerLayout title="Product | Nixora" description="The full Nixora product roadmap: live deployment capabilities, lifecycle management, fleet management, and the AI software platform, phase by phase.">
+
+  <!-- Page hero -->
+  <div style="padding:4rem 2rem 2rem;max-width:900px;margin:0 auto;">
+    <div style="font-size:0.72rem;color:#52525b;text-transform:uppercase;letter-spacing:0.1em;font-weight:700;margin-bottom:0.75rem;">Product</div>
+    <h1 class="section-headline" style="max-width:600px;">One platform. <span class="accent">Every AI app you build.</span></h1>
+    <p style="font-size:1.0625rem;line-height:1.75;color:#a1a1aa;max-width:560px;display:block;margin:1.25rem 0 0;">
+      Phase 1 is live today. Phases 2–4 and the integration layer are what $450K of pre-seed funding builds over the next 12–14 months.
+    </p>
+  </div>
+  <hr class="separator" />
+
+  <DeployIntro />
+  <Features />
+  <HowItWorks />
+  <Architecture />
+
+</InnerLayout>
