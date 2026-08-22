@@ -1,0 +1,73 @@
+---
+import InnerLayout from '../layouts/InnerLayout.astro';
+---
+
+<InnerLayout title="Privacy Policy | Nixora" description="Nixora Privacy Policy. How we collect, use, and protect your data across our CLI and cloud platform.">
+
+  <div style="padding:4rem 2rem 4rem;max-width:800px;margin:0 auto;display:flex;flex-direction:column;gap:2.5rem;">
+    
+    <div>
+      <div style="font-size:0.72rem;color:#52525b;text-transform:uppercase;letter-spacing:0.1em;font-weight:700;margin-bottom:0.75rem;">Legal</div>
+      <h1 class="section-headline">Privacy <span class="accent">Policy</span></h1>
+      <p style="font-size:0.875rem;color:#71717a;margin-top:0.75rem;font-family:'Fira Code',monospace;">Last updated: August 2026</p>
+    </div>
+
+    <div style="display:flex;flex-direction:column;gap:2rem;color:#a1a1aa;font-size:0.95rem;line-height:1.8;">
+      
+      <section style="display:flex;flex-direction:column;gap:0.75rem;">
+        <h2 style="font-size:1.2rem;color:#fff;font-weight:600;margin:0;">1. Information We Collect</h2>
+        <p style="margin:0;">
+          Nixora collects information necessary to deliver and improve our CLI tool and managed cloud infrastructure:
+        </p>
+        <ul style="margin:0;padding-left:1.25rem;display:flex;flex-direction:column;gap:0.4rem;">
+          <li><strong style="color:#fff;">Contact Data:</strong> Name and email address provided when requesting early access or requesting investor materials.</li>
+          <li><strong style="color:#fff;">Deployment Metadata:</strong> Environment types, build logs, and runtime configurations required to execute container builds and provision HTTPS endpoints.</li>
+          <li><strong style="color:#fff;">CLI Telemetry:</strong> Anonymized command invocation statistics used to detect build errors and improve CLI reliability.</li>
+        </ul>
+      </section>
+
+      <section style="display:flex;flex-direction:column;gap:0.75rem;">
+        <h2 style="font-size:1.2rem;color:#fff;font-weight:600;margin:0;">2. How We Use Your Information</h2>
+        <p style="margin:0;">
+          We use collected data exclusively to:
+        </p>
+        <ul style="margin:0;padding-left:1.25rem;display:flex;flex-direction:column;gap:0.4rem;">
+          <li>Provision managed compute, SSL certificates, and routing for your deployed applications.</li>
+          <li>Send early access invitations, platform updates, and security notices.</li>
+          <li>Optimize build speeds, runtime compatibility, and control plane availability.</li>
+        </ul>
+      </section>
+
+      <section style="display:flex;flex-direction:column;gap:0.75rem;">
+        <h2 style="font-size:1.2rem;color:#fff;font-weight:600;margin:0;">3. Data Security & Storage</h2>
+        <p style="margin:0;">
+          We employ industry-standard encryption in transit (TLS/HTTPS) and at rest. Your deployed application data and environment configurations are isolated within secure cloud infrastructure containers.
+        </p>
+      </section>
+
+      <section style="display:flex;flex-direction:column;gap:0.75rem;">
+        <h2 style="font-size:1.2rem;color:#fff;font-weight:600;margin:0;">4. Third-Party Services</h2>
+        <p style="margin:0;">
+          We utilize trusted cloud infrastructure providers (compute hosting, DNS routing, and SSL certificate authorities) strictly to deliver platform capabilities. Nixora does not sell, rent, or trade your personal data to third parties.
+        </p>
+      </section>
+
+      <section style="display:flex;flex-direction:column;gap:0.75rem;">
+        <h2 style="font-size:1.2rem;color:#fff;font-weight:600;margin:0;">5. Your Rights & Choices</h2>
+        <p style="margin:0;">
+          You may request access to, correction of, or deletion of your contact data and deployment records at any time by contacting <a href="mailto:ceo@nixora.co.in" style="color:#a78bfa;text-decoration:none;">ceo@nixora.co.in</a>.
+        </p>
+      </section>
+
+      <section style="display:flex;flex-direction:column;gap:0.75rem;">
+        <h2 style="font-size:1.2rem;color:#fff;font-weight:600;margin:0;">6. Contact Us</h2>
+        <p style="margin:0;">
+          For privacy concerns or data requests, please reach out to <a href="mailto:ceo@nixora.co.in" style="color:#a78bfa;text-decoration:none;">ceo@nixora.co.in</a>.
+        </p>
+      </section>
+
+    </div>
+
+  </div>
+
+</InnerLayout>

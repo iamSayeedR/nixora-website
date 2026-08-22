@@ -1,18 +1,63 @@
 ---
 ---
-<hr class="separator" />
-<footer style="padding:2rem 2rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;max-width:1200px;margin:0 auto;">
-  <a href="/" style="display:flex;align-items:center;text-decoration:none;opacity:0.6;transition:opacity 0.2s;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.6'">
-    <img src="/logo.svg" alt="Nixora" style="height:24px;width:auto;" />
-  </a>
-  <!-- Domain finalization flag: update if domain changes from nixora.co.in -->
-  <p style="font-size:0.8rem;color:#3f3f46;text-align:center;flex:1;margin:0;">
-    Nixora is currently raising a pre-seed round via SAFE.&nbsp;
-    <a href="mailto:hello@nixora.co.in?subject=Nixora%20SAFE%20Investment%20Inquiry"
-       style="color:#71717a;text-decoration:underline;transition:color 0.2s;"
-       onmouseover="this.style.color='#a78bfa'" onmouseout="this.style.color='#71717a'">
-      Get in touch
-    </a> for details.
-  </p>
-  <p style="font-size:0.8rem;color:#3f3f46;margin:0;">© {new Date().getFullYear()} Nixora</p>
+<footer style="padding:4rem 2rem 2.5rem;max-width:1200px;margin:0 auto;display:flex;flex-direction:column;gap:3rem;">
+
+  <!-- Top row: Logo + Social + Grouped Columns -->
+  <div style="display:grid;grid-template-columns:2fr 1fr 1fr;gap:3rem;align-items:start;" class="footer-grid">
+    
+    <!-- Left Column: Logo & Social -->
+    <div style="display:flex;flex-direction:column;gap:1.25rem;">
+      <a href="/" aria-label="Nixora Home" style="display:flex;align-items:center;text-decoration:none;">
+        <img src="/logo.svg" alt="Nixora" style="height:26px;width:auto;" />
+      </a>
+      
+      <div style="display:flex;align-items:center;gap:1rem;font-size:0.85rem;">
+        <a href="https://x.com/wearenixora" target="_blank" rel="noopener noreferrer"
+           style="color:#a1a1aa;text-decoration:none;transition:color 0.2s;display:flex;align-items:center;gap:0.4rem;"
+           onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#a1a1aa'">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          X (Twitter) ↗
+        </a>
+      </div>
+    </div>
+
+    <!-- Column 1: Company -->
+    <div style="display:flex;flex-direction:column;gap:0.85rem;">
+      <div style="font-size:0.75rem;color:#fff;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;">Company</div>
+      <a href="/product" style="font-size:0.875rem;color:#a1a1aa;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#a1a1aa'">Product</a>
+      <a href="/traction" style="font-size:0.875rem;color:#a1a1aa;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#a1a1aa'">Traction</a>
+      <a href="/about" style="font-size:0.875rem;color:#a1a1aa;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#a1a1aa'">About</a>
+    </div>
+
+    <!-- Column 2: Legal -->
+    <div style="display:flex;flex-direction:column;gap:0.85rem;">
+      <div style="font-size:0.75rem;color:#fff;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;">Legal</div>
+      <a href="/terms" style="font-size:0.875rem;color:#a1a1aa;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#a1a1aa'">Terms of Service</a>
+      <a href="/privacy" style="font-size:0.875rem;color:#a1a1aa;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#a1a1aa'">Privacy Policy</a>
+    </div>
+
+  </div>
+
+  <!-- Bottom Bar: SAFE notice & Copyright -->
+  <div style="padding-top:2rem;border-top:1px solid #1f1f1f;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;font-size:0.8rem;color:#52525b;">
+    <p style="margin:0;">
+      Nixora is currently raising a pre-seed round via SAFE.&nbsp;
+      <a href="mailto:hello@nixora.co.in?subject=Nixora%20SAFE%20Investment%20Inquiry"
+         style="color:#a1a1aa;text-decoration:underline;transition:color 0.2s;"
+         onmouseover="this.style.color='#a78bfa'" onmouseout="this.style.color='#a1a1aa'">
+        Get in touch
+      </a> for details.
+    </p>
+    <p style="margin:0;color:#52525b;">© {new Date().getFullYear()} Nixora</p>
+  </div>
+
 </footer>
+
+<style>
+  @media (max-width: 768px) {
+    .footer-grid {
+      grid-template-columns: 1fr !important;
+      gap: 2rem !important;
+    }
+  }
+</style>
