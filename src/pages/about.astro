@@ -1,0 +1,33 @@
+---
+import InnerLayout from '../layouts/InnerLayout.astro';
+import Founder from '../components/Founder.astro';
+---
+
+<InnerLayout title="About | Nixora" description="About Nixora: building the control plane for AI-generated software, company story, vision, and founder bio.">
+
+  <!-- Company Story & Vision Header -->
+  <div style="padding:4rem 2rem 3rem;max-width:900px;margin:0 auto;display:flex;flex-direction:column;gap:2rem;">
+    <div>
+      <div style="font-size:0.72rem;color:#52525b;text-transform:uppercase;letter-spacing:0.1em;font-weight:700;margin-bottom:0.75rem;">About Nixora</div>
+      <h1 class="section-headline" style="max-width:720px;">
+        Building the control plane for <span class="accent">AI-generated software</span>
+      </h1>
+    </div>
+
+    <div style="display:flex;flex-direction:column;gap:1.5rem;color:#a1a1aa;font-size:1.0625rem;line-height:1.8;max-width:760px;">
+      <p style="color:#fff;font-weight:500;font-size:1.125rem;margin:0;">
+        Software creation is becoming nearly free. Software operations are becoming the bottleneck.
+      </p>
+      <p style="margin:0;">
+        GitHub became where source code lives. Docker became the runtime for containers. Kubernetes became the control plane for containers.
+      </p>
+      <p style="color:#e4e4e7;margin:0;">
+        Nixora is building the control plane where AI-generated software lives: one place to deploy, manage, govern, secure, update, and eventually retire every application any AI coding agent creates.
+      </p>
+    </div>
+  </div>
+
+  <!-- Founder Section -->
+  <Founder />
+
+</InnerLayout>
