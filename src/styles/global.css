@@ -58,10 +58,12 @@
   background: linear-gradient(180deg, #c4b5fd 0%, #8b5cf6 100%);
 }
 
-/* ─────────────── Header Scroll Behavior ─────────────── */
+/* ─────────────── Fixed Header Scroll Behavior ─────────────── */
 .site-header {
-  position: sticky;
+  position: fixed;
   top: 0;
+  left: 0;
+  width: 100%;
   z-index: 50;
   display: flex;
   align-items: center;
@@ -81,6 +83,11 @@
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
   border-bottom-color: rgba(255, 255, 255, 0.05);
+}
+
+/* Page main container spacing for fixed header */
+main {
+  padding-top: 60px;
 }
 
 /* ─────────────── Typography ─────────────── */
