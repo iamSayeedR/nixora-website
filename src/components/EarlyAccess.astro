@@ -26,8 +26,8 @@
         <div style="color:#71717a;font-size:0.875rem;">Your spot is noted. We reach out manually as early tester slots open.</div>
       </div>
 
-      <!-- Lead capture form -->
-      <form id="waitlist-form" action="https://formspree.io/f/placeholder" method="POST" style="display:flex;flex-direction:column;gap:1.25rem;">
+      <!-- Lead capture form with live Formspree endpoint -->
+      <form id="waitlist-form" action="https://formspree.io/f/xaewzzdw" method="POST" style="display:flex;flex-direction:column;gap:1.25rem;">
         <div style="display:flex;flex-direction:column;gap:0.4rem;">
           <label for="name" style="font-size:0.8rem;color:#71717a;font-weight:500;">Your name</label>
           <input type="text" name="name" id="name" required placeholder="Sayeed Rizwan"
@@ -41,7 +41,7 @@
             onfocus="this.style.borderColor='rgba(167,139,250,0.5)'" onblur="this.style.borderColor='#2a2a2a'"/>
         </div>
         <div style="display:flex;justify-content:center;width:100%;margin-top:0.4rem;">
-          <button type="submit" class="shiny-cta">
+          <button type="submit" class="shiny-cta" id="submit-btn">
             Get early access
             <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:14px;height:14px;">
               <path d="M15.187 11.2362L11.0895 7.13873L12.1696 6.05859L18.1111 12.0001L12.1696 17.9416L11.0895 16.8615L15.187 12.764H5.88892V11.2362H15.187Z" fill="currentColor"/>
@@ -57,19 +57,38 @@
 <script>
   const form = document.getElementById('waitlist-form') as HTMLFormElement;
   const success = document.getElementById('form-success');
+  const submitBtn = document.getElementById('submit-btn');
 
   form?.addEventListener('submit', async (e) => {
     e.preventDefault();
     const data = new FormData(form);
 
-    if (form.action.includes('placeholder')) {
-      if (success) success.style.display = 'flex';
-      return;
-    }
+    // Attach explicit Indian Standard Time (IST) timestamp
+    const istTime = new Date().toLocaleString('en-IN', {
+      timeZone: 'Asia/Kolkata',
+      dateStyle: 'medium',
+      timeStyle: 'short'
+    }) + ' IST';
+    data.append('IST_time', istTime);
+
+    if (submitBtn) submitBtn.setAttribute('disabled', 'true');
+
     try {
-      const res = await fetch(form.action, { method:'POST', body:data, headers:{ Accept:'application/json' } });
-      if (res.ok && success) success.style.display = 'flex';
-      else alert('Submission failed: please email hello@nixora.co.in directly.');
-    } catch { alert('Network error: please try again.'); }
+      const res = await fetch(form.action, {
+        method: 'POST',
+        body: data,
+        headers: { 'Accept': 'application/json' }
+      });
+
+      if (res.ok && success) {
+        success.style.display = 'flex';
+      } else {
+        alert('Submission error: please email ceo@nixora.co.in directly.');
+        if (submitBtn) submitBtn.removeAttribute('disabled');
+      }
+    } catch (err) {
+      alert('Network error. Please check your connection or email ceo@nixora.co.in.');
+      if (submitBtn) submitBtn.removeAttribute('disabled');
+    }
   });
 </script>
