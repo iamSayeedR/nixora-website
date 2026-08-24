@@ -9,10 +9,10 @@ const navLinks = [
 <header id="site-header" class="site-header">
   <!-- Logo (SVG: crisp at all sizes) -->
   <a href="/" aria-label="Home" style="display:flex;align-items:center;text-decoration:none;">
-    <img src="/logo.svg" alt="Nixora" style="height:30px;width:auto;" />
+    <img src="/logo.svg" alt="Nixora" style="height:28px;width:auto;" />
   </a>
 
-  <!-- Center nav: real routed pages -->
+  <!-- Center nav: desktop -->
   <nav class="header-nav" style="display:flex;gap:2rem;">
     {navLinks.map(link => (
       <a
@@ -26,10 +26,11 @@ const navLinks = [
     ))}
   </nav>
 
-  <!-- Right CTAs -->
-  <div style="display:flex;align-items:center;gap:1rem;">
+  <!-- Right CTAs: desktop -->
+  <div class="header-ctas" style="display:flex;align-items:center;gap:1rem;">
     <a
       href="mailto:hello@nixora.co.in?subject=Nixora%20Investor%20Deck%20Request"
+      class="deck-link"
       style="color:#a1a1aa;font-size:0.875rem;text-decoration:none;transition:color 0.2s;"
       onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#a1a1aa'"
     >
@@ -42,34 +43,137 @@ const navLinks = [
       </svg>
     </a>
   </div>
+
+  <!-- Mobile menu button -->
+  <button id="mobile-toggle" aria-label="Toggle navigation menu" class="mobile-toggle">
+    <svg id="hamburger-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+    <svg id="close-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none;">
+      <line x1="18" y1="6" x2="6" y2="18"></line>
+      <line x1="6" y1="6" x2="18" y2="18"></line>
+    </svg>
+  </button>
 </header>
+
+<!-- Mobile Navigation Drawer -->
+<div id="mobile-drawer" class="mobile-drawer">
+  <div style="display:flex;flex-direction:column;gap:1.25rem;padding:1.5rem;">
+    {navLinks.map(link => (
+      <a
+        href={link.href}
+        style={`color:${currentPath === link.href ? '#a78bfa' : '#fff'};font-size:1.1rem;font-weight:600;text-decoration:none;`}
+      >
+        {link.label}
+      </a>
+    ))}
+    <hr style="border:none;border-top:1px solid #1f1f1f;margin:0.5rem 0;" />
+    <a
+      href="mailto:hello@nixora.co.in?subject=Nixora%20Investor%20Deck%20Request"
+      style="color:#a1a1aa;font-size:0.95rem;text-decoration:none;"
+    >
+      Request deck ↗
+    </a>
+    <a href="/#early-access" class="shiny-cta" style="width:100%;text-align:center;margin-top:0.5rem;">
+      Get early access
+    </a>
+  </div>
+</div>
+
+<style>
+  .mobile-toggle {
+    display: none;
+    background: none;
+    border: 1px solid #27272a;
+    border-radius: 8px;
+    padding: 6px;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .mobile-drawer {
+    display: none;
+    position: fixed;
+    top: 60px;
+    left: 0;
+    width: 100%;
+    background: #0a0a0a;
+    border-bottom: 1px solid #1f1f1f;
+    z-index: 49;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.8);
+  }
+
+  .mobile-drawer.open {
+    display: block;
+  }
+
+  @media (max-width: 768px) {
+    .header-nav { display: none !important; }
+    .deck-link { display: none !important; }
+    .mobile-toggle { display: flex !important; }
+    .site-header { padding: 0 1.25rem !important; }
+  }
+</style>
 
 <script>
   function initHeaderScroll() {
     const header = document.getElementById('site-header');
-    if (!header) return;
+    const toggle = document.getElementById('mobile-toggle');
+    const drawer = document.getElementById('mobile-drawer');
+    const hamburger = document.getElementById('hamburger-icon');
+    const close = document.getElementById('close-icon');
 
-    let ticking = false;
-    const scrollThreshold = 80;
+    if (header) {
+      let ticking = false;
+      const scrollThreshold = 80;
 
-    function updateHeader() {
-      if (window.scrollY > scrollThreshold) {
-        header?.classList.add('scrolled');
-      } else {
-        header?.classList.remove('scrolled');
+      function updateHeader() {
+        if (window.scrollY > scrollThreshold) {
+          header?.classList.add('scrolled');
+        } else {
+          header?.classList.remove('scrolled');
+        }
+        ticking = false;
       }
-      ticking = false;
+
+      window.addEventListener('scroll', () => {
+        if (!ticking) {
+          window.requestAnimationFrame(updateHeader);
+          ticking = true;
+        }
+      }, { passive: true });
+
+      updateHeader();
     }
 
-    window.addEventListener('scroll', () => {
-      if (!ticking) {
-        window.requestAnimationFrame(updateHeader);
-        ticking = true;
-      }
-    }, { passive: true });
+    if (toggle && drawer && hamburger && close) {
+      let isOpen = false;
+      toggle.addEventListener('click', () => {
+        isOpen = !isOpen;
+        if (isOpen) {
+          drawer.classList.add('open');
+          hamburger.style.display = 'none';
+          close.style.display = 'block';
+        } else {
+          drawer.classList.remove('open');
+          hamburger.style.display = 'block';
+          close.style.display = 'none';
+        }
+      });
 
-    // Initial check on load
-    updateHeader();
+      // Close drawer on link click
+      drawer.querySelectorAll('a').forEach(a => {
+        a.addEventListener('click', () => {
+          drawer.classList.remove('open');
+          hamburger.style.display = 'block';
+          close.style.display = 'none';
+          isOpen = false;
+        });
+      });
+    }
   }
 
   initHeaderScroll();
