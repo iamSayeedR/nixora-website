@@ -17,16 +17,16 @@
     <!-- ── 6 Hero Cards Grid (3 Columns on Desktop) ── -->
     <div class="hero-cards-grid">
 
-      <!-- 1. Deploy & Run (LIVE) -->
-      <div class="hero-card">
+      <!-- 1. Deploy & Run (LIVE TODAY — Prominent Visual Card) -->
+      <div class="hero-card hero-card-live">
         <div style="display:flex;flex-direction:column;gap:1rem;">
           <!-- Status Badge -->
           <div style="display:flex;align-items:center;justify-content:space-between;">
             <div class="badge-live">
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#a78bfa" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-              Live
+              <span class="live-dot"></span>
+              Live Today
             </div>
-            <span style="font-size:0.7rem;color:#52525b;font-family:'Fira Code',monospace;">GROUP 01</span>
+            <span style="font-size:0.7rem;color:#a78bfa;font-family:'Fira Code',monospace;font-weight:600;">GROUP 01</span>
           </div>
 
           <h3 style="font-size:1.35rem;font-weight:700;color:#fff;margin:0;">Deploy & Run</h3>
@@ -53,14 +53,14 @@
         </div>
       </div>
 
-      <!-- 2. Lifecycle & Updates (COMING SOON) -->
+      <!-- 2. Lifecycle & Updates (ROADMAP) -->
       <div class="hero-card">
         <div style="display:flex;flex-direction:column;gap:1rem;">
           <!-- Status Badge -->
           <div style="display:flex;align-items:center;justify-content:space-between;">
-            <div class="badge-soon">
+            <div class="badge-roadmap">
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#71717a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-              Coming soon
+              Roadmap
             </div>
             <span style="font-size:0.7rem;color:#52525b;font-family:'Fira Code',monospace;">GROUP 02</span>
           </div>
@@ -88,14 +88,14 @@
         </div>
       </div>
 
-      <!-- 3. Insights & Cost (COMING SOON) -->
+      <!-- 3. Insights & Cost (ROADMAP) -->
       <div class="hero-card">
         <div style="display:flex;flex-direction:column;gap:1rem;">
           <!-- Status Badge -->
           <div style="display:flex;align-items:center;justify-content:space-between;">
-            <div class="badge-soon">
+            <div class="badge-roadmap">
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#71717a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-              Coming soon
+              Roadmap
             </div>
             <span style="font-size:0.7rem;color:#52525b;font-family:'Fira Code',monospace;">GROUP 03</span>
           </div>
@@ -105,7 +105,7 @@
             Real-time visibility into application performance and cloud spend.
           </p>
 
-          <!-- Feature Tag List (Approved List: Usage analytics, Analytics, Cost optimization, Audit logs) -->
+          <!-- Feature Tag List -->
           <div style="display:flex;flex-wrap:wrap;gap:0.4rem;margin-top:0.5rem;">
             {["Usage analytics", "Analytics", "Cost optimization", "Audit logs"].map(item => (
               <span class="feature-chip soon-chip">{item}</span>
@@ -123,14 +123,14 @@
         </div>
       </div>
 
-      <!-- 4. Governance & Security (COMING SOON) -->
+      <!-- 4. Governance & Security (ROADMAP) -->
       <div class="hero-card">
         <div style="display:flex;flex-direction:column;gap:1rem;">
           <!-- Status Badge -->
           <div style="display:flex;align-items:center;justify-content:space-between;">
-            <div class="badge-soon">
+            <div class="badge-roadmap">
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#71717a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-              Coming soon
+              Roadmap
             </div>
             <span style="font-size:0.7rem;color:#52525b;font-family:'Fira Code',monospace;">GROUP 04</span>
           </div>
@@ -140,7 +140,7 @@
             Policy enforcement, security scanning, and audit compliance for agents.
           </p>
 
-          <!-- Feature Tag List (Approved List: Governance, Compliance, Security, Organization policies) -->
+          <!-- Feature Tag List -->
           <div style="display:flex;flex-wrap:wrap;gap:0.4rem;margin-top:0.5rem;">
             {["Governance", "Compliance", "Security", "Organization policies"].map(item => (
               <span class="feature-chip soon-chip">{item}</span>
@@ -157,14 +157,14 @@
         </div>
       </div>
 
-      <!-- 5. Fleet & Scale (COMING SOON) -->
+      <!-- 5. Fleet & Scale (ROADMAP) -->
       <div class="hero-card">
         <div style="display:flex;flex-direction:column;gap:1rem;">
           <!-- Status Badge -->
           <div style="display:flex;align-items:center;justify-content:space-between;">
-            <div class="badge-soon">
+            <div class="badge-roadmap">
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#71717a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-              Coming soon
+              Roadmap
             </div>
             <span style="font-size:0.7rem;color:#52525b;font-family:'Fira Code',monospace;">GROUP 05</span>
           </div>
@@ -174,7 +174,7 @@
             Orchestrate, organize, and auto-scale hundreds of agent-built apps.
           </p>
 
-          <!-- Feature Tag List (Approved List: Fleet inventory, Collaboration, Workflow automation, Enterprise governance) -->
+          <!-- Feature Tag List -->
           <div style="display:flex;flex-wrap:wrap;gap:0.4rem;margin-top:0.5rem;">
             {["Fleet inventory", "Collaboration", "Workflow automation", "Enterprise governance"].map(item => (
               <span class="feature-chip soon-chip">{item}</span>
@@ -196,14 +196,14 @@
         </div>
       </div>
 
-      <!-- 6. Platform & Integrations (COMING SOON) -->
+      <!-- 6. Platform & Integrations (ROADMAP) -->
       <div class="hero-card">
         <div style="display:flex;flex-direction:column;gap:1rem;">
           <!-- Status Badge -->
           <div style="display:flex;align-items:center;justify-content:space-between;">
-            <div class="badge-soon">
+            <div class="badge-roadmap">
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#71717a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-              Coming soon
+              Roadmap
             </div>
             <span style="font-size:0.7rem;color:#52525b;font-family:'Fira Code',monospace;">GROUP 06</span>
           </div>
@@ -213,7 +213,7 @@
             Connect Nixora into developer tools, AI coding agents, and web interfaces.
           </p>
 
-          <!-- Feature Tag List (Approved List: Marketplace, Agent APIs, MCP Server / Tools, REST APIs & SDKs, No-code web interface) -->
+          <!-- Feature Tag List -->
           <div style="display:flex;flex-wrap:wrap;gap:0.4rem;margin-top:0.5rem;">
             {["Marketplace", "Agent APIs", "MCP Server / Tools", "REST APIs & SDKs", "No-code web interface"].map(item => (
               <span class="feature-chip soon-chip">{item}</span>
@@ -256,26 +256,40 @@
     transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
   }
 
+  .hero-card-live {
+    border-color: rgba(167, 139, 250, 0.4);
+    background: linear-gradient(180deg, rgba(167, 139, 250, 0.04) 0%, #0a0a0a 100%);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 25px rgba(139, 92, 246, 0.12);
+  }
+
   .hero-card:hover {
     transform: translateY(-2px);
-    border-color: rgba(167, 139, 250, 0.4);
-    box-shadow: 0 14px 40px rgba(0, 0, 0, 0.6), 0 0 25px rgba(139, 92, 246, 0.12);
+    border-color: rgba(167, 139, 250, 0.45);
+    box-shadow: 0 14px 40px rgba(0, 0, 0, 0.6), 0 0 25px rgba(139, 92, 246, 0.15);
   }
 
   .badge-live {
     display: inline-flex;
     align-items: center;
-    gap: 0.4rem;
-    padding: 0.25rem 0.65rem;
+    gap: 0.45rem;
+    padding: 0.25rem 0.7rem;
     border-radius: 9999px;
-    border: 1px solid rgba(167, 139, 250, 0.4);
-    background: rgba(167, 139, 250, 0.1);
+    border: 1px solid rgba(167, 139, 250, 0.5);
+    background: rgba(167, 139, 250, 0.12);
     font-size: 0.72rem;
     color: #a78bfa;
-    font-weight: 600;
+    font-weight: 700;
   }
 
-  .badge-soon {
+  .live-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #a78bfa;
+    box-shadow: 0 0 8px #a78bfa;
+  }
+
+  .badge-roadmap {
     display: inline-flex;
     align-items: center;
     gap: 0.4rem;
@@ -284,7 +298,7 @@
     border: 1px solid #2a2a2a;
     background: rgba(255, 255, 255, 0.03);
     font-size: 0.72rem;
-    color: #71717a;
+    color: #a1a1aa;
     font-weight: 500;
   }
 

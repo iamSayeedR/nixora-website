@@ -7,63 +7,34 @@
       Building since July 2026 · CLI launched August 2026
     </p>
 
-    <!-- Circular gauge stat cards: cap.vc score circles style with card elevation -->
+    <!-- Stat Cards Grid -->
     <div class="traction-grid" style="display:grid;grid-template-columns:repeat(4,1fr);gap:1px;border:1px solid #1f1f1f;border-radius:14px;overflow:hidden;background:#1f1f1f;box-shadow:0 16px 40px rgba(0,0,0,0.5), 0 0 30px rgba(139,92,246,0.06);">
 
-      <!-- Stat 1: CLI Installs -->
+      <!-- Stat 1: CLI Installs (Plain bold number, running total) -->
       <div class="stat-card">
-        <div style="position:relative;width:90px;height:90px;display:grid;place-items:center;">
-          <svg viewBox="0 0 100 100" width="90" height="90" style="position:absolute;inset:0;transform:rotate(-90deg);">
-            <circle cx="50" cy="50" r="40" stroke="#1f1f1f" stroke-width="3" fill="none"/>
-            <circle id="ring-65" cx="50" cy="50" r="40" stroke="url(#grad-purple)"
-              stroke-width="4" fill="none"
-              stroke-dasharray="251.33" stroke-dashoffset="251.33"
-              stroke-linecap="round"/>
-            <defs>
-              <linearGradient id="grad-purple" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stop-color="#a78bfa"/>
-                <stop offset="100%" stop-color="#7c3aed"/>
-              </linearGradient>
-            </defs>
-          </svg>
-          <div class="stat-number" data-target="65" data-ring="ring-65" data-max="100" style="color:#fff;font-size:1.65rem;">0</div>
+        <div style="height:90px;display:flex;align-items:center;justify-content:center;">
+          <div class="stat-number" data-target="65" style="color:#fff;font-size:2.4rem;font-weight:800;">0</div>
         </div>
         <div style="font-size:0.72rem;color:#52525b;text-transform:uppercase;letter-spacing:0.1em;font-weight:700;">CLI Installs</div>
       </div>
 
-      <!-- Stat 2: Real Deployments -->
+      <!-- Stat 2: Real Deployments (Plain bold number, running total) -->
       <div class="stat-card">
-        <div style="position:relative;width:90px;height:90px;display:grid;place-items:center;">
-          <svg viewBox="0 0 100 100" width="90" height="90" style="position:absolute;inset:0;transform:rotate(-90deg);">
-            <circle cx="50" cy="50" r="40" stroke="#1f1f1f" stroke-width="3" fill="none"/>
-            <circle id="ring-45" cx="50" cy="50" r="40" stroke="url(#grad-purple2)"
-              stroke-width="4" fill="none"
-              stroke-dasharray="251.33" stroke-dashoffset="251.33"
-              stroke-linecap="round"/>
-            <defs>
-              <linearGradient id="grad-purple2" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stop-color="#a78bfa"/>
-                <stop offset="100%" stop-color="#7c3aed"/>
-              </linearGradient>
-            </defs>
-          </svg>
-          <div class="stat-number" data-target="45" data-ring="ring-45" data-max="65" style="color:#a78bfa;font-size:1.65rem;">0</div>
+        <div style="height:90px;display:flex;align-items:center;justify-content:center;">
+          <div class="stat-number" data-target="45" style="color:#a78bfa;font-size:2.4rem;font-weight:800;">0</div>
         </div>
         <div style="font-size:0.72rem;color:#52525b;text-transform:uppercase;letter-spacing:0.1em;font-weight:700;">Real Deployments</div>
       </div>
 
-      <!-- Stat 3: $0 Revenue (honest: no ring animation) -->
+      <!-- Stat 3: $0 Revenue (De-emphasized / greyed out) -->
       <div class="stat-card">
-        <div style="position:relative;width:90px;height:90px;display:grid;place-items:center;">
-          <svg viewBox="0 0 100 100" width="90" height="90" style="position:absolute;inset:0;transform:rotate(-90deg);">
-            <circle cx="50" cy="50" r="40" stroke="#1f1f1f" stroke-width="3" fill="none"/>
-          </svg>
-          <div style="color:#52525b;font-size:1.65rem;font-weight:800;letter-spacing:-0.04em;line-height:1;">$0</div>
+        <div style="height:90px;display:flex;align-items:center;justify-content:center;">
+          <div style="color:#52525b;font-size:2.4rem;font-weight:800;letter-spacing:-0.04em;line-height:1;">$0</div>
         </div>
-        <div style="font-size:0.72rem;color:#52525b;text-transform:uppercase;letter-spacing:0.1em;font-weight:700;">Revenue · Pre-seed</div>
+        <div style="font-size:0.72rem;color:#3f3f46;text-transform:uppercase;letter-spacing:0.1em;font-weight:700;">Revenue · Pre-seed</div>
       </div>
 
-      <!-- Stat 4: $450K SAFE (fitted font-size: 1.125rem) -->
+      <!-- Stat 4: $450K SAFE Raise Target (Goal progress ring retained) -->
       <div class="stat-card">
         <div style="position:relative;width:90px;height:90px;display:grid;place-items:center;">
           <svg viewBox="0 0 100 100" width="90" height="90" style="position:absolute;inset:0;transform:rotate(-90deg);">
@@ -74,7 +45,7 @@
               stroke-linecap="round"/>
             <defs>
               <linearGradient id="grad-purple3" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stop-color="#c4b5fd"/>
+                <stop offset="0%" stop-color="#52525b"/>
                 <stop offset="100%" stop-color="#a78bfa"/>
               </linearGradient>
             </defs>
