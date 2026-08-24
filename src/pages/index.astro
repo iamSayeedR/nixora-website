@@ -9,12 +9,13 @@ import Features from '../components/Features.astro';
 import HowItWorks from '../components/HowItWorks.astro';
 import Architecture from '../components/Architecture.astro';
 import Vision from '../components/Vision.astro';
+import FAQ from '../components/FAQ.astro';
 import EarlyAccess from '../components/EarlyAccess.astro';
 import Founder from '../components/Founder.astro';
 import Footer from '../components/Footer.astro';
 ---
 
-<Layout title="Nixora: The Control Plane for AI-generated Software">
+<Layout title="Nixora: The Control Plane for AI-generated Software" description="Nixora is the CLI-first control plane for AI-generated software. Deploy, manage, and govern every application your AI builds with zero-config hosting and HTTPS.">
   <Header />
   <main>
     <!-- 1. Hero: headline + announcement pill + CTA + terminal visual -->
@@ -33,9 +34,11 @@ import Footer from '../components/Footer.astro';
     <Architecture />
     <!-- 8. Vision: "The control plane for AI-generated software" closer -->
     <Vision />
-    <!-- 9. Early Access: Name + Email capture form -->
+    <!-- 9. FAQ Section for AI Search Crawlers & User Intent -->
+    <FAQ />
+    <!-- 10. Early Access: Name + Email capture form -->
     <EarlyAccess />
-    <!-- 10. Founder: bio + LinkedIn -->
+    <!-- 11. Founder: bio + LinkedIn -->
     <Founder />
   </main>
   <Footer />

@@ -1,0 +1,82 @@
+---
+import InnerLayout from '../../layouts/InnerLayout.astro';
+
+const guides = [
+  {
+    title: "Zero-Config CLI Deployment for AI-Generated Applications",
+    slug: "/resources/cli-deployment-guide",
+    description: "Learn how Nixora automates application containerization, TLS certificate issuance, and persistent hosting straight from your terminal.",
+    category: "CLI Deployment",
+    readTime: "4 min read",
+    date: "August 2026"
+  },
+  {
+    title: "Why Traditional Cloud Infrastructure Fails AI-Generated Code",
+    slug: "/resources/why-traditional-infra-fails-ai-code",
+    description: "An architectural analysis of why high-velocity AI code generation breaks manual cloud operations and how control planes automate the lifecycle.",
+    category: "Developer Infrastructure",
+    readTime: "5 min read",
+    date: "August 2026"
+  }
+];
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://nixora.co.in" },
+    { "@type": "ListItem", "position": 2, "name": "Resources", "item": "https://nixora.co.in/resources" }
+  ]
+};
+---
+
+<InnerLayout title="Developer Resources & Technical Guides | Nixora" description="Technical guides, cloud deployment architecture, and CLI deployment tutorials for developers building with AI coding agents." jsonLd={breadcrumbSchema}>
+
+  <div style="padding:4rem 2rem 5rem;max-width:950px;margin:0 auto;display:flex;flex-direction:column;gap:3.5rem;">
+    
+    <!-- Page Header -->
+    <div style="display:flex;flex-direction:column;gap:1rem;">
+      <div style="font-size:0.72rem;color:#a78bfa;text-transform:uppercase;letter-spacing:0.12em;font-weight:700;font-family:'Fira Code',monospace;">Engineering & Architecture</div>
+      <h1 class="section-headline">Nixora <span class="accent">Resources</span></h1>
+      <p class="section-para" style="max-width:640px;">
+        Technical guides, developer infrastructure concepts, and tutorials on automating deployment for AI-generated applications.
+      </p>
+    </div>
+
+    <!-- Guides List -->
+    <div style="display:flex;flex-direction:column;gap:1.5rem;">
+      {guides.map(guide => (
+        <article style="background:#0a0a0a;border:1px solid #1f1f1f;border-radius:12px;padding:2rem;display:flex;flex-direction:column;gap:1rem;transition:border-color 0.25s;" class="resource-card">
+          <div style="display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;">
+            <span style="font-size:0.72rem;color:#a78bfa;font-family:'Fira Code',monospace;padding:0.25rem 0.65rem;border-radius:9999px;border:1px solid rgba(167,139,250,0.3);background:rgba(167,139,250,0.08);">{guide.category}</span>
+            <span style="font-size:0.75rem;color:#52525b;font-family:'Fira Code',monospace;">{guide.date} · {guide.readTime}</span>
+          </div>
+
+          <h2 style="font-size:1.35rem;font-weight:700;margin:0;">
+            <a href={guide.slug} style="color:#fff;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#a78bfa'" onmouseout="this.style.color='#fff'">
+              {guide.title}
+            </a>
+          </h2>
+
+          <p style="font-size:0.9375rem;line-height:1.7;color:#a1a1aa;margin:0;">
+            {guide.description}
+          </p>
+
+          <div>
+            <a href={guide.slug} style="color:#a78bfa;font-size:0.875rem;font-weight:600;text-decoration:none;display:inline-flex;align-items:center;gap:0.4rem;" onmouseover="this.style.color='#c4b5fd'" onmouseout="this.style.color='#a78bfa'">
+              Read guide →
+            </a>
+          </div>
+        </article>
+      ))}
+    </div>
+
+  </div>
+
+</InnerLayout>
+
+<style>
+  .resource-card:hover {
+    border-color: rgba(167, 139, 250, 0.4);
+  }
+</style>

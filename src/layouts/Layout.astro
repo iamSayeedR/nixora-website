@@ -5,8 +5,62 @@ import CursorGlow from '../components/CursorGlow.astro';
 interface Props {
   title: string;
   description?: string;
+  image?: string;
+  canonicalURL?: string;
+  jsonLd?: Record<string, any> | Array<Record<string, any>>;
+  googleVerification?: string;
 }
-const { title, description = "Nixora: The control plane for AI-generated software. Deploy, manage, and govern every app your AI builds." } = Astro.props;
+
+const {
+  title,
+  description = "Nixora: The control plane for AI-generated software. Deploy, manage, and govern every app your AI builds via CLI.",
+  image = "/logo-full.jpg",
+  canonicalURL = new URL(Astro.url.pathname, Astro.site || "https://nixora.co.in").href,
+  jsonLd,
+  googleVerification
+} = Astro.props;
+
+const siteUrl = "https://nixora.co.in";
+const imageUrl = new URL(image, siteUrl).href;
+
+// Standard Factual Schemas
+const orgSchema = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Nixora",
+  "url": siteUrl,
+  "logo": new URL("/logo-full.jpg", siteUrl).href,
+  "sameAs": [
+    "https://x.com/wearenixora",
+    "https://github.com/iamSayeedR/nixora-website",
+    "https://www.linkedin.com/in/sayeedrizwan/"
+  ],
+  "description": "Nixora is the control plane for AI-generated software, offering CLI deployment, persistent hosting, and HTTPS by default for applications built by AI coding agents."
+};
+
+const webSiteSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Nixora",
+  "url": siteUrl
+};
+
+const cliAppSchema = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Nixora CLI",
+  "operatingSystem": "Cross-platform (macOS, Linux, Windows)",
+  "applicationCategory": "DeveloperApplication",
+  "description": "Developer CLI tool to automate containerization, deployment, HTTPS provisioning, and persistent hosting for AI-generated software.",
+  "featureList": [
+    "Zero-config CLI deployment (nixora deploy)",
+    "Automated application containerization",
+    "Automated HTTPS / TLS SSL certificate issuance",
+    "Persistent cloud hosting and compute provisioning"
+  ],
+  "downloadUrl": "https://www.npmjs.com/package/nixora-cli",
+  "url": siteUrl
+};
 ---
 <!DOCTYPE html>
 <html lang="en">
@@ -14,25 +68,51 @@ const { title, description = "Nixora: The control plane for AI-generated softwar
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="icon" type="image/svg+xml" href="/logo-mark.svg" />
+  <link rel="canonical" href={canonicalURL} />
   <meta name="generator" content={Astro.generator} />
+  
   <title>{title}</title>
   <meta name="description" content={description} />
   <meta name="theme-color" content="#111" />
+  {googleVerification && <meta name="google-site-verification" content={googleVerification} />}
 
-  <!-- Open Graph / Meta Preview Images -->
+  <!-- Open Graph / Facebook / LinkedIn -->
   <meta property="og:type" content="website" />
+  <meta property="og:url" content={canonicalURL} />
   <meta property="og:title" content={title} />
   <meta property="og:description" content={description} />
-  <meta property="og:image" content="/logo-full.jpg" />
+  <meta property="og:image" content={imageUrl} />
+  <meta property="og:site_name" content="Nixora" />
+  <meta property="og:locale" content="en_US" />
+
+  <!-- Twitter / X Cards -->
   <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="@wearenixora" />
+  <meta name="twitter:creator" content="@wearenixora" />
   <meta name="twitter:title" content={title} />
   <meta name="twitter:description" content={description} />
-  <meta name="twitter:image" content="/logo-full.jpg" />
+  <meta name="twitter:image" content={imageUrl} />
 
-  <!-- Inter font -->
+  <!-- Inter Font -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Core Structured Data (JSON-LD) -->
+  <script type="application/ld+json" set:html={JSON.stringify(orgSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(webSiteSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(cliAppSchema)} />
+  
+  <!-- Page Specific JSON-LD -->
+  {jsonLd && (
+    Array.isArray(jsonLd) ? (
+      jsonLd.map(schema => (
+        <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+      ))
+    ) : (
+      <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+    )
+  )}
 </head>
 <body>
   <CursorGlow />

@@ -1,0 +1,102 @@
+---
+import InnerLayout from '../../layouts/InnerLayout.astro';
+
+const articleSchema = {
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "headline": "Zero-Config CLI Deployment for AI-Generated Applications",
+  "description": "A technical guide on how Nixora CLI automates containerization, compute provisioning, and HTTPS setup for AI-generated code.",
+  "author": {
+    "@type": "Person",
+    "name": "Sayeed Rizwan",
+    "jobTitle": "Founder",
+    "sameAs": "https://www.linkedin.com/in/sayeedrizwan/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Nixora",
+    "url": "https://nixora.co.in"
+  },
+  "datePublished": "2026-08-24"
+};
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://nixora.co.in" },
+    { "@type": "ListItem", "position": 2, "name": "Resources", "item": "https://nixora.co.in/resources" },
+    { "@type": "ListItem", "position": 3, "name": "CLI Deployment Guide", "item": "https://nixora.co.in/resources/cli-deployment-guide" }
+  ]
+};
+---
+
+<InnerLayout title="Zero-Config CLI Deployment Guide | Nixora Resources" description="Technical guide on automating containerization, compute provisioning, and HTTPS deployment for AI-generated code via CLI." jsonLd={[articleSchema, breadcrumbSchema]}>
+
+  <article style="padding:4rem 2rem 5rem;max-width:800px;margin:0 auto;display:flex;flex-direction:column;gap:2.5rem;">
+    
+    <!-- Article Header -->
+    <div style="display:flex;flex-direction:column;gap:1rem;">
+      <div style="display:flex;align-items:center;gap:0.75rem;font-size:0.75rem;color:#a78bfa;font-family:'Fira Code',monospace;">
+        <span>CLI Deployment</span> · <span>August 2026</span> · <span>4 min read</span>
+      </div>
+      <h1 class="section-headline">Zero-Config CLI Deployment for <span class="accent">AI-Generated Code</span></h1>
+      <p style="font-size:1.0625rem;color:#a1a1aa;line-height:1.7;margin:0;">
+        How the Nixora CLI eliminates Dockerfile configuration, port debugging, and manual cloud provisioning for high-velocity AI coding workflows.
+      </p>
+    </div>
+
+    <!-- Article Content -->
+    <div style="display:flex;flex-direction:column;gap:2rem;color:#a1a1aa;font-size:0.95rem;line-height:1.85;">
+      
+      <section style="display:flex;flex-direction:column;gap:1rem;">
+        <h2 style="font-size:1.3rem;color:#fff;font-weight:700;margin:0;">The Challenge of Deploying AI Code</h2>
+        <p style="margin:0;">
+          AI coding agents such as Claude, Cursor, Codex, and Gemini allow developers to build full-stack web applications in minutes. However, shipping that generated code to a live production URL traditionally requires writing a custom Dockerfile, configuring cloud compute ports, managing TLS certificates, and handling host routing.
+        </p>
+      </section>
+
+      <section style="display:flex;flex-direction:column;gap:1rem;">
+        <h2 style="font-size:1.3rem;color:#fff;font-weight:700;margin:0;">How Nixora CLI Automates the Stack</h2>
+        <p style="margin:0;">
+          Nixora's CLI tool operates directly in your local terminal to bridge local code generation and persistent cloud hosting. Here is how a deployment executes:
+        </p>
+
+        <div style="background:#0a0a0a;border:1px solid #1f1f1f;border-radius:10px;padding:1.5rem;font-family:'Fira Code',monospace;font-size:0.85rem;line-height:2;color:#e4e4e7;">
+          <div style="color:#52525b;"># 1. Install global CLI agent</div>
+          <div><span style="color:#a78bfa;">$</span> npm install -g nixora-cli</div>
+          <div style="color:#52525b;margin-top:0.5rem;"># 2. Initialize project configuration</div>
+          <div><span style="color:#a78bfa;">$</span> nixora init</div>
+          <div style="color:#52525b;margin-top:0.5rem;"># 3. Build & deploy to managed cloud</div>
+          <div><span style="color:#a78bfa;">$</span> nixora deploy</div>
+          <div style="color:#a78bfa;margin-top:0.5rem;">✔ Container image built automatically</div>
+          <div style="color:#a78bfa;">✔ Compute provisioned (us-east)</div>
+          <div style="color:#a78bfa;">✔ HTTPS TLS certificate issued</div>
+          <div style="color:#fff;font-weight:600;margin-top:0.25rem;">✔ Live: https://my-app.nixora.co.in</div>
+        </div>
+      </section>
+
+      <section style="display:flex;flex-direction:column;gap:1rem;">
+        <h2 style="font-size:1.3rem;color:#fff;font-weight:700;margin:0;">Under the Hood: Automation Pipeline</h2>
+        <ul style="margin:0;padding-left:1.25rem;display:flex;flex-direction:column;gap:0.5rem;">
+          <li><strong style="color:#fff;">Runtime Detection:</strong> Nixora scans project files to detect framework runtime (Node.js, Python, Go, etc.) and entry point scripts.</li>
+          <li><strong style="color:#fff;">Automated Containerization:</strong> Constructs optimized container layers without requiring a manually maintained Dockerfile.</li>
+          <li><strong style="color:#fff;">HTTPS & DNS Attachment:</strong> Generates TLS certificates and maps public routing automatically.</li>
+          <li><strong style="color:#fff;">Persistent Availability:</strong> Runs your application on managed cloud compute with continuous availability.</li>
+        </ul>
+      </section>
+
+      <!-- Internal Link to Product & Compare -->
+      <div style="margin-top:1rem;padding:1.5rem;background:#0a0a0a;border:1px solid #1f1f1f;border-radius:10px;display:flex;flex-direction:column;gap:0.5rem;">
+        <div style="font-size:0.875rem;font-weight:600;color:#fff;">Related Reading</div>
+        <div style="display:flex;gap:1.5rem;flex-wrap:wrap;font-size:0.875rem;">
+          <a href="/product" style="color:#a78bfa;text-decoration:none;">Explore Nixora Product Capabilities →</a>
+          <a href="/compare" style="color:#a78bfa;text-decoration:none;">Compare Nixora vs Traditional Cloud →</a>
+        </div>
+      </div>
+
+    </div>
+
+  </article>
+
+</InnerLayout>
