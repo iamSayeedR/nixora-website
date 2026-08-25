@@ -13,7 +13,7 @@ interface Props {
 
 const {
   title,
-  description = "Nixora: The control plane for AI-generated software. Deploy, manage, and govern every app your AI builds via CLI.",
+  description = "The control plane for AI-generated software. Deploy, manage, and govern every application your AI builds — with zero-config hosting and HTTPS handled automatically.",
   image = "/logo-full.jpg",
   canonicalURL = new URL(Astro.url.pathname, Astro.site || "https://nixora.co.in").href,
   jsonLd,
@@ -35,7 +35,7 @@ const orgSchema = {
     "https://github.com/iamSayeedR/nixora-website",
     "https://www.linkedin.com/in/sayeedrizwan/"
   ],
-  "description": "Nixora is the control plane for AI-generated software, offering CLI deployment, persistent hosting, and HTTPS by default for applications built by AI coding agents."
+  "description": "The control plane for AI-generated software. Deploy, manage, and govern every application your AI builds — with zero-config hosting and HTTPS handled automatically."
 };
 
 const webSiteSchema = {
@@ -76,7 +76,7 @@ const cliAppSchema = {
   <meta name="theme-color" content="#111" />
   {googleVerification && <meta name="google-site-verification" content={googleVerification} />}
 
-  <!-- Open Graph / Facebook / LinkedIn -->
+  <!-- Open Graph / Facebook / LinkedIn / WhatsApp -->
   <meta property="og:type" content="website" />
   <meta property="og:url" content={canonicalURL} />
   <meta property="og:title" content={title} />
