@@ -1,6 +1,35 @@
 ---
 import InnerLayout from '../../layouts/InnerLayout.astro';
 
+const articleSchema = {
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://nixora.co.in/compare/nixora-vs-traditional-cloud"
+  },
+  "headline": "Nixora vs Traditional Cloud Deployment",
+  "description": "Factual comparison between manual cloud infrastructure (Docker, AWS, K8s) and Nixora's CLI-first deployment control plane for AI software.",
+  "image": "https://nixora.co.in/logo-full.jpg",
+  "author": {
+    "@type": "Person",
+    "name": "Sayeed Rizwan",
+    "jobTitle": "Founder",
+    "sameAs": "https://www.linkedin.com/in/sayeedrizwan/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Nixora",
+    "url": "https://nixora.co.in",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://nixora.co.in/logo-full.jpg"
+    }
+  },
+  "datePublished": "2026-08-24",
+  "dateModified": "2026-08-24"
+};
+
 const breadcrumbSchema = {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
@@ -12,7 +41,7 @@ const breadcrumbSchema = {
 };
 ---
 
-<InnerLayout title="Nixora vs Traditional Cloud Deployment | Architectural Comparison" description="Factual comparison between manual cloud infrastructure (Docker, AWS, K8s) and Nixora's CLI-first deployment control plane for AI software." jsonLd={breadcrumbSchema}>
+<InnerLayout title="Nixora vs Traditional Cloud Deployment | Architectural Comparison" description="Factual comparison between manual cloud infrastructure (Docker, AWS, K8s) and Nixora's CLI-first deployment control plane for AI software." jsonLd={[articleSchema, breadcrumbSchema]}>
 
   <article style="padding:4rem 2rem 5rem;max-width:900px;margin:0 auto;display:flex;flex-direction:column;gap:3rem;">
     

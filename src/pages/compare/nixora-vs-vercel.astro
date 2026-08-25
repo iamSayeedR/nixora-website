@@ -1,6 +1,35 @@
 ---
 import InnerLayout from '../../layouts/InnerLayout.astro';
 
+const articleSchema = {
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://nixora.co.in/compare/nixora-vs-vercel"
+  },
+  "headline": "Nixora vs Vercel",
+  "description": "Factual comparison between Vercel's Git-first web platform and Nixora's CLI-first deployment control plane for AI-generated applications.",
+  "image": "https://nixora.co.in/logo-full.jpg",
+  "author": {
+    "@type": "Person",
+    "name": "Sayeed Rizwan",
+    "jobTitle": "Founder",
+    "sameAs": "https://www.linkedin.com/in/sayeedrizwan/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Nixora",
+    "url": "https://nixora.co.in",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://nixora.co.in/logo-full.jpg"
+    }
+  },
+  "datePublished": "2026-08-24",
+  "dateModified": "2026-08-24"
+};
+
 const breadcrumbSchema = {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
@@ -12,7 +41,7 @@ const breadcrumbSchema = {
 };
 ---
 
-<InnerLayout title="Nixora vs Vercel | Developer Platform Comparison" description="Factual comparison between Vercel's Git-first web platform and Nixora's CLI-first deployment control plane for AI-generated applications." jsonLd={breadcrumbSchema}>
+<InnerLayout title="Nixora vs Vercel | Developer Platform Comparison" description="Factual comparison between Vercel's Git-first web platform and Nixora's CLI-first deployment control plane for AI-generated applications." jsonLd={[articleSchema, breadcrumbSchema]}>
 
   <article style="padding:4rem 2rem 5rem;max-width:900px;margin:0 auto;display:flex;flex-direction:column;gap:3rem;">
     

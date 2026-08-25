@@ -4,8 +4,13 @@ import InnerLayout from '../../layouts/InnerLayout.astro';
 const articleSchema = {
   "@context": "https://schema.org",
   "@type": "TechArticle",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://nixora.co.in/resources/cli-deployment-guide"
+  },
   "headline": "Zero-Config CLI Deployment for AI-Generated Applications",
   "description": "A technical guide on how Nixora CLI automates containerization, compute provisioning, and HTTPS setup for AI-generated code.",
+  "image": "https://nixora.co.in/logo-full.jpg",
   "author": {
     "@type": "Person",
     "name": "Sayeed Rizwan",
@@ -15,9 +20,14 @@ const articleSchema = {
   "publisher": {
     "@type": "Organization",
     "name": "Nixora",
-    "url": "https://nixora.co.in"
+    "url": "https://nixora.co.in",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://nixora.co.in/logo-full.jpg"
+    }
   },
-  "datePublished": "2026-08-24"
+  "datePublished": "2026-08-24",
+  "dateModified": "2026-08-24"
 };
 
 const breadcrumbSchema = {

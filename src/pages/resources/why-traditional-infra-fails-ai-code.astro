@@ -4,8 +4,13 @@ import InnerLayout from '../../layouts/InnerLayout.astro';
 const articleSchema = {
   "@context": "https://schema.org",
   "@type": "TechArticle",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://nixora.co.in/resources/why-traditional-infra-fails-ai-code"
+  },
   "headline": "Why Traditional Cloud Infrastructure Fails AI-Generated Code",
   "description": "An architectural analysis of why high-velocity AI code generation breaks manual cloud operations and how control planes automate the lifecycle.",
+  "image": "https://nixora.co.in/logo-full.jpg",
   "author": {
     "@type": "Person",
     "name": "Sayeed Rizwan",
@@ -15,9 +20,14 @@ const articleSchema = {
   "publisher": {
     "@type": "Organization",
     "name": "Nixora",
-    "url": "https://nixora.co.in"
+    "url": "https://nixora.co.in",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://nixora.co.in/logo-full.jpg"
+    }
   },
-  "datePublished": "2026-08-24"
+  "datePublished": "2026-08-24",
+  "dateModified": "2026-08-24"
 };
 
 const breadcrumbSchema = {
