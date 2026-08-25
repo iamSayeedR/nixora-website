@@ -13,53 +13,55 @@ interface Props {
 
 const {
   title,
-  description = "The control plane for AI-generated software. Deploy, manage, and govern every application your AI builds — with zero-config hosting and HTTPS handled automatically.",
+  description = "The control plane for AI-generated software. Deploy, manage, and govern every application your AI builds with zero-config hosting and HTTPS handled automatically.",
   image = "/logo-full.jpg",
   canonicalURL = new URL(Astro.url.pathname, Astro.site || "https://nixora.co.in").href,
   jsonLd,
   googleVerification
 } = Astro.props;
 
-const siteUrl = "https://nixora.co.in";
+const siteUrl = "https://nixora.co.in/";
 const imageUrl = new URL(image, siteUrl).href;
+const logoUrl = new URL("/logo-full.jpg", siteUrl).href;
 
-// Standard Factual Schemas
-const orgSchema = {
+// Unified Nixora Entity Schema (@graph)
+const nixoraSchema = {
   "@context": "https://schema.org",
-  "@type": "Organization",
-  "name": "Nixora",
-  "url": siteUrl,
-  "logo": new URL("/logo-full.jpg", siteUrl).href,
-  "sameAs": [
-    "https://x.com/wearenixora",
-    "https://github.com/iamSayeedR/nixora-website",
-    "https://www.linkedin.com/in/sayeedrizwan/"
-  ],
-  "description": "The control plane for AI-generated software. Deploy, manage, and govern every application your AI builds — with zero-config hosting and HTTPS handled automatically."
-};
-
-const webSiteSchema = {
-  "@context": "https://schema.org",
-  "@type": "WebSite",
-  "name": "Nixora",
-  "url": siteUrl
-};
-
-const cliAppSchema = {
-  "@context": "https://schema.org",
-  "@type": "SoftwareApplication",
-  "name": "Nixora CLI",
-  "operatingSystem": "Cross-platform (macOS, Linux, Windows)",
-  "applicationCategory": "DeveloperApplication",
-  "description": "Developer CLI tool to automate containerization, deployment, HTTPS provisioning, and persistent hosting for AI-generated software.",
-  "featureList": [
-    "Zero-config CLI deployment (nixora deploy)",
-    "Automated application containerization",
-    "Automated HTTPS / TLS SSL certificate issuance",
-    "Persistent cloud hosting and compute provisioning"
-  ],
-  "downloadUrl": "https://www.npmjs.com/package/nixora-cli",
-  "url": siteUrl
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://nixora.co.in/#organization",
+      "name": "Nixora",
+      "alternateName": "Nixora — control plane for AI-generated software",
+      "url": siteUrl,
+      "logo": logoUrl,
+      "sameAs": [
+        "https://github.com/iamSayeedR/nixora-website",
+        "https://x.com/wearenixora",
+        "https://www.linkedin.com/in/sayeedrizwan/",
+        "https://www.npmjs.com/package/nixora-cli"
+      ]
+    },
+    {
+      "@type": "SoftwareApplication",
+      "@id": "https://nixora.co.in/#software",
+      "name": "Nixora",
+      "alternateName": "Nixora — control plane for AI-generated software",
+      "applicationCategory": "DeveloperApplication",
+      "operatingSystem": "Linux, macOS, Windows",
+      "description": "Nixora is the control plane for AI-generated software. Deploy an app built by any AI coding agent — Claude Code, Cursor, Codex, Gemini CLI — with a single command, and Nixora automatically provisions hosting, authentication, and HTTPS, returning a live, shareable URL.",
+      "url": siteUrl,
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+      "publisher": { "@id": "https://nixora.co.in/#organization" }
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://nixora.co.in/#website",
+      "url": siteUrl,
+      "name": "Nixora",
+      "publisher": { "@id": "https://nixora.co.in/#organization" }
+    }
+  ]
 };
 ---
 <!DOCTYPE html>
@@ -99,10 +101,8 @@ const cliAppSchema = {
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
-  <!-- Core Structured Data (JSON-LD) -->
-  <script type="application/ld+json" set:html={JSON.stringify(orgSchema)} />
-  <script type="application/ld+json" set:html={JSON.stringify(webSiteSchema)} />
-  <script type="application/ld+json" set:html={JSON.stringify(cliAppSchema)} />
+  <!-- Core Entity Structured Data (JSON-LD) -->
+  <script type="application/ld+json" set:html={JSON.stringify(nixoraSchema)} />
   
   <!-- Page Specific JSON-LD -->
   {jsonLd && (
