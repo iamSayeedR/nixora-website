@@ -13,7 +13,7 @@ interface Props {
 
 const {
   title,
-  description = "The control plane for AI-generated software. Deploy, manage, and govern every application your AI builds with zero-config hosting and HTTPS handled automatically.",
+  description = "The control plane for AI-generated software starting with one-command deployment. Nixora ships any app your AI coding agent builds and handles hosting, authentication, and HTTPS automatically.",
   image = "/logo-full.jpg",
   canonicalURL = new URL(Astro.url.pathname, Astro.site || "https://nixora.co.in").href,
   jsonLd,
@@ -36,10 +36,9 @@ const nixoraSchema = {
       "url": siteUrl,
       "logo": logoUrl,
       "sameAs": [
-        "https://github.com/iamSayeedR/nixora-website",
-        "https://x.com/wearenixora",
-        "https://www.linkedin.com/in/sayeedrizwan/",
-        "https://www.npmjs.com/package/nixora-cli"
+        "https://github.com/nixora-hq",
+        "https://www.producthunt.com/products/nixora",
+        "https://x.com/wearenixora"
       ]
     },
     {
