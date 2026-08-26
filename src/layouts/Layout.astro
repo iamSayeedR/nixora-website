@@ -13,7 +13,7 @@ interface Props {
 
 const {
   title,
-  description = "The control plane for AI-generated software starting with one-command deployment. Nixora ships any app your AI coding agent builds and handles hosting, authentication, and HTTPS automatically.",
+  description = "The control plane for AI-generated software. Nixora deploys, hosts, and manages your AI-built app's entire lifecycle, including updates, monitoring, security, and scaling, automatically.",
   image = "/logo-full.jpg",
   canonicalURL = new URL(Astro.url.pathname, Astro.site || "https://nixora.co.in").href,
   jsonLd,
@@ -85,6 +85,8 @@ const nixoraSchema = {
   <meta property="og:title" content={title} />
   <meta property="og:description" content={description} />
   <meta property="og:image" content={imageUrl} />
+  <meta property="og:image:width" content="1024" />
+  <meta property="og:image:height" content="335" />
   <meta property="og:site_name" content="Nixora" />
   <meta property="og:locale" content="en_US" />
 
