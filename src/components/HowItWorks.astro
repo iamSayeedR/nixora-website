@@ -14,15 +14,38 @@
     <!-- Workflow Step Cards Grid with Elevation -->
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1.25rem;">
       {[
-        { step:"01", title:"Install the CLI", desc:"Install the lightweight Nixora agent globally to orchestrate all your builds.", cmd:"pip install nixora" },
-        { step:"02", title:"Initialize project", desc:"Run init inside your generated code directory. Nixora auto-detects environment requirements.", cmd:"nixora init" },
-        { step:"03", title:"Deploy & manage", desc:"Ship to our managed control plane. Hosting, HTTPS, and uptime handled automatically.", cmd:"nixora deploy" },
+        { 
+          step: "01", 
+          title: "Join the waitlist", 
+          desc: "Request access below. We review applications manually and onboard builders in small batches.", 
+          tag: "Get early access →",
+          isLink: true,
+          href: "#early-access"
+        },
+        { 
+          step: "02", 
+          title: "Get your CLI access", 
+          desc: "Once approved, you'll receive setup instructions and CLI access tied to your account.", 
+          tag: "Invite-only",
+          isLink: false
+        },
+        { 
+          step: "03", 
+          title: "Deploy & manage", 
+          desc: "Ship to our managed control plane. Hosting, HTTPS, and uptime handled automatically.", 
+          tag: "nixora deploy",
+          isLink: false
+        },
       ].map(s => (
         <div class="workflow-card">
           <span style="font-size:0.75rem;color:#a78bfa;font-weight:700;letter-spacing:0.08em;">{s.step}</span>
-          <h4 style="color:#fff;font-size:1.0625rem;font-weight:600;margin:0;">{s.title}</h4>
+          <h3 style="color:#fff;font-size:1.0625rem;font-weight:600;margin:0;">{s.title}</h3>
           <p style="color:#71717a;font-size:0.875rem;line-height:1.6;margin:0;flex:1;">{s.desc}</p>
-          <code style="background:#0a0a0a;border:1px solid #222;border-radius:5px;padding:0.4rem 0.75rem;font-size:0.8rem;color:#a1a1aa;font-family:'Fira Code',monospace;">{s.cmd}</code>
+          {s.isLink ? (
+            <a href={s.href} style="background:rgba(167,139,250,0.12);border:1px solid rgba(167,139,250,0.3);border-radius:5px;padding:0.4rem 0.75rem;font-size:0.8rem;color:#a78bfa;font-family:'Fira Code',monospace;text-decoration:none;display:inline-block;width:fit-content;transition:background 0.2s, border-color 0.2s;" onmouseover="this.style.background='rgba(167,139,250,0.2)';this.style.borderColor='rgba(167,139,250,0.5)';" onmouseout="this.style.background='rgba(167,139,250,0.12)';this.style.borderColor='rgba(167,139,250,0.3)';">{s.tag}</a>
+          ) : (
+            <code style="background:#0a0a0a;border:1px solid #222;border-radius:5px;padding:0.4rem 0.75rem;font-size:0.8rem;color:#a1a1aa;font-family:'Fira Code',monospace;width:fit-content;display:inline-block;">{s.tag}</code>
+          )}
         </div>
       ))}
     </div>
