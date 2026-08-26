@@ -79,7 +79,7 @@
       </div>
       <!-- Terminal body -->
       <div style="padding:1.5rem;font-family:'Fira Code','Geist Mono',monospace;font-size:0.85rem;line-height:2;color:#666;">
-        <div><span style="color:#444;">$</span> <span style="color:#e4e4e7;">npm install -g nixora-cli</span></div>
+        <div><span style="color:#444;">$</span> <span style="color:#e4e4e7;">pip install nixora</span></div>
         <div><span style="color:#444;">$</span> <span style="color:#e4e4e7;">nixora init</span></div>
         <div><span style="color:#444;">$</span> <span style="color:#e4e4e7;">nixora deploy</span></div>
         <div style="margin-top:0.5rem;color:#a78bfa;">✔ Live and hosted: Nixora keeps your app running.</div>
@@ -93,7 +93,7 @@
   const btn = document.getElementById('copy-btn');
   const label = document.getElementById('copy-label');
   btn?.addEventListener('click', () => {
-    navigator.clipboard.writeText('npm install -g nixora-cli');
+    navigator.clipboard.writeText('pip install nixora');
     if (label) label.textContent = '✓ Copied';
     setTimeout(() => { if (label) label.textContent = 'Copy'; }, 2000);
   });

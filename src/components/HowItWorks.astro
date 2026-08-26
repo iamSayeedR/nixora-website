@@ -14,7 +14,7 @@
     <!-- Workflow Step Cards Grid with Elevation -->
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1.25rem;">
       {[
-        { step:"01", title:"Install the CLI", desc:"Install the lightweight Nixora agent globally to orchestrate all your builds.", cmd:"npm install -g nixora-cli" },
+        { step:"01", title:"Install the CLI", desc:"Install the lightweight Nixora agent globally to orchestrate all your builds.", cmd:"pip install nixora" },
         { step:"02", title:"Initialize project", desc:"Run init inside your generated code directory. Nixora auto-detects environment requirements.", cmd:"nixora init" },
         { step:"03", title:"Deploy & manage", desc:"Ship to our managed control plane. Hosting, HTTPS, and uptime handled automatically.", cmd:"nixora deploy" },
       ].map(s => (
