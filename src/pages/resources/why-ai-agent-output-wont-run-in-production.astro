@@ -1,0 +1,141 @@
+---
+import InnerLayout from '../../layouts/InnerLayout.astro';
+
+const articleSchema = {
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://nixora.co.in/resources/why-ai-agent-output-wont-run-in-production"
+  },
+  "headline": "Why Your AI Coding Agent's Output Won't Run in Production",
+  "description": "Cursor, Claude Code, and Codex generate working applications: but 'working' and 'production-ready' aren't the same thing. Here's the specific gap and how to close it.",
+  "image": "https://nixora.co.in/logo-full.jpg",
+  "author": {
+    "@type": "Person",
+    "name": "Sayeed Rizwan",
+    "jobTitle": "Founder",
+    "sameAs": "https://www.linkedin.com/in/sayeedrizwan/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Nixora",
+    "url": "https://nixora.co.in",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://nixora.co.in/logo-full.jpg"
+    }
+  },
+  "datePublished": "2026-09-18",
+  "dateModified": "2026-09-18"
+};
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://nixora.co.in" },
+    { "@type": "ListItem", "position": 2, "name": "Resources", "item": "https://nixora.co.in/resources" },
+    { "@type": "ListItem", "position": 3, "name": "Why AI Agent Output Won't Run in Production", "item": "https://nixora.co.in/resources/why-ai-agent-output-wont-run-in-production" }
+  ]
+};
+---
+
+<InnerLayout title="Why Your AI Coding Agent's Output Won't Run in Production | Nixora Resources" description="Cursor, Claude Code, and Codex generate working applications: but 'working' and 'production-ready' aren't the same thing. Here's the specific gap and how to close it." jsonLd={[articleSchema, breadcrumbSchema]}>
+
+  <article style="padding:4rem 2rem 5rem;max-width:800px;margin:0 auto;display:flex;flex-direction:column;gap:2.5rem;">
+    
+    <!-- Article Header -->
+    <div style="display:flex;flex-direction:column;gap:1rem;">
+      <div style="display:flex;align-items:center;gap:0.75rem;font-size:0.75rem;color:#a78bfa;font-family:'Fira Code',monospace;">
+        <span>Developer Infrastructure</span> · <span>September 2026</span> · <span>5 min read</span>
+      </div>
+      <h1 class="section-headline">Why Your AI Coding Agent's Output Won't Run in <span class="accent">Production</span></h1>
+      <p style="font-size:1.0625rem;color:#a1a1aa;line-height:1.7;margin:0;">
+        Cursor, Claude Code, and Codex generate working applications: but "working" and "production-ready" aren't the same thing. Here's the specific gap and how to close it.
+      </p>
+    </div>
+
+    <!-- Article Content -->
+    <div style="display:flex;flex-direction:column;gap:2rem;color:#a1a1aa;font-size:0.95rem;line-height:1.85;">
+      
+      <p style="margin:0;">
+        You asked Cursor, Claude Code, or Codex to build something, it ran locally without errors, and you assumed the hard part was done. Then you tried to deploy it and nothing worked. This isn't a sign the AI did a bad job: it's a predictable gap between what "runs on my machine" means and what "runs in production" requires. Here's what's actually happening, and how to close it.
+      </p>
+
+      <section style="display:flex;flex-direction:column;gap:1rem;">
+        <h2 style="font-size:1.3rem;color:#fff;font-weight:700;margin:0;">The core problem: AI agents optimize for a different goal than you think</h2>
+        <p style="margin:0;">
+          When you ask an AI coding agent to build something, it's solving for: does this code execute correctly, given the inputs I can see right now. That's the goal it was steered toward, and it's genuinely good at it.
+        </p>
+        <p style="margin:0;">
+          What it's not solving for, unless you ask explicitly: will this run in an environment I can't see, with no local files, no local network, and no assumptions about what's already installed. Production is exactly that environment. The agent has no visibility into it, so it can't account for it by default.
+        </p>
+        <p style="margin:0;">
+          That mismatch shows up in a small number of very consistent ways.
+        </p>
+      </section>
+
+      <section style="display:flex;flex-direction:column;gap:1rem;">
+        <h2 style="font-size:1.3rem;color:#fff;font-weight:700;margin:0;">The five most common failure patterns</h2>
+        <ol style="margin:0;padding-left:1.25rem;display:flex;flex-direction:column;gap:0.85rem;">
+          <li>
+            <strong style="color:#fff;">1. Environment variables that only exist locally</strong><br />
+            Your app reads <code style="color:#c4b5fd;background:rgba(167,139,250,0.12);padding:0.15rem 0.35rem;border-radius:4px;font-family:'Fira Code',monospace;">process.env.DATABASE_URL</code> or <code style="color:#c4b5fd;background:rgba(167,139,250,0.12);padding:0.15rem 0.35rem;border-radius:4px;font-family:'Fira Code',monospace;">os.environ["API_KEY"]</code>. Locally, these come from a .env file the agent generated or that you added yourself. In production, that file doesn't exist unless you explicitly provision those variables on the hosting platform. The app doesn't fail to build: it fails at runtime, often with a stack trace that points at a database driver rather than the actual missing variable.
+          </li>
+          <li>
+            <strong style="color:#fff;">2. A Dockerfile that describes the wrong environment</strong><br />
+            If the agent generated a Dockerfile at all, it's often built from a generic template rather than reflecting your actual dependency versions, build steps, or entry point. A Node app might get a Dockerfile assuming npm start when the real entry point is a different script entirely.
+          </li>
+          <li>
+            <strong style="color:#fff;">3. Binding to the wrong host</strong><br />
+            Code that works locally frequently binds to localhost or 127.0.0.1. Most container and hosting platforms require binding to 0.0.0.0 so traffic can actually reach the process from outside the container. This is a one-line fix that's easy to miss because it never causes a problem until you're already trying to deploy.
+          </li>
+          <li>
+            <strong style="color:#fff;">4. Hardcoded local paths or ports</strong><br />
+            Absolute file paths, a hardcoded port number, or assumptions about local storage being available all work fine in a dev environment and quietly break the moment the app runs somewhere else.
+          </li>
+          <li>
+            <strong style="color:#fff;">5. Missing infrastructure the app assumes exists</strong><br />
+            If the generated app expects a Postgres database, a Redis cache, or a queue, the agent wrote code against that infrastructure: it didn't provision it. You still need to stand up the actual database and get the connection string into the app correctly.
+          </li>
+        </ol>
+      </section>
+
+      <section style="display:flex;flex-direction:column;gap:1rem;">
+        <h2 style="font-size:1.3rem;color:#fff;font-weight:700;margin:0;">None of this means the code is wrong</h2>
+        <p style="margin:0;">
+          This is worth being explicit about: these failures aren't bugs in the AI-generated code. The application logic is often completely correct. The gap is entirely in the layer between "code that works" and "code that's running somewhere real": configuration, infrastructure, and environment. That layer was never part of the original request, so there's no reason the agent would have handled it.
+        </p>
+      </section>
+
+      <section style="display:flex;flex-direction:column;gap:1rem;">
+        <h2 style="font-size:1.3rem;color:#fff;font-weight:700;margin:0;">How to close the gap</h2>
+        <p style="margin:0;">
+          If you're doing it yourself, the fix is to explicitly ask your AI agent to account for production, not just local execution. Prompts like "make sure this binds to 0.0.0.0 and reads all config from environment variables, with no hardcoded local paths" catch most of the five patterns above before you even try to deploy. Beyond that, you still need to write or fix the Dockerfile, provision the infrastructure the app depends on, and set environment variables on whatever platform you deploy to.
+        </p>
+        <p style="margin:0;">
+          If you'd rather not re-solve this on every project, this is exactly the kind of repeatable, mechanical gap that's worth automating rather than debugging by hand each time. A deployment tool that auto-detects your runtime, builds the container correctly, and provisions what's needed removes steps 1 through 4 from the list entirely: you're left with genuinely new problems instead of the same five recurring ones.
+        </p>
+        <p style="margin:0;">
+          That's the specific gap <a href="https://nixora.co.in/" style="color:#a78bfa;text-decoration:underline;">Nixora</a> is built to close: point it at an AI-generated app and it detects the runtime, containerizes without a Dockerfile, provisions compute, and issues HTTPS: the deployment and hosting layer is live today, with deeper lifecycle and diagnostics capabilities on the roadmap.
+        </p>
+        <p style="margin:0;">
+          Building with Claude Code, Cursor, or Codex and want deployment to stop being the part that breaks? <a href="https://nixora.co.in/#early-access" style="color:#a78bfa;text-decoration:underline;">Join the Nixora early access waitlist</a>.
+        </p>
+      </section>
+
+      <!-- Internal Link to Product & Resources -->
+      <div style="margin-top:1rem;padding:1.5rem;background:#0a0a0a;border:1px solid #1f1f1f;border-radius:10px;display:flex;flex-direction:column;gap:0.5rem;">
+        <div style="font-size:0.875rem;font-weight:600;color:#fff;">Related Reading</div>
+        <div style="display:flex;gap:1.5rem;flex-wrap:wrap;font-size:0.875rem;">
+          <a href="/resources/deploy-cursor-claude-code-app-to-production" style="color:#a78bfa;text-decoration:none;">How to Deploy a Cursor or Claude Code-Generated App to Production →</a>
+          <a href="/resources" style="color:#a78bfa;text-decoration:none;">Browse All Developer Resources →</a>
+        </div>
+      </div>
+
+    </div>
+
+  </article>
+
+</InnerLayout>

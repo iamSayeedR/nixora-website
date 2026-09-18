@@ -1,0 +1,164 @@
+---
+import InnerLayout from '../../layouts/InnerLayout.astro';
+
+const articleSchema = {
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://nixora.co.in/resources/deploy-cursor-claude-code-app-to-production"
+  },
+  "headline": "How to Deploy a Cursor or Claude Code-Generated App to Production",
+  "description": "A practical guide to taking an app built by an AI coding agent (Cursor, Claude Code, or Codex) from your local machine to a live, running production deployment.",
+  "image": "https://nixora.co.in/logo-full.jpg",
+  "author": {
+    "@type": "Person",
+    "name": "Sayeed Rizwan",
+    "jobTitle": "Founder",
+    "sameAs": "https://www.linkedin.com/in/sayeedrizwan/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Nixora",
+    "url": "https://nixora.co.in",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://nixora.co.in/logo-full.jpg"
+    }
+  },
+  "datePublished": "2026-09-18",
+  "dateModified": "2026-09-18"
+};
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://nixora.co.in" },
+    { "@type": "ListItem", "position": 2, "name": "Resources", "item": "https://nixora.co.in/resources" },
+    { "@type": "ListItem", "position": 3, "name": "Deploy Cursor or Claude Code App", "item": "https://nixora.co.in/resources/deploy-cursor-claude-code-app-to-production" }
+  ]
+};
+---
+
+<InnerLayout title="How to Deploy a Cursor or Claude Code-Generated App to Production | Nixora Resources" description="A practical guide to taking an app built by an AI coding agent (Cursor, Claude Code, or Codex) from your local machine to a live, running production deployment." jsonLd={[articleSchema, breadcrumbSchema]}>
+
+  <article style="padding:4rem 2rem 5rem;max-width:800px;margin:0 auto;display:flex;flex-direction:column;gap:2.5rem;">
+    
+    <!-- Article Header -->
+    <div style="display:flex;flex-direction:column;gap:1rem;">
+      <div style="display:flex;align-items:center;gap:0.75rem;font-size:0.75rem;color:#a78bfa;font-family:'Fira Code',monospace;">
+        <span>Deployment Guide</span> · <span>September 2026</span> · <span>5 min read</span>
+      </div>
+      <h1 class="section-headline">How to Deploy a Cursor or Claude Code-Generated App to <span class="accent">Production</span></h1>
+      <p style="font-size:1.0625rem;color:#a1a1aa;line-height:1.7;margin:0;">
+        A practical guide to taking an app built by an AI coding agent (Cursor, Claude Code, or Codex) from your local machine to a live, running production deployment.
+      </p>
+    </div>
+
+    <!-- Article Content -->
+    <div style="display:flex;flex-direction:column;gap:2rem;color:#a1a1aa;font-size:0.95rem;line-height:1.85;">
+      
+      <p style="margin:0;">
+        AI coding agents have made writing an app fast. Getting that app running somewhere real (with a Dockerfile that works, environment variables set correctly, HTTPS attached, and a URL you can actually share) is still a manual, fiddly process. This guide walks through why that gap exists and how to close it, whether you do it by hand or with a tool built for it.
+      </p>
+
+      <section style="display:flex;flex-direction:column;gap:1rem;">
+        <h2 style="font-size:1.3rem;color:#fff;font-weight:700;margin:0;">Why AI-generated code is harder to deploy than it looks</h2>
+        <p style="margin:0;">
+          When Cursor, Claude Code, or Codex generates an application, it typically gets you:
+        </p>
+        <ul style="margin:0;padding-left:1.25rem;display:flex;flex-direction:column;gap:0.4rem;">
+          <li>Working application code</li>
+          <li>A package.json or requirements.txt</li>
+          <li>Maybe a rough Dockerfile, maybe not</li>
+          <li>No environment configuration</li>
+          <li>No infrastructure</li>
+        </ul>
+        <p style="margin:0;">
+          The agent optimized for "does this run locally," not "is this deployable." That distinction is where most of the pain shows up. A few patterns come up constantly:
+        </p>
+        <ol style="margin:0;padding-left:1.25rem;display:flex;flex-direction:column;gap:0.75rem;">
+          <li><strong style="color:#fff;">Missing or incomplete environment variables</strong> Your app references <code style="color:#c4b5fd;background:rgba(167,139,250,0.12);padding:0.15rem 0.35rem;border-radius:4px;font-family:'Fira Code',monospace;">DATABASE_URL</code>, <code style="color:#c4b5fd;background:rgba(167,139,250,0.12);padding:0.15rem 0.35rem;border-radius:4px;font-family:'Fira Code',monospace;">REDIS_URL</code>, or an API key that only exists in your local .env file. It works on your machine and crashes immediately in production with an error that doesn't obviously point at the real cause.</li>
+          <li><strong style="color:#fff;">No Dockerfile, or one that doesn't match the actual runtime</strong> AI agents sometimes generate a Dockerfile based on a generic template rather than the specific runtime, dependency versions, and entry point your project actually uses.</li>
+          <li><strong style="color:#fff;">Wrong or unexposed ports</strong> The app binds to localhost instead of 0.0.0.0, or the exposed port doesn't match what the hosting platform expects.</li>
+          <li><strong style="color:#fff;">No clear entry point</strong> Especially with multi-file or multi-service projects, it's not always obvious to a deployment platform (or to you) what the actual start command is supposed to be.</li>
+        </ol>
+        <p style="margin:0;">
+          None of these are hard problems individually. Together, they're the reason "just deploy it" so often turns into an hour of debugging container builds.
+        </p>
+      </section>
+
+      <section style="display:flex;flex-direction:column;gap:1rem;">
+        <h2 style="font-size:1.3rem;color:#fff;font-weight:700;margin:0;">Option 1: Deploy it manually</h2>
+        <p style="margin:0;">
+          If you want full control, here's the manual path:
+        </p>
+        <ul style="margin:0;padding-left:1.25rem;display:flex;flex-direction:column;gap:0.5rem;">
+          <li>Write or fix the Dockerfile. Make sure the base image matches your actual runtime version, and that all dependencies are installed correctly.</li>
+          <li>Set environment variables explicitly on whatever platform you're deploying to: don't assume your .env file travels with you.</li>
+          <li>Bind to 0.0.0.0, not localhost, and confirm the exposed port matches your platform's expectations.</li>
+          <li>Provision any infrastructure the app needs (database, cache, queue) separately, and wire up the connection strings.</li>
+          <li>Attach HTTPS. Most platforms handle this automatically once DNS is pointed correctly, but it's worth confirming rather than assuming.</li>
+          <li>Deploy, then check logs immediately. The most common first-deploy failure is a missing environment variable: check for that before anything else.</li>
+        </ul>
+        <p style="margin:0;">
+          This works, and for a one-off project it's fine. It gets tedious fast if you're shipping AI-generated apps repeatedly, because you're re-solving the same handful of problems every time.
+        </p>
+      </section>
+
+      <section style="display:flex;flex-direction:column;gap:1rem;">
+        <h2 style="font-size:1.3rem;color:#fff;font-weight:700;margin:0;">Option 2: Automate the parts that are always the same</h2>
+        <p style="margin:0;">
+          Because the failure patterns above are so consistent, they're a reasonable thing to automate rather than repeat by hand. That's the specific gap a deployment CLI can close: detect the runtime, generate the container, provision compute, attach HTTPS, and give you a live URL: without you writing a Dockerfile or debugging a port mismatch.
+        </p>
+        <p style="margin:0;">
+          That's what a single command looks like in practice:
+        </p>
+        <div style="background:#0a0a0a;border:1px solid #1f1f1f;border-radius:10px;padding:1.5rem;font-family:'Fira Code',monospace;font-size:0.85rem;line-height:2;color:#e4e4e7;">
+          <div><span style="color:#a78bfa;">$</span> nixora deploy</div>
+          <div style="color:#71717a;">└─ scanning project root</div>
+          <div style="color:#71717a;">└─ detecting runtime: node@20</div>
+          <div style="color:#71717a;">└─ entry point: server.js</div>
+          <div style="color:#71717a;">└─ dependencies: 62 packages</div>
+          <div>building container...</div>
+          <div>provisioning compute...</div>
+          <div>issuing TLS certificate...</div>
+          <div>routing traffic...</div>
+          <div style="color:#a78bfa;font-weight:600;margin-top:0.25rem;">✔ Live: https://my-app.nixora.co.in</div>
+        </div>
+        <p style="margin:0;">
+          This is what <a href="https://nixora.co.in/" style="color:#a78bfa;text-decoration:underline;">Nixora</a> does today: it auto-detects your runtime, containerizes without a Dockerfile, provisions compute, and issues HTTPS automatically. It's currently in early access: deployment, hosting, and HTTPS are live; deeper lifecycle management (rollbacks, self-healing, cost insights) is on the roadmap, not yet shipped, so it's worth knowing that boundary going in.
+        </p>
+      </section>
+
+      <section style="display:flex;flex-direction:column;gap:1rem;">
+        <h2 style="font-size:1.3rem;color:#fff;font-weight:700;margin:0;">The underlying pattern, either way</h2>
+        <p style="margin:0;">
+          Whether you deploy by hand or with a tool, the sequence is the same:
+        </p>
+        <div style="background:#0a0a0a;border:1px solid #1f1f1f;border-radius:8px;padding:1rem 1.25rem;font-family:'Fira Code',monospace;font-size:0.825rem;color:#a78bfa;overflow-x:auto;">
+          AI generates code → Fix environment config → Build container → Provision infrastructure → Attach HTTPS → Deploy → Check logs
+        </div>
+        <p style="margin:0;">
+          The AI agent handles the first step well. Everything after that is still infrastructure work: and it's worth treating it as its own step in your workflow rather than an afterthought, especially as you ship more AI-generated projects and the same failure patterns keep recurring.
+        </p>
+        <p style="margin:0;">
+          If you're deploying apps built with Claude Code, Cursor, or Codex and want to skip straight to a live URL, <a href="https://nixora.co.in/" style="color:#a78bfa;text-decoration:underline;">Nixora</a> is built specifically for that workflow: <a href="https://nixora.co.in/#early-access" style="color:#a78bfa;text-decoration:underline;">join the early access waitlist</a> to try it.
+        </p>
+      </section>
+
+      <!-- Internal Link to Product & Resources -->
+      <div style="margin-top:1rem;padding:1.5rem;background:#0a0a0a;border:1px solid #1f1f1f;border-radius:10px;display:flex;flex-direction:column;gap:0.5rem;">
+        <div style="font-size:0.875rem;font-weight:600;color:#fff;">Related Reading</div>
+        <div style="display:flex;gap:1.5rem;flex-wrap:wrap;font-size:0.875rem;">
+          <a href="/resources/why-ai-agent-output-wont-run-in-production" style="color:#a78bfa;text-decoration:none;">Why Your AI Coding Agent's Output Won't Run in Production →</a>
+          <a href="/resources" style="color:#a78bfa;text-decoration:none;">Browse All Developer Resources →</a>
+        </div>
+      </div>
+
+    </div>
+
+  </article>
+
+</InnerLayout>
