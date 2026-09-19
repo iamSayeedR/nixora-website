@@ -2,11 +2,11 @@
 const faqs = [
   {
     q: "What is Nixora?",
-    a: "Nixora is the control plane for AI-generated software. It is a developer platform designed to automate deployment, hosting, and HTTPS provisioning for applications created by AI coding agents, with additional lifecycle management capabilities on our roadmap."
+    a: "Nixora is the control plane for AI-generated software and AI agents. It starts with deploying and diagnosing apps built by AI coding agents, and is being built to operate, scale, and govern them across their full lifecycle."
   },
   {
     q: "What does Nixora do?",
-    a: "Nixora bridges the gap between AI-generated code and live production. Today, CLI commands containerize your application, provision cloud compute, issue TLS/HTTPS certificates, and manage persistent hosting automatically. We're building toward an Infrastructure Intent Engine that understands what an application (or AI agent) actually needs and provisions it automatically, plus deployment diagnostics that explain failures instead of just pointing at logs."
+    a: "Today, Nixora deploys AI-built apps to managed cloud infrastructure with HTTPS and hosting, and diagnoses why deployments fail. Next, it becomes a deployment target your AI agents call directly through an MCP server. Over time, we're building toward monitoring, scaling, governance, and multi-agent systems."
   },
   {
     q: "Who is Nixora for?",
@@ -14,11 +14,11 @@ const faqs = [
   },
   {
     q: "How does Nixora deployment work?",
-    a: "Nixora is currently in early access. We're onboarding a limited number of builders through our waitlist to test the deployment experience before opening it up more broadly. Once approved, you'll get CLI access: from there, deployment is a single guided step that auto-detects your app's runtime, containerizes it, provisions compute, attaches HTTPS, and gives you a live URL. Join the waitlist to get access."
+    a: "Nixora deployment is currently in closed access while we complete core infrastructure work. Join the waitlist to reserve your spot. Once approved, deployment is a single guided CLI step that auto-detects your app's runtime, containerizes it, provisions compute, attaches HTTPS, and provides a live URL."
   },
   {
     q: "Is Nixora a deployment platform?",
-    a: "Yes. Nixora is a cloud deployment platform, currently CLI-based, built for the high-velocity lifecycle of AI-generated applications."
+    a: "Deployment is where Nixora starts, not where it stops. Today the live capabilities are deployment and diagnosis through the CLI. Lifecycle management, agent-native access, and governance are on the roadmap."
   },
   {
     q: "Does Nixora have a web dashboard?",
@@ -26,7 +26,15 @@ const faqs = [
   },
   {
     q: "Can I deploy with Nixora today?",
-    a: "Yes. You can deploy applications today using the Nixora CLI command line tool with automated containerization, HTTPS, and persistent hosting."
+    a: "The CLI is live and has shipped real deployments, but access is currently closed while we complete infrastructure work. Join the waitlist and we'll reach out when your spot opens."
+  },
+  {
+    q: "Where is Nixora headed?",
+    a: "Nixora is being built as the control plane for the full lifecycle of AI-generated software and AI agents: deploy, diagnose, operate, scale, and govern. Deployment and diagnosis are live today. Next is agent-native access via MCP, including several agents working with your infrastructure at once. Later, we're working toward autonomous scaling, governance, and multi-agent system deployment. We mark each item clearly so you know what's shipped and what isn't."
+  },
+  {
+    q: "Can multiple AI agents use Nixora at once?",
+    a: "That's the direction of our MCP interface, which is in development. The goal is for agents like Claude Code, Cursor, and Codex to deploy and inspect through Nixora with their own permissions and a log of every action. It isn't live yet."
   }
 ];
 
@@ -57,7 +65,7 @@ const faqSchema = {
       <div style="font-size:0.72rem;color:#a78bfa;text-transform:uppercase;letter-spacing:0.12em;font-weight:700;font-family:'Fira Code',monospace;">Frequently Asked Questions</div>
       <h2 class="section-headline">Everything you need to know about <span class="accent">Nixora</span></h2>
       <p class="section-para" style="max-width:540px;margin:0 auto;">
-        Clear, factual answers regarding Nixora's current CLI capabilities, cloud infrastructure, and product roadmap.
+        Clear, factual answers regarding Nixora's current deployment & diagnosis capabilities, cloud infrastructure, and product roadmap.
       </p>
     </div>
 
