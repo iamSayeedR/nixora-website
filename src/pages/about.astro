@@ -31,7 +31,7 @@ const breadcrumbSchema = {
 <InnerLayout title="About Nixora | Control Plane for AI Software" description="About Nixora: company story, market vision, and founder bio for Sayeed Rizwan. Building the control plane where AI-generated software operates." jsonLd={[personSchema, breadcrumbSchema]}>
 
   <!-- Company Story & Vision Header -->
-  <div style="padding:4rem 2rem 3rem;max-width:900px;margin:0 auto;display:flex;flex-direction:column;gap:2rem;">
+  <div style="padding:4rem 2rem 3rem;max-width:900px;margin:0 auto;display:flex;flex-direction:column;gap:2.5rem;">
     <div>
       <div style="font-size:0.72rem;color:#a78bfa;text-transform:uppercase;letter-spacing:0.12em;font-weight:700;margin-bottom:0.75rem;font-family:'Fira Code',monospace;">About Nixora</div>
       <h1 class="section-headline" style="max-width:720px;">
@@ -49,10 +49,51 @@ const breadcrumbSchema = {
       <p style="color:#e4e4e7;margin:0;">
         Nixora aims to become the control plane where AI-generated software and AI agents live, the way GitHub became where code lives and Kubernetes became the control plane for containers.
       </p>
+      
+      <!-- Mission Context Paragraph -->
+      <div style="margin-top:0.5rem;padding:1.5rem;background:#0a0a0a;border:1px solid #1f1f1f;border-radius:10px;display:flex;flex-direction:column;gap:0.75rem;">
+        <div style="font-size:0.875rem;font-weight:600;color:#fff;">Mission & Context</div>
+        <p style="font-size:0.9375rem;line-height:1.75;color:#a1a1aa;margin:0;">
+          Our mission is to eliminate operational friction for AI-generated code. As AI coding tools allow engineers to build software in minutes, Nixora provides the autonomous infrastructure layer that containerizes, provisions, deploys, and operates that software directly from terminal workflows.
+        </p>
+      </div>
     </div>
+
+    <!-- Company Timeline Section -->
+    <div style="display:flex;flex-direction:column;gap:1.25rem;max-width:760px;margin-top:1rem;">
+      <div style="font-size:0.875rem;font-weight:700;color:#fff;text-transform:uppercase;letter-spacing:0.08em;font-family:'Fira Code',monospace;">Company Timeline</div>
+      <div style="display:grid;grid-template-columns:repeat(2, 1fr);gap:1.25rem;" class="about-timeline-grid">
+        
+        <div style="background:#0a0a0a;border:1px solid #1f1f1f;border-radius:10px;padding:1.25rem;display:flex;flex-direction:column;gap:0.5rem;">
+          <div style="font-size:0.72rem;color:#a78bfa;font-family:'Fira Code',monospace;font-weight:700;">JULY 2026</div>
+          <div style="font-size:0.9375rem;color:#fff;font-weight:600;">Founded & Core Engine Built</div>
+          <p style="font-size:0.825rem;color:#a1a1aa;margin:0;line-height:1.6;">
+            Nixora founded by Sayeed Rizwan. Initial core engine built for automated containerization, SSL generation, and compute allocation.
+          </p>
+        </div>
+
+        <div style="background:#0a0a0a;border:1px solid #1f1f1f;border-radius:10px;padding:1.25rem;display:flex;flex-direction:column;gap:0.5rem;">
+          <div style="font-size:0.72rem;color:#a78bfa;font-family:'Fira Code',monospace;font-weight:700;">AUGUST 2026</div>
+          <div style="font-size:0.9375rem;color:#fff;font-weight:600;">Public CLI Launched</div>
+          <p style="font-size:0.825rem;color:#a1a1aa;margin:0;line-height:1.6;">
+            Nixora CLI released for testing, reaching 65 developer installs, 47 real application deployments, and 100+ waitlist signups.
+          </p>
+        </div>
+
+      </div>
+    </div>
+
   </div>
 
   <!-- Founder Section -->
   <Founder />
 
 </InnerLayout>
+
+<style>
+  @media (max-width: 768px) {
+    .about-timeline-grid {
+      grid-template-columns: 1fr !important;
+    }
+  }
+</style>
