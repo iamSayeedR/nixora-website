@@ -6,7 +6,7 @@ const articleSchema = {
   "@type": "TechArticle",
   "mainEntityOfPage": {
     "@type": "WebPage",
-    "@id": "https://nixora.co.in/resources/deploy-cursor-claude-code-app-to-production"
+    "@id": "https://nixora.co.in/resources/deploy-cursor-claude-code-app-to-production/"
   },
   "headline": "How to Deploy a Cursor or Claude Code-Generated App to Production",
   "description": "A practical guide to taking an app built by an AI coding agent (Cursor, Claude Code, or Codex) from your local machine to a live, running production deployment.",
@@ -20,7 +20,7 @@ const articleSchema = {
   "publisher": {
     "@type": "Organization",
     "name": "Nixora",
-    "url": "https://nixora.co.in",
+    "url": "https://nixora.co.in/",
     "logo": {
       "@type": "ImageObject",
       "url": "https://nixora.co.in/logo-full.jpg"
@@ -34,9 +34,9 @@ const breadcrumbSchema = {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
   "itemListElement": [
-    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://nixora.co.in" },
-    { "@type": "ListItem", "position": 2, "name": "Resources", "item": "https://nixora.co.in/resources" },
-    { "@type": "ListItem", "position": 3, "name": "Deploy Cursor or Claude Code App", "item": "https://nixora.co.in/resources/deploy-cursor-claude-code-app-to-production" }
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://nixora.co.in/" },
+    { "@type": "ListItem", "position": 2, "name": "Resources", "item": "https://nixora.co.in/resources/" },
+    { "@type": "ListItem", "position": 3, "name": "Deploy Cursor or Claude Code App", "item": "https://nixora.co.in/resources/deploy-cursor-claude-code-app-to-production/" }
   ]
 };
 ---
@@ -48,7 +48,7 @@ const breadcrumbSchema = {
     <!-- Article Header -->
     <div style="display:flex;flex-direction:column;gap:1rem;">
       <div style="display:flex;align-items:center;gap:0.75rem;font-size:0.75rem;color:#a78bfa;font-family:'Fira Code',monospace;">
-        <span>Deployment Guide</span> · <span>September 2026</span> · <span>5 min read</span>
+        <span>Deployment Guide</span> · <span>By <a href="/about/" style="color:#a78bfa;text-decoration:underline;">Sayeed Rizwan</a></span> · <span>September 2026</span> · <span>5 min read</span>
       </div>
       <h1 class="section-headline">How to Deploy a Cursor or Claude Code-Generated App to <span class="accent">Production</span></h1>
       <p style="font-size:1.0625rem;color:#a1a1aa;line-height:1.7;margin:0;">
@@ -128,7 +128,10 @@ const breadcrumbSchema = {
           <div style="color:#a78bfa;font-weight:600;margin-top:0.25rem;">✔ Live: https://my-app.nixora.co.in</div>
         </div>
         <p style="margin:0;">
-          This is what <a href="https://nixora.co.in/" style="color:#a78bfa;text-decoration:underline;">Nixora</a> does today: it auto-detects your runtime, containerizes without a Dockerfile, provisions compute, and issues HTTPS automatically. It's currently in early access: deployment, hosting, and HTTPS are live; deeper lifecycle management (rollbacks, self-healing, cost insights) is on the roadmap, not yet shipped, so it's worth knowing that boundary going in.
+          This is what <a href="/" style="color:#a78bfa;text-decoration:underline;">Nixora</a> does today: it auto-detects your runtime, containerizes without a Dockerfile, provisions compute, and issues HTTPS automatically. It's currently in early access: deployment, hosting, and HTTPS are live; deeper lifecycle management (rollbacks, self-healing, cost insights) is on the roadmap, not yet shipped, so it's worth knowing that boundary going in.
+        </p>
+        <p style="margin:0;">
+          If you're deploying apps built with Claude Code, Cursor, or Codex and want to skip straight to a live URL, <a href="/" style="color:#a78bfa;text-decoration:underline;">Nixora</a> is built specifically for that workflow: <a href="/#early-access" style="color:#a78bfa;text-decoration:underline;">join the early access waitlist</a> to try it.
         </p>
       </section>
 
@@ -144,7 +147,7 @@ const breadcrumbSchema = {
           The AI agent handles the first step well. Everything after that is still infrastructure work: and it's worth treating it as its own step in your workflow rather than an afterthought, especially as you ship more AI-generated projects and the same failure patterns keep recurring.
         </p>
         <p style="margin:0;">
-          If you're deploying apps built with Claude Code, Cursor, or Codex and want to skip straight to a live URL, <a href="https://nixora.co.in/" style="color:#a78bfa;text-decoration:underline;">Nixora</a> is built specifically for that workflow: <a href="https://nixora.co.in/#early-access" style="color:#a78bfa;text-decoration:underline;">join the early access waitlist</a> to try it.
+          If you're deploying apps built with Claude Code, Cursor, or Codex and want deployment to stop being the part that breaks, <a href="/" style="color:#a78bfa;text-decoration:underline;">Nixora</a> is built specifically for that workflow: <a href="/#early-access" style="color:#a78bfa;text-decoration:underline;">join the Nixora early access waitlist</a>.
         </p>
       </section>
 
@@ -152,8 +155,8 @@ const breadcrumbSchema = {
       <div style="margin-top:1rem;padding:1.5rem;background:#0a0a0a;border:1px solid #1f1f1f;border-radius:10px;display:flex;flex-direction:column;gap:0.5rem;">
         <div style="font-size:0.875rem;font-weight:600;color:#fff;">Related Reading</div>
         <div style="display:flex;gap:1.5rem;flex-wrap:wrap;font-size:0.875rem;">
-          <a href="/resources/why-ai-agent-output-wont-run-in-production" style="color:#a78bfa;text-decoration:none;">Why Your AI Coding Agent's Output Won't Run in Production →</a>
-          <a href="/resources" style="color:#a78bfa;text-decoration:none;">Browse All Developer Resources →</a>
+          <a href="/resources/why-ai-agent-output-wont-run-in-production/" style="color:#a78bfa;text-decoration:none;">Why Your AI Coding Agent's Output Won't Run in Production →</a>
+          <a href="/resources/" style="color:#a78bfa;text-decoration:none;">Browse All Developer Resources →</a>
         </div>
       </div>
 
