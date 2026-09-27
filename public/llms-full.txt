@@ -1,0 +1,82 @@
+# Nixora: Technical Documentation & System Overview
+
+> Nixora is the control plane for AI-generated software and AI agents: deployment (along with diagnosis) is the first capability that's live today, not the entire scope of the product.
+
+---
+
+## 1. System Overview
+Nixora is developer infrastructure built for high-velocity AI code generation. AI coding agents such as Claude Code, Cursor, Codex, and Gemini CLI enable developers to write full applications in minutes. However, operating that software in production requires containerization, DNS configuration, TLS certificates, environment variable provisioning, and persistent hosting. Nixora automates this operational layer starting with terminal CLI deployment and automated diagnosis.
+
+---
+
+## 2. CLI Technical Documentation (Live Capabilities)
+
+### Installation
+```bash
+pip install nixora
+```
+
+### Authentication & Waitlist Access
+```bash
+nixora login
+```
+*Access is currently closed while we complete core infrastructure work. Account tokens and CLI authentication credentials are granted to approved waitlist builders.*
+
+### Core CLI Commands
+- `nixora init`: Initializes project configuration (`nixora.json`) in the current project directory.
+- `nixora deploy`: Scans project files, auto-detects runtime, containerizes application without requiring a manual Dockerfile, provisions cloud compute, issues HTTPS certificates, and routes traffic to a live URL.
+- `nixora diagnose`: Analyzes failed deployments to explain root cause errors (missing environment variables, unexposed ports, entry point mismatches) and provides exact fixes.
+- `nixora status`: Displays deployment health, container status, and live routing URL.
+- `nixora logs`: Streams real-time container execution logs directly to your terminal.
+
+### Environment Variable & Configuration Handling
+- **Environment Variables**: Reads configuration from local `.env` files or project settings and provisions environment variables securely onto the managed compute environment.
+- **Project Configuration**: Uses `nixora.json` for optional project configuration overrides, with automatic zero-config runtime fallback.
+
+### Runtime & Port Detection
+- **Auto-Detected Runtimes**: Node.js, Python (FastAPI, Flask), Go, and custom Dockerfiles.
+- **Port Binding**: Automatically detects application listening ports, binds process to `0.0.0.0`, and maps public HTTPS routing.
+
+---
+
+## 3. Product Roadmap
+
+### Live Today (Group 01)
+- **Deploy & Run**: CLI deployment, automated containerization, compute provisioning, HTTPS issuance, and hosting.
+- **Deployment Diagnostics**: Automatic diagnosis explaining why an AI-generated deployment failed and what configuration to change.
+
+### Next (Group 02)
+- **MCP Server for Agents**: Direct agent-native deployment target via Model Context Protocol (MCP).
+- **Multi-Agent Access**: Per-agent permissions and audit log for multiple agents working with your infrastructure.
+- **Web Dashboard**: Cloud management console and web dashboard interface.
+- **Fargate Compute**: AWS Fargate-backed container runtime infrastructure.
+
+### Later (Groups 03 – 06)
+- **Monitoring & Observability**: Deep application understanding and continuous telemetry monitoring.
+- **Scaling & Optimization**: Autonomous scaling, auto-sleep, and auto-retirement.
+- **Governance & Systems**: AI agent lifecycle management and security policies.
+
+---
+
+## 4. Platform Comparisons
+
+### Nixora vs. Traditional Cloud (AWS / Docker / K8s)
+- **Traditional Cloud**: Manual Dockerfile creation, EC2/VPS server provisioning, Nginx configuration, Certbot SSL setup, and complex environment management.
+- **Nixora**: Single CLI command deployment with automated containerization, instant compute allocation, and managed HTTPS.
+
+### Nixora vs. Vercel
+- **Vercel**: Optimized for Git repository push workflows and frontend/JAMstack web applications.
+- **Nixora**: Built specifically as a control plane for AI-generated backend and full-stack applications straight from terminal agent environments.
+
+---
+
+## 5. Metrics & Founder Context
+- **CLI Installs**: 65 developer installs.
+- **Real Deployments**: 47 live application deployments shipped.
+- **Early Access Waitlist**: 100+ developers on the waitlist.
+- **Founder**: Sayeed Rizwan (Backend Engineer & Product Manager, former Founding PM at Journalyst, open-source contributor to Hive YC-funded).
+- **Official Site**: https://nixora.co.in
+- **Email**: ceo@nixora.co.in
+- **GitHub**: https://github.com/nixora-hq
+- **LinkedIn**: https://www.linkedin.com/company/nixora-hq/
+- **X / Twitter**: https://x.com/wearenixora

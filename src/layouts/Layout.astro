@@ -24,7 +24,7 @@ const siteUrl = "https://nixora.co.in/";
 const imageUrl = new URL(image, siteUrl).href;
 const logoUrl = new URL("/logo-full.jpg", siteUrl).href;
 
-// Unified Nixora Entity Schema (@graph)
+// Enhanced Nixora Entity Schema (@graph) per claude-seo E-E-A-T & Schema guidelines
 const nixoraSchema = {
   "@context": "https://schema.org",
   "@graph": [
@@ -32,9 +32,25 @@ const nixoraSchema = {
       "@type": "Organization",
       "@id": "https://nixora.co.in/#organization",
       "name": "Nixora",
-      "alternateName": "Nixora: control plane for AI-generated software",
+      "alternateName": "Nixora: control plane for AI-generated software and AI agents",
       "url": siteUrl,
       "logo": logoUrl,
+      "email": "ceo@nixora.co.in",
+      "foundingDate": "2026-07-01",
+      "description": "Nixora is the control plane for AI-generated software and AI agents.",
+      "founder": {
+        "@type": "Person",
+        "name": "Sayeed Rizwan",
+        "jobTitle": "Founder",
+        "sameAs": "https://www.linkedin.com/in/sayeedrizwan/"
+      },
+      "knowsAbout": [
+        "AI-generated software",
+        "AI coding agents",
+        "Cloud deployment",
+        "Developer infrastructure",
+        "Model Context Protocol"
+      ],
       "sameAs": [
         "https://github.com/nixora-hq",
         "https://www.linkedin.com/company/nixora-hq/",
@@ -46,11 +62,23 @@ const nixoraSchema = {
       "@type": "SoftwareApplication",
       "@id": "https://nixora.co.in/#software",
       "name": "Nixora",
-      "alternateName": "Nixora: control plane for AI-generated software",
+      "alternateName": [
+        "Nixora: control plane for AI-generated software and AI agents",
+        "Nixora CLI"
+      ],
       "applicationCategory": "DeveloperApplication",
       "operatingSystem": "Linux, macOS, Windows",
-      "description": "Nixora is the control plane for AI-generated software. Deploy an app built by any AI coding agent (Claude Code, Cursor, Codex, Gemini CLI) with a single command, and Nixora automatically provisions hosting, authentication, and HTTPS, returning a live, shareable URL.",
+      "softwareVersion": "0.1.0",
+      "description": "Nixora is the control plane for AI-generated software. Deploy an app built by any AI coding agent (Claude Code, Cursor, Codex, Gemini CLI) with a single command, featuring automated containerization, HTTPS, and deployment diagnostics.",
+      "featureList": [
+        "CLI deployment",
+        "Automated containerization",
+        "HTTPS TLS certificate issuance",
+        "Deployment diagnostics",
+        "Persistent cloud hosting"
+      ],
       "url": siteUrl,
+      "downloadUrl": "https://nixora.co.in/#early-access",
       "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
       "publisher": { "@id": "https://nixora.co.in/#organization" }
     },
@@ -59,6 +87,7 @@ const nixoraSchema = {
       "@id": "https://nixora.co.in/#website",
       "url": siteUrl,
       "name": "Nixora",
+      "inLanguage": "en-US",
       "publisher": { "@id": "https://nixora.co.in/#organization" }
     }
   ]
@@ -69,13 +98,16 @@ const nixoraSchema = {
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="icon" type="image/svg+xml" href="/logo-mark.svg" />
-  <link rel="alternate icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <link rel="apple-touch-icon" href="/logo-mark.svg" />
   <link rel="canonical" href={canonicalURL} />
+  <link rel="alternate" type="text/markdown" title="LLM Context Summary" href="/llms.txt" />
+  <link rel="alternate" type="text/markdown" title="LLM Full Documentation" href="/llms-full.txt" />
   
   <title>{title}</title>
   <meta name="description" content={description} />
+  <meta name="keywords" content="Nixora, control plane for AI software, AI agent deployment, Claude Code deploy, Cursor app hosting, zero config CLI deployment, developer infrastructure" />
   <meta name="theme-color" content="#111" />
   {googleVerification && <meta name="google-site-verification" content={googleVerification} />}
 

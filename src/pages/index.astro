@@ -7,7 +7,6 @@ import Traction from '../components/Traction.astro';
 import AssistantSection from '../components/AssistantSection.astro';
 import Features from '../components/Features.astro';
 import HowItWorks from '../components/HowItWorks.astro';
-import Architecture from '../components/Architecture.astro';
 import Vision from '../components/Vision.astro';
 import FAQ from '../components/FAQ.astro';
 import EarlyAccess from '../components/EarlyAccess.astro';
@@ -22,23 +21,21 @@ import Footer from '../components/Footer.astro';
     <Hero />
     <!-- 2. Control plane vision section ("It's not just deployment") -->
     <AssistantSection />
-    <!-- 3. Features & Roadmap: Today, Next, Later -->
-    <Features />
+    <!-- 3. Features & Roadmap: Today & Next focus cards + condensed Later summary -->
+    <Features showOnlyTodayNext={true} />
     <!-- 4. Feature proof-of-concept: "It all starts with nixora deploy" -->
     <DeployIntro />
     <!-- 5. How It Works: 3-step workflow -->
     <HowItWorks />
-    <!-- 6. Architecture: traditional infra vs Nixora comparison -->
-    <Architecture />
-    <!-- 7. Traction: stats counters -->
+    <!-- 6. Traction: stats counters -->
     <Traction />
-    <!-- 8. Vision closer -->
+    <!-- 7. Vision closer (links to /about/) -->
     <Vision />
-    <!-- 9. FAQ Section for AI Search Crawlers & User Intent -->
+    <!-- 8. FAQ Section for AI Search Crawlers & User Intent -->
     <FAQ />
-    <!-- 10. Early Access: Name + Email capture form -->
+    <!-- 9. Early Access: Name + Email capture form -->
     <EarlyAccess />
-    <!-- 11. Founder: bio + LinkedIn -->
+    <!-- 10. Founder: bio + LinkedIn -->
     <Founder />
   </main>
   <Footer />

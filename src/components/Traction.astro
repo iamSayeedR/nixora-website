@@ -2,46 +2,54 @@
 ---
 <section id="traction" style="padding:4.5rem 2rem;text-align:center;position:relative;overflow:hidden;">
   <div style="position:absolute;inset:0;background:radial-gradient(ellipse 60% 40% at 50% 100%,rgba(139,92,246,0.06),transparent 65%);pointer-events:none;"></div>
-  <div style="max-width:900px;margin:0 auto;position:relative;z-index:1;">
+  <div style="max-width:1050px;margin:0 auto;position:relative;z-index:1;">
     <p style="font-size:0.72rem;color:#3f3f46;text-transform:uppercase;letter-spacing:0.14em;font-weight:700;margin:0 0 3rem;">
       Building since July 2026 · CLI launched August 2026
     </p>
 
-    <!-- Stat Cards Grid -->
-    <div class="traction-grid" style="display:grid;grid-template-columns:repeat(4,1fr);gap:1px;border:1px solid #1f1f1f;border-radius:14px;overflow:hidden;background:#1f1f1f;box-shadow:0 16px 40px rgba(0,0,0,0.5), 0 0 30px rgba(139,92,246,0.06);">
+    <!-- Stat Cards Grid (5 Columns on Desktop) -->
+    <div class="traction-grid" style="display:grid;grid-template-columns:repeat(5,1fr);gap:1px;border:1px solid #1f1f1f;border-radius:14px;overflow:hidden;background:#1f1f1f;box-shadow:0 16px 40px rgba(0,0,0,0.5), 0 0 30px rgba(139,92,246,0.06);">
 
-      <!-- Stat 1: CLI Installs (Plain bold number, running total) -->
+      <!-- Stat 1: CLI Installs -->
       <div class="stat-card">
         <div style="height:90px;display:flex;align-items:center;justify-content:center;">
-          <div class="stat-number" data-target="65" style="color:#fff;font-size:2.4rem;font-weight:800;">0</div>
+          <div class="stat-number" data-target="65" style="color:#fff;font-size:2.2rem;font-weight:800;">65</div>
         </div>
         <div style="font-size:0.72rem;color:#52525b;text-transform:uppercase;letter-spacing:0.1em;font-weight:700;">CLI Installs</div>
       </div>
 
-      <!-- Stat 2: Real Deployments (Plain bold number, running total) -->
+      <!-- Stat 2: Real Deployments -->
       <div class="stat-card">
         <div style="height:90px;display:flex;align-items:center;justify-content:center;">
-          <div class="stat-number" data-target="47" style="color:#a78bfa;font-size:2.4rem;font-weight:800;">0</div>
+          <div class="stat-number" data-target="47" style="color:#a78bfa;font-size:2.2rem;font-weight:800;">47</div>
         </div>
         <div style="font-size:0.72rem;color:#52525b;text-transform:uppercase;letter-spacing:0.1em;font-weight:700;">Real Deployments</div>
       </div>
 
-      <!-- Stat 3: $0 Revenue (De-emphasized / greyed out) -->
+      <!-- Stat 3: 100+ Early Access Signups -->
       <div class="stat-card">
         <div style="height:90px;display:flex;align-items:center;justify-content:center;">
-          <div style="color:#52525b;font-size:2.4rem;font-weight:800;letter-spacing:-0.04em;line-height:1;">$0</div>
+          <div class="stat-number" data-target="100" data-suffix="+" style="color:#a78bfa;font-size:2.2rem;font-weight:800;">100+</div>
+        </div>
+        <div style="font-size:0.72rem;color:#52525b;text-transform:uppercase;letter-spacing:0.1em;font-weight:700;">Early Access Signups</div>
+      </div>
+
+      <!-- Stat 4: $0 Revenue -->
+      <div class="stat-card">
+        <div style="height:90px;display:flex;align-items:center;justify-content:center;">
+          <div style="color:#52525b;font-size:2.2rem;font-weight:800;letter-spacing:-0.04em;line-height:1;">$0</div>
         </div>
         <div style="font-size:0.72rem;color:#3f3f46;text-transform:uppercase;letter-spacing:0.1em;font-weight:700;">Revenue · Pre-seed</div>
       </div>
 
-      <!-- Stat 4: $450K SAFE Raise Target (Goal progress ring retained) -->
+      <!-- Stat 5: $450K SAFE Raise Target -->
       <div class="stat-card">
         <div style="position:relative;width:90px;height:90px;display:grid;place-items:center;">
           <svg viewBox="0 0 100 100" width="90" height="90" style="position:absolute;inset:0;transform:rotate(-90deg);">
             <circle cx="50" cy="50" r="40" stroke="#1f1f1f" stroke-width="3" fill="none"/>
             <circle id="ring-450" cx="50" cy="50" r="40" stroke="url(#grad-purple3)"
               stroke-width="4" fill="none"
-              stroke-dasharray="251.33" stroke-dashoffset="251.33"
+              stroke-dasharray="251.33" stroke-dashoffset="25.13"
               stroke-linecap="round"/>
             <defs>
               <linearGradient id="grad-purple3" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -50,7 +58,7 @@
               </linearGradient>
             </defs>
           </svg>
-          <div class="stat-number" data-target="450" data-prefix="$" data-suffix="K" data-ring="ring-450" data-max="500" style="color:#a78bfa;font-size:1.125rem;font-weight:700;letter-spacing:-0.05em;">$0K</div>
+          <div class="stat-number" data-target="450" data-prefix="$" data-suffix="K" data-ring="ring-450" data-max="500" style="color:#a78bfa;font-size:1.125rem;font-weight:700;letter-spacing:-0.05em;">$450K</div>
         </div>
         <div style="font-size:0.72rem;color:#52525b;text-transform:uppercase;letter-spacing:0.1em;font-weight:700;">SAFE Raise Target</div>
       </div>
@@ -62,7 +70,7 @@
 <style>
   .stat-card {
     background: #111;
-    padding: 2.5rem 1rem;
+    padding: 2.5rem 0.75rem;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -72,6 +80,18 @@
 
   .stat-card:hover {
     background: #151515;
+  }
+
+  @media (max-width: 992px) {
+    .traction-grid {
+      grid-template-columns: repeat(3, 1fr) !important;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .traction-grid {
+      grid-template-columns: repeat(2, 1fr) !important;
+    }
   }
 </style>
 
@@ -103,9 +123,12 @@
     const ringId = el.dataset.ring;
     const ring   = ringId ? document.getElementById(ringId) as SVGCircleElement | null : null;
 
-    if (target === 0) return;
+    if (target === 0) {
+      setStaticStat(el);
+      return;
+    }
 
-    const duration  = 1800;
+    const duration  = 1400;
     const startTime = performance.now();
 
     function update(now: number) {
@@ -128,11 +151,14 @@
     requestAnimationFrame(update);
   }
 
-  const counters = document.querySelectorAll<HTMLElement>('.stat-number[data-target]');
+  function initCounters() {
+    const counters = document.querySelectorAll<HTMLElement>('.stat-number[data-target]');
 
-  if (prefersReducedMotion) {
-    counters.forEach(el => setStaticStat(el));
-  } else {
+    if (prefersReducedMotion || typeof IntersectionObserver === 'undefined') {
+      counters.forEach(el => setStaticStat(el));
+      return;
+    }
+
     const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -140,11 +166,14 @@
           observer.unobserve(entry.target);
         }
       });
-    }, { threshold: 0.3 });
+    }, { threshold: 0.1 });
 
-    counters.forEach(el => {
-      const t = parseInt(el.dataset.target || '0', 10);
-      if (t > 0) observer.observe(el);
-    });
+    counters.forEach(el => observer.observe(el));
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initCounters);
+  } else {
+    initCounters();
   }
 </script>

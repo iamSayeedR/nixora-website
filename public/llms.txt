@@ -1,0 +1,45 @@
+# Nixora
+
+> Nixora is the control plane for AI-generated software and AI agents: deployment (along with diagnosis) is the first capability that's live today, not the entire scope of the product.
+
+While AI coding agents excel at generating application code locally, operating infrastructure requires containerization, port mapping, environment provisioning, and persistent hosting. Nixora bridges that operational gap: starting with CLI deployment and automated diagnosis today, with agent-native MCP interfaces, monitoring, scaling, and governance on the roadmap.
+
+## Live CLI Capabilities Today
+
+### Installation
+```bash
+pip install nixora
+```
+
+### Authentication
+```bash
+nixora login
+```
+*Access is currently closed while we complete core infrastructure work. Account tokens and CLI authentication are issued to approved waitlist builders.*
+
+### Core Commands Live Today
+- `nixora init`: Initializes Nixora project configuration in your working directory.
+- `nixora deploy`: Auto-detects runtime, containerizes application without requiring a manual Dockerfile, provisions cloud compute, issues TLS/HTTPS certificates, and routes traffic to a live URL.
+- `nixora diagnose`: Analyzes failed deployments to explain root cause errors (missing environment variables, unexposed ports, entry point mismatches) and provides exact fixes.
+- `nixora status`: Displays deployment health, container status, and live routing URL.
+- `nixora logs`: Streams real-time container execution logs directly to your terminal.
+
+### Environment Variable & Configuration
+- **Environment Variables**: Reads configuration from local `.env` files or explicit environment settings and provisions them securely onto the deployment environment.
+- **Config File**: Uses `nixora.json` for optional project overrides, with automatic zero-config fallback.
+
+### Runtime & Port Detection
+- **Auto-Detected Runtimes**: Node.js, Python (FastAPI, Flask), Go, and custom Dockerfiles.
+- **Port Binding**: Automatically detects application listening ports, binds process to `0.0.0.0`, and maps public HTTPS routing.
+
+## Control Plane Roadmap
+- **Next**: Agent-native deployment target via MCP server, multi-agent access with per-agent permissions and audit logs, cloud web dashboard, and Fargate-backed compute.
+- **Later**: Continuous monitoring, autonomous scaling, AI agent lifecycle management, and multi-agent system deployment.
+
+## Core Pages & Resources
+- [Product Architecture](https://nixora.co.in/product): Overview of live CLI capabilities alongside the product roadmap.
+- [Traction & Milestones](https://nixora.co.in/traction): Verified metrics detailing 65 CLI installs, 47 real deployments, and 100+ waitlist signups.
+- [Platform Comparisons](https://nixora.co.in/compare): Architectural comparisons with traditional cloud infrastructure and Vercel.
+- [Developer Resources](https://nixora.co.in/resources): Technical guides and documentation for AI-generated code.
+- [Deploy Guide: Cursor & Claude Code](https://nixora.co.in/resources/deploy-cursor-claude-code-app-to-production): Practical guide for taking AI agent code to production.
+- [Why AI Code Breaks in Production](https://nixora.co.in/resources/why-ai-agent-output-wont-run-in-production): Analysis of local execution vs production environment gaps.

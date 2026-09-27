@@ -72,7 +72,7 @@ const faqSchema = {
     <!-- Accordion List -->
     <div style="display:flex;flex-direction:column;gap:1.125rem;">
       {faqs.map((faq, index) => (
-        <details class="faq-card">
+        <details class="faq-card" name="faq-accordion">
           <summary class="faq-summary">
             <div class="faq-summary-left">
               <span class="faq-index">{(index + 1).toString().padStart(2, '0')}</span>
@@ -261,3 +261,28 @@ const faqSchema = {
     }
   }
 </style>
+
+<script>
+  function setupSingleOpenAccordion() {
+    const detailsList = document.querySelectorAll<HTMLDetailsElement>('details.faq-card');
+    
+    detailsList.forEach(target => {
+      target.addEventListener('click', (e) => {
+        const summary = target.querySelector('summary');
+        if (summary && summary.contains(e.target as Node)) {
+          detailsList.forEach(other => {
+            if (other !== target && other.open) {
+              other.open = false;
+            }
+          });
+        }
+      });
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', setupSingleOpenAccordion);
+  } else {
+    setupSingleOpenAccordion();
+  }
+</script>

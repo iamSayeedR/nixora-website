@@ -1,4 +1,9 @@
 ---
+interface Props {
+  showOnlyTodayNext?: boolean;
+}
+
+const { showOnlyTodayNext = false } = Astro.props;
 ---
 <section id="features" style="padding:5rem 2rem;position:relative;overflow:hidden;">
   <!-- Section Heading Background Wash Glow (Positioned in top negative space clear of text) -->
@@ -14,227 +19,318 @@
       </p>
     </div>
 
-    <!-- ── 6 Hero Cards Grid (3 Columns on Desktop) ── -->
-    <div class="hero-cards-grid">
-
-      <!-- 1. Deploy & Diagnose (LIVE TODAY: Prominent Visual Card) -->
-      <div class="hero-card hero-card-live">
-        <div style="display:flex;flex-direction:column;gap:1rem;">
-          <!-- Status Badge -->
-          <div style="display:flex;align-items:center;justify-content:space-between;">
-            <div class="badge-live">
-              <span class="live-dot"></span>
-              Today
+    {showOnlyTodayNext ? (
+      <div style="display:flex;flex-direction:column;gap:2.5rem;width:100%;">
+        <div class="compact-tiles-grid">
+          
+          <a href="/product/#group-01" class="compact-tile compact-tile-today">
+            <div style="display:flex;align-items:center;justify-content:space-between;width:100%;">
+              <div class="badge-live">
+                <span class="live-dot"></span>
+                Today
+              </div>
+              <span style="font-size:0.7rem;color:#a78bfa;font-family:'Fira Code',monospace;font-weight:600;">GROUP 01</span>
             </div>
-            <span style="font-size:0.7rem;color:#a78bfa;font-family:'Fira Code',monospace;font-weight:600;">GROUP 01</span>
-          </div>
+            <h3 style="font-size:1.15rem;font-weight:700;color:#fff;margin:0;">Deploy & Diagnose</h3>
+          </a>
 
-          <h3 style="font-size:1.35rem;font-weight:700;color:#fff;margin:0;">Deploy & Diagnose</h3>
-          <p style="font-size:0.875rem;line-height:1.6;color:#a1a1aa;margin:0;">
-            Go from AI-generated code to a live, running application in seconds. Diagnose why an AI-generated deployment failed and what to change.
-          </p>
+          <a href="/product/#group-02" class="compact-tile compact-tile-next">
+            <div style="display:flex;align-items:center;justify-content:space-between;width:100%;">
+              <div class="badge-next">
+                <span class="next-dot"></span>
+                Next
+              </div>
+              <span style="font-size:0.7rem;color:#a78bfa;font-family:'Fira Code',monospace;font-weight:600;">GROUP 02</span>
+            </div>
+            <h3 style="font-size:1.15rem;font-weight:700;color:#fff;margin:0;">Agent Access & MCP</h3>
+          </a>
 
-          <!-- Feature Tag List (Live Today) -->
-          <div style="display:flex;flex-wrap:wrap;gap:0.4rem;margin-top:0.5rem;">
-            {["CLI", "Automated deployment", "Diagnose failed deploys", "Hosting", "HTTPS", "Shareable URLs"].map(item => (
-              <span class="feature-chip live-chip">{item}</span>
-            ))}
-          </div>
+          <a href="/product/#group-03" class="compact-tile compact-tile-later">
+            <div style="display:flex;align-items:center;justify-content:space-between;width:100%;">
+              <div class="badge-roadmap">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#71717a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 16 14"/></svg>
+                Later
+              </div>
+              <span style="font-size:0.7rem;color:#52525b;font-family:'Fira Code',monospace;">GROUP 03</span>
+            </div>
+            <h3 style="font-size:1.15rem;font-weight:700;color:#fff;margin:0;">Monitoring & Observability</h3>
+          </a>
+
+          <a href="/product/#group-04" class="compact-tile compact-tile-later">
+            <div style="display:flex;align-items:center;justify-content:space-between;width:100%;">
+              <div class="badge-roadmap">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#71717a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 16 14"/></svg>
+                Later
+              </div>
+              <span style="font-size:0.7rem;color:#52525b;font-family:'Fira Code',monospace;">GROUP 04</span>
+            </div>
+            <h3 style="font-size:1.15rem;font-weight:700;color:#fff;margin:0;">Scaling & Optimization</h3>
+          </a>
+
+          <a href="/product/#group-05" class="compact-tile compact-tile-later">
+            <div style="display:flex;align-items:center;justify-content:space-between;width:100%;">
+              <div class="badge-roadmap">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#71717a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 16 14"/></svg>
+                Later
+              </div>
+              <span style="font-size:0.7rem;color:#52525b;font-family:'Fira Code',monospace;">GROUP 05</span>
+            </div>
+            <h3 style="font-size:1.15rem;font-weight:700;color:#fff;margin:0;">Governance & Systems</h3>
+          </a>
+
+          <a href="/product/#group-06" class="compact-tile compact-tile-later">
+            <div style="display:flex;align-items:center;justify-content:space-between;width:100%;">
+              <div class="badge-roadmap">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#71717a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 16 14"/></svg>
+                Later
+              </div>
+              <span style="font-size:0.7rem;color:#52525b;font-family:'Fira Code',monospace;">GROUP 06</span>
+            </div>
+            <h3 style="font-size:1.15rem;font-weight:700;color:#fff;margin:0;">Platform & Ecosystem</h3>
+          </a>
+
         </div>
 
-        <!-- Visual: Real CLI Output -->
-        <div class="card-visual">
-          <div style="font-family:'Fira Code',monospace;font-size:0.72rem;line-height:1.7;color:#555;">
-            <div><span style="color:#a78bfa;">$</span> <span style="color:#fff;">nixora deploy</span></div>
-            <div style="color:#52525b;">✔ Container built</div>
-            <div style="color:#52525b;">✔ HTTPS SSL issued</div>
-            <div style="color:#a78bfa;font-weight:600;margin-top:0.2rem;">✔ Live: https://my-app.nixora.co.in</div>
-          </div>
+        <div style="text-align:center;">
+          <a href="/product/" style="color:#a78bfa;font-size:0.9375rem;font-weight:600;text-decoration:none;display:inline-flex;align-items:center;gap:0.4rem;" onmouseover="this.style.color='#c4b5fd'" onmouseout="this.style.color='#a78bfa'">
+            View full product architecture →
+          </a>
         </div>
       </div>
+    ) : (
+      <div class="hero-cards-grid">
 
-      <!-- 2. Agent Access & MCP (NEXT - Purple Palette) -->
-      <div class="hero-card hero-card-next">
-        <div style="display:flex;flex-direction:column;gap:1rem;">
-          <!-- Status Badge -->
-          <div style="display:flex;align-items:center;justify-content:space-between;">
-            <div class="badge-next">
-              <span class="next-dot"></span>
-              Next
+        <div id="group-01" class="hero-card hero-card-live">
+          <div style="display:flex;flex-direction:column;gap:1rem;">
+            <div style="display:flex;align-items:center;justify-content:space-between;">
+              <div class="badge-live">
+                <span class="live-dot"></span>
+                Today
+              </div>
+              <span style="font-size:0.7rem;color:#a78bfa;font-family:'Fira Code',monospace;font-weight:600;">GROUP 01</span>
             </div>
-            <span style="font-size:0.7rem;color:#a78bfa;font-family:'Fira Code',monospace;font-weight:600;">GROUP 02</span>
-          </div>
 
-          <h3 style="font-size:1.35rem;font-weight:700;color:#fff;margin:0;">Agent Access & MCP</h3>
-          <p style="font-size:0.875rem;line-height:1.6;color:#a1a1aa;margin:0;">
-            Agent-native deployment target via MCP server, multi-agent access with per-agent permissions and audit trail, web dashboard, and Fargate infrastructure.
-          </p>
+            <h3 style="font-size:1.35rem;font-weight:700;color:#fff;margin:0;">Deploy & Diagnose</h3>
+            <p style="font-size:0.875rem;line-height:1.6;color:#a1a1aa;margin:0;">
+              Go from AI-generated code to a live, running application in seconds. Diagnose why an AI-generated deployment failed and what to change.
+            </p>
 
-          <!-- Feature Tag List (Next) -->
-          <div style="display:flex;flex-wrap:wrap;gap:0.4rem;margin-top:0.5rem;">
-            {["MCP server for agents", "Multi-agent access", "Per-agent permissions", "Audit trail", "Web dashboard", "Fargate infrastructure"].map(item => (
-              <span class="feature-chip next-chip">{item}</span>
-            ))}
-          </div>
-        </div>
-
-        <!-- Visual: MCP Flow -->
-        <div class="card-visual" style="display:flex;align-items:center;justify-content:space-between;padding:1rem;font-family:'Fira Code',monospace;font-size:0.7rem;">
-          <div style="padding:0.35rem 0.6rem;border:1px solid rgba(167,139,250,0.35);border-radius:5px;background:rgba(167,139,250,0.08);color:#a78bfa;">MCP Agent</div>
-          <span style="color:#3f3f46;">→</span>
-          <div style="padding:0.35rem 0.6rem;border:1px solid #2a2a2a;border-radius:5px;background:#0d0d0d;color:#a1a1aa;">Permissions</div>
-          <span style="color:#3f3f46;">→</span>
-          <div style="padding:0.35rem 0.6rem;border:1px solid #2a2a2a;border-radius:5px;background:#0d0d0d;color:#71717a;">Audit Log</div>
-        </div>
-      </div>
-
-      <!-- 3. Monitoring & Observability (LATER) -->
-      <div class="hero-card">
-        <div style="display:flex;flex-direction:column;gap:1rem;">
-          <!-- Status Badge -->
-          <div style="display:flex;align-items:center;justify-content:space-between;">
-            <div class="badge-roadmap">
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#71717a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-              Later
+            <div style="display:flex;flex-wrap:wrap;gap:0.4rem;margin-top:0.5rem;">
+              {["CLI", "Automated deployment", "Diagnose failed deploys", "Hosting", "HTTPS", "Shareable URLs"].map(item => (
+                <span class="feature-chip live-chip">{item}</span>
+              ))}
             </div>
-            <span style="font-size:0.7rem;color:#52525b;font-family:'Fira Code',monospace;">GROUP 03</span>
           </div>
 
-          <h3 style="font-size:1.35rem;font-weight:700;color:#fff;margin:0;">Monitoring & Observability</h3>
-          <p style="font-size:0.875rem;line-height:1.6;color:#a1a1aa;margin:0;">
-            Deep application understanding, continuous monitoring, and real-time observability for agent-built software.
-          </p>
-
-          <!-- Feature Tag List -->
-          <div style="display:flex;flex-wrap:wrap;gap:0.4rem;margin-top:0.5rem;">
-            {["Deep app understanding", "Continuous monitoring", "Cost insights", "Telemetry analytics"].map(item => (
-              <span class="feature-chip soon-chip">{item}</span>
-            ))}
-          </div>
-        </div>
-
-        <!-- Visual: Chart Shape (Brand Purple Highlighted Bar) -->
-        <div class="card-visual" style="display:flex;align-items:flex-end;justify-content:space-around;height:65px;padding:0.75rem 1rem 0;">
-          <div style="width:14%;height:35%;background:#222;border-radius:3px 3px 0 0;"></div>
-          <div style="width:14%;height:65%;background:#2a2a2a;border-radius:3px 3px 0 0;"></div>
-          <div style="width:14%;height:45%;background:#222;border-radius:3px 3px 0 0;"></div>
-          <div style="width:14%;height:85%;background:linear-gradient(to top, #7c3aed, #a78bfa);border-radius:3px 3px 0 0;"></div>
-          <div style="width:14%;height:60%;background:#2a2a2a;border-radius:3px 3px 0 0;"></div>
-        </div>
-      </div>
-
-      <!-- 4. Scaling & Optimization (LATER) -->
-      <div class="hero-card">
-        <div style="display:flex;flex-direction:column;gap:1rem;">
-          <!-- Status Badge -->
-          <div style="display:flex;align-items:center;justify-content:space-between;">
-            <div class="badge-roadmap">
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#71717a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-              Later
+          <div class="card-visual">
+            <div style="font-family:'Fira Code',monospace;font-size:0.72rem;line-height:1.7;color:#555;">
+              <div><span style="color:#a78bfa;">$</span> <span style="color:#fff;">nixora deploy</span></div>
+              <div style="color:#52525b;">✔ Container built</div>
+              <div style="color:#52525b;">✔ HTTPS SSL issued</div>
+              <div style="color:#a78bfa;font-weight:600;margin-top:0.2rem;">✔ Live: https://my-app.nixora.co.in</div>
             </div>
-            <span style="font-size:0.7rem;color:#52525b;font-family:'Fira Code',monospace;">GROUP 04</span>
-          </div>
-
-          <h3 style="font-size:1.35rem;font-weight:700;color:#fff;margin:0;">Scaling & Optimization</h3>
-          <p style="font-size:0.875rem;line-height:1.6;color:#a1a1aa;margin:0;">
-            Autonomous scaling, auto-sleep, auto-retirement, and resource optimization as workloads grow.
-          </p>
-
-          <!-- Feature Tag List -->
-          <div style="display:flex;flex-wrap:wrap;gap:0.4rem;margin-top:0.5rem;">
-            {["Autonomous scaling", "Resource optimization", "Auto sleep", "Auto retirement", "Cost controls"].map(item => (
-              <span class="feature-chip soon-chip">{item}</span>
-            ))}
           </div>
         </div>
 
-        <!-- Visual: Scale Grid -->
-        <div class="card-visual" style="display:grid;grid-template-columns:1fr 1fr;gap:0.6rem;font-size:0.75rem;color:#a1a1aa;padding:0.85rem;">
-          <div style="display:flex;align-items:center;gap:0.4rem;"><span style="color:#a78bfa;">⚡</span> Auto-scale</div>
-          <div style="display:flex;align-items:center;gap:0.4rem;"><span style="color:#a78bfa;">🌙</span> Auto-sleep</div>
-          <div style="display:flex;align-items:center;gap:0.4rem;"><span style="color:#a78bfa;">🧹</span> Auto-retire</div>
-          <div style="display:flex;align-items:center;gap:0.4rem;"><span style="color:#a78bfa;">💡</span> Cost Opt</div>
-        </div>
-      </div>
-
-      <!-- 5. Governance & Multi-Agent Systems (LATER) -->
-      <div class="hero-card">
-        <div style="display:flex;flex-direction:column;gap:1rem;">
-          <!-- Status Badge -->
-          <div style="display:flex;align-items:center;justify-content:space-between;">
-            <div class="badge-roadmap">
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#71717a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-              Later
+        <div id="group-02" class="hero-card hero-card-next">
+          <div style="display:flex;flex-direction:column;gap:1rem;">
+            <div style="display:flex;align-items:center;justify-content:space-between;">
+              <div class="badge-next">
+                <span class="next-dot"></span>
+                Next
+              </div>
+              <span style="font-size:0.7rem;color:#a78bfa;font-family:'Fira Code',monospace;font-weight:600;">GROUP 02</span>
             </div>
-            <span style="font-size:0.7rem;color:#52525b;font-family:'Fira Code',monospace;">GROUP 05</span>
-          </div>
 
-          <h3 style="font-size:1.35rem;font-weight:700;color:#fff;margin:0;">Governance & Systems</h3>
-          <p style="font-size:0.875rem;line-height:1.6;color:#a1a1aa;margin:0;">
-            Multi-agent system deployment, AI agent lifecycle management, security policies, and governance.
-          </p>
+            <h3 style="font-size:1.35rem;font-weight:700;color:#fff;margin:0;">Agent Access & MCP</h3>
+            <p style="font-size:0.875rem;line-height:1.6;color:#a1a1aa;margin:0;">
+              Agent-native deployment target via MCP server, multi-agent access with per-agent permissions and audit trail, web dashboard, and Fargate infrastructure.
+            </p>
 
-          <!-- Feature Tag List -->
-          <div style="display:flex;flex-wrap:wrap;gap:0.4rem;margin-top:0.5rem;">
-            {["Multi-agent systems", "Agent lifecycle", "Security & governance", "Policy enforcement", "Fleet retirement"].map(item => (
-              <span class="feature-chip soon-chip">{item}</span>
-            ))}
-          </div>
-        </div>
-
-        <!-- Visual: Node Diagram -->
-        <div class="card-visual" style="display:flex;align-items:center;justify-content:center;gap:0.75rem;font-family:'Fira Code',monospace;font-size:0.7rem;padding:0.85rem;">
-          <div style="display:flex;flex-direction:column;gap:0.25rem;">
-            <span style="padding:2px 6px;border:1px solid #222;border-radius:3px;color:#71717a;background:#0d0d0d;">Agent 1</span>
-            <span style="padding:2px 6px;border:1px solid #222;border-radius:3px;color:#71717a;background:#0d0d0d;">Agent 2</span>
-          </div>
-          <span style="color:#a78bfa;font-size:1rem;">➔</span>
-          <div style="padding:0.5rem 0.75rem;border:1px solid rgba(167,139,250,0.35);border-radius:6px;background:rgba(167,139,250,0.08);color:#a78bfa;font-weight:600;text-align:center;">
-            System Governance
-          </div>
-        </div>
-      </div>
-
-      <!-- 6. Platform & Ecosystem (LATER) -->
-      <div class="hero-card">
-        <div style="display:flex;flex-direction:column;gap:1rem;">
-          <!-- Status Badge -->
-          <div style="display:flex;align-items:center;justify-content:space-between;">
-            <div class="badge-roadmap">
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#71717a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-              Later
+            <div style="display:flex;flex-wrap:wrap;gap:0.4rem;margin-top:0.5rem;">
+              {["MCP server for agents", "Multi-agent access", "Per-agent permissions", "Audit trail", "Web dashboard", "Fargate infrastructure"].map(item => (
+                <span class="feature-chip next-chip">{item}</span>
+              ))}
             </div>
-            <span style="font-size:0.7rem;color:#52525b;font-family:'Fira Code',monospace;">GROUP 06</span>
           </div>
 
-          <h3 style="font-size:1.35rem;font-weight:700;color:#fff;margin:0;">Platform & Ecosystem</h3>
-          <p style="font-size:0.875rem;line-height:1.6;color:#a1a1aa;margin:0;">
-            Extensible platform integrations, marketplace, REST APIs, and no-code tools.
-          </p>
-
-          <!-- Feature Tag List (MCP pulled out to Next) -->
-          <div style="display:flex;flex-wrap:wrap;gap:0.4rem;margin-top:0.5rem;">
-            {["Marketplace", "REST APIs & SDKs", "No-code web interface", "Plugin ecosystem"].map(item => (
-              <span class="feature-chip soon-chip">{item}</span>
-            ))}
+          <div class="card-visual" style="display:flex;align-items:center;justify-content:space-between;padding:1rem;font-family:'Fira Code',monospace;font-size:0.7rem;">
+            <div style="padding:0.35rem 0.6rem;border:1px solid rgba(167,139,250,0.35);border-radius:5px;background:rgba(167,139,250,0.08);color:#a78bfa;">MCP Agent</div>
+            <span style="color:#3f3f46;">→</span>
+            <div style="padding:0.35rem 0.6rem;border:1px solid #2a2a2a;border-radius:5px;background:#0d0d0d;color:#a1a1aa;">Permissions</div>
+            <span style="color:#3f3f46;">→</span>
+            <div style="padding:0.35rem 0.6rem;border:1px solid #2a2a2a;border-radius:5px;background:#0d0d0d;color:#71717a;">Audit Log</div>
           </div>
         </div>
 
-        <!-- Visual: Tool Grid -->
-        <div class="card-visual" style="display:grid;grid-template-columns:repeat(3, 1fr);gap:0.4rem;text-align:center;font-size:0.7rem;color:#a1a1aa;font-family:'Fira Code',monospace;padding:0.75rem;">
-          <div style="padding:0.35rem;border:1px solid #222;border-radius:5px;background:#0d0d0d;">SDKs</div>
-          <div style="padding:0.35rem;border:1px solid #222;border-radius:5px;background:#0d0d0d;">APIs</div>
-          <div style="padding:0.35rem;border:1px solid #222;border-radius:5px;background:#0d0d0d;">Plugins</div>
-          <div style="padding:0.35rem;border:1px solid #222;border-radius:5px;background:#0d0d0d;grid-column:span 3;">Marketplace</div>
+        <div id="group-03" class="hero-card">
+          <div style="display:flex;flex-direction:column;gap:1rem;">
+            <div style="display:flex;align-items:center;justify-content:space-between;">
+              <div class="badge-roadmap">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#71717a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 16 14"/></svg>
+                Later
+              </div>
+              <span style="font-size:0.7rem;color:#52525b;font-family:'Fira Code',monospace;">GROUP 03</span>
+            </div>
+
+            <h3 style="font-size:1.35rem;font-weight:700;color:#fff;margin:0;">Monitoring & Observability</h3>
+            <p style="font-size:0.875rem;line-height:1.6;color:#a1a1aa;margin:0;">
+              Deep application understanding, continuous monitoring, and real-time observability for agent-built software.
+            </p>
+
+            <div style="display:flex;flex-wrap:wrap;gap:0.4rem;margin-top:0.5rem;">
+              {["Deep app understanding", "Continuous monitoring", "Cost insights", "Telemetry analytics"].map(item => (
+                <span class="feature-chip soon-chip">{item}</span>
+              ))}
+            </div>
+          </div>
+
+          <div class="card-visual" style="display:flex;align-items:flex-end;justify-content:space-around;height:65px;padding:0.75rem 1rem 0;">
+            <div style="width:14%;height:35%;background:#222;border-radius:3px 3px 0 0;"></div>
+            <div style="width:14%;height:65%;background:#2a2a2a;border-radius:3px 3px 0 0;"></div>
+            <div style="width:14%;height:45%;background:#222;border-radius:3px 3px 0 0;"></div>
+            <div style="width:14%;height:85%;background:linear-gradient(to top, #7c3aed, #a78bfa);border-radius:3px 3px 0 0;"></div>
+            <div style="width:14%;height:60%;background:#2a2a2a;border-radius:3px 3px 0 0;"></div>
+          </div>
         </div>
+
+        <div id="group-04" class="hero-card">
+          <div style="display:flex;flex-direction:column;gap:1rem;">
+            <div style="display:flex;align-items:center;justify-content:space-between;">
+              <div class="badge-roadmap">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#71717a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 16 14"/></svg>
+                Later
+              </div>
+              <span style="font-size:0.7rem;color:#52525b;font-family:'Fira Code',monospace;">GROUP 04</span>
+            </div>
+
+            <h3 style="font-size:1.35rem;font-weight:700;color:#fff;margin:0;">Scaling & Optimization</h3>
+            <p style="font-size:0.875rem;line-height:1.6;color:#a1a1aa;margin:0;">
+              Autonomous scaling, auto-sleep, auto-retirement, and resource optimization as workloads grow.
+            </p>
+
+            <div style="display:flex;flex-wrap:wrap;gap:0.4rem;margin-top:0.5rem;">
+              {["Autonomous scaling", "Resource optimization", "Auto sleep", "Auto retirement", "Cost controls"].map(item => (
+                <span class="feature-chip soon-chip">{item}</span>
+              ))}
+            </div>
+          </div>
+
+          <div class="card-visual" style="display:grid;grid-template-columns:1fr 1fr;gap:0.6rem;font-size:0.75rem;color:#a1a1aa;padding:0.85rem;">
+            <div style="display:flex;align-items:center;gap:0.4rem;"><span style="color:#a78bfa;">⚡</span> Auto-scale</div>
+            <div style="display:flex;align-items:center;gap:0.4rem;"><span style="color:#a78bfa;">🌙</span> Auto-sleep</div>
+            <div style="display:flex;align-items:center;gap:0.4rem;"><span style="color:#a78bfa;">🧹</span> Auto-retire</div>
+            <div style="display:flex;align-items:center;gap:0.4rem;"><span style="color:#a78bfa;">💡</span> Cost Opt</div>
+          </div>
+        </div>
+
+        <div id="group-05" class="hero-card">
+          <div style="display:flex;flex-direction:column;gap:1rem;">
+            <div style="display:flex;align-items:center;justify-content:space-between;">
+              <div class="badge-roadmap">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#71717a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 16 14"/></svg>
+                Later
+              </div>
+              <span style="font-size:0.7rem;color:#52525b;font-family:'Fira Code',monospace;">GROUP 05</span>
+            </div>
+
+            <h3 style="font-size:1.35rem;font-weight:700;color:#fff;margin:0;">Governance & Systems</h3>
+            <p style="font-size:0.875rem;line-height:1.6;color:#a1a1aa;margin:0;">
+              Multi-agent system deployment, AI agent lifecycle management, security policies, and governance.
+            </p>
+
+            <div style="display:flex;flex-wrap:wrap;gap:0.4rem;margin-top:0.5rem;">
+              {["Multi-agent systems", "Agent lifecycle", "Security & governance", "Policy enforcement", "Fleet retirement"].map(item => (
+                <span class="feature-chip soon-chip">{item}</span>
+              ))}
+            </div>
+          </div>
+
+          <div class="card-visual" style="display:flex;align-items:center;justify-content:center;gap:0.75rem;font-family:'Fira Code',monospace;font-size:0.7rem;padding:0.85rem;">
+            <div style="display:flex;flex-direction:column;gap:0.25rem;">
+              <span style="padding:2px 6px;border:1px solid #222;border-radius:3px;color:#71717a;background:#0d0d0d;">Agent 1</span>
+              <span style="padding:2px 6px;border:1px solid #222;border-radius:3px;color:#71717a;background:#0d0d0d;">Agent 2</span>
+            </div>
+            <span style="color:#a78bfa;font-size:1rem;">➔</span>
+            <div style="padding:0.5rem 0.75rem;border:1px solid rgba(167,139,250,0.35);border-radius:6px;background:rgba(167,139,250,0.08);color:#a78bfa;font-weight:600;text-align:center;">
+              System Governance
+            </div>
+          </div>
+        </div>
+
+        <div id="group-06" class="hero-card">
+          <div style="display:flex;flex-direction:column;gap:1rem;">
+            <div style="display:flex;align-items:center;justify-content:space-between;">
+              <div class="badge-roadmap">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#71717a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 16 14"/></svg>
+                Later
+              </div>
+              <span style="font-size:0.7rem;color:#52525b;font-family:'Fira Code',monospace;">GROUP 06</span>
+            </div>
+
+            <h3 style="font-size:1.35rem;font-weight:700;color:#fff;margin:0;">Platform & Ecosystem</h3>
+            <p style="font-size:0.875rem;line-height:1.6;color:#a1a1aa;margin:0;">
+              Extensible platform integrations, marketplace, REST APIs, and no-code tools.
+            </p>
+
+            <div style="display:flex;flex-wrap:wrap;gap:0.4rem;margin-top:0.5rem;">
+              {["Marketplace", "REST APIs & SDKs", "No-code web interface", "Plugin ecosystem"].map(item => (
+                <span class="feature-chip soon-chip">{item}</span>
+              ))}
+            </div>
+          </div>
+
+          <div class="card-visual" style="display:grid;grid-template-columns:repeat(3, 1fr);gap:0.4rem;text-align:center;font-size:0.7rem;color:#a1a1aa;font-family:'Fira Code',monospace;padding:0.75rem;">
+            <div style="padding:0.35rem;border:1px solid #222;border-radius:5px;background:#0d0d0d;">SDKs</div>
+            <div style="padding:0.35rem;border:1px solid #222;border-radius:5px;background:#0d0d0d;">APIs</div>
+            <div style="padding:0.35rem;border:1px solid #222;border-radius:5px;background:#0d0d0d;">Plugins</div>
+            <div style="padding:0.35rem;border:1px solid #222;border-radius:5px;background:#0d0d0d;grid-column:span 3;">Marketplace</div>
+          </div>
+        </div>
+
       </div>
-
-    </div>
+    )}
 
   </div>
 </section>
 
 <style>
+  .compact-tiles-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+    width: 100%;
+  }
+
+  .compact-tile {
+    background: #0a0a0a;
+    border: 1px solid #1f1f1f;
+    border-radius: 12px;
+    padding: 1.35rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    text-decoration: none;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+    transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .compact-tile:hover {
+    transform: translateY(-2px);
+    border-color: rgba(167, 139, 250, 0.45);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.6), 0 0 20px rgba(139, 92, 246, 0.12);
+  }
+
+  .compact-tile-today {
+    border-color: rgba(167, 139, 250, 0.35);
+    background: linear-gradient(180deg, rgba(167, 139, 250, 0.04) 0%, #0a0a0a 100%);
+  }
+
+  .compact-tile-next {
+    border-color: rgba(167, 139, 250, 0.35);
+    background: linear-gradient(180deg, rgba(167, 139, 250, 0.04) 0%, #0a0a0a 100%);
+  }
+
   .hero-cards-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -361,12 +457,18 @@
   }
 
   @media (max-width: 992px) {
+    .compact-tiles-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
     .hero-cards-grid {
       grid-template-columns: repeat(2, 1fr);
     }
   }
 
   @media (max-width: 640px) {
+    .compact-tiles-grid {
+      grid-template-columns: 1fr;
+    }
     .hero-cards-grid {
       grid-template-columns: 1fr;
     }
