@@ -1,102 +1,71 @@
 ---
 ---
 <section id="architecture" style="padding:5rem 2rem;position:relative;overflow:hidden;">
-  <!-- Section Heading Wash Glow (Positioned in top negative space clear of text) -->
+  <!-- Background wash glow -->
   <div style="position:absolute;top:-40px;left:50%;transform:translateX(-50%);width:100%;max-width:700px;height:140px;background:radial-gradient(ellipse 55% 40% at 50% 0%,rgba(139,92,246,0.08),transparent 70%);pointer-events:none;z-index:0;"></div>
 
-  <div style="max-width:900px;margin:0 auto;position:relative;z-index:1;display:flex;flex-direction:column;gap:3rem;">
+  <div style="max-width:900px;margin:0 auto;position:relative;z-index:1;display:flex;flex-direction:column;gap:2.5rem;">
 
-    <!-- Headline -->
-    <div style="text-align:center;display:flex;flex-direction:column;align-items:center;gap:1rem;">
-      <h2 class="section-headline">Why traditional infra <span class="accent">fails AI code</span></h2>
-      <p style="font-size:1.0625rem;line-height:1.75;color:#a1a1aa;max-width:560px;display:block;margin:0 auto;">
-        AI generates apps faster than any team can manually configure, containerize, and maintain. Nixora automates the entire operations layer.
+    <!-- Headline + Badge -->
+    <div style="display:flex;flex-direction:column;align-items:flex-start;gap:0.75rem;text-align:left;">
+      <div style="display:flex;align-items:center;gap:0.75rem;flex-wrap:wrap;">
+        <h2 style="font-size:clamp(1.75rem, 4vw, 2.25rem);font-weight:700;color:#fff;margin:0;letter-spacing:-0.02em;">Before / After</h2>
+        <span class="badge-pill-purple">reveals on scroll</span>
+      </div>
+      <p style="font-size:1rem;line-height:1.7;color:#a1a1aa;margin:0;max-width:620px;">
+        Your existing comparison, animated in as visitors scroll past instead of appearing all at once.
       </p>
     </div>
 
-    <!-- ── Large comparison diagram ── -->
-    <div style="display:grid;gap:1px;border:1px solid #1f1f1f;border-radius:14px;overflow:hidden;background:#1f1f1f;box-shadow:0 16px 40px rgba(0,0,0,0.5), 0 0 30px rgba(139,92,246,0.06);">
+    <!-- 2-Column Comparison Container -->
+    <div id="comp-grid-wrapper" class="comp-2col-grid">
 
-      <!-- Row 1: Without Nixora -->
-      <div style="background:#111;padding:2rem 2rem 1.5rem;">
-        <div style="font-size:0.7rem;color:#ef4444;text-transform:uppercase;letter-spacing:0.1em;font-weight:700;margin-bottom:1.5rem;display:flex;align-items:center;gap:0.5rem;">
-          <span>✕</span> Without Nixora: manual, fragile
+      <!-- Left Column: WITHOUT NIXORA -->
+      <div class="comp-col comp-col-left">
+        <div class="comp-col-header comp-col-header-left">
+          WITHOUT NIXORA
         </div>
-        <div style="display:flex;align-items:center;gap:0;overflow-x:auto;padding-bottom:0.5rem;">
+
+        <div class="comp-list">
           {[
-            { label:"AI generates code", sub:"agent outputs", color:"#27272a", text:"#a1a1aa" },
-            null,
-            { label:"Write Dockerfile", sub:"manual", color:"#3f1515", text:"#ef4444" },
-            null,
-            { label:"Debug ports", sub:"manual", color:"#3f1515", text:"#ef4444" },
-            null,
-            { label:"Deploy", sub:"manual", color:"#3f1515", text:"#ef4444" },
-            null,
-            { label:"App crashes", sub:"babysit", color:"#3f1515", text:"#ef4444" },
-          ].map((node) =>
-            node === null ? (
-              <div style="flex-shrink:0;padding:0 0.5rem;color:#3f3f46;font-size:1.1rem;">→</div>
-            ) : (
-              <div style={`flex-shrink:0;padding:0.6rem 0.9rem;border:1px solid ${node.color};border-radius:6px;background:rgba(0,0,0,0.4);text-align:center;min-width:90px;`}>
-                <div style={`font-size:0.78rem;font-weight:600;color:${node.text};`}>{node.label}</div>
-                <div style="font-size:0.65rem;color:#52525b;margin-top:0.15rem;">{node.sub}</div>
-              </div>
-            )
-          )}
+            "Manual server setup",
+            "Hand-written deploy scripts",
+            "No agent-native access",
+            "Debugging failed deploys alone"
+          ].map(item => (
+            <div class="comp-item comp-item-left">
+              <span class="comp-icon comp-icon-cross">✕</span>
+              <span>{item}</span>
+            </div>
+          ))}
         </div>
       </div>
 
-      <!-- Row 2: With Nixora -->
-      <div style="background:#0d0d0d;padding:2rem 2rem 1.5rem;">
-        <div style="font-size:0.7rem;color:#a78bfa;text-transform:uppercase;letter-spacing:0.1em;font-weight:700;margin-bottom:1.5rem;display:flex;align-items:center;gap:0.5rem;">
-          <span>✔</span> With Nixora: automated deploy, hosting & HTTPS
+      <!-- Right Column: WITH NIXORA -->
+      <div class="comp-col comp-col-right">
+        <div class="comp-col-header comp-col-header-right">
+          WITH NIXORA
         </div>
-        <div style="display:flex;align-items:center;gap:1.5rem;flex-wrap:wrap;">
-          
-          <!-- Node 1: AI generates code -->
-          <div style="flex-shrink:0;padding:0.6rem 0.9rem;border:1px solid #27272a;border-radius:6px;background:rgba(0,0,0,0.4);text-align:center;min-width:90px;">
-            <div style="font-size:0.78rem;font-weight:600;color:#a1a1aa;">AI generates code</div>
-            <div style="font-size:0.65rem;color:#52525b;margin-top:0.15rem;">agent outputs</div>
-          </div>
-          <div style="flex-shrink:0;color:#a78bfa;font-size:1.1rem;">→</div>
-          
-          <!-- Node 2: nixora deploy (8c/8f: clean flow action node without terminal box styling or 'one command' caption) -->
-          <div style="flex-shrink:0;padding:0.65rem 1.1rem;border:1px solid rgba(167,139,250,0.35);border-radius:6px;background:rgba(167,139,250,0.08);text-align:center;min-width:120px;">
-            <div style="font-size:0.8rem;font-weight:700;color:#a78bfa;font-family:'Fira Code',monospace;">nixora deploy</div>
-          </div>
-          
-          <div style="flex-shrink:0;color:#a78bfa;font-size:1.1rem;">→</div>
-          
-          <!-- Node 3: Live & monitored (8b: End-State Box with 8a 4-item checklist) -->
-          <div style="flex:1;min-width:260px;padding:0.85rem 1.1rem;border:1px solid rgba(167,139,250,0.25);border-radius:8px;background:rgba(167,139,250,0.04);display:flex;flex-direction:column;gap:0.5rem;">
-            <div style="font-size:0.8rem;font-weight:700;color:#fff;display:flex;align-items:center;gap:0.4rem;">
-              <span style="width:7px;height:7px;border-radius:50%;background:#28c840;display:inline-block;"></span>
-              Live & running
-            </div>
-            
-            <!-- 8a: Approved 4-item checklist -->
-            <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.35rem 0.75rem;">
-              {[
-                "Container built automatically",
-                "Compute provisioned",
-                "HTTPS certificate issued",
-                "Hosting provisioned"
-              ].map(item => (
-                <div style="display:flex;align-items:center;gap:0.4rem;font-size:0.75rem;color:#a1a1aa;">
-                  <span style="color:#a78bfa;flex-shrink:0;">✔</span>
-                  {item}
-                </div>
-              ))}
-            </div>
-          </div>
 
+        <div class="comp-list">
+          {[
+            "One command, live in seconds",
+            "Agents deploy directly via MCP",
+            "Built-in diagnose on failure",
+            "Governed, audited access"
+          ].map(item => (
+            <div class="comp-item comp-item-right">
+              <span class="comp-icon comp-icon-check">✓</span>
+              <span>{item}</span>
+            </div>
+          ))}
         </div>
       </div>
 
     </div>
 
-    <!-- 8d: Clearly-separated Coming Soon teaser for Lifecycle Intelligence -->
-    <div style="background:#0a0a0a;border:1px solid #1f1f1f;border-radius:10px;padding:1.25rem 1.5rem;display:flex;flex-direction:column;gap:0.5rem;text-align:left;">
+    <!-- Coming Soon Teaser for Lifecycle Intelligence -->
+    <div style="background:#0d0d0d;border:1px solid #1f1f1f;border-radius:12px;padding:1.25rem 1.5rem;display:flex;flex-direction:column;gap:0.5rem;text-align:left;">
       <div style="display:flex;align-items:center;gap:0.6rem;">
         <span class="coming-soon-badge">Coming soon</span>
         <span style="color:#fff;font-size:0.875rem;font-weight:600;">Lifecycle Intelligence</span>
@@ -108,3 +77,162 @@
 
   </div>
 </section>
+
+<style>
+  .badge-pill-purple {
+    font-family: 'Fira Code', 'Geist Mono', monospace;
+    font-size: 0.72rem;
+    font-weight: 500;
+    padding: 0.2rem 0.65rem;
+    border-radius: 6px;
+    background: rgba(167, 139, 250, 0.12);
+    border: 1px solid rgba(167, 139, 250, 0.35);
+    color: #a78bfa;
+  }
+
+  .comp-2col-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    width: 100%;
+  }
+
+  .comp-col {
+    background: #0d0d0d;
+    border: 1px solid #1f1f1f;
+    border-radius: 14px;
+    padding: 2.25rem 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    box-shadow: 0 16px 40px rgba(0,0,0,0.5);
+    
+    /* Scroll animation initial state */
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+
+  .comp-col-left {
+    border: 1px solid #1f1f1f;
+  }
+
+  .comp-col-right {
+    border: 1px solid rgba(167, 139, 250, 0.35);
+    background: linear-gradient(180deg, rgba(167, 139, 250, 0.03) 0%, #0d0d0d 100%);
+  }
+
+  .animate-comp .comp-col-left {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .animate-comp .comp-col-right {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.15s;
+  }
+
+  .comp-col-header {
+    font-family: 'Fira Code', 'Geist Mono', monospace;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+  }
+
+  .comp-col-header-left {
+    color: #a1a1aa;
+  }
+
+  .comp-col-header-right {
+    color: #a78bfa;
+  }
+
+  .comp-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .comp-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 0.9375rem;
+    line-height: 1.5;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid #181818;
+  }
+
+  .comp-item:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+
+  .comp-item-left {
+    color: #a1a1aa;
+  }
+
+  .comp-item-right {
+    color: #ffffff;
+    font-weight: 500;
+  }
+
+  .comp-icon {
+    font-family: 'Fira Code', monospace;
+    font-weight: 700;
+    font-size: 0.9rem;
+    flex-shrink: 0;
+  }
+
+  .comp-icon-cross {
+    color: #5a5a5a;
+  }
+
+  .comp-icon-check {
+    color: #a78bfa;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .comp-col {
+      opacity: 1 !important;
+      transform: none !important;
+      transition: none !important;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .comp-2col-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+<script>
+  function initCompAnimation() {
+    const wrapper = document.getElementById('comp-grid-wrapper');
+    if (!wrapper) return;
+
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches || typeof IntersectionObserver === 'undefined') {
+      wrapper.classList.add('animate-comp');
+      return;
+    }
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          wrapper.classList.add('animate-comp');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.3 });
+
+    observer.observe(wrapper);
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initCompAnimation);
+  } else {
+    initCompAnimation();
+  }
+</script>

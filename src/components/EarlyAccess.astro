@@ -28,11 +28,11 @@
         </p>
       </div>
 
-      <!-- Lead capture form with live Formspree endpoint -->
-      <form id="waitlist-form" action="https://formspree.io/f/xaewzzdw" method="POST" style="display:flex;flex-direction:column;gap:1.25rem;">
+      <!-- Lead capture form with direct Google Sheets webhook endpoint -->
+      <form id="waitlist-form" action="https://script.google.com/macros/s/AKfycbzyXb8n7BJrkK-U4qsNyu9eqAutFDmyJytC36hPT-9DqOuV2w6fGkYoXYNFFK9NkQDbVg/exec" method="POST" style="display:flex;flex-direction:column;gap:1.25rem;">
         <div style="display:flex;flex-direction:column;gap:0.4rem;">
           <label for="name" style="font-size:0.8rem;color:#71717a;font-weight:500;">Your name</label>
-          <input type="text" name="name" id="name" required placeholder="Sayeed Rizwan"
+          <input type="text" name="name" id="name" required placeholder="Jane Doe"
             style="background:#111;border:1px solid #2a2a2a;border-radius:6px;padding:0.65rem 0.9rem;color:#fff;font-size:0.9rem;outline:none;transition:border-color 0.2s;width:100%;"
             onfocus="this.style.borderColor='rgba(167,139,250,0.5)'" onblur="this.style.borderColor='#2a2a2a'"/>
         </div>
@@ -75,17 +75,19 @@
     if (submitBtn) submitBtn.setAttribute('disabled', 'true');
 
     try {
-      const res = await fetch(form.action, {
-        method: 'POST',
-        body: data,
-        headers: { 'Accept': 'application/json' }
+      const payload = new URLSearchParams();
+      data.forEach((val, key) => {
+        payload.append(key, val.toString());
       });
 
-      if (res.ok && success) {
+      await fetch(form.action, {
+        method: 'POST',
+        body: payload,
+        mode: 'no-cors'
+      });
+
+      if (success) {
         success.style.display = 'flex';
-      } else {
-        alert('Submission error: please email ceo@nixora.co.in directly.');
-        if (submitBtn) submitBtn.removeAttribute('disabled');
       }
     } catch (err) {
       alert('Network error. Please check your connection or email ceo@nixora.co.in.');

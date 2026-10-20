@@ -42,4 +42,6 @@ nixora login
 - [Platform Comparisons](https://nixora.co.in/compare): Architectural comparisons with traditional cloud infrastructure and Vercel.
 - [Developer Resources](https://nixora.co.in/resources): Technical guides and documentation for AI-generated code.
 - [Deploy Guide: Cursor & Claude Code](https://nixora.co.in/resources/deploy-cursor-claude-code-app-to-production): Practical guide for taking AI agent code to production.
+- [Deploy Guide: Gemini CLI & Codex](https://nixora.co.in/resources/deploy-gemini-codex-open-source-ai-apps): Production deployment guide for Gemini CLI, Codex, and open-source AI agent code.
+- [MCP Architecture Guide](https://nixora.co.in/resources/mcp-server-cloud-infrastructure-guide): Model Context Protocol for cloud infrastructure and agent deployment.
 - [Why AI Code Breaks in Production](https://nixora.co.in/resources/why-ai-agent-output-wont-run-in-production): Analysis of local execution vs production environment gaps.

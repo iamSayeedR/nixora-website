@@ -1,12 +1,12 @@
 ---
 ---
 <section id="deploy-intro" style="padding:5rem 2rem;position:relative;overflow:hidden;">
-  <!-- Section Heading Wash Glow (Positioned in top negative space clear of text) -->
+  <!-- Section Heading Wash Glow -->
   <div style="position:absolute;top:-40px;left:50%;transform:translateX(-50%);width:100%;max-width:700px;height:140px;background:radial-gradient(ellipse 55% 40% at 50% 0%,rgba(139,92,246,0.08),transparent 70%);pointer-events:none;z-index:0;"></div>
 
-  <div style="max-width:900px;margin:0 auto;position:relative;z-index:1;display:flex;flex-direction:column;gap:3.5rem;">
+  <div style="max-width:900px;margin:0 auto;position:relative;z-index:1;display:flex;flex-direction:column;gap:2.5rem;">
 
-    <!-- Icon + headline -->
+    <!-- Icon + Headline + Subhead -->
     <div style="display:flex;flex-direction:column;align-items:center;text-align:center;gap:1.25rem;">
       <div style="width:48px;height:48px;border-radius:50%;border:1px solid #2a2a2a;background:#0a0a0a;display:flex;align-items:center;justify-content:center;box-shadow:0 0 20px rgba(139,92,246,0.15);">
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#a78bfa" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
@@ -14,14 +14,16 @@
           <line x1="12" y1="19" x2="20" y2="19"></line>
         </svg>
       </div>
-      <h2 class="section-headline">It all starts with <span class="accent">nixora deploy</span></h2>
+      <h2 class="section-headline">
+        It all starts with <span class="accent">nixora deploy</span>
+      </h2>
       <p style="font-size:1.0625rem;line-height:1.75;color:#a1a1aa;max-width:560px;display:block;margin:0 auto;">
         Bridge the gap between AI-generated code and a live, managed application, with hosting, HTTPS, and compute handled automatically.
       </p>
     </div>
 
-    <!-- Large featured terminal: the primary product visual -->
-    <div style="
+    <!-- Large Featured Two-Panel Terminal Box with Right-Aligned Titlebar Tag -->
+    <div id="tw-panel" style="
       border:1px solid #2a2a2a;
       border-radius:14px;
       background:#0a0a0a;
@@ -31,72 +33,34 @@
         0 0 60px rgba(139,92,246,0.12),
         0 40px 100px rgba(0,0,0,0.6);
     ">
-      <!-- Title bar -->
-      <div style="display:flex;align-items:center;gap:0.5rem;padding:0.85rem 1.25rem;border-bottom:1px solid #1a1a1a;background:#0f0f0f;">
-        <span style="width:12px;height:12px;border-radius:50%;background:#ff5f57;opacity:0.7;"></span>
-        <span style="width:12px;height:12px;border-radius:50%;background:#febc2e;opacity:0.7;"></span>
-        <span style="width:12px;height:12px;border-radius:50%;background:#28c840;opacity:0.7;"></span>
-        <span style="flex:1;text-align:center;font-size:0.72rem;color:#3f3f46;font-family:'Fira Code',monospace;letter-spacing:0.02em;">nixora: bash</span>
+      <!-- Title bar with right-aligned nixora: bash -->
+      <div style="display:flex;align-items:center;justify-content:space-between;padding:0.85rem 1.25rem;border-bottom:1px solid #1a1a1a;background:#0f0f0f;">
+        <div style="display:flex;gap:6px;">
+          <span style="width:12px;height:12px;border-radius:50%;background:#ff5f57;display:block;"></span>
+          <span style="width:12px;height:12px;border-radius:50%;background:#febc2e;display:block;"></span>
+          <span style="width:12px;height:12px;border-radius:50%;background:#28c840;display:block;"></span>
+        </div>
+        <span style="font-size:0.72rem;color:#3f3f46;font-family:'Fira Code',monospace;letter-spacing:0.02em;">nixora: bash</span>
       </div>
 
       <!-- Two-panel terminal: command + output -->
-      <div style="display:grid;grid-template-columns:1fr 1fr;min-height:340px;" class="terminal-grid">
+      <div style="display:grid;grid-template-columns:1fr 1fr;min-height:360px;" class="terminal-grid">
 
-        <!-- Left: Command input -->
-        <div style="padding:2rem;border-right:1px solid #1a1a1a;font-family:'Fira Code','Geist Mono',monospace;font-size:0.82rem;line-height:1.9;">
+        <!-- Left: Command input panel -->
+        <div style="padding:2rem;border-right:1px solid #1a1a1a;font-family:'Fira Code','Geist Mono',monospace;font-size:0.82rem;line-height:1.9;text-align:left;">
           <div style="color:#3f3f46;font-size:0.7rem;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:1.25rem;">INPUT</div>
-          <div style="display:flex;flex-direction:column;gap:0.2rem;">
-            <div>
-              <span style="color:#52525b;">~/my-ai-app</span>
-              <span style="color:#3f3f46;"> $</span>
-              <span style="color:#e4e4e7;"> nixora deploy</span>
-            </div>
-            <div style="color:#52525b;padding-left:0.5rem;">└─ scanning project root</div>
-            <div style="color:#52525b;padding-left:0.5rem;">└─ detecting runtime: <span style="color:#a1a1aa;">node@20</span></div>
-            <div style="color:#52525b;padding-left:0.5rem;">└─ entry point: <span style="color:#a1a1aa;">server.js</span></div>
-            <div style="color:#52525b;padding-left:0.5rem;">└─ dependencies: <span style="color:#a1a1aa;">62 packages</span></div>
-          </div>
-
-          <div style="margin-top:1.5rem;display:flex;flex-direction:column;gap:0.2rem;">
-            <div style="color:#52525b;">building container...</div>
-            <div style="
-              height:4px;width:100%;background:#1a1a1a;border-radius:2px;overflow:hidden;margin-top:0.3rem;
-            ">
-              <div style="height:100%;width:100%;background:linear-gradient(90deg,#7c3aed,#a78bfa);border-radius:2px;animation:progress-fill 1.6s ease-out both;" id="build-bar"></div>
-            </div>
-            <div style="color:#3f3f46;font-size:0.72rem;margin-top:0.25rem;">image built in 8.4s</div>
-          </div>
-
-          <div style="margin-top:1.5rem;display:flex;flex-direction:column;gap:0.15rem;">
-            <div style="color:#52525b;">provisioning compute...</div>
-            <div style="color:#52525b;">issuing TLS certificate...</div>
-            <div style="color:#52525b;">routing traffic...</div>
-          </div>
+          <div id="cli-input-area" style="display:flex;flex-direction:column;gap:0.2rem;"></div>
         </div>
 
-        <!-- Right: Live output -->
-        <div style="padding:2rem;font-family:'Fira Code','Geist Mono',monospace;font-size:0.82rem;line-height:1.9;">
+        <!-- Right: Live output panel -->
+        <div style="padding:2rem;font-family:'Fira Code','Geist Mono',monospace;font-size:0.82rem;line-height:1.9;text-align:left;">
           <div style="color:#3f3f46;font-size:0.7rem;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:1.25rem;">OUTPUT</div>
-
-          <div style="display:flex;flex-direction:column;gap:0.15rem;">
-            <div style="color:#a78bfa;">✔ <span style="color:#71717a;">Container image pushed</span></div>
-            <div style="color:#a78bfa;">✔ <span style="color:#71717a;">Compute provisioned (us-east)</span></div>
-            <div style="color:#a78bfa;">✔ <span style="color:#71717a;">HTTPS certificate issued</span></div>
-          </div>
-
-          <div style="margin-top:1.5rem;padding:1rem;border:1px solid rgba(167,139,250,0.15);border-radius:8px;background:rgba(167,139,250,0.04);">
-            <div style="color:#52525b;font-size:0.72rem;margin-bottom:0.5rem;">LIVE URL</div>
-            <div style="color:#a78bfa;word-break:break-all;">https://my-app.nixora.co.in</div>
-            <div style="color:#3f3f46;font-size:0.72rem;margin-top:0.5rem;">deployed in 12.3s · managed by Nixora</div>
-          </div>
-
-          <div style="margin-top:1.25rem;padding-top:1.25rem;border-top:1px solid #1a1a1a;color:#a78bfa;font-weight:500;">
-            ✔ Nixora is now managing your app's lifecycle.
-          </div>
+          <div id="cli-output-area" style="display:flex;flex-direction:column;gap:1.25rem;"></div>
         </div>
+
       </div>
 
-      <!-- Bottom bar: status strip -->
+      <!-- Bottom status bar -->
       <div style="padding:0.6rem 1.5rem;border-top:1px solid #1a1a1a;background:#0f0f0f;display:flex;align-items:center;justify-content:space-between;font-family:'Fira Code',monospace;font-size:0.7rem;color:#3f3f46;">
         <div style="display:flex;align-items:center;gap:1.5rem;">
           <span style="display:flex;align-items:center;gap:0.4rem;">
@@ -110,7 +74,7 @@
       </div>
     </div>
 
-    <!-- Feature bullet list -->
+    <!-- Feature Bullet List -->
     <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1px;border:1px solid #1f1f1f;border-radius:10px;overflow:hidden;background:#1f1f1f;box-shadow:0 10px 30px rgba(0,0,0,0.4);" class="bullet-grid">
       {[
         { icon: "⚡", label: "Zero-config deploy", body: "Auto-detects runtime, containerizes, and ships with no Dockerfile required." },
@@ -127,14 +91,8 @@
 
   </div>
 </section>
-<hr class="separator" />
 
 <style>
-  @keyframes progress-fill {
-    from { transform: scaleX(0); transform-origin: left; }
-    to   { transform: scaleX(1); transform-origin: left; }
-  }
-
   .deploy-bullet-cell {
     background: #111;
     padding: 1.5rem;
@@ -148,8 +106,211 @@
     background: #141414;
   }
 
+  :global(.tw-caret) {
+    display: inline-block;
+    color: #a78bfa;
+    font-weight: 700;
+    margin-left: 3px;
+    animation: caretBlink 1s infinite steps(1);
+  }
+
+  @keyframes caretBlink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+  }
+
+  @keyframes progressFillAnim {
+    from { width: 0%; }
+    to { width: 100%; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    :global(.tw-caret) { display: none !important; }
+  }
+
   @media (max-width: 768px) {
     .terminal-grid { grid-template-columns: 1fr !important; }
     .bullet-grid { grid-template-columns: 1fr !important; }
   }
 </style>
+
+<script is:inline>
+  function initTwoPanelCLI() {
+    const inputArea = document.getElementById('cli-input-area');
+    const outputArea = document.getElementById('cli-output-area');
+    const panel = document.getElementById('tw-panel');
+
+    if (!inputArea || !outputArea || !panel) return;
+
+    function createCaret() {
+      const caret = document.createElement('span');
+      caret.className = 'tw-caret';
+      caret.textContent = '▍';
+      return caret;
+    }
+
+    function removeCarets() {
+      const carets = panel.querySelectorAll('.tw-caret');
+      carets.forEach(c => c.remove());
+    }
+
+    async function runSequence() {
+      inputArea.innerHTML = '';
+      outputArea.innerHTML = '';
+
+      // Step 1: Type command line character by character
+      const cmdLine = document.createElement('div');
+      cmdLine.innerHTML = `<span style="color:#52525b;">~/my-ai-app</span> <span style="color:#3f3f46;">$</span> <span style="color:#e4e4e7;" id="cmd-typed"></span>`;
+      inputArea.appendChild(cmdLine);
+
+      const typedEl = cmdLine.querySelector('#cmd-typed');
+      const textToType = "nixora deploy";
+      for (let i = 0; i <= textToType.length; i++) {
+        typedEl.textContent = textToType.slice(0, i);
+        removeCarets();
+        typedEl.appendChild(createCaret());
+        await new Promise(r => setTimeout(r, 28));
+      }
+
+      await new Promise(r => setTimeout(r, 300));
+
+      // Step 2: Scan project root
+      removeCarets();
+      const line1 = document.createElement('div');
+      line1.style.color = '#52525b';
+      line1.style.paddingLeft = '0.5rem';
+      line1.textContent = '└─ scanning project root';
+      inputArea.appendChild(line1);
+      line1.appendChild(createCaret());
+      await new Promise(r => setTimeout(r, 250));
+
+      // Step 3: Detect runtime
+      removeCarets();
+      const line2 = document.createElement('div');
+      line2.style.color = '#52525b';
+      line2.style.paddingLeft = '0.5rem';
+      line2.innerHTML = '└─ detecting runtime: <span style="color:#a1a1aa;">node@20</span>';
+      inputArea.appendChild(line2);
+      line2.appendChild(createCaret());
+      await new Promise(r => setTimeout(r, 250));
+
+      // Step 4: Entry point
+      removeCarets();
+      const line3 = document.createElement('div');
+      line3.style.color = '#52525b';
+      line3.style.paddingLeft = '0.5rem';
+      line3.innerHTML = '└─ entry point: <span style="color:#a1a1aa;">server.js</span>';
+      inputArea.appendChild(line3);
+      line3.appendChild(createCaret());
+      await new Promise(r => setTimeout(r, 250));
+
+      // Step 5: Dependencies
+      removeCarets();
+      const line4 = document.createElement('div');
+      line4.style.color = '#52525b';
+      line4.style.paddingLeft = '0.5rem';
+      line4.innerHTML = '└─ dependencies: <span style="color:#a1a1aa;">62 packages</span>';
+      inputArea.appendChild(line4);
+      line4.appendChild(createCaret());
+      await new Promise(r => setTimeout(r, 400));
+
+      // Step 6: Building container + progress bar
+      removeCarets();
+      const buildBox = document.createElement('div');
+      buildBox.style.marginTop = '1.25rem';
+      buildBox.style.display = 'flex';
+      buildBox.style.flexDirection = 'column';
+      buildBox.style.gap = '0.2rem';
+      buildBox.innerHTML = `
+        <div style="color:#52525b;">building container...</div>
+        <div style="height:4px;width:100%;background:#1a1a1a;border-radius:2px;overflow:hidden;margin-top:0.3rem;">
+          <div style="height:100%;width:0%;background:linear-gradient(90deg,#7c3aed,#a78bfa);border-radius:2px;animation:progressFillAnim 1.2s ease-out forwards;"></div>
+        </div>
+      `;
+      inputArea.appendChild(buildBox);
+      buildBox.appendChild(createCaret());
+      await new Promise(r => setTimeout(r, 1200));
+
+      // Step 7: Image built + Output 1
+      removeCarets();
+      const builtMsg = document.createElement('div');
+      builtMsg.style.color = '#3f3f46';
+      builtMsg.style.fontSize = '0.72rem';
+      builtMsg.style.marginTop = '0.25rem';
+      builtMsg.textContent = 'image built in 8.4s';
+      buildBox.appendChild(builtMsg);
+
+      const outGroup = document.createElement('div');
+      outGroup.style.display = 'flex';
+      outGroup.style.flexDirection = 'column';
+      outGroup.style.gap = '0.25rem';
+      outGroup.innerHTML = `<div style="color:#a78bfa;">✔ <span style="color:#71717a;">Container image pushed</span></div>`;
+      outputArea.appendChild(outGroup);
+      outGroup.appendChild(createCaret());
+      await new Promise(r => setTimeout(r, 450));
+
+      // Step 8: Provisioning compute + Output 2
+      removeCarets();
+      const provBox = document.createElement('div');
+      provBox.style.marginTop = '1.25rem';
+      provBox.style.display = 'flex';
+      provBox.style.flexDirection = 'column';
+      provBox.style.gap = '0.15rem';
+      provBox.style.color = '#52525b';
+      provBox.innerHTML = `<div>provisioning compute...</div>`;
+      inputArea.appendChild(provBox);
+
+      outGroup.innerHTML += `<div style="color:#a78bfa;">✔ <span style="color:#71717a;">Compute provisioned (us-east)</span></div>`;
+      outGroup.appendChild(createCaret());
+      await new Promise(r => setTimeout(r, 800));
+
+      // Step 9: Issuing TLS + Output 3
+      removeCarets();
+      provBox.innerHTML += `<div>issuing TLS certificate...</div>`;
+      outGroup.innerHTML += `<div style="color:#a78bfa;">✔ <span style="color:#71717a;">HTTPS certificate issued</span></div>`;
+      outGroup.appendChild(createCaret());
+      await new Promise(r => setTimeout(r, 800));
+
+      // Step 10: Routing traffic + LIVE URL box
+      removeCarets();
+      provBox.innerHTML += `<div>routing traffic...</div>`;
+
+      const urlBox = document.createElement('div');
+      urlBox.style.padding = '1rem';
+      urlBox.style.border = '1px solid rgba(167,139,250,0.15)';
+      urlBox.style.borderRadius = '8px';
+      urlBox.style.background = 'rgba(167,139,250,0.04)';
+      urlBox.innerHTML = `
+        <div style="color:#52525b;font-size:0.72rem;margin-bottom:0.5rem;">LIVE URL</div>
+        <div style="color:#a78bfa;word-break:break-all;">https://my-app.nixora.co.in</div>
+        <div style="color:#3f3f46;font-size:0.72rem;margin-top:0.5rem;">deployed in 12.3s · managed by Nixora</div>
+      `;
+      outputArea.appendChild(urlBox);
+      urlBox.appendChild(createCaret());
+      await new Promise(r => setTimeout(r, 900));
+
+      // Step 11: Final lifecycle text
+      removeCarets();
+      const finalMsg = document.createElement('div');
+      finalMsg.style.paddingTop = '1rem';
+      finalMsg.style.borderTop = '1px solid #1a1a1a';
+      finalMsg.style.color = '#a78bfa';
+      finalMsg.style.fontWeight = '500';
+      finalMsg.innerHTML = `✔ Nixora is now managing your app's lifecycle.`;
+      outputArea.appendChild(finalMsg);
+      finalMsg.appendChild(createCaret());
+
+      // Hold for 2.4s then restart
+      await new Promise(r => setTimeout(r, 2400));
+      runSequence();
+    }
+
+    runSequence();
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initTwoPanelCLI);
+  } else {
+    initTwoPanelCLI();
+  }
+</script>

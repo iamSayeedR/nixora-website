@@ -1,0 +1,103 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+
+const articleTitle = "Model Context Protocol (MCP) for Cloud Infrastructure & AI Agent Deployment";
+const articleDescription = "Learn how the Model Context Protocol (MCP) enables AI agents like Claude Code, Cursor, and Codex to directly provision, monitor, and govern cloud infrastructure.";
+const canonicalURL = "https://nixora.co.in/resources/mcp-server-cloud-infrastructure-guide/";
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": articleTitle,
+  "description": articleDescription,
+  "author": {
+    "@type": "Organization",
+    "name": "Nixora",
+    "url": "https://nixora.co.in/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Nixora",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://nixora.co.in/logo-full.jpg"
+    }
+  },
+  "datePublished": "2026-09-27",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": canonicalURL
+  }
+};
+---
+
+<Layout title={`${articleTitle} | Nixora`} description={articleDescription} canonicalURL={canonicalURL} jsonLd={jsonLd}>
+  <Header />
+  <main style="padding-top:100px;padding-bottom:5rem;">
+    <article style="max-width:780px;margin:0 auto;padding:0 1.5rem;">
+      <div style="margin-bottom:2.5rem;text-align:left;">
+        <a href="/resources/" style="color:#a78bfa;font-size:0.875rem;text-decoration:none;display:inline-flex;align-items:center;gap:0.4rem;margin-bottom:1.5rem;" onmouseover="this.style.color='#c4b5fd'" onmouseout="this.style.color='#a78bfa'">
+          ← Back to Developer Resources
+        </a>
+        <div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:1rem;flex-wrap:wrap;">
+          <span style="font-family:'Fira Code',monospace;font-size:0.75rem;color:#a78bfa;background:rgba(167,139,250,0.1);padding:0.2rem 0.6rem;border-radius:4px;border:1px solid rgba(167,139,250,0.25);">
+            Architecture Guide
+          </span>
+          <span style="font-size:0.8rem;color:#71717a;">Published September 2026</span>
+        </div>
+        <h1 style="font-size:clamp(1.85rem, 4vw, 2.75rem);font-weight:700;color:#fff;line-height:1.2;margin:0 0 1rem;letter-spacing:-0.025em;">
+          Model Context Protocol (MCP) for Cloud Infrastructure & AI Agent Deployment
+        </h1>
+        <p style="font-size:1.1rem;line-height:1.7;color:#a1a1aa;margin:0;">
+          An architectural deep dive into how Model Context Protocol (MCP) servers allow AI coding agents to interact directly with cloud control planes, manage application lifecycles, and enforce granular permissions.
+        </p>
+      </div>
+
+      <hr style="border:none;border-top:1px solid #1f1f1f;margin:2rem 0;" />
+
+      <div class="article-content" style="color:#e4e4e7;font-size:1.025rem;line-height:1.8;display:flex;flex-direction:column;gap:1.75rem;">
+        <p>
+          The Model Context Protocol (MCP) is an open specification designed to connect AI models with external tools, APIs, and data sources securely. While MCP is widely recognized for local file reading and database queries, its application as a cloud infrastructure control plane interface represents a paradigm shift for AI agent workflows.
+        </p>
+
+        <h2 style="font-size:1.5rem;font-weight:700;color:#fff;margin:1rem 0 0.25rem;">Why Infrastructure Needs Agent-Native Interfaces</h2>
+        <p>
+          Traditional cloud deployment APIs (AWS SDKs, Terraform, Kubernetes manifests) are designed for human DevOps engineers. They require complex IAM roles, state file management, and verbose configuration parameters. When AI coding agents attempt to manage cloud resources using human DevOps primitives, they encounter friction:
+        </p>
+
+        <ul style="padding-left:1.25rem;margin:0;display:flex;flex-direction:column;gap:0.5rem;color:#a1a1aa;">
+          <li><strong style="color:#fff;">Credential Risk:</strong> Granting full cloud API access keys to LLM tools creates security risks if agents hallucinate or execute unsafe commands.</li>
+          <li><strong style="color:#fff;">Lack of Audit Trails:</strong> Cloud logs track raw API calls but lack semantic context regarding which AI agent initiated a change and why.</li>
+          <li><strong style="color:#fff;">State Drift:</strong> AI-generated code iterations can leave behind dangling containers, orphaned security groups, and unmapped ports.</li>
+        </ul>
+
+        <h2 style="font-size:1.5rem;font-weight:700;color:#fff;margin:1rem 0 0.25rem;">How Nixora Uses MCP as a Control Plane Target</h2>
+
+        <p>
+          Nixora provides an MCP server interface that translates high-level AI agent intentions into governed, automated cloud actions. Instead of giving AI agents raw root AWS credentials, agents communicate with Nixora via standardized MCP tool calls:
+        </p>
+
+        <pre style="background:#0a0a0a;border:1px solid #1f1f1f;border-radius:8px;padding:1.25rem;font-family:'Fira Code',monospace;font-size:0.875rem;color:#e4e4e7;overflow-x:auto;">Agent → MCP Tool Call (`nixora_deploy`) → Nixora Control Plane → Managed AWS Infra</pre>
+
+        <h3 style="font-size:1.2rem;font-weight:600;color:#a78bfa;margin:0.5rem 0 0.1rem;">Key MCP Capabilities in Nixora</h3>
+
+        <ul style="padding-left:1.25rem;margin:0;display:flex;flex-direction:column;gap:0.5rem;color:#a1a1aa;">
+          <li><strong style="color:#fff;">Per-Agent Permissions:</strong> Enforce granular scoping so a junior coding agent can deploy preview environments, while production promotions require explicit permission tokens.</li>
+          <li><strong style="color:#fff;">Real-Time Diagnostics Feedback:</strong> If a deployment fails, the Nixora MCP server returns structured error diagnostics directly into the AI agent's context window for immediate automated repair.</li>
+          <li><strong style="color:#fff;">Centralized Audit Trail:</strong> Every container push, port binding, and status check is logged with full agent identity and prompt metadata.</li>
+        </ul>
+
+        <div style="background:rgba(167,139,250,0.06);border:1px solid rgba(167,139,250,0.25);border-radius:10px;padding:1.5rem;margin-top:1.5rem;text-align:center;">
+          <h3 style="font-size:1.15rem;font-weight:700;color:#fff;margin:0 0 0.5rem;">Explore Nixora's Product Architecture</h3>
+          <p style="font-size:0.9rem;color:#a1a1aa;margin:0 0 1.25rem;">
+            Learn how Nixora is building the control plane for AI-generated software and AI agents.
+          </p>
+          <a href="/product/" class="shiny-cta">View Product Architecture →</a>
+        </div>
+      </div>
+    </article>
+  </main>
+  <Footer />
+</Layout>

@@ -1,17 +1,19 @@
 ---
 interface Props {
   showOnlyTodayNext?: boolean;
+  isProductPage?: boolean;
 }
 
-const { showOnlyTodayNext = false } = Astro.props;
+const { showOnlyTodayNext = false, isProductPage = false } = Astro.props;
 ---
-<section id="features" style="padding:5rem 2rem;position:relative;overflow:hidden;">
-  <!-- Section Heading Background Wash Glow (Positioned in top negative space clear of text) -->
+
+<section id="features" class="roadmap-section" style="padding:5rem 2rem;position:relative;overflow:hidden;">
+  <!-- Section Heading Wash Glow -->
   <div style="position:absolute;top:-40px;left:50%;transform:translateX(-50%);width:100%;max-width:700px;height:140px;background:radial-gradient(ellipse 55% 40% at 50% 0%, rgba(139,92,246,0.08), transparent 70%);pointer-events:none;z-index:0;"></div>
 
-  <div style="max-width:1200px;margin:0 auto;position:relative;z-index:1;display:flex;flex-direction:column;gap:3.5rem;">
+  <div style="max-width:900px;margin:0 auto;position:relative;z-index:1;display:flex;flex-direction:column;gap:2.5rem;">
 
-    <!-- Section Intro -->
+    <!-- Section Intro Header + Paragraph (Where Nixora is going) -->
     <div style="text-align:center;display:flex;flex-direction:column;align-items:center;gap:1rem;">
       <h2 class="section-headline" style="text-align:center;">Where Nixora is <span class="accent">going</span></h2>
       <p style="font-size:1.0625rem;line-height:1.75;color:#a1a1aa;max-width:680px;display:block;margin:0 auto;">
@@ -19,93 +21,18 @@ const { showOnlyTodayNext = false } = Astro.props;
       </p>
     </div>
 
-    {showOnlyTodayNext ? (
-      <div style="display:flex;flex-direction:column;gap:2.5rem;width:100%;">
-        <div class="compact-tiles-grid">
-          
-          <a href="/product/#group-01" class="compact-tile compact-tile-today">
-            <div style="display:flex;align-items:center;justify-content:space-between;width:100%;">
-              <div class="badge-live">
-                <span class="live-dot"></span>
-                Today
-              </div>
-              <span style="font-size:0.7rem;color:#a78bfa;font-family:'Fira Code',monospace;font-weight:600;">GROUP 01</span>
-            </div>
-            <h3 style="font-size:1.15rem;font-weight:700;color:#fff;margin:0;">Deploy & Diagnose</h3>
-          </a>
-
-          <a href="/product/#group-02" class="compact-tile compact-tile-next">
-            <div style="display:flex;align-items:center;justify-content:space-between;width:100%;">
-              <div class="badge-next">
-                <span class="next-dot"></span>
-                Next
-              </div>
-              <span style="font-size:0.7rem;color:#a78bfa;font-family:'Fira Code',monospace;font-weight:600;">GROUP 02</span>
-            </div>
-            <h3 style="font-size:1.15rem;font-weight:700;color:#fff;margin:0;">Agent Access & MCP</h3>
-          </a>
-
-          <a href="/product/#group-03" class="compact-tile compact-tile-later">
-            <div style="display:flex;align-items:center;justify-content:space-between;width:100%;">
-              <div class="badge-roadmap">
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#71717a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 16 14"/></svg>
-                Later
-              </div>
-              <span style="font-size:0.7rem;color:#52525b;font-family:'Fira Code',monospace;">GROUP 03</span>
-            </div>
-            <h3 style="font-size:1.15rem;font-weight:700;color:#fff;margin:0;">Monitoring & Observability</h3>
-          </a>
-
-          <a href="/product/#group-04" class="compact-tile compact-tile-later">
-            <div style="display:flex;align-items:center;justify-content:space-between;width:100%;">
-              <div class="badge-roadmap">
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#71717a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 16 14"/></svg>
-                Later
-              </div>
-              <span style="font-size:0.7rem;color:#52525b;font-family:'Fira Code',monospace;">GROUP 04</span>
-            </div>
-            <h3 style="font-size:1.15rem;font-weight:700;color:#fff;margin:0;">Scaling & Optimization</h3>
-          </a>
-
-          <a href="/product/#group-05" class="compact-tile compact-tile-later">
-            <div style="display:flex;align-items:center;justify-content:space-between;width:100%;">
-              <div class="badge-roadmap">
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#71717a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 16 14"/></svg>
-                Later
-              </div>
-              <span style="font-size:0.7rem;color:#52525b;font-family:'Fira Code',monospace;">GROUP 05</span>
-            </div>
-            <h3 style="font-size:1.15rem;font-weight:700;color:#fff;margin:0;">Governance & Systems</h3>
-          </a>
-
-          <a href="/product/#group-06" class="compact-tile compact-tile-later">
-            <div style="display:flex;align-items:center;justify-content:space-between;width:100%;">
-              <div class="badge-roadmap">
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#71717a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 16 14"/></svg>
-                Later
-              </div>
-              <span style="font-size:0.7rem;color:#52525b;font-family:'Fira Code',monospace;">GROUP 06</span>
-            </div>
-            <h3 style="font-size:1.15rem;font-weight:700;color:#fff;margin:0;">Platform & Ecosystem</h3>
-          </a>
-
-        </div>
-
-        <div style="text-align:center;">
-          <a href="/product/" style="color:#a78bfa;font-size:0.9375rem;font-weight:600;text-decoration:none;display:inline-flex;align-items:center;gap:0.4rem;" onmouseover="this.style.color='#c4b5fd'" onmouseout="this.style.color='#a78bfa'">
-            View full product architecture →
-          </a>
-        </div>
-      </div>
-    ) : (
-      <div class="hero-cards-grid">
+    {isProductPage ? (
+      <div class="detailed-cards-grid">
 
         <div id="group-01" class="hero-card hero-card-live">
-          <div style="display:flex;flex-direction:column;gap:1rem;">
+          <div style="display:flex;flex-direction:column;gap:1.2rem;">
             <div style="display:flex;align-items:center;justify-content:space-between;">
-              <div class="badge-live">
-                <span class="live-dot"></span>
-                Today
+              <div style="display:flex;align-items:center;gap:0.75rem;">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#a78bfa" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+                <div class="badge-live-dot">
+                  <span class="pulse-dot"></span>
+                  Today
+                </div>
               </div>
               <span style="font-size:0.7rem;color:#a78bfa;font-family:'Fira Code',monospace;font-weight:600;">GROUP 01</span>
             </div>
@@ -115,7 +42,7 @@ const { showOnlyTodayNext = false } = Astro.props;
               Go from AI-generated code to a live, running application in seconds. Diagnose why an AI-generated deployment failed and what to change.
             </p>
 
-            <div style="display:flex;flex-wrap:wrap;gap:0.4rem;margin-top:0.5rem;">
+            <div style="display:flex;flex-wrap:wrap;gap:0.4rem;margin-top:0.25rem;">
               {["CLI", "Automated deployment", "Diagnose failed deploys", "Hosting", "HTTPS", "Shareable URLs"].map(item => (
                 <span class="feature-chip live-chip">{item}</span>
               ))}
@@ -133,11 +60,11 @@ const { showOnlyTodayNext = false } = Astro.props;
         </div>
 
         <div id="group-02" class="hero-card hero-card-next">
-          <div style="display:flex;flex-direction:column;gap:1rem;">
+          <div style="display:flex;flex-direction:column;gap:1.2rem;">
             <div style="display:flex;align-items:center;justify-content:space-between;">
-              <div class="badge-next">
-                <span class="next-dot"></span>
-                Next
+              <div style="display:flex;align-items:center;gap:0.75rem;">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#a78bfa" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/><path d="M10 17.5h4M17.5 10v4M6.5 14v-4a3.5 3.5 0 0 1 3.5-3.5h4"/></svg>
+                <span class="badge-tag-gray">Next</span>
               </div>
               <span style="font-size:0.7rem;color:#a78bfa;font-family:'Fira Code',monospace;font-weight:600;">GROUP 02</span>
             </div>
@@ -147,7 +74,7 @@ const { showOnlyTodayNext = false } = Astro.props;
               Agent-native deployment target via MCP server, multi-agent access with per-agent permissions and audit trail, web dashboard, and Fargate infrastructure.
             </p>
 
-            <div style="display:flex;flex-wrap:wrap;gap:0.4rem;margin-top:0.5rem;">
+            <div style="display:flex;flex-wrap:wrap;gap:0.4rem;margin-top:0.25rem;">
               {["MCP server for agents", "Multi-agent access", "Per-agent permissions", "Audit trail", "Web dashboard", "Fargate infrastructure"].map(item => (
                 <span class="feature-chip next-chip">{item}</span>
               ))}
@@ -164,11 +91,11 @@ const { showOnlyTodayNext = false } = Astro.props;
         </div>
 
         <div id="group-03" class="hero-card">
-          <div style="display:flex;flex-direction:column;gap:1rem;">
+          <div style="display:flex;flex-direction:column;gap:1.2rem;">
             <div style="display:flex;align-items:center;justify-content:space-between;">
-              <div class="badge-roadmap">
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#71717a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 16 14"/></svg>
-                Later
+              <div style="display:flex;align-items:center;gap:0.75rem;">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#a78bfa" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
+                <span class="badge-tag-gray">Later</span>
               </div>
               <span style="font-size:0.7rem;color:#52525b;font-family:'Fira Code',monospace;">GROUP 03</span>
             </div>
@@ -178,7 +105,7 @@ const { showOnlyTodayNext = false } = Astro.props;
               Deep application understanding, continuous monitoring, and real-time observability for agent-built software.
             </p>
 
-            <div style="display:flex;flex-wrap:wrap;gap:0.4rem;margin-top:0.5rem;">
+            <div style="display:flex;flex-wrap:wrap;gap:0.4rem;margin-top:0.25rem;">
               {["Deep app understanding", "Continuous monitoring", "Cost insights", "Telemetry analytics"].map(item => (
                 <span class="feature-chip soon-chip">{item}</span>
               ))}
@@ -195,11 +122,11 @@ const { showOnlyTodayNext = false } = Astro.props;
         </div>
 
         <div id="group-04" class="hero-card">
-          <div style="display:flex;flex-direction:column;gap:1rem;">
+          <div style="display:flex;flex-direction:column;gap:1.2rem;">
             <div style="display:flex;align-items:center;justify-content:space-between;">
-              <div class="badge-roadmap">
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#71717a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 16 14"/></svg>
-                Later
+              <div style="display:flex;align-items:center;gap:0.75rem;">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#a78bfa" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/><line x1="2" y1="20" x2="22" y2="20"/></svg>
+                <span class="badge-tag-gray">Later</span>
               </div>
               <span style="font-size:0.7rem;color:#52525b;font-family:'Fira Code',monospace;">GROUP 04</span>
             </div>
@@ -209,7 +136,7 @@ const { showOnlyTodayNext = false } = Astro.props;
               Autonomous scaling, auto-sleep, auto-retirement, and resource optimization as workloads grow.
             </p>
 
-            <div style="display:flex;flex-wrap:wrap;gap:0.4rem;margin-top:0.5rem;">
+            <div style="display:flex;flex-wrap:wrap;gap:0.4rem;margin-top:0.25rem;">
               {["Autonomous scaling", "Resource optimization", "Auto sleep", "Auto retirement", "Cost controls"].map(item => (
                 <span class="feature-chip soon-chip">{item}</span>
               ))}
@@ -225,11 +152,11 @@ const { showOnlyTodayNext = false } = Astro.props;
         </div>
 
         <div id="group-05" class="hero-card">
-          <div style="display:flex;flex-direction:column;gap:1rem;">
+          <div style="display:flex;flex-direction:column;gap:1.2rem;">
             <div style="display:flex;align-items:center;justify-content:space-between;">
-              <div class="badge-roadmap">
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#71717a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 16 14"/></svg>
-                Later
+              <div style="display:flex;align-items:center;gap:0.75rem;">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#a78bfa" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+                <span class="badge-tag-gray">Later</span>
               </div>
               <span style="font-size:0.7rem;color:#52525b;font-family:'Fira Code',monospace;">GROUP 05</span>
             </div>
@@ -239,7 +166,7 @@ const { showOnlyTodayNext = false } = Astro.props;
               Multi-agent system deployment, AI agent lifecycle management, security policies, and governance.
             </p>
 
-            <div style="display:flex;flex-wrap:wrap;gap:0.4rem;margin-top:0.5rem;">
+            <div style="display:flex;flex-wrap:wrap;gap:0.4rem;margin-top:0.25rem;">
               {["Multi-agent systems", "Agent lifecycle", "Security & governance", "Policy enforcement", "Fleet retirement"].map(item => (
                 <span class="feature-chip soon-chip">{item}</span>
               ))}
@@ -259,11 +186,11 @@ const { showOnlyTodayNext = false } = Astro.props;
         </div>
 
         <div id="group-06" class="hero-card">
-          <div style="display:flex;flex-direction:column;gap:1rem;">
+          <div style="display:flex;flex-direction:column;gap:1.2rem;">
             <div style="display:flex;align-items:center;justify-content:space-between;">
-              <div class="badge-roadmap">
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#71717a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 16 14"/></svg>
-                Later
+              <div style="display:flex;align-items:center;gap:0.75rem;">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#a78bfa" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><line x1="12" y1="3" x2="12" y2="6"/><line x1="12" y1="18" x2="12" y2="21"/><line x1="4.22" y1="4.22" x2="6.34" y2="6.34"/><line x1="17.66" y1="17.66" x2="19.78" y2="19.78"/><line x1="3" y1="12" x2="6" y2="12"/><line x1="18" y1="12" x2="21" y2="12"/><line x1="4.22" y1="19.78" x2="6.34" y2="17.66"/><line x1="17.66" y1="6.34" x2="19.78" y2="4.22"/></svg>
+                <span class="badge-tag-gray">Later</span>
               </div>
               <span style="font-size:0.7rem;color:#52525b;font-family:'Fira Code',monospace;">GROUP 06</span>
             </div>
@@ -273,7 +200,7 @@ const { showOnlyTodayNext = false } = Astro.props;
               Extensible platform integrations, marketplace, REST APIs, and no-code tools.
             </p>
 
-            <div style="display:flex;flex-wrap:wrap;gap:0.4rem;margin-top:0.5rem;">
+            <div style="display:flex;flex-wrap:wrap;gap:0.4rem;margin-top:0.25rem;">
               {["Marketplace", "REST APIs & SDKs", "No-code web interface", "Plugin ecosystem"].map(item => (
                 <span class="feature-chip soon-chip">{item}</span>
               ))}
@@ -289,56 +216,146 @@ const { showOnlyTodayNext = false } = Astro.props;
         </div>
 
       </div>
+    ) : (
+      /* Single Rotating Display Card + Interactive 6-Segment Progress Track */
+      <div class="roadmap-panel" id="roadmapPanel">
+        <div class="roadmap-card">
+          <div style="display:flex;align-items:center;justify-content:space-between;width:100%;margin-bottom:1.25rem;">
+            <div class="roadmap-icon" id="roadmapIcon"></div>
+            <span class="roadmap-status" id="roadmapStatus">TODAY</span>
+          </div>
+          <h3 id="roadmapTitle" style="font-size:1.4rem;font-weight:700;color:#ffffff;margin:0 0 0.65rem;letter-spacing:-0.015em;">Deploy & Diagnose</h3>
+          <p id="roadmapDesc" style="font-size:0.95rem;line-height:1.65;color:#a1a1aa;margin:0;">Go from AI-generated code to a live, running application in seconds.</p>
+        </div>
+
+        <div class="roadmap-track" id="roadmapTrack"></div>
+        <p class="roadmap-hint">hover a segment to preview · click to jump</p>
+        
+        <div style="margin-top:1.5rem;text-align:center;">
+          <a href="/product/" class="arch-product-link">
+            View full product architecture →
+          </a>
+        </div>
+      </div>
     )}
 
   </div>
 </section>
 
 <style>
-  .compact-tiles-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.25rem;
+  .roadmap-panel {
+    background: #0d0d0d;
+    border: 1px solid #1f1f1f;
+    border-radius: 14px;
+    padding: 2.75rem 3rem;
+    position: relative;
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5);
+    transition: border-color 0.25s ease, box-shadow 0.25s ease;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .roadmap-panel:hover {
+    border-color: #a78bfa;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), 0 0 30px rgba(124, 58, 237, 0.18);
+  }
+
+  .roadmap-card {
+    display: flex;
+    flex-direction: column;
+    min-height: 140px;
+    text-align: left;
     width: 100%;
   }
 
-  .compact-tile {
-    background: #0a0a0a;
-    border: 1px solid #1f1f1f;
-    border-radius: 12px;
-    padding: 1.35rem 1.5rem;
+  .roadmap-icon {
     display: flex;
-    flex-direction: column;
-    gap: 1rem;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .roadmap-status {
+    font-family: 'Fira Code', 'Geist Mono', monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    color: #a78bfa;
+    font-weight: 600;
+    text-transform: uppercase;
+  }
+
+  .roadmap-track {
+    display: flex;
+    gap: 12px;
+    margin-top: 2rem;
+    width: 100%;
+    align-items: center;
+    cursor: pointer;
+  }
+
+  :global(.roadmap-segment) {
+    height: 4px;
+    flex: 1;
+    background: #2e2e35 !important;
+    border-radius: 9999px;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    outline: none;
+    pointer-events: auto;
+    transition: background 0.2s ease;
+  }
+
+  :global(.roadmap-segment:hover), :global(.roadmap-segment:focus-visible) {
+    background: #4a4a54 !important;
+  }
+
+  :global(.roadmap-segment.done) {
+    background: #a78bfa !important;
+  }
+
+  :global(.roadmap-segment .fill) {
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    height: 100%;
+    width: 0%;
+    background: #a78bfa;
+    border-radius: 9999px;
+    pointer-events: none;
+  }
+
+  .roadmap-hint {
+    font-family: 'Fira Code', 'Geist Mono', monospace;
+    font-size: 10.5px;
+    opacity: 0.8;
+    margin-top: 14px;
+    margin-bottom: 0;
+    color: #71717a;
+    text-align: center;
+    letter-spacing: 0.02em;
+  }
+
+  .arch-product-link {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #a78bfa;
     text-decoration: none;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
-    transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+    transition: color 0.2s ease, opacity 0.2s ease;
   }
 
-  .compact-tile:hover {
-    transform: translateY(-2px);
-    border-color: rgba(167, 139, 250, 0.45);
-    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.6), 0 0 20px rgba(139, 92, 246, 0.12);
+  .arch-product-link:hover {
+    color: #c4b5fd;
+    text-decoration: underline;
   }
 
-  .compact-tile-today {
-    border-color: rgba(167, 139, 250, 0.35);
-    background: linear-gradient(180deg, rgba(167, 139, 250, 0.04) 0%, #0a0a0a 100%);
-  }
-
-  .compact-tile-next {
-    border-color: rgba(167, 139, 250, 0.35);
-    background: linear-gradient(180deg, rgba(167, 139, 250, 0.04) 0%, #0a0a0a 100%);
-  }
-
-  .hero-cards-grid {
+  .detailed-cards-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 1.5rem;
+    width: 100%;
   }
 
   .hero-card {
-    background: #0a0a0a;
+    background: #0d0d0d;
     border: 1px solid #1f1f1f;
     border-radius: 14px;
     padding: 1.75rem;
@@ -346,81 +363,14 @@ const { showOnlyTodayNext = false } = Astro.props;
     flex-direction: column;
     justify-content: space-between;
     gap: 1.75rem;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4), 0 0 20px rgba(139, 92, 246, 0.04);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
     transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
   }
 
-  .hero-card-live {
-    border-color: rgba(167, 139, 250, 0.4);
-    background: linear-gradient(180deg, rgba(167, 139, 250, 0.04) 0%, #0a0a0a 100%);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 25px rgba(139, 92, 246, 0.12);
-  }
-
-  .hero-card-next {
-    border-color: rgba(167, 139, 250, 0.4);
-    background: linear-gradient(180deg, rgba(167, 139, 250, 0.04) 0%, #0a0a0a 100%);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 25px rgba(139, 92, 246, 0.12);
-  }
-
   .hero-card:hover {
-    transform: translateY(-2px);
-    border-color: rgba(167, 139, 250, 0.55);
-    box-shadow: 0 14px 40px rgba(0, 0, 0, 0.6), 0 0 25px rgba(139, 92, 246, 0.18);
-  }
-
-  .badge-live {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.45rem;
-    padding: 0.25rem 0.7rem;
-    border-radius: 9999px;
-    background: rgba(167, 139, 250, 0.12);
-    border: 1px solid rgba(167, 139, 250, 0.5);
-    color: #a78bfa;
-    font-size: 0.72rem;
-    font-weight: 700;
-  }
-
-  .badge-next {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.45rem;
-    padding: 0.25rem 0.7rem;
-    border-radius: 9999px;
-    background: rgba(167, 139, 250, 0.12);
-    border: 1px solid rgba(167, 139, 250, 0.5);
-    color: #a78bfa;
-    font-size: 0.72rem;
-    font-weight: 700;
-  }
-
-  .live-dot {
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: #a78bfa;
-    box-shadow: 0 0 8px #a78bfa;
-  }
-
-  .next-dot {
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: #a78bfa;
-    box-shadow: 0 0 8px #a78bfa;
-  }
-
-  .badge-roadmap {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.4rem;
-    padding: 0.25rem 0.65rem;
-    border-radius: 9999px;
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid #2a2a2a;
-    color: #a1a1aa;
-    font-size: 0.72rem;
-    font-weight: 500;
+    transform: translateY(-3px);
+    border-color: #a78bfa;
+    box-shadow: 0 14px 40px rgba(0, 0, 0, 0.6), 0 0 25px rgba(124, 58, 237, 0.18);
   }
 
   .feature-chip {
@@ -430,13 +380,7 @@ const { showOnlyTodayNext = false } = Astro.props;
     border-radius: 5px;
   }
 
-  .live-chip {
-    background: rgba(167, 139, 250, 0.05);
-    border: 1px solid rgba(167, 139, 250, 0.25);
-    color: #c4b5fd;
-  }
-
-  .next-chip {
+  .live-chip, .next-chip {
     background: rgba(167, 139, 250, 0.05);
     border: 1px solid rgba(167, 139, 250, 0.25);
     color: #c4b5fd;
@@ -456,21 +400,190 @@ const { showOnlyTodayNext = false } = Astro.props;
     overflow: hidden;
   }
 
+  .badge-live-dot {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    font-size: 0.78rem;
+    font-weight: 600;
+    font-family: 'Fira Code', 'Geist Mono', monospace;
+    color: #a78bfa;
+  }
+
+  .badge-tag-gray {
+    font-size: 0.78rem;
+    font-weight: 500;
+    font-family: 'Fira Code', 'Geist Mono', monospace;
+    color: #71717a;
+  }
+
+  .pulse-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #a78bfa;
+    box-shadow: 0 0 8px #a78bfa;
+    animation: dotPulse 2s infinite ease-in-out;
+  }
+
+  @keyframes dotPulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.4; transform: scale(0.85); }
+  }
+
   @media (max-width: 992px) {
-    .compact-tiles-grid {
-      grid-template-columns: repeat(2, 1fr);
-    }
-    .hero-cards-grid {
-      grid-template-columns: repeat(2, 1fr);
-    }
+    .detailed-cards-grid { grid-template-columns: repeat(2, 1fr); }
   }
 
   @media (max-width: 640px) {
-    .compact-tiles-grid {
-      grid-template-columns: 1fr;
-    }
-    .hero-cards-grid {
-      grid-template-columns: 1fr;
-    }
+    .detailed-cards-grid { grid-template-columns: 1fr; }
+    .roadmap-panel { padding: 1.75rem 1.5rem; }
   }
 </style>
+
+<script is:inline>
+  function initRoadmapScript() {
+    const stages = [
+      { status: 'TODAY', title: 'Deploy & Diagnose', desc: 'Go from AI-generated code to a live, running application in seconds.', icon: `<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#a78bfa" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>` },
+      { status: 'NEXT', title: 'Agent Access & MCP', desc: 'Deployment target agents call directly, with per-agent permissions.', icon: `<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#a78bfa" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/><path d="M10 17.5h4M17.5 10v4M6.5 14v-4a3.5 3.5 0 0 1 3.5-3.5h4"/></svg>` },
+      { status: 'LATER', title: 'Monitoring & Observability', desc: 'Deep application understanding and real-time telemetry.', icon: `<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#a78bfa" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>` },
+      { status: 'LATER', title: 'Scaling & Optimization', desc: 'Autonomous scaling, auto-sleep, auto-retirement.', icon: `<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#a78bfa" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/><line x1="2" y1="20" x2="22" y2="20"/></svg>` },
+      { status: 'LATER', title: 'Governance & Systems', desc: 'Multi-agent lifecycle, security policy, fleet retirement.', icon: `<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#a78bfa" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>` },
+      { status: 'LATER', title: 'Platform & Ecosystem', desc: 'Marketplace, REST APIs & SDKs, plugin ecosystem.', icon: `<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#a78bfa" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><line x1="12" y1="3" x2="12" y2="6"/><line x1="12" y1="18" x2="12" y2="19.78"/><line x1="3" y1="12" x2="6" y2="12"/><line x1="18" y1="12" x2="21" y2="12"/></svg>` },
+    ];
+
+    let active = 0;
+    let hovering = null;
+    let paused = false;
+    let fillProgress = 0;
+    const ADVANCE_MS = 3200;
+    const TICK_MS = 40;
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    const panel = document.getElementById('roadmapPanel');
+    const track = document.getElementById('roadmapTrack');
+    const iconEl = document.getElementById('roadmapIcon');
+    const statusEl = document.getElementById('roadmapStatus');
+    const titleEl = document.getElementById('roadmapTitle');
+    const descEl = document.getElementById('roadmapDesc');
+
+    if (!panel || !track || !iconEl) return;
+
+    track.innerHTML = '';
+
+    stages.forEach((s, i) => {
+      const seg = document.createElement('div');
+      seg.className = 'roadmap-segment';
+      seg.tabIndex = 0;
+      seg.setAttribute('role', 'button');
+      seg.setAttribute('aria-label', `Show ${s.title}`);
+      
+      const fill = document.createElement('div');
+      fill.className = 'fill';
+      seg.appendChild(fill);
+
+      const previewStage = () => {
+        hovering = i;
+        render(i);
+      };
+
+      seg.addEventListener('mouseenter', previewStage);
+      seg.addEventListener('mouseover', previewStage);
+      
+      seg.addEventListener('mouseleave', () => { 
+        hovering = null; 
+        render(active); 
+      });
+
+      seg.addEventListener('click', (e) => {
+        e.stopPropagation();
+        jumpTo(i);
+      });
+
+      seg.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') { 
+          e.preventDefault(); 
+          jumpTo(i); 
+        }
+      });
+
+      track.appendChild(seg);
+    });
+
+    // Track-wide position-mapped click handler
+    track.addEventListener('click', (e) => {
+      const rect = track.getBoundingClientRect();
+      const clickX = e.clientX - rect.left;
+      const ratio = Math.max(0, Math.min(1, clickX / rect.width));
+      const clickedIndex = Math.min(stages.length - 1, Math.floor(ratio * stages.length));
+      jumpTo(clickedIndex);
+    });
+
+    panel.addEventListener('mouseenter', () => {
+      paused = true;
+    });
+    
+    panel.addEventListener('mouseleave', () => {
+      paused = false;
+      hovering = null;
+      render(active);
+    });
+
+    function render(i) {
+      const s = stages[i];
+      iconEl.innerHTML = s.icon;
+      statusEl.textContent = s.status;
+      titleEl.textContent = s.title;
+      descEl.textContent = s.desc;
+      updateTrackVisual();
+    }
+
+    function updateTrackVisual() {
+      [...track.children].forEach((seg, i) => {
+        const fill = seg.querySelector('.fill');
+        if (!fill) return;
+
+        if (i < active) {
+          seg.classList.add('done');
+          fill.style.width = '100%';
+        } else if (i === active) {
+          seg.classList.remove('done');
+          fill.style.width = reducedMotion ? '100%' : `${fillProgress}%`;
+        } else {
+          seg.classList.remove('done');
+          fill.style.width = '0%';
+        }
+      });
+    }
+
+    function jumpTo(i) {
+      active = i;
+      fillProgress = 0;
+      hovering = null;
+      render(active);
+    }
+
+    function tick() {
+      if (!paused && !reducedMotion) {
+        fillProgress += (TICK_MS / ADVANCE_MS) * 100;
+        if (fillProgress >= 100) {
+          fillProgress = 0;
+          active = (active + 1) % stages.length;
+          if (hovering === null) render(active);
+        } else if (hovering === null) {
+          updateTrackVisual();
+        }
+      }
+      requestAnimationFrame(() => setTimeout(tick, TICK_MS));
+    }
+
+    render(active);
+    if (!reducedMotion) tick();
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initRoadmapScript);
+  } else {
+    initRoadmapScript();
+  }
+</script>
