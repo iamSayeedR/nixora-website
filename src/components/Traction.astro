@@ -20,11 +20,7 @@ const stats = [
     label: "Early Access Signups",
     color: "#a78bfa",
   },
-  {
-    value: "$0",
-    label: "Revenue · Pre-seed",
-    color: "#52525b",
-  },
+
 ];
 ---
 
@@ -33,12 +29,15 @@ const stats = [
 
   <div class="traction-container">
     <p class="traction-caption">
-      Building since July 2026 · CLI launched August 2026
+      Building since September 2026 · CLI launched August 2026
     </p>
 
     <div class="traction-grid">
       {stats.map((stat) => (
         <div class="stat-card">
+        {stat.label === "Early Access Signups" && (
+  <div class="stat-highlight-sweep"></div>
+)}
           <div class="stat-number-wrap">
             <div
               class="stat-number"
@@ -163,7 +162,7 @@ const stats = [
 
   .traction-grid {
     display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 1px;
     width: 100%;
     overflow: hidden;
@@ -278,4 +277,59 @@ const stats = [
       transition: none;
     }
   }
+
+  .stat-card {
+  position: relative;
+  isolation: isolate;
+}
+
+.stat-highlight-sweep {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  border: 1px solid transparent;
+  border-radius: inherit;
+  background:
+    linear-gradient(
+      120deg,
+      transparent 20%,
+      rgba(167, 139, 250, 0.35),
+      transparent 80%
+    ) border-box;
+  background-size: 200% 100%;
+  background-position: 200% 0;
+  animation: stat-highlight-sweep 4.5s linear infinite;
+  z-index: 0;
+}
+
+.stat-card:has(.stat-highlight-sweep) {
+  background-color: rgba(125, 87, 239, 0.06);
+}
+
+.stat-card > * {
+  position: relative;
+  z-index: 1;
+}
+
+.stat-card .stat-highlight-sweep {
+  position: absolute;
+  z-index: 0;
+}
+
+@keyframes stat-highlight-sweep {
+  from {
+    background-position: 200% 0;
+  }
+
+  to {
+    background-position: -200% 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .stat-highlight-sweep {
+    animation: none;
+    background-position: center;
+  }
+}
 </style>
