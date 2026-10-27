@@ -1,179 +1,281 @@
+
 ---
+const stats = [
+  {
+    value: "65",
+    target: "65",
+    label: "CLI Installs",
+    color: "#ffffff",
+  },
+  {
+    value: "47",
+    target: "47",
+    label: "Real Deployments",
+    color: "#a78bfa",
+  },
+  {
+    value: "150+",
+    target: "150",
+    suffix: "+",
+    label: "Early Access Signups",
+    color: "#a78bfa",
+  },
+  {
+    value: "$0",
+    label: "Revenue · Pre-seed",
+    color: "#52525b",
+  },
+];
 ---
-<section id="traction" style="padding:4.5rem 2rem;text-align:center;position:relative;overflow:hidden;">
-  <div style="position:absolute;inset:0;background:radial-gradient(ellipse 60% 40% at 50% 100%,rgba(139,92,246,0.06),transparent 65%);pointer-events:none;"></div>
-  <div style="max-width:1050px;margin:0 auto;position:relative;z-index:1;">
-    <p style="font-size:0.72rem;color:#3f3f46;text-transform:uppercase;letter-spacing:0.14em;font-weight:700;margin:0 0 3rem;">
+
+<section id="traction" class="traction-section">
+  <div class="traction-tint"></div>
+
+  <div class="traction-container">
+    <p class="traction-caption">
       Building since July 2026 · CLI launched August 2026
     </p>
 
-    <!-- Stat Cards Grid (5 Columns on Desktop) -->
-    <div class="traction-grid" style="display:grid;grid-template-columns:repeat(5,1fr);gap:1px;border:1px solid #1f1f1f;border-radius:14px;overflow:hidden;background:#1f1f1f;box-shadow:0 16px 40px rgba(0,0,0,0.5), 0 0 30px rgba(139,92,246,0.06);">
+    <div class="traction-grid">
+      {stats.map((stat) => (
+        <div class="stat-card">
+          <div class="stat-number-wrap">
+            <div
+              class="stat-number"
+              data-target={stat.target}
+              data-suffix={stat.suffix || ""}
+              style={`color: ${stat.color}`}
+            >
+              {stat.value}
+            </div>
+          </div>
 
-      <!-- Stat 1: CLI Installs -->
-      <div class="stat-card">
-        <div style="height:90px;display:flex;align-items:center;justify-content:center;">
-          <div class="stat-number" data-target="65" style="color:#fff;font-size:2.2rem;font-weight:800;">65</div>
+          <div class="stat-label">{stat.label}</div>
         </div>
-        <div style="font-size:0.72rem;color:#52525b;text-transform:uppercase;letter-spacing:0.1em;font-weight:700;">CLI Installs</div>
-      </div>
-
-      <!-- Stat 2: Real Deployments -->
-      <div class="stat-card">
-        <div style="height:90px;display:flex;align-items:center;justify-content:center;">
-          <div class="stat-number" data-target="47" style="color:#a78bfa;font-size:2.2rem;font-weight:800;">47</div>
-        </div>
-        <div style="font-size:0.72rem;color:#52525b;text-transform:uppercase;letter-spacing:0.1em;font-weight:700;">Real Deployments</div>
-      </div>
-
-      <!-- Stat 3: 100+ Early Access Signups -->
-      <div class="stat-card">
-        <div style="height:90px;display:flex;align-items:center;justify-content:center;">
-          <div class="stat-number" data-target="100" data-suffix="+" style="color:#a78bfa;font-size:2.2rem;font-weight:800;">100+</div>
-        </div>
-        <div style="font-size:0.72rem;color:#52525b;text-transform:uppercase;letter-spacing:0.1em;font-weight:700;">Early Access Signups</div>
-      </div>
-
-      <!-- Stat 4: $0 Revenue -->
-      <div class="stat-card">
-        <div style="height:90px;display:flex;align-items:center;justify-content:center;">
-          <div style="color:#52525b;font-size:2.2rem;font-weight:800;letter-spacing:-0.04em;line-height:1;">$0</div>
-        </div>
-        <div style="font-size:0.72rem;color:#3f3f46;text-transform:uppercase;letter-spacing:0.1em;font-weight:700;">Revenue · Pre-seed</div>
-      </div>
-
-      <!-- Stat 5: $450K SAFE Raise Target -->
-      <div class="stat-card">
-        <div style="position:relative;width:90px;height:90px;display:grid;place-items:center;">
-          <svg viewBox="0 0 100 100" width="90" height="90" style="position:absolute;inset:0;transform:rotate(-90deg);">
-            <circle cx="50" cy="50" r="40" stroke="#1f1f1f" stroke-width="3" fill="none"/>
-            <circle id="ring-450" cx="50" cy="50" r="40" stroke="url(#grad-purple3)"
-              stroke-width="4" fill="none"
-              stroke-dasharray="251.33" stroke-dashoffset="25.13"
-              stroke-linecap="round"/>
-            <defs>
-              <linearGradient id="grad-purple3" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stop-color="#52525b"/>
-                <stop offset="100%" stop-color="#a78bfa"/>
-              </linearGradient>
-            </defs>
-          </svg>
-          <div class="stat-number" data-target="450" data-prefix="$" data-suffix="K" data-ring="ring-450" data-max="500" style="color:#a78bfa;font-size:1.125rem;font-weight:700;letter-spacing:-0.05em;">$450K</div>
-        </div>
-        <div style="font-size:0.72rem;color:#52525b;text-transform:uppercase;letter-spacing:0.1em;font-weight:700;">SAFE Raise Target</div>
-      </div>
-
+      ))}
     </div>
   </div>
 </section>
 
+<script>
+  const tractionSection = document.querySelector("#traction");
+
+  if (tractionSection) {
+    const counters =
+      tractionSection.querySelectorAll<HTMLElement>(".stat-number[data-target]");
+
+    const reducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
+
+    function setFinalValue(el: HTMLElement) {
+      el.textContent =
+        el.dataset.target + (el.dataset.suffix || "");
+    }
+
+    function animateCounter(el: HTMLElement) {
+      const target = Number(el.dataset.target || 0);
+      const suffix = el.dataset.suffix || "";
+
+      if (reducedMotion) {
+        setFinalValue(el);
+        return;
+      }
+
+      const duration = 1400;
+      const startTime = performance.now();
+
+      function update(now: number) {
+        const progress = Math.min((now - startTime) / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 3);
+        const current = Math.round(eased * target);
+
+        el.textContent = current + suffix;
+
+        if (progress < 1) {
+          requestAnimationFrame(update);
+        }
+      }
+
+      requestAnimationFrame(update);
+    }
+
+    if (
+      reducedMotion ||
+      typeof IntersectionObserver === "undefined"
+    ) {
+      counters.forEach(setFinalValue);
+    } else {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              animateCounter(entry.target as HTMLElement);
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.2 },
+      );
+
+      counters.forEach((counter) => observer.observe(counter));
+    }
+  }
+</script>
+
 <style>
+  .traction-section {
+    position: relative;
+    overflow: hidden;
+    padding: 4.5rem 1.25rem;
+    text-align: center;
+    box-sizing: border-box;
+  }
+
+  .traction-tint {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+      ellipse 60% 40% at 50% 100%,
+      rgba(139, 92, 246, 0.06),
+      transparent 65%
+    );
+    pointer-events: none;
+  }
+
+  .traction-container {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 1150px;
+    margin: 0 auto;
+  }
+
+  .traction-caption {
+    margin: 0 0 3rem;
+    color: #52525b;
+    font-size: 0.72rem;
+    font-weight: 700;
+    line-height: 1.7;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+
+  .traction-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 1px;
+    width: 100%;
+    overflow: hidden;
+    border: 1px solid #1f1f1f;
+    border-radius: 14px;
+    background: #1f1f1f;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+  }
+
   .stat-card {
-    background: #111;
-    padding: 2.5rem 0.75rem;
+    min-width: 0;
+    min-height: 190px;
+    padding: 2rem 1rem;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 1.25rem;
+    justify-content: center;
+    gap: 1rem;
+    background: #111;
     transition: background 0.25s ease;
   }
 
   .stat-card:hover {
-    background: #151515;
+    background: #141414;
   }
 
-  @media (max-width: 992px) {
-    .traction-grid {
-      grid-template-columns: repeat(3, 1fr) !important;
+  .stat-number-wrap {
+    min-height: 76px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .stat-number {
+    font-size: clamp(1.75rem, 3vw, 2.2rem);
+    font-weight: 800;
+    line-height: 1.2;
+    letter-spacing: -0.04em;
+    overflow-wrap: anywhere;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .stat-label {
+    max-width: 180px;
+    color: #71717a;
+    font-size: 0.72rem;
+    font-weight: 700;
+    line-height: 1.6;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  @media (min-width: 640px) {
+    .traction-section {
+      padding: 5rem 2rem;
+    }
+
+    .stat-card {
+      min-height: 210px;
+      padding: 2.25rem 1.25rem;
+    }
+
+    .stat-number-wrap {
+      min-height: 90px;
     }
   }
 
-  @media (max-width: 640px) {
+  @media (max-width: 800px) {
     .traction-grid {
-      grid-template-columns: repeat(2, 1fr) !important;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .stat-card {
+      min-height: 175px;
+    }
+
+    .stat-card:nth-child(odd) {
+      border-right: 1px solid #1f1f1f;
+    }
+  }
+
+  @media (max-width: 420px) {
+    .traction-section {
+      padding: 3.5rem 1rem;
+    }
+
+    .traction-caption {
+      max-width: 300px;
+      margin: 0 auto 2rem;
+      font-size: 0.65rem;
+    }
+
+    .stat-card {
+      min-height: 155px;
+      padding: 1.5rem 0.5rem;
+      gap: 0.75rem;
+    }
+
+    .stat-number {
+      font-size: 1.8rem;
+    }
+
+    .stat-label {
+      font-size: 0.65rem;
+      letter-spacing: 0.07em;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .stat-card {
+      transition: none;
     }
   }
 </style>
-
-<script>
-  const CIRCUMFERENCE = 2 * Math.PI * 40; // 251.33
-  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-  function setStaticStat(el: HTMLElement) {
-    const target = parseInt(el.dataset.target || '0', 10);
-    const max    = parseInt(el.dataset.max    || '100', 10);
-    const prefix = el.dataset.prefix || '';
-    const suffix = el.dataset.suffix || '';
-    const ringId = el.dataset.ring;
-    const ring   = ringId ? document.getElementById(ringId) as SVGCircleElement | null : null;
-
-    el.textContent = prefix + target + suffix;
-    if (ring) {
-      const fill   = (target / max) * CIRCUMFERENCE;
-      const offset = CIRCUMFERENCE - fill;
-      ring.style.strokeDashoffset = String(Math.max(offset, 0));
-    }
-  }
-
-  function animateStat(el: HTMLElement) {
-    const target = parseInt(el.dataset.target || '0', 10);
-    const max    = parseInt(el.dataset.max    || '100', 10);
-    const prefix = el.dataset.prefix || '';
-    const suffix = el.dataset.suffix || '';
-    const ringId = el.dataset.ring;
-    const ring   = ringId ? document.getElementById(ringId) as SVGCircleElement | null : null;
-
-    if (target === 0) {
-      setStaticStat(el);
-      return;
-    }
-
-    const duration  = 1400;
-    const startTime = performance.now();
-
-    function update(now: number) {
-      const elapsed  = now - startTime;
-      const progress = Math.min(elapsed / duration, 1);
-      const eased    = 1 - Math.pow(1 - progress, 3); // ease-out cubic
-
-      const current = Math.round(eased * target);
-      el.textContent = prefix + current + suffix;
-
-      if (ring) {
-        const fill   = (current / max) * CIRCUMFERENCE;
-        const offset = CIRCUMFERENCE - fill;
-        ring.style.strokeDashoffset = String(Math.max(offset, 0));
-      }
-
-      if (progress < 1) requestAnimationFrame(update);
-    }
-
-    requestAnimationFrame(update);
-  }
-
-  function initCounters() {
-    const counters = document.querySelectorAll<HTMLElement>('.stat-number[data-target]');
-
-    if (prefersReducedMotion || typeof IntersectionObserver === 'undefined') {
-      counters.forEach(el => setStaticStat(el));
-      return;
-    }
-
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          animateStat(entry.target as HTMLElement);
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.1 });
-
-    counters.forEach(el => observer.observe(el));
-  }
-
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initCounters);
-  } else {
-    initCounters();
-  }
-</script>

@@ -1,47 +1,68 @@
+
 ---
-const faqs = [
+const categories = [
   {
-    q: "What is Nixora?",
-    a: "Nixora is the control plane for AI-generated software and AI agents. It starts with deploying and diagnosing apps built by AI coding agents, and is being built to operate, scale, and govern them across their full lifecycle."
+    id: "fundamentals",
+    label: "Fundamentals",
+    questions: [
+      {
+        q: "What is Nixora?",
+        a: "Nixora is the control plane for AI-generated software and AI agents. It starts with deploying and diagnosing apps built by AI coding agents, and is being built to operate, scale, and govern them across their full lifecycle."
+      },
+      {
+        q: "What does Nixora do?",
+        a: "Today, Nixora deploys AI-built apps to managed cloud infrastructure with HTTPS and hosting, and diagnoses why deployments fail. Next, it becomes a deployment target your AI agents call directly through an MCP server. Over time, we're building toward monitoring, scaling, governance, and multi-agent systems."
+      },
+      {
+        q: "Who is Nixora for?",
+        a: "Nixora is built for software engineers, solo technical founders, AI developers, and engineering teams building applications using AI coding tools like Claude, Cursor, Codex, and Gemini."
+      }
+    ]
   },
   {
-    q: "What does Nixora do?",
-    a: "Today, Nixora deploys AI-built apps to managed cloud infrastructure with HTTPS and hosting, and diagnoses why deployments fail. Next, it becomes a deployment target your AI agents call directly through an MCP server. Over time, we're building toward monitoring, scaling, governance, and multi-agent systems."
+    id: "deployment",
+    label: "Deployment",
+    questions: [
+      {
+        q: "How does Nixora deployment work?",
+        a: "Nixora deployment is currently in closed access while we complete core infrastructure work. Join the waitlist to reserve your spot. Once approved, deployment is a single guided CLI step that auto-detects your app's runtime, containerizes it, provisions compute, attaches HTTPS, and provides a live URL."
+      },
+      {
+        q: "Is Nixora a deployment platform?",
+        a: "Deployment is where Nixora starts, not where it stops. Today the live capabilities are deployment and diagnosis through the CLI. Lifecycle management, agent-native access, and governance are on the roadmap."
+      },
+      {
+        q: "Can I deploy with Nixora today?",
+        a: "The CLI is live and has shipped real deployments, but access is currently closed while we complete infrastructure work. Join the waitlist and we'll reach out when your spot opens."
+      }
+    ]
   },
   {
-    q: "Who is Nixora for?",
-    a: "Nixora is built for software engineers, solo technical founders, AI developers, and engineering teams building applications using AI coding tools like Claude, Cursor, Codex, and Gemini."
-  },
-  {
-    q: "How does Nixora deployment work?",
-    a: "Nixora deployment is currently in closed access while we complete core infrastructure work. Join the waitlist to reserve your spot. Once approved, deployment is a single guided CLI step that auto-detects your app's runtime, containerizes it, provisions compute, attaches HTTPS, and provides a live URL."
-  },
-  {
-    q: "Is Nixora a deployment platform?",
-    a: "Deployment is where Nixora starts, not where it stops. Today the live capabilities are deployment and diagnosis through the CLI. Lifecycle management, agent-native access, and governance are on the roadmap."
-  },
-  {
-    q: "Does Nixora have a web dashboard?",
-    a: "Not yet. Currently, Nixora's live deployment capability is CLI-based. A cloud web dashboard and management console are planned on our product roadmap."
-  },
-  {
-    q: "Can I deploy with Nixora today?",
-    a: "The CLI is live and has shipped real deployments, but access is currently closed while we complete infrastructure work. Join the waitlist and we'll reach out when your spot opens."
-  },
-  {
-    q: "Where is Nixora headed?",
-    a: "Nixora is being built as the control plane for the full lifecycle of AI-generated software and AI agents: deploy, diagnose, operate, scale, and govern. Deployment and diagnosis are live today. Next is agent-native access via MCP, including several agents working with your infrastructure at once. Later, we're working toward autonomous scaling, governance, and multi-agent system deployment. We mark each item clearly so you know what's shipped and what isn't."
-  },
-  {
-    q: "Can multiple AI agents use Nixora at once?",
-    a: "That's the direction of our MCP interface, which is in development. The goal is for agents like Claude Code, Cursor, and Codex to deploy and inspect through Nixora with their own permissions and a log of every action. It isn't live yet."
+    id: "roadmap",
+    label: "Roadmap & Agents",
+    questions: [
+      {
+        q: "Does Nixora have a web dashboard?",
+        a: "Not yet. Currently, Nixora's live deployment capability is CLI-based. A cloud web dashboard and management console are planned on our product roadmap."
+      },
+      {
+        q: "Where is Nixora headed?",
+        a: "Nixora is being built as the control plane for the full lifecycle of AI-generated software and AI agents: deploy, diagnose, operate, scale, and govern. Deployment and diagnosis are live today. Next is agent-native access via MCP, including several agents working with your infrastructure at once. Later, we're working toward autonomous scaling, governance, and multi-agent system deployment. We mark each item clearly so you know what's shipped and what isn't."
+      },
+      {
+        q: "Can multiple AI agents use Nixora at once?",
+        a: "That's the direction of our MCP interface, which is in development. The goal is for agents like Claude Code, Cursor, and Codex to deploy and inspect through Nixora with their own permissions and a log of every action. It isn't live yet."
+      }
+    ]
   }
 ];
+
+const faqs = categories.flatMap((category) => category.questions);
 
 const faqSchema = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
-  "mainEntity": faqs.map(item => ({
+  "mainEntity": faqs.map((item) => ({
     "@type": "Question",
     "name": item.q,
     "acceptedAnswer": {
@@ -55,40 +76,90 @@ const faqSchema = {
 <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
 
 <section id="faq" style="padding:5.5rem 2rem;position:relative;overflow:hidden;">
-  <!-- Purple radial background depth wash (matching hero layout) -->
+  <!-- Existing purple radial background -->
   <div style="position:absolute;top:-40px;left:50%;transform:translateX(-50%);width:100%;max-width:800px;height:240px;background:radial-gradient(ellipse 70% 45% at 50% 0%, rgba(139,92,246,0.12), transparent 70%);pointer-events:none;z-index:0;"></div>
 
   <div style="max-width:850px;margin:0 auto;position:relative;z-index:1;display:flex;flex-direction:column;gap:3.5rem;">
-    
-    <!-- Section Header -->
+
+    <!-- Existing Section Header -->
     <div style="text-align:center;display:flex;flex-direction:column;align-items:center;gap:0.75rem;">
-      <div style="font-size:0.72rem;color:#a78bfa;text-transform:uppercase;letter-spacing:0.12em;font-weight:700;font-family:'Fira Code',monospace;">Frequently Asked Questions</div>
-      <h2 class="section-headline">Everything you need to know about <span class="accent">Nixora</span></h2>
+      <div style="font-size:0.72rem;color:#a78bfa;text-transform:uppercase;letter-spacing:0.12em;font-weight:700;font-family:'Fira Code',monospace;">
+        Frequently Asked Questions
+      </div>
+
+      <h2 class="section-headline">
+        Nixora, <span class="accent">explained</span>
+      </h2>
+
       <p class="section-para" style="max-width:540px;margin:0 auto;">
         Clear, factual answers regarding Nixora's current deployment & diagnosis capabilities, cloud infrastructure, and product roadmap.
       </p>
     </div>
 
-    <!-- Accordion List -->
-    <div style="display:flex;flex-direction:column;gap:1.125rem;">
-      {faqs.map((faq, index) => (
-        <details class="faq-card" name="faq-accordion">
-          <summary class="faq-summary">
-            <div class="faq-summary-left">
-              <span class="faq-index">{(index + 1).toString().padStart(2, '0')}</span>
-              <span class="faq-question">{faq.q}</span>
-            </div>
-            <div class="faq-icon-wrapper">
-              <svg class="faq-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                <polyline points="6 9 12 15 18 9"></polyline>
-              </svg>
-            </div>
-          </summary>
+    <!-- Category Tabs -->
+    <div class="faq-categories" role="tablist" aria-label="FAQ categories">
+      {categories.map((category, index) => (
+        <button
+          type="button"
+          class:list={["faq-category-tab", index === 0 && "active"]}
+          data-category={category.id}
+          role="tab"
+          aria-selected={index === 0 ? "true" : "false"}
+          aria-controls={`faq-panel-${category.id}`}
+        >
+          {category.label}
+        </button>
+      ))}
+    </div>
 
-          <div class="faq-answer-container">
-            <p class="faq-answer" set:html={faq.a.replace(/`([^`]+)`/g, '<code>$1</code>')}></p>
+    <!-- FAQ Panels -->
+    <div class="faq-category-panels">
+      {categories.map((category, categoryIndex) => (
+        <div
+          id={`faq-panel-${category.id}`}
+          class="faq-category-panel"
+          data-panel={category.id}
+          role="tabpanel"
+          hidden={categoryIndex !== 0}
+        >
+          <div class="faq-list">
+            {category.questions.map((faq, index) => (
+              <details class="faq-card" name="faq-accordion">
+                <summary class="faq-summary">
+                 <div class="faq-summary-left">
+  <span class="faq-question">
+    {faq.q}
+  </span>
+</div>
+
+                  <div class="faq-icon-wrapper">
+                    <svg
+                      class="faq-chevron"
+                      width="18"
+                      height="18"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2.2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      aria-hidden="true"
+                    >
+                      <polyline points="6 9 12 15 18 9"></polyline>
+                    </svg>
+                  </div>
+                </summary>
+
+                <div class="faq-answer-container">
+                  <p
+                    class="faq-answer"
+                    set:html={faq.a.replace(/`([^`]+)`/g, '<code>$1</code>')}
+                  ></p>
+                </div>
+              </details>
+            ))}
           </div>
-        </details>
+        </div>
       ))}
     </div>
 
@@ -96,7 +167,116 @@ const faqSchema = {
 </section>
 
 <style>
-  /* Remove default disclosure triangle markers in all browsers */
+ 
+  <style>
+  /* FAQ Section Heading — same size as other sections */
+
+  #faq .section-headline {
+    margin: 0;
+    color: #fff;
+    font-size: 1.875rem;
+    font-weight: 600;
+    line-height: 1.25;
+    letter-spacing: -0.04em;
+  }
+
+  #faq .section-headline .accent {
+    color: var(--primary, #a78bfa);
+  }
+
+  @media (min-width: 640px) {
+    #faq .section-headline {
+      font-size: 2.25rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    #faq .section-headline {
+      font-size: 3rem;
+    }
+  }
+
+
+  /* Category Tabs */
+
+  .faq-categories {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.35rem;
+    width: fit-content;
+    max-width: 100%;
+    margin: -1.5rem auto 0;
+    padding: 0.4rem;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.02);
+  }
+
+  
+
+  .faq-category-tab {
+    position: relative;
+    padding: 0.7rem 1.25rem;
+    border: 1px solid transparent;
+    border-radius: 999px;
+    background: transparent;
+    color: rgba(255, 255, 255, 0.55);
+    font-size: 0.85rem;
+    font-weight: 500;
+    white-space: nowrap;
+    cursor: pointer;
+    transition:
+      color 0.25s ease,
+      background-color 0.25s ease,
+      border-color 0.25s ease,
+      box-shadow 0.25s ease;
+  }
+
+  .faq-category-tab:hover {
+    color: #fff;
+  }
+
+  .faq-category-tab.active {
+    color: #fff;
+    border-color: rgba(167, 139, 250, 0.35);
+    background: rgba(167, 139, 250, 0.12);
+    box-shadow: 0 0 18px rgba(139, 92, 246, 0.06);
+  }
+
+  .faq-category-tab:focus-visible {
+    outline: 2px solid #a78bfa;
+    outline-offset: 3px;
+  }
+
+  .faq-category-panel[hidden] {
+    display: none;
+  }
+
+  .faq-category-panel {
+    animation: faqPanelFadeIn 250ms ease both;
+  }
+
+  .faq-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.125rem;
+  }
+
+  @keyframes faqPanelFadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(6px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Existing FAQ Card Design */
+
   details.faq-card summary::-webkit-details-marker,
   details.faq-card summary::marker {
     display: none !important;
@@ -111,8 +291,14 @@ const faqSchema = {
     border: 1px solid rgba(255, 255, 255, 0.08);
     border-radius: 14px;
     padding: 1.35rem 1.75rem;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4), 0 0 20px rgba(139, 92, 246, 0.02);
-    transition: border-color 0.25s ease, background-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
+    box-shadow:
+      0 10px 30px rgba(0, 0, 0, 0.4),
+      0 0 20px rgba(139, 92, 246, 0.02);
+    transition:
+      border-color 0.25s ease,
+      background-color 0.25s ease,
+      box-shadow 0.25s ease,
+      transform 0.25s ease;
     cursor: pointer;
     display: block;
     width: 100%;
@@ -122,13 +308,21 @@ const faqSchema = {
   .faq-card:hover {
     border-color: rgba(167, 139, 250, 0.35);
     background: rgba(167, 139, 250, 0.04);
-    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.5), 0 0 25px rgba(139, 92, 246, 0.08);
+    box-shadow:
+      0 12px 35px rgba(0, 0, 0, 0.5),
+      0 0 25px rgba(139, 92, 246, 0.08);
   }
 
   .faq-card[open] {
     border-color: rgba(167, 139, 250, 0.5);
-    background: linear-gradient(180deg, rgba(167, 139, 250, 0.06) 0%, rgba(13, 13, 13, 0.95) 100%);
-    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6), 0 0 30px rgba(139, 92, 246, 0.14);
+    background: linear-gradient(
+      180deg,
+      rgba(167, 139, 250, 0.06) 0%,
+      rgba(13, 13, 13, 0.95) 100%
+    );
+    box-shadow:
+      0 16px 40px rgba(0, 0, 0, 0.6),
+      0 0 30px rgba(139, 92, 246, 0.14);
   }
 
   .faq-summary {
@@ -148,14 +342,12 @@ const faqSchema = {
     width: 100% !important;
   }
 
-  .faq-summary-left {
-    display: flex !important;
-    align-items: center !important;
-    gap: 1.25rem !important;
-    flex: 1;
-    min-width: 0;
-  }
-
+ .faq-summary-left {
+  display: flex !important;
+  align-items: center !important;
+  flex: 1;
+  min-width: 0;
+}
   .faq-summary:focus-visible {
     outline: 2px solid #a78bfa;
     outline-offset: 6px;
@@ -189,7 +381,10 @@ const faqSchema = {
     justify-content: center;
     color: #a1a1aa;
     flex-shrink: 0;
-    transition: background-color 0.25s ease, border-color 0.25s ease, color 0.25s ease;
+    transition:
+      background-color 0.25s ease,
+      border-color 0.25s ease,
+      color 0.25s ease;
   }
 
   .faq-card:hover .faq-icon-wrapper {
@@ -239,50 +434,124 @@ const faqSchema = {
       opacity: 0;
       transform: translateY(-4px);
     }
+
     to {
       opacity: 1;
       transform: translateY(0);
     }
   }
 
+  /* Responsive */
+
   @media (max-width: 640px) {
+    .faq-categories {
+      width: 100%;
+      gap: 0.15rem;
+      margin-top: -1.5rem;
+    }
+
+    .faq-category-tab {
+      flex: 1;
+      padding: 0.7rem 0.45rem;
+      font-size: 0.75rem;
+    }
+
     .faq-card {
       padding: 1.1rem 1.25rem;
     }
+
     .faq-summary {
       font-size: 0.975rem;
     }
+
     .faq-summary-left {
       gap: 0.85rem !important;
     }
+
     .faq-index {
       font-size: 0.75rem;
       margin-right: 0.65rem !important;
     }
   }
+
+  @media (prefers-reduced-motion: reduce) {
+    .faq-category-tab,
+    .faq-category-panel,
+    .faq-card,
+    .faq-icon-wrapper,
+    .faq-chevron {
+      animation: none !important;
+      transition: none !important;
+    }
+  }
 </style>
 
 <script>
-  function setupSingleOpenAccordion() {
-    const detailsList = document.querySelectorAll<HTMLDetailsElement>('details.faq-card');
-    
-    detailsList.forEach(target => {
-      target.addEventListener('click', (e) => {
-        const summary = target.querySelector('summary');
-        if (summary && summary.contains(e.target as Node)) {
-          detailsList.forEach(other => {
+  function setupFAQ() {
+    const faqSections = document.querySelectorAll<HTMLElement>("#faq");
+
+    faqSections.forEach((section) => {
+      const tabs = section.querySelectorAll<HTMLButtonElement>(
+        ".faq-category-tab"
+      );
+
+      const panels = section.querySelectorAll<HTMLElement>(
+        ".faq-category-panel"
+      );
+
+      // Category switching
+      tabs.forEach((tab) => {
+        tab.addEventListener("click", () => {
+          const selectedCategory = tab.dataset.category;
+
+          tabs.forEach((item) => {
+            const isActive = item === tab;
+
+            item.classList.toggle("active", isActive);
+            item.setAttribute("aria-selected", String(isActive));
+          });
+
+          panels.forEach((panel) => {
+            const isActive = panel.dataset.panel === selectedCategory;
+
+            panel.hidden = !isActive;
+
+            if (isActive) {
+              panel.querySelectorAll<HTMLDetailsElement>(".faq-card").forEach(
+                (card) => {
+                  card.open = false;
+                }
+              );
+
+              panel.classList.remove("faq-category-panel");
+              void panel.offsetWidth;
+              panel.classList.add("faq-category-panel");
+            }
+          });
+        });
+      });
+
+      // Keep only one FAQ open at a time
+      const detailsList =
+        section.querySelectorAll<HTMLDetailsElement>("details.faq-card");
+
+      detailsList.forEach((target) => {
+        target.addEventListener("toggle", () => {
+          if (!target.open) return;
+
+          detailsList.forEach((other) => {
             if (other !== target && other.open) {
               other.open = false;
             }
           });
-        }
+        });
       });
     });
   }
 
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', setupSingleOpenAccordion);
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", setupFAQ);
   } else {
-    setupSingleOpenAccordion();
+    setupFAQ();
   }
 </script>

@@ -1,0 +1,188 @@
+
+---
+const links = [
+  {
+    href: "/resources/",
+    label: "View Technical Guides & Resources",
+  },
+  {
+    href: "/compare/",
+    label: "Compare Nixora Architecture",
+  },
+];
+---
+
+<section class="product-hero">
+  <div class="hero-container">
+    <div class="hero-content">
+      <!-- Eyebrow -->
+      <p class="hero-eyebrow">
+        Product Architecture
+      </p>
+
+      <!-- Heading -->
+      <h1 class="hero-heading">
+        One control plane.
+        <br />
+        <span>Every AI app and agent you build.</span>
+      </h1>
+
+      <!-- Description -->
+      <p class="hero-description">
+        Deployment and diagnosis are live today. Next: MCP access for AI
+        agents, multi-agent access with per-agent permissions, and a web
+        dashboard. Later: monitoring, autonomous scaling, governance, and
+        multi-agent system deployment.
+      </p>
+
+      <!-- Links -->
+      <div class="hero-links">
+        {links.map((link) => (
+          <a href={link.href} class="hero-link">
+            {link.label}
+            <span class="link-arrow">→</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .product-hero {
+    position: relative;
+    overflow: hidden;
+    padding: 5rem 2rem 8rem;
+  }
+
+  .hero-container {
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .hero-content {
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .hero-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem 1rem;
+    border: 1px solid rgb(125 87 239 / 35%);
+    border-radius: 999px;
+    background: rgb(125 87 239 / 9%);
+    color: rgb(255 255 255 / 85%);
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    animation: heroFade 0.45s ease both;
+  }
+
+ .hero-heading {
+  max-width: 720px;
+  margin: 1.5rem auto 0;
+  color: #fff;
+  font-size: clamp(1.875rem, 4vw, 3rem);
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.04em;
+  animation: heroFade 0.55s ease 0.05s both;
+}
+
+  .hero-heading span {
+    color: var(--primary, #a78bfa);
+  }
+
+  .hero-description {
+    max-width: 760px;
+    margin: 1.5rem auto 0;
+    color: rgb(255 255 255 / 65%);
+    font-size: 1.125rem;
+    line-height: 1.8;
+    animation: heroFade 0.5s ease 0.12s both;
+  }
+
+  .hero-links {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    margin-top: 2rem;
+    animation: heroFade 0.5s ease 0.2s both;
+  }
+
+  .hero-link {
+    display: inline-flex;
+    align-items: center;
+    color: rgb(255 255 255 / 75%);
+    font-size: 0.875rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .hero-link:hover {
+    color: var(--primary, #a78bfa);
+  }
+
+  .link-arrow {
+    margin-left: 0.375rem;
+    transition: transform 0.2s ease;
+  }
+
+  .hero-link:hover .link-arrow {
+    transform: translateX(4px);
+  }
+
+  @keyframes heroFade {
+    from {
+      opacity: 0;
+      transform: translateY(12px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @media (max-width: 640px) {
+    .product-hero {
+      padding: 6rem 1.25rem 4rem;
+    }
+
+   .hero-heading {
+  font-size: 1.875rem;
+}
+
+    .hero-description {
+      font-size: 1rem;
+      line-height: 1.75;
+    }
+
+    .hero-links {
+      flex-direction: column;
+      gap: 1rem;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero-eyebrow,
+    .hero-heading,
+    .hero-description,
+    .hero-links {
+      animation: none;
+    }
+
+    .hero-link,
+    .link-arrow {
+      transition: none;
+    }
+  }
+</style>

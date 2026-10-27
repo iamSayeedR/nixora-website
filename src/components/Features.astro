@@ -1,589 +1,603 @@
+
 ---
-interface Props {
-  showOnlyTodayNext?: boolean;
-  isProductPage?: boolean;
-}
-
-const { showOnlyTodayNext = false, isProductPage = false } = Astro.props;
+const groups = [
+  {
+    label: "Today",
+    title: "Deploy & Diagnose",
+    description:
+      "Go from AI-generated code to a live, running application in seconds. Diagnose why an AI-generated deployment failed and what to change.",
+    icon: "terminal",
+  },
+  {
+    label: "Next",
+    title: "Agent Access & MCP",
+    description:
+      "Agent-native deployment target via MCP server, multi-agent access with per-agent permissions and audit trail, web dashboard, and Fargate infrastructure.",
+    icon: "users",
+  },
+  {
+    label: "Later",
+    title: "Monitoring & Observability",
+    description:
+      "Deep application understanding, continuous monitoring, and real-time observability for agent-built software.",
+    icon: "chart",
+  },
+  {
+    label: "Later",
+    title: "Scaling & Optimization",
+    description:
+      "Autonomous scaling, auto-sleep, auto-retirement, and resource optimization as workloads grow.",
+    icon: "zap",
+  },
+  {
+    label: "Later",
+    title: "Governance & Systems",
+    description:
+      "Multi-agent system deployment, AI agent lifecycle management, security policies, and governance.",
+    icon: "shield",
+  },
+  {
+    label: "Later",
+    title: "Platform & Ecosystem",
+    description:
+      "Extensible platform integrations, marketplace, REST APIs, and no-code tools.",
+    icon: "box",
+  },
+];
 ---
 
-<section id="features" class="roadmap-section" style="padding:5rem 2rem;position:relative;overflow:hidden;">
-  <!-- Section Heading Wash Glow -->
-  <div style="position:absolute;top:-40px;left:50%;transform:translateX(-50%);width:100%;max-width:700px;height:140px;background:radial-gradient(ellipse 55% 40% at 50% 0%, rgba(139,92,246,0.08), transparent 70%);pointer-events:none;z-index:0;"></div>
+<section id="features" class="roadmap-section">
+  <div class="roadmap-glow"></div>
 
-  <div style="max-width:900px;margin:0 auto;position:relative;z-index:1;display:flex;flex-direction:column;gap:2.5rem;">
+  <div class="roadmap-container">
+    <!-- Section heading -->
+    <div class="roadmap-intro" data-reveal>
+      <h2 class="section-headline">
+        Where Nixora is <span class="accent">going.</span>
+      </h2>
 
-    <!-- Section Intro Header + Paragraph (Where Nixora is going) -->
-    <div style="text-align:center;display:flex;flex-direction:column;align-items:center;gap:1rem;">
-      <h2 class="section-headline" style="text-align:center;">Where Nixora is <span class="accent">going</span></h2>
-      <p style="font-size:1.0625rem;line-height:1.75;color:#a1a1aa;max-width:680px;display:block;margin:0 auto;">
-        Today, Nixora deploys AI-generated apps and diagnoses why they fail. Next, it becomes a deployment target your AI agents call directly through an MCP server, so multiple agents can work with your infrastructure at once, each with its own permissions and a clear record of what it did. Longer term, we're building toward infrastructure that understands your application, monitors it, and adapts as it grows, including multi-agent systems deployed and governed as one workload.
+      <p class="roadmap-description">
+        Today, Nixora deploys AI-generated apps and diagnoses why they fail.
+        Next, it becomes a deployment target your AI agents call directly
+        through an MCP server. Later, we're building toward infrastructure
+        that understands, monitors, and adapts as your applications grow.
       </p>
     </div>
 
-    {isProductPage ? (
-      <div class="detailed-cards-grid">
+    <!-- Roadmap cards -->
+    <div class="detailed-cards-grid">
+      {groups.map((item, index) => (
+        <article
+          class:list={[
+            "hero-card",
+            index === 0 && "hero-card-live",
+            index === 1 && "hero-card-next",
+          ]}
+          data-reveal
+          style={`--card-index: ${index % 3};`}
+        >
+          <div class="card-top">
+            <span
+              class:list={[
+                "status-badge",
+                item.label === "Later" && "status-badge-later",
+              ]}
+            >
+              {item.label !== "Later" && <span class="pulse-dot"></span>}
+              {item.label}
+            </span>
 
-        <div id="group-01" class="hero-card hero-card-live">
-          <div style="display:flex;flex-direction:column;gap:1.2rem;">
-            <div style="display:flex;align-items:center;justify-content:space-between;">
-              <div style="display:flex;align-items:center;gap:0.75rem;">
-                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#a78bfa" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
-                <div class="badge-live-dot">
-                  <span class="pulse-dot"></span>
-                  Today
-                </div>
-              </div>
-              <span style="font-size:0.7rem;color:#a78bfa;font-family:'Fira Code',monospace;font-weight:600;">GROUP 01</span>
-            </div>
+            <span class="roadmap-icon" aria-hidden="true">
+              {item.icon === "terminal" && (
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="4 17 10 11 4 5" />
+                  <line x1="12" y1="19" x2="20" y2="19" />
+                </svg>
+              )}
 
-            <h3 style="font-size:1.35rem;font-weight:700;color:#fff;margin:0;">Deploy & Diagnose</h3>
-            <p style="font-size:0.875rem;line-height:1.6;color:#a1a1aa;margin:0;">
-              Go from AI-generated code to a live, running application in seconds. Diagnose why an AI-generated deployment failed and what to change.
-            </p>
+              {item.icon === "users" && (
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M16 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                  <circle cx="10" cy="7" r="4" />
+                  <path d="M20 21v-2a4 4 0 0 0-3-3.87" />
+                  <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                </svg>
+              )}
 
-            <div style="display:flex;flex-wrap:wrap;gap:0.4rem;margin-top:0.25rem;">
-              {["CLI", "Automated deployment", "Diagnose failed deploys", "Hosting", "HTTPS", "Shareable URLs"].map(item => (
-                <span class="feature-chip live-chip">{item}</span>
-              ))}
-            </div>
+              {item.icon === "chart" && (
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="22 7 13.5 15.5 8.5 10.5 2 17" />
+                  <polyline points="16 7 22 7 22 13" />
+                </svg>
+              )}
+
+              {item.icon === "zap" && (
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                  <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
+                </svg>
+              )}
+
+              {item.icon === "shield" && (
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                  <polyline points="9 12 11 14 15 10" />
+                </svg>
+              )}
+
+              {item.icon === "box" && (
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4a2 2 0 0 0 1-1.73z" />
+                  <polyline points="3.27 6.96 12 12.01 20.73 6.96" />
+                  <line x1="12" y1="22.08" x2="12" y2="12" />
+                </svg>
+              )}
+            </span>
           </div>
 
-          <div class="card-visual">
-            <div style="font-family:'Fira Code',monospace;font-size:0.72rem;line-height:1.7;color:#555;">
-              <div><span style="color:#a78bfa;">$</span> <span style="color:#fff;">nixora deploy</span></div>
-              <div style="color:#52525b;">✔ Container built</div>
-              <div style="color:#52525b;">✔ HTTPS SSL issued</div>
-              <div style="color:#a78bfa;font-weight:600;margin-top:0.2rem;">✔ Live: https://my-app.nixora.co.in</div>
-            </div>
+          <div class="card-text">
+            <h3>{item.title}</h3>
+            <p>{item.description}</p>
           </div>
-        </div>
+        </article>
+      ))}
+    </div>
 
-        <div id="group-02" class="hero-card hero-card-next">
-          <div style="display:flex;flex-direction:column;gap:1.2rem;">
-            <div style="display:flex;align-items:center;justify-content:space-between;">
-              <div style="display:flex;align-items:center;gap:0.75rem;">
-                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#a78bfa" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/><path d="M10 17.5h4M17.5 10v4M6.5 14v-4a3.5 3.5 0 0 1 3.5-3.5h4"/></svg>
-                <span class="badge-tag-gray">Next</span>
-              </div>
-              <span style="font-size:0.7rem;color:#a78bfa;font-family:'Fira Code',monospace;font-weight:600;">GROUP 02</span>
-            </div>
-
-            <h3 style="font-size:1.35rem;font-weight:700;color:#fff;margin:0;">Agent Access & MCP</h3>
-            <p style="font-size:0.875rem;line-height:1.6;color:#a1a1aa;margin:0;">
-              Agent-native deployment target via MCP server, multi-agent access with per-agent permissions and audit trail, web dashboard, and Fargate infrastructure.
-            </p>
-
-            <div style="display:flex;flex-wrap:wrap;gap:0.4rem;margin-top:0.25rem;">
-              {["MCP server for agents", "Multi-agent access", "Per-agent permissions", "Audit trail", "Web dashboard", "Fargate infrastructure"].map(item => (
-                <span class="feature-chip next-chip">{item}</span>
-              ))}
-            </div>
-          </div>
-
-          <div class="card-visual" style="display:flex;align-items:center;justify-content:space-between;padding:1rem;font-family:'Fira Code',monospace;font-size:0.7rem;">
-            <div style="padding:0.35rem 0.6rem;border:1px solid rgba(167,139,250,0.35);border-radius:5px;background:rgba(167,139,250,0.08);color:#a78bfa;">MCP Agent</div>
-            <span style="color:#3f3f46;">→</span>
-            <div style="padding:0.35rem 0.6rem;border:1px solid #2a2a2a;border-radius:5px;background:#0d0d0d;color:#a1a1aa;">Permissions</div>
-            <span style="color:#3f3f46;">→</span>
-            <div style="padding:0.35rem 0.6rem;border:1px solid #2a2a2a;border-radius:5px;background:#0d0d0d;color:#71717a;">Audit Log</div>
-          </div>
-        </div>
-
-        <div id="group-03" class="hero-card">
-          <div style="display:flex;flex-direction:column;gap:1.2rem;">
-            <div style="display:flex;align-items:center;justify-content:space-between;">
-              <div style="display:flex;align-items:center;gap:0.75rem;">
-                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#a78bfa" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
-                <span class="badge-tag-gray">Later</span>
-              </div>
-              <span style="font-size:0.7rem;color:#52525b;font-family:'Fira Code',monospace;">GROUP 03</span>
-            </div>
-
-            <h3 style="font-size:1.35rem;font-weight:700;color:#fff;margin:0;">Monitoring & Observability</h3>
-            <p style="font-size:0.875rem;line-height:1.6;color:#a1a1aa;margin:0;">
-              Deep application understanding, continuous monitoring, and real-time observability for agent-built software.
-            </p>
-
-            <div style="display:flex;flex-wrap:wrap;gap:0.4rem;margin-top:0.25rem;">
-              {["Deep app understanding", "Continuous monitoring", "Cost insights", "Telemetry analytics"].map(item => (
-                <span class="feature-chip soon-chip">{item}</span>
-              ))}
-            </div>
-          </div>
-
-          <div class="card-visual" style="display:flex;align-items:flex-end;justify-content:space-around;height:65px;padding:0.75rem 1rem 0;">
-            <div style="width:14%;height:35%;background:#222;border-radius:3px 3px 0 0;"></div>
-            <div style="width:14%;height:65%;background:#2a2a2a;border-radius:3px 3px 0 0;"></div>
-            <div style="width:14%;height:45%;background:#222;border-radius:3px 3px 0 0;"></div>
-            <div style="width:14%;height:85%;background:linear-gradient(to top, #7c3aed, #a78bfa);border-radius:3px 3px 0 0;"></div>
-            <div style="width:14%;height:60%;background:#2a2a2a;border-radius:3px 3px 0 0;"></div>
-          </div>
-        </div>
-
-        <div id="group-04" class="hero-card">
-          <div style="display:flex;flex-direction:column;gap:1.2rem;">
-            <div style="display:flex;align-items:center;justify-content:space-between;">
-              <div style="display:flex;align-items:center;gap:0.75rem;">
-                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#a78bfa" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/><line x1="2" y1="20" x2="22" y2="20"/></svg>
-                <span class="badge-tag-gray">Later</span>
-              </div>
-              <span style="font-size:0.7rem;color:#52525b;font-family:'Fira Code',monospace;">GROUP 04</span>
-            </div>
-
-            <h3 style="font-size:1.35rem;font-weight:700;color:#fff;margin:0;">Scaling & Optimization</h3>
-            <p style="font-size:0.875rem;line-height:1.6;color:#a1a1aa;margin:0;">
-              Autonomous scaling, auto-sleep, auto-retirement, and resource optimization as workloads grow.
-            </p>
-
-            <div style="display:flex;flex-wrap:wrap;gap:0.4rem;margin-top:0.25rem;">
-              {["Autonomous scaling", "Resource optimization", "Auto sleep", "Auto retirement", "Cost controls"].map(item => (
-                <span class="feature-chip soon-chip">{item}</span>
-              ))}
-            </div>
-          </div>
-
-          <div class="card-visual" style="display:grid;grid-template-columns:1fr 1fr;gap:0.6rem;font-size:0.75rem;color:#a1a1aa;padding:0.85rem;">
-            <div style="display:flex;align-items:center;gap:0.4rem;"><span style="color:#a78bfa;">⚡</span> Auto-scale</div>
-            <div style="display:flex;align-items:center;gap:0.4rem;"><span style="color:#a78bfa;">🌙</span> Auto-sleep</div>
-            <div style="display:flex;align-items:center;gap:0.4rem;"><span style="color:#a78bfa;">🧹</span> Auto-retire</div>
-            <div style="display:flex;align-items:center;gap:0.4rem;"><span style="color:#a78bfa;">💡</span> Cost Opt</div>
-          </div>
-        </div>
-
-        <div id="group-05" class="hero-card">
-          <div style="display:flex;flex-direction:column;gap:1.2rem;">
-            <div style="display:flex;align-items:center;justify-content:space-between;">
-              <div style="display:flex;align-items:center;gap:0.75rem;">
-                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#a78bfa" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
-                <span class="badge-tag-gray">Later</span>
-              </div>
-              <span style="font-size:0.7rem;color:#52525b;font-family:'Fira Code',monospace;">GROUP 05</span>
-            </div>
-
-            <h3 style="font-size:1.35rem;font-weight:700;color:#fff;margin:0;">Governance & Systems</h3>
-            <p style="font-size:0.875rem;line-height:1.6;color:#a1a1aa;margin:0;">
-              Multi-agent system deployment, AI agent lifecycle management, security policies, and governance.
-            </p>
-
-            <div style="display:flex;flex-wrap:wrap;gap:0.4rem;margin-top:0.25rem;">
-              {["Multi-agent systems", "Agent lifecycle", "Security & governance", "Policy enforcement", "Fleet retirement"].map(item => (
-                <span class="feature-chip soon-chip">{item}</span>
-              ))}
-            </div>
-          </div>
-
-          <div class="card-visual" style="display:flex;align-items:center;justify-content:center;gap:0.75rem;font-family:'Fira Code',monospace;font-size:0.7rem;padding:0.85rem;">
-            <div style="display:flex;flex-direction:column;gap:0.25rem;">
-              <span style="padding:2px 6px;border:1px solid #222;border-radius:3px;color:#71717a;background:#0d0d0d;">Agent 1</span>
-              <span style="padding:2px 6px;border:1px solid #222;border-radius:3px;color:#71717a;background:#0d0d0d;">Agent 2</span>
-            </div>
-            <span style="color:#a78bfa;font-size:1rem;">➔</span>
-            <div style="padding:0.5rem 0.75rem;border:1px solid rgba(167,139,250,0.35);border-radius:6px;background:rgba(167,139,250,0.08);color:#a78bfa;font-weight:600;text-align:center;">
-              System Governance
-            </div>
-          </div>
-        </div>
-
-        <div id="group-06" class="hero-card">
-          <div style="display:flex;flex-direction:column;gap:1.2rem;">
-            <div style="display:flex;align-items:center;justify-content:space-between;">
-              <div style="display:flex;align-items:center;gap:0.75rem;">
-                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#a78bfa" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><line x1="12" y1="3" x2="12" y2="6"/><line x1="12" y1="18" x2="12" y2="21"/><line x1="4.22" y1="4.22" x2="6.34" y2="6.34"/><line x1="17.66" y1="17.66" x2="19.78" y2="19.78"/><line x1="3" y1="12" x2="6" y2="12"/><line x1="18" y1="12" x2="21" y2="12"/><line x1="4.22" y1="19.78" x2="6.34" y2="17.66"/><line x1="17.66" y1="6.34" x2="19.78" y2="4.22"/></svg>
-                <span class="badge-tag-gray">Later</span>
-              </div>
-              <span style="font-size:0.7rem;color:#52525b;font-family:'Fira Code',monospace;">GROUP 06</span>
-            </div>
-
-            <h3 style="font-size:1.35rem;font-weight:700;color:#fff;margin:0;">Platform & Ecosystem</h3>
-            <p style="font-size:0.875rem;line-height:1.6;color:#a1a1aa;margin:0;">
-              Extensible platform integrations, marketplace, REST APIs, and no-code tools.
-            </p>
-
-            <div style="display:flex;flex-wrap:wrap;gap:0.4rem;margin-top:0.25rem;">
-              {["Marketplace", "REST APIs & SDKs", "No-code web interface", "Plugin ecosystem"].map(item => (
-                <span class="feature-chip soon-chip">{item}</span>
-              ))}
-            </div>
-          </div>
-
-          <div class="card-visual" style="display:grid;grid-template-columns:repeat(3, 1fr);gap:0.4rem;text-align:center;font-size:0.7rem;color:#a1a1aa;font-family:'Fira Code',monospace;padding:0.75rem;">
-            <div style="padding:0.35rem;border:1px solid #222;border-radius:5px;background:#0d0d0d;">SDKs</div>
-            <div style="padding:0.35rem;border:1px solid #222;border-radius:5px;background:#0d0d0d;">APIs</div>
-            <div style="padding:0.35rem;border:1px solid #222;border-radius:5px;background:#0d0d0d;">Plugins</div>
-            <div style="padding:0.35rem;border:1px solid #222;border-radius:5px;background:#0d0d0d;grid-column:span 3;">Marketplace</div>
-          </div>
-        </div>
-
-      </div>
-    ) : (
-      /* Single Rotating Display Card + Interactive 6-Segment Progress Track */
-      <div class="roadmap-panel" id="roadmapPanel">
-        <div class="roadmap-card">
-          <div style="display:flex;align-items:center;justify-content:space-between;width:100%;margin-bottom:1.25rem;">
-            <div class="roadmap-icon" id="roadmapIcon"></div>
-            <span class="roadmap-status" id="roadmapStatus">TODAY</span>
-          </div>
-          <h3 id="roadmapTitle" style="font-size:1.4rem;font-weight:700;color:#ffffff;margin:0 0 0.65rem;letter-spacing:-0.015em;">Deploy & Diagnose</h3>
-          <p id="roadmapDesc" style="font-size:0.95rem;line-height:1.65;color:#a1a1aa;margin:0;">Go from AI-generated code to a live, running application in seconds.</p>
-        </div>
-
-        <div class="roadmap-track" id="roadmapTrack"></div>
-        <p class="roadmap-hint">hover a segment to preview · click to jump</p>
-        
-        <div style="margin-top:1.5rem;text-align:center;">
-          <a href="/product/" class="arch-product-link">
-            View full product architecture →
-          </a>
-        </div>
-      </div>
-    )}
-
+    <!-- Product architecture link -->
+    <div class="roadmap-cta" data-reveal>
+      <a href="/product/" class="arch-product-link">
+        <span>View Full Product Architecture</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M5 12h14" />
+          <path d="m12 5 7 7-7 7" />
+        </svg>
+      </a>
+    </div>
   </div>
 </section>
 
 <style>
-  .roadmap-panel {
-    background: #0d0d0d;
-    border: 1px solid #1f1f1f;
-    border-radius: 14px;
-    padding: 2.75rem 3rem;
+  /* Section */
+  .roadmap-section {
     position: relative;
-    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5);
-    transition: border-color 0.25s ease, box-shadow 0.25s ease;
-    width: 100%;
-    box-sizing: border-box;
-  }
-
-  .roadmap-panel:hover {
-    border-color: #a78bfa;
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), 0 0 30px rgba(124, 58, 237, 0.18);
-  }
-
-  .roadmap-card {
-    display: flex;
-    flex-direction: column;
-    min-height: 140px;
-    text-align: left;
-    width: 100%;
-  }
-
-  .roadmap-icon {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .roadmap-status {
-    font-family: 'Fira Code', 'Geist Mono', monospace;
-    font-size: 0.75rem;
-    letter-spacing: 0.08em;
-    color: #a78bfa;
-    font-weight: 600;
-    text-transform: uppercase;
-  }
-
-  .roadmap-track {
-    display: flex;
-    gap: 12px;
-    margin-top: 2rem;
-    width: 100%;
-    align-items: center;
-    cursor: pointer;
-  }
-
-  :global(.roadmap-segment) {
-    height: 4px;
-    flex: 1;
-    background: #2e2e35 !important;
-    border-radius: 9999px;
-    cursor: pointer;
-    position: relative;
+    isolation: isolate;
     overflow: hidden;
-    outline: none;
-    pointer-events: auto;
-    transition: background 0.2s ease;
+    padding: 2rem 1.25rem 4rem; 
   }
 
-  :global(.roadmap-segment:hover), :global(.roadmap-segment:focus-visible) {
-    background: #4a4a54 !important;
-  }
-
-  :global(.roadmap-segment.done) {
-    background: #a78bfa !important;
-  }
-
-  :global(.roadmap-segment .fill) {
+  .roadmap-glow {
     position: absolute;
-    left: 0; top: 0; bottom: 0;
-    height: 100%;
-    width: 0%;
-    background: #a78bfa;
-    border-radius: 9999px;
+    top: -40px;
+    left: 50%;
+    z-index: -1;
+    width: 100%;
+    max-width: 700px;
+    height: 140px;
+    transform: translateX(-50%);
+    background: radial-gradient(
+      ellipse 55% 40% at 50% 0%,
+      rgb(125 87 239 / 10%),
+      transparent 70%
+    );
     pointer-events: none;
   }
 
-  .roadmap-hint {
-    font-family: 'Fira Code', 'Geist Mono', monospace;
-    font-size: 10.5px;
-    opacity: 0.8;
-    margin-top: 14px;
-    margin-bottom: 0;
-    color: #71717a;
+  .roadmap-container {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+    width: 100%;
+    max-width: 1150px;
+    margin: 0 auto;
+  }
+
+  /* Heading */
+  .roadmap-intro {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    max-width: 48rem;
+    margin: 0 auto;
     text-align: center;
-    letter-spacing: 0.02em;
   }
 
-  .arch-product-link {
-    font-size: 0.875rem;
+  .section-headline {
+    margin: 0;
+    color: #fff;
+    font-size: 1.875rem;
     font-weight: 600;
-    color: #a78bfa;
-    text-decoration: none;
-    transition: color 0.2s ease, opacity 0.2s ease;
+    line-height: 1.2;
+    letter-spacing: -0.04em;
   }
 
-  .arch-product-link:hover {
-    color: #c4b5fd;
-    text-decoration: underline;
+  .section-headline .accent {
+    color: var(--primary, #a78bfa);
   }
 
+  .roadmap-description {
+    max-width: 42rem;
+    margin: 0 auto;
+    color: rgb(255 255 255 / 65%);
+    font-size: 1rem;
+    line-height: 1.75;
+  }
+
+  /* Responsive grid */
   .detailed-cards-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.5rem;
+    grid-template-columns: minmax(0, 1fr);
+    align-items: stretch;
+    gap: 1rem;
     width: 100%;
   }
 
+  /* Cards */
   .hero-card {
-    background: #0d0d0d;
-    border: 1px solid #1f1f1f;
-    border-radius: 14px;
-    padding: 1.75rem;
+    position: relative;
     display: flex;
+    min-width: 0;
+    min-height: 0;
     flex-direction: column;
-    justify-content: space-between;
-    gap: 1.75rem;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
-    transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
-  }
-
-  .hero-card:hover {
-    transform: translateY(-3px);
-    border-color: #a78bfa;
-    box-shadow: 0 14px 40px rgba(0, 0, 0, 0.6), 0 0 25px rgba(124, 58, 237, 0.18);
-  }
-
-  .feature-chip {
-    font-size: 0.72rem;
-    font-family: 'Fira Code', 'Geist Mono', monospace;
-    padding: 0.2rem 0.55rem;
-    border-radius: 5px;
-  }
-
-  .live-chip, .next-chip {
-    background: rgba(167, 139, 250, 0.05);
-    border: 1px solid rgba(167, 139, 250, 0.25);
-    color: #c4b5fd;
-  }
-
-  .soon-chip {
-    background: #111;
-    border: 1px solid #222;
-    color: #71717a;
-  }
-
-  .card-visual {
-    background: #111;
-    border: 1px solid #1f1f1f;
-    border-radius: 8px;
-    padding: 1rem;
     overflow: hidden;
+    padding: 1.25rem;
+    border: 1px solid rgb(255 255 255 / 14%);
+    border-radius: 1rem;
+    background: #0d0d0f;
+    transition:
+      transform 0.3s ease,
+      border-color 0.3s ease,
+      box-shadow 0.3s ease;
   }
 
-  .badge-live-dot {
+.hero-card-live {
+  border-color: rgba(167, 139, 250, 0.40);
+  box-shadow: 0 0 16px rgba(125, 87, 239, 0.04);
+}
+
+.hero-card-next {
+  border-color: rgba(167, 139, 250, 0.40);
+}
+
+.hero-card:hover {
+  transform: translateY(-2px);
+ border-color: rgba(167, 139, 250, 0.50);
+  box-shadow: 0 4px 12px rgba(167, 139, 250, 0.04);
+}
+
+  /* Status */
+  .card-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+  }
+
+  .status-badge {
     display: inline-flex;
     align-items: center;
-    gap: 0.45rem;
-    font-size: 0.78rem;
+    gap: 0.5rem;
+    min-height: 26px;
+    padding: 0.3rem 0.65rem;
+    border: 1px solid rgb(167 139 250 / 35%);
+    border-radius: 999px;
+    background: rgb(167 139 250 / 12%);
+    color: var(--primary, #a78bfa);
+    font-size: 0.6875rem;
     font-weight: 600;
-    font-family: 'Fira Code', 'Geist Mono', monospace;
-    color: #a78bfa;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    white-space: nowrap;
   }
 
-  .badge-tag-gray {
-    font-size: 0.78rem;
-    font-weight: 500;
-    font-family: 'Fira Code', 'Geist Mono', monospace;
-    color: #71717a;
+  .status-badge-later {
+    border-color: rgb(255 255 255 / 10%);
+    background: rgb(255 255 255 / 4%);
+    color: rgb(255 255 255 / 55%);
   }
 
   .pulse-dot {
     width: 6px;
     height: 6px;
+    flex-shrink: 0;
     border-radius: 50%;
-    background: #a78bfa;
-    box-shadow: 0 0 8px #a78bfa;
-    animation: dotPulse 2s infinite ease-in-out;
+    background: var(--primary, #a78bfa);
+    box-shadow: 0 0 8px rgb(167 139 250 / 80%);
+    animation: dotPulse 2s ease-in-out infinite;
   }
 
   @keyframes dotPulse {
-    0%, 100% { opacity: 1; transform: scale(1); }
-    50% { opacity: 0.4; transform: scale(0.85); }
+    0%, 100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 0.45;
+      transform: scale(0.85);
+    }
   }
 
-  @media (max-width: 992px) {
-    .detailed-cards-grid { grid-template-columns: repeat(2, 1fr); }
+  /* Icon */
+  .roadmap-icon {
+    display: flex;
+    width: 3rem;
+    height: 3rem;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgb(125 87 239 / 25%);
+    border-radius: 1rem;
+    background: rgb(125 87 239 / 8%);
+    color: var(--primary, #a78bfa);
+    transition:
+      background 0.3s ease,
+      border-color 0.3s ease;
   }
 
-  @media (max-width: 640px) {
-    .detailed-cards-grid { grid-template-columns: 1fr; }
-    .roadmap-panel { padding: 1.75rem 1.5rem; }
+  .hero-card-live .roadmap-icon,
+  .hero-card-next .roadmap-icon {
+    border-color: rgb(125 87 239 / 40%);
+    background: rgb(125 87 239 / 14%);
+  }
+
+  .roadmap-icon svg {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+
+  .hero-card:hover .roadmap-icon {
+    border-color: rgb(125 87 239 / 50%);
+    background: rgb(125 87 239 / 16%);
+  }
+
+  /* Card content */
+  .card-text {
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+    margin-top: 1.5rem;
+  }
+
+  .card-text h3 {
+    margin: 0;
+    color: #fff;
+    font-size: 1.25rem;
+    font-weight: 600;
+    line-height: 1.4;
+    letter-spacing: -0.025em;
+    overflow-wrap: anywhere;
+    transition: color 0.3s ease;
+  }
+
+  .hero-card:hover .card-text h3 {
+    color: var(--primary, #a78bfa);
+  }
+
+  .card-text p {
+    margin: 0;
+    color: rgb(255 255 255 / 65%);
+    font-size: 0.9375rem;
+    line-height: 1.75;
+    overflow-wrap: anywhere;
+  }
+
+  /* Architecture link */
+  .roadmap-cta {
+    display: flex;
+    justify-content: center;
+    margin-top: 0.5rem;
+    text-align: center;
+  }
+
+  .arch-product-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.625rem;
+    max-width: 100%;
+    padding: 0.75rem 1.25rem;
+    border-radius: 999px;
+    background: rgb(255 255 255 / 4%);
+    color: #fff;
+    font-size: 0.875rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition:
+      background 0.3s ease,
+      color 0.3s ease;
+  }
+
+  .arch-product-link:hover {
+    background: rgb(125 87 239 / 10%);
+    color: var(--primary, #a78bfa);
+  }
+
+  .arch-product-link svg {
+    width: 1rem;
+    height: 1rem;
+    flex-shrink: 0;
+    transition: transform 0.3s ease;
+  }
+
+  .arch-product-link:hover svg {
+    transform: translateX(3px);
+  }
+
+  /* Scroll reveal */
+  [data-reveal] {
+    opacity: 0;
+    transform: translateY(18px);
+    transition:
+      opacity 0.65s ease,
+      transform 0.65s ease;
+  }
+
+  [data-reveal].is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .detailed-cards-grid [data-reveal] {
+    transition-delay: calc(var(--card-index, 0) * 80ms);
+  }
+
+  /* Tablet */
+  @media (min-width: 640px) {
+    .roadmap-section {
+      padding: 2.5rem 2rem 5rem;
+    }
+
+    .roadmap-container {
+      gap: 3rem;
+    }
+
+    .section-headline {
+      font-size: 2.25rem;
+    }
+
+    .roadmap-description {
+      font-size: 1.0625rem;
+      line-height: 2rem;
+    }
+
+    .detailed-cards-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1.25rem;
+    }
+
+    .hero-card {
+      padding: 1.5rem;
+    }
+
+    .status-badge {
+      font-size: 0.75rem;
+    }
+
+    .roadmap-icon {
+      width: 3.5rem;
+      height: 3.5rem;
+    }
+
+    .roadmap-icon svg {
+      width: 1.75rem;
+      height: 1.75rem;
+    }
+
+    .card-text h3 {
+      font-size: 1.375rem;
+    }
+
+    .card-text p {
+      font-size: 1rem;
+      line-height: 1.8;
+    }
+
+    .arch-product-link {
+      font-size: 1rem;
+    }
+  }
+
+  /* Desktop */
+  @media (min-width: 1024px) {
+    .roadmap-section {
+      padding: 3rem 2rem 6rem;
+    }
+
+    .roadmap-container {
+      gap: 3.5rem;
+    }
+
+    .section-headline {
+      font-size: 3rem;
+    }
+
+    .detailed-cards-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1.25rem;
+    }
+
+    .hero-card {
+      min-height: 260px;
+      padding: 1.5rem;
+    }
+
+    .card-text h3 {
+      font-size: 1.25rem;
+    }
+
+    .card-text p {
+      font-size: 0.9375rem;
+      line-height: 1.75;
+    }
+  }
+
+  /* Large desktop */
+  @media (min-width: 1280px) {
+    .roadmap-section {
+      padding-right: 3rem;
+      padding-left: 3rem;
+    }
+
+    .hero-card {
+      padding: 1.75rem;
+    }
+
+    .card-text h3 {
+      font-size: 1.35rem;
+    }
+  }
+
+  /* Reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    [data-reveal] {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+
+    .hero-card,
+    .roadmap-icon,
+    .arch-product-link,
+    .arch-product-link svg {
+      transition: none;
+    }
+
+    .pulse-dot {
+      animation: none;
+    }
   }
 </style>
 
-<script is:inline>
-  function initRoadmapScript() {
-    const stages = [
-      { status: 'TODAY', title: 'Deploy & Diagnose', desc: 'Go from AI-generated code to a live, running application in seconds.', icon: `<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#a78bfa" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>` },
-      { status: 'NEXT', title: 'Agent Access & MCP', desc: 'Deployment target agents call directly, with per-agent permissions.', icon: `<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#a78bfa" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/><path d="M10 17.5h4M17.5 10v4M6.5 14v-4a3.5 3.5 0 0 1 3.5-3.5h4"/></svg>` },
-      { status: 'LATER', title: 'Monitoring & Observability', desc: 'Deep application understanding and real-time telemetry.', icon: `<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#a78bfa" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>` },
-      { status: 'LATER', title: 'Scaling & Optimization', desc: 'Autonomous scaling, auto-sleep, auto-retirement.', icon: `<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#a78bfa" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/><line x1="2" y1="20" x2="22" y2="20"/></svg>` },
-      { status: 'LATER', title: 'Governance & Systems', desc: 'Multi-agent lifecycle, security policy, fleet retirement.', icon: `<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#a78bfa" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>` },
-      { status: 'LATER', title: 'Platform & Ecosystem', desc: 'Marketplace, REST APIs & SDKs, plugin ecosystem.', icon: `<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#a78bfa" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><line x1="12" y1="3" x2="12" y2="6"/><line x1="12" y1="18" x2="12" y2="19.78"/><line x1="3" y1="12" x2="6" y2="12"/><line x1="18" y1="12" x2="21" y2="12"/></svg>` },
-    ];
+<script>
+  const roadmapRevealElements =
+    document.querySelectorAll("#features [data-reveal]");
 
-    let active = 0;
-    let hovering = null;
-    let paused = false;
-    let fillProgress = 0;
-    const ADVANCE_MS = 3200;
-    const TICK_MS = 40;
-    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const prefersReducedMotion = window.matchMedia(
+    "(prefers-reduced-motion: reduce)"
+  ).matches;
 
-    const panel = document.getElementById('roadmapPanel');
-    const track = document.getElementById('roadmapTrack');
-    const iconEl = document.getElementById('roadmapIcon');
-    const statusEl = document.getElementById('roadmapStatus');
-    const titleEl = document.getElementById('roadmapTitle');
-    const descEl = document.getElementById('roadmapDesc');
-
-    if (!panel || !track || !iconEl) return;
-
-    track.innerHTML = '';
-
-    stages.forEach((s, i) => {
-      const seg = document.createElement('div');
-      seg.className = 'roadmap-segment';
-      seg.tabIndex = 0;
-      seg.setAttribute('role', 'button');
-      seg.setAttribute('aria-label', `Show ${s.title}`);
-      
-      const fill = document.createElement('div');
-      fill.className = 'fill';
-      seg.appendChild(fill);
-
-      const previewStage = () => {
-        hovering = i;
-        render(i);
-      };
-
-      seg.addEventListener('mouseenter', previewStage);
-      seg.addEventListener('mouseover', previewStage);
-      
-      seg.addEventListener('mouseleave', () => { 
-        hovering = null; 
-        render(active); 
-      });
-
-      seg.addEventListener('click', (e) => {
-        e.stopPropagation();
-        jumpTo(i);
-      });
-
-      seg.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter' || e.key === ' ') { 
-          e.preventDefault(); 
-          jumpTo(i); 
-        }
-      });
-
-      track.appendChild(seg);
+  if (prefersReducedMotion || !("IntersectionObserver" in window)) {
+    roadmapRevealElements.forEach((element) => {
+      element.classList.add("is-visible");
     });
-
-    // Track-wide position-mapped click handler
-    track.addEventListener('click', (e) => {
-      const rect = track.getBoundingClientRect();
-      const clickX = e.clientX - rect.left;
-      const ratio = Math.max(0, Math.min(1, clickX / rect.width));
-      const clickedIndex = Math.min(stages.length - 1, Math.floor(ratio * stages.length));
-      jumpTo(clickedIndex);
-    });
-
-    panel.addEventListener('mouseenter', () => {
-      paused = true;
-    });
-    
-    panel.addEventListener('mouseleave', () => {
-      paused = false;
-      hovering = null;
-      render(active);
-    });
-
-    function render(i) {
-      const s = stages[i];
-      iconEl.innerHTML = s.icon;
-      statusEl.textContent = s.status;
-      titleEl.textContent = s.title;
-      descEl.textContent = s.desc;
-      updateTrackVisual();
-    }
-
-    function updateTrackVisual() {
-      [...track.children].forEach((seg, i) => {
-        const fill = seg.querySelector('.fill');
-        if (!fill) return;
-
-        if (i < active) {
-          seg.classList.add('done');
-          fill.style.width = '100%';
-        } else if (i === active) {
-          seg.classList.remove('done');
-          fill.style.width = reducedMotion ? '100%' : `${fillProgress}%`;
-        } else {
-          seg.classList.remove('done');
-          fill.style.width = '0%';
-        }
-      });
-    }
-
-    function jumpTo(i) {
-      active = i;
-      fillProgress = 0;
-      hovering = null;
-      render(active);
-    }
-
-    function tick() {
-      if (!paused && !reducedMotion) {
-        fillProgress += (TICK_MS / ADVANCE_MS) * 100;
-        if (fillProgress >= 100) {
-          fillProgress = 0;
-          active = (active + 1) % stages.length;
-          if (hovering === null) render(active);
-        } else if (hovering === null) {
-          updateTrackVisual();
-        }
-      }
-      requestAnimationFrame(() => setTimeout(tick, TICK_MS));
-    }
-
-    render(active);
-    if (!reducedMotion) tick();
-  }
-
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initRoadmapScript);
   } else {
-    initRoadmapScript();
+    const roadmapObserver = new IntersectionObserver(
+      (entries, observer) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      {
+        threshold: 0.12,
+      }
+    );
+
+    roadmapRevealElements.forEach((element) => {
+      roadmapObserver.observe(element);
+    });
   }
 </script>

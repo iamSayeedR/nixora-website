@@ -1,49 +1,319 @@
+
 ---
 ---
-<section id="assistant" style="padding:5rem 2rem;position:relative;overflow:hidden;text-align:center;">
-  <!-- Purple radial background glow -->
-  <div style="position:absolute;top:-40px;left:50%;transform:translateX(-50%);width:100%;max-width:750px;height:160px;background:radial-gradient(ellipse 55% 40% at 50% 0%, rgba(139,92,246,0.08), transparent 70%);pointer-events:none;z-index:0;"></div>
-  
-  <div style="max-width:920px;margin:0 auto;position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;gap:3rem;text-align:center;">
-    
-    <!-- 1. "It's not just deployment." Centered Header & Subtext matching nixora.co.in -->
-    <div style="display:flex;flex-direction:column;align-items:center;gap:1.25rem;width:100%;text-align:center;">
-      <h2 class="section-headline" style="text-align:center;">
-        It's not just <span class="accent">deployment.</span>
+
+<section class="control-plane">
+  <div class="control-container">
+    <!-- Intro -->
+    <div class="control-intro reveal">
+      <h2 class="control-heading">
+        It's not just <span>deployment.</span>
       </h2>
-      <p class="section-para" style="text-align:center;margin:0 auto;max-width:640px;">
-        Deployment is the first capability, not the product. Nixora is the control plane for AI-generated software and AI agents: deploy and diagnose today, agent-native access through MCP next, and over time monitoring, scaling, governance, and multi-agent systems, all managed in one place.
+
+      <p class="control-description">
+        Deployment is the first capability, not the product. Nixora is the
+        control plane for AI-generated software and AI agents: deploy and
+        diagnose today, agent-native access through MCP next, and over time
+        monitoring, scaling, governance, and multi-agent systems, all
+        managed in one place.
       </p>
-
-      <!-- Two-column "TODAY / NIXORA'S DIRECTION" comparison panel -->
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;width:100%;margin-top:0.75rem;text-align:left;" class="direction-grid">
-        
-        <!-- TODAY Column -->
-        <div style="background:#0d0d0d;border:1px solid #1f1f1f;border-radius:12px;padding:1.75rem;display:flex;flex-direction:column;gap:0.75rem;box-shadow:0 10px 30px rgba(0,0,0,0.4);">
-          <div style="font-family:'Fira Code',monospace;font-size:0.75rem;color:#71717a;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;">TODAY</div>
-          <h3 style="font-size:1.15rem;font-weight:700;color:#fff;margin:0;">Deploy & Diagnose</h3>
-          <p style="font-size:0.875rem;line-height:1.6;color:#a1a1aa;margin:0;">
-            Go from AI-generated code to a live, running application in seconds. Diagnose why an AI-generated deployment failed and what to change.
-          </p>
-        </div>
-
-        <!-- NIXORA'S DIRECTION Column -->
-        <div style="background:linear-gradient(180deg, rgba(167, 139, 250, 0.04) 0%, #0d0d0d 100%);border:1px solid rgba(167,139,250,0.35);border-radius:12px;padding:1.75rem;display:flex;flex-direction:column;gap:0.75rem;box-shadow:0 10px 30px rgba(0,0,0,0.4);">
-          <div style="font-family:'Fira Code',monospace;font-size:0.75rem;color:#a78bfa;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;">NIXORA'S DIRECTION</div>
-          <h3 style="font-size:1.15rem;font-weight:700;color:#a78bfa;margin:0;">Control Plane for AI Software</h3>
-          <p style="font-size:0.875rem;line-height:1.6;color:#a1a1aa;margin:0;">
-            Agent-native deployment target via MCP, multi-agent access with per-agent permissions, deep monitoring, autonomous scaling, and multi-agent system governance.
-          </p>
-        </div>
-
-      </div>
     </div>
 
+    <!-- Architecture -->
+    <div class="control-grid reveal-stagger">
+      <!-- Today -->
+      <div class="control-card today-card reveal">
+        <div class="card-content">
+          <p class="card-label">Today</p>
+
+          <h3 class="card-title">
+            Deploy &amp; diagnose
+          </h3>
+
+          <p class="card-description">
+            Go from AI-generated code to a live, running application in
+            seconds. Diagnose why an AI-generated deployment failed and
+            what to change.
+          </p>
+        </div>
+      </div>
+
+      <!-- Nixora's direction -->
+      <div class="control-card direction-card reveal">
+        <div class="card-content">
+          <p class="card-label">
+            Nixora's direction
+          </p>
+
+          <h3 class="card-title direction-title">
+            Control plane for AI-generated software
+          </h3>
+
+          <p class="card-description">
+            Agent-native deployment target via MCP, multi-agent access
+            with per-agent permissions, deep monitoring, autonomous
+            scaling, and multi-agent system governance.
+          </p>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
 <style>
-  @media (max-width: 768px) {
-    .direction-grid { grid-template-columns: 1fr !important; }
+  /* Section */
+  .control-plane {
+    position: relative;
+    overflow: hidden;
+    padding: 2rem 1.25rem 4rem;
+    background: var(--background);
+  }
+
+  .control-container {
+    width: 100%;
+    max-width: 1150px;
+    margin: 0 auto;
+  }
+
+  /* Intro */
+  .control-intro {
+    max-width: 48rem;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .control-heading {
+    margin: 0;
+    color: #fff;
+    font-size: 1.875rem;
+    font-weight: 600;
+    line-height: 1.2;
+    letter-spacing: -0.035em;
+  }
+
+  .control-heading span {
+    color: var(--primary, #a78bfa);
+  }
+
+  .control-description {
+    max-width: 42rem;
+    margin: 1.5rem auto 0;
+    color: rgb(255 255 255 / 70%);
+    font-size: 1rem;
+    line-height: 1.75;
+  }
+
+  /* Cards */
+  .control-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1rem;
+    margin-top: 2.5rem;
+  }
+
+  .control-card {
+    position: relative;
+    display: flex;
+    min-width: 0;
+    height: 100%;
+    flex-direction: column;
+    overflow: hidden;
+    padding: 1.5rem;
+    border: 1px solid rgb(255 255 255 / 14%);
+    border-radius: 1rem;
+    background: #0d0d0f;
+    transition: border-color 0.3s ease;
+  }
+
+  .today-card:hover {
+    border-color: rgb(255 255 255 / 22%);
+  }
+
+  .direction-card {
+    border-color: rgb(125 87 239 / 25%);
+    box-shadow: 0 0 24px rgb(125 87 239 / 5%);
+  }
+
+  .direction-card:hover {
+    border-color: rgb(125 87 239 / 40%);
+  }
+
+  .card-content {
+    position: relative;
+  }
+
+  /* Card text */
+  .card-label {
+    margin: 0;
+    color: var(--primary, #a78bfa);
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+  }
+
+  .direction-card .card-label {
+     color: #a78bfa;
+  }
+
+  .card-title {
+    margin: 1rem 0 0;
+    color: #fff;
+    font-size: 1.25rem;
+    font-weight: 600;
+    line-height: 1.4;
+    letter-spacing: -0.025em;
+  }
+
+  .direction-title {
+    max-width: 36rem;
+    font-size: 1.25rem;
+    line-height: 1.4;
+  }
+
+  .card-description {
+    margin: 1rem 0 0;
+    color: rgb(255 255 255 / 70%);
+    font-size: 1rem;
+    line-height: 1.75;
+  }
+
+  .direction-card .card-description {
+    color: rgb(255 255 255 / 75%);
+  }
+
+  /* Reveal animation */
+  .reveal {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .reveal-stagger .reveal {
+    transition:
+      opacity 0.6s ease,
+      transform 0.6s ease;
+  }
+
+  .reveal-stagger.is-visible .reveal {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .reveal-stagger:not(.is-visible) .reveal {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+
+  .reveal-stagger.is-visible .reveal:nth-child(2) {
+    transition-delay: 100ms;
+  }
+
+  /* Tablet */
+  @media (min-width: 640px) {
+    .control-plane {
+      padding: 2.5rem 2rem 5rem;
+    }
+
+    .control-heading {
+      font-size: 2.25rem;
+    }
+
+    .control-description {
+      font-size: 1.125rem;
+      line-height: 2rem;
+    }
+
+    .control-grid {
+      gap: 1.25rem;
+      margin-top: 3.5rem;
+    }
+
+    .control-card {
+      padding: 2rem;
+    }
+
+    .card-title {
+      font-size: 1.5rem;
+    }
+
+    .direction-title {
+      font-size: 1.75rem;
+    }
+
+    .card-description {
+      font-size: 1.0625rem;
+      line-height: 2rem;
+    }
+  }
+
+  /* Desktop */
+  @media (min-width: 1024px) {
+    .control-plane {
+      padding: 3rem 3rem 6rem;
+    }
+
+    .control-heading {
+      font-size: 3rem;
+    }
+
+    .control-grid {
+      grid-template-columns: 0.85fr 1.15fr;
+      gap: 1.25rem;
+      margin-top: 4rem;
+    }
+
+    .control-card {
+      padding: 2.25rem;
+    }
+
+    .direction-title {
+      font-size: 1.875rem;
+    }
+  }
+
+  /* Reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    .reveal-stagger .reveal {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+
+    .control-card {
+      transition: none;
+    }
   }
 </style>
+
+<script>
+  const controlGrid = document.querySelector(".reveal-stagger");
+
+  if (controlGrid) {
+    const cards = controlGrid.querySelectorAll(".reveal");
+
+    const prefersReducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches;
+
+    if (
+      !prefersReducedMotion &&
+      "IntersectionObserver" in window
+    ) {
+      const revealObserver = new IntersectionObserver(
+        (entries, observer) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("is-visible");
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        {
+          threshold: 0.2,
+        }
+      );
+
+      revealObserver.observe(controlGrid);
+    }
+  }
+</script>

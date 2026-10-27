@@ -1,238 +1,619 @@
 ---
+const withoutSteps = [
+  { title: "AI generates code", subtitle: "agent outputs" },
+  { title: "Write Dockerfile", subtitle: "manual" },
+  { title: "Debug ports", subtitle: "manual" },
+  { title: "Deploy", subtitle: "manual" },
+  { title: "App crashes", subtitle: "babysit" },
+];
+
+const withChecks = [
+  "Container built automatically",
+  "Compute provisioned",
+  "HTTPS certificate issued",
+  "Hosting provisioned",
+];
 ---
-<section id="architecture" style="padding:5rem 2rem;position:relative;overflow:hidden;">
-  <!-- Background wash glow -->
-  <div style="position:absolute;top:-40px;left:50%;transform:translateX(-50%);width:100%;max-width:700px;height:140px;background:radial-gradient(ellipse 55% 40% at 50% 0%,rgba(139,92,246,0.08),transparent 70%);pointer-events:none;z-index:0;"></div>
 
-  <div style="max-width:900px;margin:0 auto;position:relative;z-index:1;display:flex;flex-direction:column;gap:2.5rem;">
+<section class="why-infra">
+  <div class="why-infra-tint"></div>
 
-    <!-- Headline + Badge -->
-    <div style="display:flex;flex-direction:column;align-items:flex-start;gap:0.75rem;text-align:left;">
-      <div style="display:flex;align-items:center;gap:0.75rem;flex-wrap:wrap;">
-        <h2 style="font-size:clamp(1.75rem, 4vw, 2.25rem);font-weight:700;color:#fff;margin:0;letter-spacing:-0.02em;">Before / After</h2>
-        <span class="badge-pill-purple">reveals on scroll</span>
-      </div>
-      <p style="font-size:1rem;line-height:1.7;color:#a1a1aa;margin:0;max-width:620px;">
-        Your existing comparison, animated in as visitors scroll past instead of appearing all at once.
+  <div class="why-infra-container">
+    <!-- Intro -->
+    <div class="why-infra-intro" data-reveal>
+      <h2>Why traditional infra fails AI code</h2>
+
+      <p>
+        AI generates apps faster than any team can manually configure,
+        containerize, and maintain. Nixora automates the entire operations
+        layer.
       </p>
     </div>
 
-    <!-- 2-Column Comparison Container -->
-    <div id="comp-grid-wrapper" class="comp-2col-grid">
+    <!-- Comparison -->
+    <div class="why-infra-comparison" data-reveal>
+      <!-- Without Nixora -->
+      <div class="infra-comparison-panel">
+        <div class="infra-panel-content">
+          <div class="infra-panel-heading" data-reveal>
+            <span class="infra-heading-icon infra-heading-cross">×</span>
 
-      <!-- Left Column: WITHOUT NIXORA -->
-      <div class="comp-col comp-col-left">
-        <div class="comp-col-header comp-col-header-left">
-          WITHOUT NIXORA
+            <p class="infra-heading-text">
+              Without Nixora: manual, fragile
+            </p>
+          </div>
+
+          <!-- Traditional flow -->
+          <div class="infra-manual-flow" data-stagger>
+            {withoutSteps.map((step, index) => (
+              <div class="infra-manual-step" data-reveal>
+                <div class:list={[
+                  "infra-step-card",
+                  index === 0 ? "infra-step-first" : "",
+                ]}>
+                  <p class="infra-step-title">{step.title}</p>
+                  <p class="infra-step-subtitle">{step.subtitle}</p>
+                </div>
+
+                {index < withoutSteps.length - 1 && (
+                  <span class="infra-step-arrow">→</span>
+                )}
+              </div>
+            ))}
+          </div>
         </div>
+      </div>
 
-        <div class="comp-list">
-          {[
-            "Manual server setup",
-            "Hand-written deploy scripts",
-            "No agent-native access",
-            "Debugging failed deploys alone"
-          ].map(item => (
-            <div class="comp-item comp-item-left">
-              <span class="comp-icon comp-icon-cross">✕</span>
-              <span>{item}</span>
+      <!-- Divider -->
+      <div class="infra-divider"></div>
+
+      <!-- With Nixora -->
+      <div class="infra-comparison-panel infra-panel-nixora">
+        <div class="infra-panel-tint"></div>
+
+        <div class="infra-panel-content">
+          <div class="infra-panel-heading" data-reveal>
+            <span class="infra-heading-icon infra-heading-check">✓</span>
+
+            <p class="infra-heading-text infra-heading-primary">
+              With Nixora: automated deploy, hosting &amp; HTTPS
+            </p>
+          </div>
+
+          <!-- Nixora flow -->
+          <div class="infra-nixora-flow" data-stagger>
+            <!-- Input -->
+            <div class="infra-flow-input" data-reveal>
+              <p class="infra-flow-label">
+                AI-generated application
+              </p>
+
+              <p class="infra-flow-title">
+                AI generates code
+              </p>
+
+              <p class="infra-flow-subtitle">
+                agent outputs
+              </p>
             </div>
-          ))}
-        </div>
-      </div>
 
-      <!-- Right Column: WITH NIXORA -->
-      <div class="comp-col comp-col-right">
-        <div class="comp-col-header comp-col-header-right">
-          WITH NIXORA
-        </div>
+            <!-- Arrow -->
+            <span class="infra-flow-arrow">→</span>
 
-        <div class="comp-list">
-          {[
-            "One command, live in seconds",
-            "Agents deploy directly via MCP",
-            "Built-in diagnose on failure",
-            "Governed, audited access"
-          ].map(item => (
-            <div class="comp-item comp-item-right">
-              <span class="comp-icon comp-icon-check">✓</span>
-              <span>{item}</span>
+            <!-- Command -->
+            <div class="infra-flow-command" data-reveal>
+              <div class="infra-command-box">
+                <span>nixora deploy</span>
+              </div>
             </div>
-          ))}
+
+            <!-- Arrow -->
+            <span class="infra-flow-arrow">→</span>
+
+            <!-- Result -->
+            <div class="infra-flow-result" data-reveal>
+              <div class="infra-result-heading">
+                <span class="infra-result-dot"></span>
+
+                <p>Live &amp; running</p>
+              </div>
+
+              <div class="infra-check-list">
+                {withChecks.map((item) => (
+                  <div class="infra-check-item">
+                    <span>✓</span>
+                    <span>{item}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-
     </div>
-
-    <!-- Coming Soon Teaser for Lifecycle Intelligence -->
-    <div style="background:#0d0d0d;border:1px solid #1f1f1f;border-radius:12px;padding:1.25rem 1.5rem;display:flex;flex-direction:column;gap:0.5rem;text-align:left;">
-      <div style="display:flex;align-items:center;gap:0.6rem;">
-        <span class="coming-soon-badge">Coming soon</span>
-        <span style="color:#fff;font-size:0.875rem;font-weight:600;">Lifecycle Intelligence</span>
-      </div>
-      <p style="color:#71717a;font-size:0.825rem;line-height:1.6;margin:0;">
-        Nixora will learn from every deployment, tracking what changed, how it affects your app, and surfacing issues before they become failures.
-      </p>
-    </div>
-
   </div>
 </section>
 
-<style>
-  .badge-pill-purple {
-    font-family: 'Fira Code', 'Geist Mono', monospace;
-    font-size: 0.72rem;
-    font-weight: 500;
-    padding: 0.2rem 0.65rem;
-    border-radius: 6px;
-    background: rgba(167, 139, 250, 0.12);
-    border: 1px solid rgba(167, 139, 250, 0.35);
-    color: #a78bfa;
-  }
-
-  .comp-2col-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1.5rem;
-    width: 100%;
-  }
-
-  .comp-col {
-    background: #0d0d0d;
-    border: 1px solid #1f1f1f;
-    border-radius: 14px;
-    padding: 2.25rem 2rem;
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-    box-shadow: 0 16px 40px rgba(0,0,0,0.5);
-    
-    /* Scroll animation initial state */
-    opacity: 0;
-    transform: translateY(16px);
-    transition: opacity 0.6s ease, transform 0.6s ease;
-  }
-
-  .comp-col-left {
-    border: 1px solid #1f1f1f;
-  }
-
-  .comp-col-right {
-    border: 1px solid rgba(167, 139, 250, 0.35);
-    background: linear-gradient(180deg, rgba(167, 139, 250, 0.03) 0%, #0d0d0d 100%);
-  }
-
-  .animate-comp .comp-col-left {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  .animate-comp .comp-col-right {
-    opacity: 1;
-    transform: translateY(0);
-    transition-delay: 0.15s;
-  }
-
-  .comp-col-header {
-    font-family: 'Fira Code', 'Geist Mono', monospace;
-    font-size: 0.85rem;
-    font-weight: 700;
-    letter-spacing: 0.1em;
-  }
-
-  .comp-col-header-left {
-    color: #a1a1aa;
-  }
-
-  .comp-col-header-right {
-    color: #a78bfa;
-  }
-
-  .comp-list {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-  }
-
-  .comp-item {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    font-size: 0.9375rem;
-    line-height: 1.5;
-    padding-bottom: 0.75rem;
-    border-bottom: 1px solid #181818;
-  }
-
-  .comp-item:last-child {
-    border-bottom: none;
-    padding-bottom: 0;
-  }
-
-  .comp-item-left {
-    color: #a1a1aa;
-  }
-
-  .comp-item-right {
-    color: #ffffff;
-    font-weight: 500;
-  }
-
-  .comp-icon {
-    font-family: 'Fira Code', monospace;
-    font-weight: 700;
-    font-size: 0.9rem;
-    flex-shrink: 0;
-  }
-
-  .comp-icon-cross {
-    color: #5a5a5a;
-  }
-
-  .comp-icon-check {
-    color: #a78bfa;
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .comp-col {
-      opacity: 1 !important;
-      transform: none !important;
-      transition: none !important;
-    }
-  }
-
-  @media (max-width: 768px) {
-    .comp-2col-grid {
-      grid-template-columns: 1fr;
-    }
-  }
-</style>
-
 <script>
-  function initCompAnimation() {
-    const wrapper = document.getElementById('comp-grid-wrapper');
-    if (!wrapper) return;
+  const revealElements = document.querySelectorAll(
+    ".why-infra [data-reveal]"
+  );
 
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches || typeof IntersectionObserver === 'undefined') {
-      wrapper.classList.add('animate-comp');
-      return;
-    }
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
+  const revealObserver = new IntersectionObserver(
+    (entries, observer) => {
+      entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          wrapper.classList.add('animate-comp');
+          const parent = entry.target.parentElement;
+
+          if (parent?.hasAttribute("data-stagger")) {
+            const siblings = Array.from(
+              parent.querySelectorAll(":scope > [data-reveal]")
+            );
+
+            siblings.forEach((sibling, index) => {
+              sibling.style.transitionDelay = `${index * 0.07}s`;
+            });
+          }
+
+          entry.target.classList.add("is-visible");
           observer.unobserve(entry.target);
         }
       });
-    }, { threshold: 0.3 });
+    },
+    {
+      threshold: 0.15,
+      rootMargin: "0px 0px -40px 0px",
+    }
+  );
 
-    observer.observe(wrapper);
-  }
-
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initCompAnimation);
-  } else {
-    initCompAnimation();
-  }
+  revealElements.forEach((element) => {
+    revealObserver.observe(element);
+  });
 </script>
+
+<style>
+ .why-infra {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  padding: 4rem 1rem;
+  background: var(--background);
+  box-sizing: border-box;
+}
+
+.why-infra *,
+.why-infra *::before,
+.why-infra *::after {
+  box-sizing: border-box;
+}
+
+
+ .why-infra-container {
+  position: relative;
+  width: 100%;
+  max-width: 1250px;
+  margin-inline: auto;
+  padding: 0;
+}
+
+ /* Intro */
+
+.why-infra-intro {
+  width: 100%;
+  max-width: 48rem;
+  margin: 0 auto;
+  text-align: center;
+}
+
+ .why-infra-intro h2 {
+  margin: 0;
+  color: #fff;
+  font-size: clamp(1.75rem, 4vw, 3rem);
+  font-weight: 600;
+  line-height: 1.25;
+  letter-spacing: -0.04em;
+  overflow-wrap: break-word;
+}
+
+  .why-infra-intro p {
+  width: 100%;
+  max-width: 42rem;
+  margin: 1.25rem auto 0;
+  color: rgba(255, 255, 255, 0.65);
+  font-size: clamp(0.9375rem, 1.5vw, 1.125rem);
+  line-height: 1.75;
+}
+
+ /* Comparison wrapper */
+
+.why-infra-comparison {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-width: 0;
+  margin-top: 2.5rem;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 1rem;
+  background: #0d0d0f;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.2);
+}
+
+.infra-comparison-panel {
+  position: relative;
+  display: flex;
+  flex: 1 1 0;
+  flex-direction: column;
+  min-width: 0;
+}
+
+  .infra-panel-content {
+  position: relative;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-width: 0;
+  padding: 1.5rem 1.25rem;
+}
+
+.infra-panel-nixora {
+  background: #0d0d0f;
+}
+
+ .infra-panel-tint {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: rgba(125, 87, 239, 0.035);
+}
+
+ /* Headings */
+.infra-panel-heading {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.625rem;
+  min-width: 0;
+}
+
+  .infra-heading-icon {
+  flex-shrink: 0;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+ .infra-heading-cross {
+  color: rgba(255, 255, 255, 0.45);
+  font-size: 1.125rem;
+}
+
+  .infra-heading-check {
+  color: var(--primary, #a78bfa);
+}
+
+  .infra-heading-text {
+  min-width: 0;
+  margin: 0;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.7rem;
+  font-weight: 600;
+  line-height: 1.6;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  overflow-wrap: anywhere;
+}
+
+  .infra-heading-primary {
+    color: var(--primary, #a78bfa);
+  }
+
+  /* Traditional manual flow */
+
+.infra-manual-flow {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  min-width: 0;
+  margin-top: 1.5rem;
+}
+
+ .infra-manual-step {
+  display: flex;
+  flex: 1 1 0;
+  align-items: stretch;
+  min-width: 0;
+}
+
+
+  .infra-step-card {
+  display: flex;
+  flex: 1 1 0;
+  flex-direction: column;
+  justify-content: center;
+  min-width: 0;
+  min-height: 4.5rem;
+  padding: 0.75rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 0.75rem;
+  background: #0d0d0f;
+}
+
+  .infra-step-first {
+    border-color: rgba(255, 255, 255, 0.15);
+  }
+
+  .infra-step-title {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.65);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+
+  .infra-step-first .infra-step-title {
+    color: rgba(255, 255, 255, 0.8);
+  }
+
+ .infra-step-subtitle {
+  margin: 0.25rem 0 0;
+  color: rgba(255, 255, 255, 0.4);
+  font-size: 0.75rem;
+  line-height: 1.5;
+}
+
+ .infra-step-arrow {
+  display: none;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 1.5rem;
+  color: rgba(255, 255, 255, 0.25);
+  font-size: 1rem;
+}
+  /* Nixora flow */
+
+  .infra-nixora-flow {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    align-items: center;
+    gap: 1rem;
+    margin-top: 1.75rem;
+  }
+
+  .infra-flow-input,
+  .infra-flow-command,
+  .infra-flow-result {
+    min-width: 0;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    background: #0d0d0f;
+  }
+
+  .infra-flow-input {
+    padding: 1rem;
+  }
+
+  .infra-flow-label {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.4);
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+
+  .infra-flow-title {
+    margin: 0.375rem 0 0;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.875rem;
+    font-weight: 500;
+  }
+
+  .infra-flow-subtitle {
+    margin: 0.25rem 0 0;
+    color: rgba(255, 255, 255, 0.4);
+    font-size: 0.75rem;
+  }
+
+  .infra-flow-arrow {
+    display: none;
+    color: var(--primary, #a78bfa);
+    font-size: 1.25rem;
+  }
+
+  .infra-flow-command {
+    display: flex;
+    justify-content: center;
+    padding: 1rem;
+  }
+
+  .infra-command-box {
+    display: inline-flex;
+    align-items: center;
+    padding: 1rem 1.25rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    background: #0d0d0f;
+  }
+
+  .infra-command-box span {
+    color: var(--primary, #a78bfa);
+    font-size: 0.875rem;
+    font-weight: 500;
+  }
+
+  .infra-flow-result {
+    padding: 1rem 1.25rem;
+  }
+
+  .infra-result-heading {
+    display: flex;
+    align-items: center;
+    gap: 0.625rem;
+  }
+
+  .infra-result-heading p {
+    margin: 0;
+    color: #fff;
+    font-size: 0.875rem;
+    font-weight: 500;
+  }
+
+  .infra-result-dot {
+    width: 0.5rem;
+    height: 0.5rem;
+    flex-shrink: 0;
+    border-radius: 50%;
+    background: var(--primary, #a78bfa);
+    box-shadow: 0 0 10px rgba(125, 87, 239, 0.65);
+  }
+
+  .infra-check-list {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0.5rem 1.25rem;
+    margin-top: 1rem;
+  }
+
+  .infra-check-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: rgba(255, 255, 255, 0.65);
+    font-size: 0.75rem;
+  }
+
+  .infra-check-item span:first-child {
+    color: var(--primary, #a78bfa);
+  }
+
+  /* Divider */
+
+  .infra-divider {
+    height: 1px;
+    flex-shrink: 0;
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+  /* Reveal animation */
+
+  [data-reveal] {
+    opacity: 0;
+    transform: translateY(10px);
+    transition:
+      opacity 0.5s ease,
+      transform 0.5s ease;
+  }
+
+  [data-reveal].is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @media (min-width: 640px) {
+    .why-infra {
+      padding: 5rem 0;
+    }
+
+    .why-infra-container {
+      padding: 0 2rem;
+    }
+
+    .why-infra-intro h2 {
+      font-size: 2.25rem;
+    }
+
+    .why-infra-intro p {
+      font-size: 1.125rem;
+      line-height: 2rem;
+    }
+
+    .why-infra-comparison {
+      margin-top: 3rem;
+    }
+
+    .infra-panel-content {
+      padding: 2rem;
+    }
+
+    .infra-heading-text {
+      font-size: 0.875rem;
+    }
+
+    .infra-manual-flow {
+      flex-direction: row;
+      align-items: stretch;
+      gap: 0;
+    }
+
+    .infra-manual-step {
+      align-items: stretch;
+    }
+
+    .infra-step-card {
+      min-height: 5rem;
+      padding: 0.75rem 1rem;
+    }
+
+    .infra-step-title {
+      font-size: 0.9375rem;
+    }
+
+    .infra-step-arrow {
+      display: flex;
+    }
+
+    .infra-check-list {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .why-infra {
+      padding: 6rem 0;
+    }
+
+    .why-infra-container {
+      padding: 0 3rem;
+    }
+
+    .why-infra-intro h2 {
+      font-size: 3rem;
+    }
+
+    .infra-panel-content {
+      padding: 2.25rem 2.5rem;
+    }
+
+    .infra-step-card {
+      padding: 0.75rem 1.25rem;
+    }
+
+    .infra-nixora-flow {
+      grid-template-columns:
+        minmax(0, 0.8fr)
+        auto
+        minmax(0, 0.8fr)
+        auto
+        minmax(0, 1.6fr);
+    }
+
+    .infra-flow-arrow {
+      display: block;
+    }
+
+    .infra-check-list {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    [data-reveal] {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+  }
+
+
+  
+</style>

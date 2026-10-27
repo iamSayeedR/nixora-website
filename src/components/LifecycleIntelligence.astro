@@ -1,0 +1,219 @@
+---
+---
+
+<section class="lifecycle-section">
+  
+
+  <div class="lifecycle-content">
+    <p class="coming-soon" data-reveal>
+      <span class="status-dot">
+        <span class="dot-pulse"></span>
+        <span class="dot-core"></span>
+      </span>
+      Coming soon
+    </p>
+
+    <h2 data-reveal>
+      Lifecycle <span>Intelligence</span>
+    </h2>
+
+    <p class="description" data-reveal>
+      Nixora will learn from every deployment, tracking what changed, how it
+      affects your app, and surfacing issues before they become failures.
+    </p>
+  </div>
+</section>
+
+<style>
+.lifecycle-section {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  padding: 5rem 0;
+}
+ .roadmap-tint {
+  display: none;
+}
+
+  .lifecycle-content {
+    position: relative;
+    width: 100%;
+    max-width: 56rem;
+    margin: 0 auto;
+    padding: 0 1.25rem;
+    text-align: center;
+  }
+
+  .coming-soon {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.625rem;
+    padding: 0.5rem 1rem;
+    border: 1px solid rgba(125, 87, 239, 0.35);
+    border-radius: 9999px;
+    background: rgba(125, 87, 239, 0.1);
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    box-shadow: 0 0 24px rgba(125, 87, 239, 0.1);
+  }
+
+  .status-dot {
+    position: relative;
+    display: flex;
+    width: 0.5rem;
+    height: 0.5rem;
+    flex-shrink: 0;
+  }
+
+  .dot-pulse {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background: var(--primary, #a78bfa);
+    opacity: 0.5;
+    animation: dot-ping 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+  }
+
+  .dot-core {
+    position: relative;
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 50%;
+    background: var(--primary, #a78bfa);
+  }
+
+  .lifecycle-content h2 {
+    margin-top: 1.5rem;
+    color: #fff;
+    font-size: 1.875rem;
+    font-weight: 600;
+    line-height: 1.1;
+    letter-spacing: -0.045em;
+  }
+
+  .lifecycle-content h2 span {
+    color: var(--primary, #a78bfa);
+  }
+
+  .description {
+    max-width: 42rem;
+    margin: 1.25rem auto 0;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.875rem;
+    line-height: 1.75rem;
+  }
+
+  [data-reveal] {
+    opacity: 0;
+    transform: translateY(14px);
+    transition:
+      opacity 0.55s ease-out,
+      transform 0.55s ease-out;
+  }
+
+  [data-reveal].is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .coming-soon.is-visible {
+    transition-delay: 0s;
+  }
+
+  h2.is-visible {
+    transition-delay: 0.1s;
+  }
+
+  .description.is-visible {
+    transition-delay: 0.2s;
+  }
+
+  @keyframes dot-ping {
+    75%,
+    100% {
+      transform: scale(2);
+      opacity: 0;
+    }
+  }
+
+  @media (min-width: 640px) {
+    .lifecycle-section {
+      padding: 6rem 0;
+    }
+
+    .lifecycle-content {
+      padding: 0 2rem;
+    }
+
+    .coming-soon {
+      font-size: 0.75rem;
+    }
+
+    .lifecycle-content h2 {
+      margin-top: 1.75rem;
+      font-size: 2.25rem;
+    }
+
+    .description {
+      margin-top: 1.5rem;
+      font-size: 1rem;
+      line-height: 2rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .lifecycle-section {
+      padding: 7rem 0;
+    }
+
+    .lifecycle-content {
+      padding: 0 3rem;
+    }
+
+    .lifecycle-content h2 {
+      font-size: 3rem;
+    }
+
+    .description {
+      font-size: 1.125rem;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .dot-pulse {
+      animation: none;
+    }
+
+    [data-reveal] {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+  }
+</style>
+
+<script>
+  const revealElements = document.querySelectorAll("[data-reveal]");
+
+  const revealObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    },
+    {
+      threshold: 0.15,
+      rootMargin: "0px 0px -80px 0px",
+    },
+  );
+
+  revealElements.forEach((element) => {
+    revealObserver.observe(element);
+  });
+</script>

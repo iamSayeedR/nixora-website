@@ -1,316 +1,1000 @@
 ---
+const inputLines = [
+  "└─ scanning project root",
+  "└─ detecting runtime: node@20",
+  "└─ entry point: server.js",
+  "└─ dependencies: 62 packages",
+];
+
+const processLines = [
+  "building container...",
+  "image built in 8.4s",
+  "provisioning compute...",
+  "issuing TLS certificate...",
+  "routing traffic...",
+];
+
+const outputLines = [
+  "Container image pushed",
+  "Compute provisioned (us-east)",
+  "HTTPS certificate issued",
+];
+
+const capabilities = [
+  {
+    title: "Zero-config deploy",
+    description:
+      "Auto-detects runtime, containerizes, and ships with no Dockerfile required.",
+    icon: "package",
+  },
+  {
+    title: "HTTPS by default",
+    description:
+      "TLS certificate issued and attached to every deployment automatically.",
+    icon: "shield",
+  },
+  {
+    title: "Persistent hosting",
+    description:
+      "Nixora handles uptime, restarts, and availability so you don't have to.",
+    icon: "server",
+  },
+];
 ---
-<section id="deploy-intro" style="padding:5rem 2rem;position:relative;overflow:hidden;">
-  <!-- Section Heading Wash Glow -->
-  <div style="position:absolute;top:-40px;left:50%;transform:translateX(-50%);width:100%;max-width:700px;height:140px;background:radial-gradient(ellipse 55% 40% at 50% 0%,rgba(139,92,246,0.08),transparent 70%);pointer-events:none;z-index:0;"></div>
 
-  <div style="max-width:900px;margin:0 auto;position:relative;z-index:1;display:flex;flex-direction:column;gap:2.5rem;">
+<section class="deploy-section" id="deploy-intro">
+  <div class="deploy-tint"></div>
 
-    <!-- Icon + Headline + Subhead -->
-    <div style="display:flex;flex-direction:column;align-items:center;text-align:center;gap:1.25rem;">
-      <div style="width:48px;height:48px;border-radius:50%;border:1px solid #2a2a2a;background:#0a0a0a;display:flex;align-items:center;justify-content:center;box-shadow:0 0 20px rgba(139,92,246,0.15);">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#a78bfa" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-          <polyline points="4 17 10 11 4 5"></polyline>
-          <line x1="12" y1="19" x2="20" y2="19"></line>
-        </svg>
-      </div>
-      <h2 class="section-headline">
-        It all starts with <span class="accent">nixora deploy</span>
+  <div class="deploy-container">
+    <!-- Section intro -->
+    <div class="deploy-intro reveal">
+      <h2>
+        It all starts with
+        <span class="deploy-accent"> nixora deploy.</span>
       </h2>
-      <p style="font-size:1.0625rem;line-height:1.75;color:#a1a1aa;max-width:560px;display:block;margin:0 auto;">
-        Bridge the gap between AI-generated code and a live, managed application, with hosting, HTTPS, and compute handled automatically.
+
+      <p>
+        Bridge the gap between AI-generated code and a live, managed
+        application, with hosting, HTTPS, and compute handled automatically.
       </p>
     </div>
 
-    <!-- Large Featured Two-Panel Terminal Box with Right-Aligned Titlebar Tag -->
-    <div id="tw-panel" style="
-      border:1px solid #2a2a2a;
-      border-radius:14px;
-      background:#0a0a0a;
-      overflow:hidden;
-      box-shadow:
-        0 0 0 1px #1a1a1a,
-        0 0 60px rgba(139,92,246,0.12),
-        0 40px 100px rgba(0,0,0,0.6);
-    ">
-      <!-- Title bar with right-aligned nixora: bash -->
-      <div style="display:flex;align-items:center;justify-content:space-between;padding:0.85rem 1.25rem;border-bottom:1px solid #1a1a1a;background:#0f0f0f;">
-        <div style="display:flex;gap:6px;">
-          <span style="width:12px;height:12px;border-radius:50%;background:#ff5f57;display:block;"></span>
-          <span style="width:12px;height:12px;border-radius:50%;background:#febc2e;display:block;"></span>
-          <span style="width:12px;height:12px;border-radius:50%;background:#28c840;display:block;"></span>
+    <!-- Terminal -->
+    <div class="terminal reveal" id="deploy-terminal">
+      <!-- Terminal header -->
+      <div class="terminal-header">
+        <div class="terminal-dots">
+          <span class="dot red"></span>
+          <span class="dot yellow"></span>
+          <span class="dot green"></span>
         </div>
-        <span style="font-size:0.72rem;color:#3f3f46;font-family:'Fira Code',monospace;letter-spacing:0.02em;">nixora: bash</span>
+
+        <span class="terminal-label">nixora: bash</span>
       </div>
 
-      <!-- Two-panel terminal: command + output -->
-      <div style="display:grid;grid-template-columns:1fr 1fr;min-height:360px;" class="terminal-grid">
+      <!-- Terminal content -->
+      <div class="terminal-grid">
+        <!-- Input -->
+        <div class="terminal-column terminal-input">
+          <p class="terminal-heading">Input</p>
 
-        <!-- Left: Command input panel -->
-        <div style="padding:2rem;border-right:1px solid #1a1a1a;font-family:'Fira Code','Geist Mono',monospace;font-size:0.82rem;line-height:1.9;text-align:left;">
-          <div style="color:#3f3f46;font-size:0.7rem;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:1.25rem;">INPUT</div>
-          <div id="cli-input-area" style="display:flex;flex-direction:column;gap:0.2rem;"></div>
+          <div class="terminal-content">
+            <p class="terminal-step terminal-command">
+              <span class="terminal-primary">$</span>
+              ~/my-ai-app $ nixora deploy
+            </p>
+
+            <div class="terminal-input-lines">
+              {inputLines.map((line, index) => (
+                <p class={`terminal-step terminal-input-${index}`}>
+                  {line}
+                </p>
+              ))}
+            </div>
+
+            <div class="terminal-process">
+              <p class="terminal-step terminal-build-start">
+                {processLines[0]}
+              </p>
+
+              <!-- Progress bar -->
+              <div class="terminal-progress-wrapper">
+                <div class="terminal-progress-track">
+                  <div class="terminal-progress"></div>
+                </div>
+              </div>
+
+              <p class="terminal-step terminal-build-complete">
+                {processLines[1]}
+              </p>
+
+              <div class="terminal-process-lines">
+                <p class="terminal-step terminal-provision">
+                  {processLines[2]}
+                </p>
+
+                <p class="terminal-step terminal-tls">
+                  {processLines[3]}
+                </p>
+
+                <p class="terminal-step terminal-routing">
+                  {processLines[4]}
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
 
-        <!-- Right: Live output panel -->
-        <div style="padding:2rem;font-family:'Fira Code','Geist Mono',monospace;font-size:0.82rem;line-height:1.9;text-align:left;">
-          <div style="color:#3f3f46;font-size:0.7rem;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:1.25rem;">OUTPUT</div>
-          <div id="cli-output-area" style="display:flex;flex-direction:column;gap:1.25rem;"></div>
+        <!-- Output -->
+        <div class="terminal-column terminal-output">
+          <p class="terminal-heading">Output</p>
+
+          <div class="terminal-content">
+            <div class="terminal-output-lines">
+              {outputLines.map((line, index) => (
+                <p class={`terminal-step terminal-output-${index}`}>
+                  <span class="terminal-primary">✔</span>
+                  <span class="terminal-output-text">{line}</span>
+                </p>
+              ))}
+            </div>
+
+            <!-- Live URL -->
+            <div class="terminal-step terminal-live-url">
+              <p class="terminal-muted">LIVE URL</p>
+
+              <p class="terminal-url">
+                https://my-app.nixora.co.in
+              </p>
+            </div>
+
+            <p class="terminal-step terminal-deployed-time terminal-muted">
+              deployed in 12.3s · managed by Nixora
+            </p>
+
+            <p class="terminal-step terminal-lifecycle">
+              <span class="terminal-primary">✔</span>
+              Nixora is now managing your app's lifecycle.
+            </p>
+          </div>
         </div>
 
-      </div>
+        <!-- Terminal footer -->
+        <div class="terminal-footer">
+          <div class="terminal-footer-info">
+            <span class="terminal-primary">running</span>
+            <span>uptime: 100%</span>
+            <span>region: us-east-1</span>
+          </div>
 
-      <!-- Bottom status bar -->
-      <div style="padding:0.6rem 1.5rem;border-top:1px solid #1a1a1a;background:#0f0f0f;display:flex;align-items:center;justify-content:space-between;font-family:'Fira Code',monospace;font-size:0.7rem;color:#3f3f46;">
-        <div style="display:flex;align-items:center;gap:1.5rem;">
-          <span style="display:flex;align-items:center;gap:0.4rem;">
-            <span style="width:6px;height:6px;border-radius:50%;background:#28c840;display:inline-block;"></span>
-            running
-          </span>
-          <span>uptime: 100%</span>
-          <span>region: us-east-1</span>
+          <span>nixora-cli v0.1.0</span>
         </div>
-        <span>nixora-cli v0.1.0</span>
       </div>
     </div>
 
-    <!-- Feature Bullet List -->
-    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1px;border:1px solid #1f1f1f;border-radius:10px;overflow:hidden;background:#1f1f1f;box-shadow:0 10px 30px rgba(0,0,0,0.4);" class="bullet-grid">
-      {[
-        { icon: "⚡", label: "Zero-config deploy", body: "Auto-detects runtime, containerizes, and ships with no Dockerfile required." },
-        { icon: "🔒", label: "HTTPS by default", body: "TLS certificate issued and attached to every deployment automatically." },
-        { icon: "♾️", label: "Persistent hosting", body: "Nixora handles uptime, restarts, and availability so you don't have to." },
-      ].map(item => (
-        <div class="deploy-bullet-cell">
-          <div style="font-size:1.2rem;">{item.icon}</div>
-          <div style="color:#fff;font-weight:600;font-size:0.9375rem;">{item.label}</div>
-          <div style="color:#71717a;font-size:0.875rem;line-height:1.6;">{item.body}</div>
-        </div>
+    <!-- Capabilities -->
+    <div class="capabilities">
+      {capabilities.map((item, index) => (
+        <article
+          class="capability-card reveal"
+          style={`--card-delay: ${index * 120}ms`}
+        >
+          <div class="capability-glow"></div>
+
+          <div class="capability-icon">
+            {item.icon === "package" && (
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="21"
+                height="21"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.7"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <path d="M16 16h6" />
+                <path d="M19 13v6" />
+                <path d="M21 10V5a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 5v14a2 2 0 0 0 2 2h9" />
+                <path d="m3.3 4.8 8.7 5 8.7-5" />
+                <path d="M12 22V10" />
+              </svg>
+            )}
+
+            {item.icon === "shield" && (
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="21"
+                height="21"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.7"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <path d="M12 22s8-4 8-11V5l-8-3-8 3v6c0 7 8 11 8 11z" />
+                <path d="m9 12 2 2 4-4" />
+              </svg>
+            )}
+
+            {item.icon === "server" && (
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="21"
+                height="21"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.7"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <rect width="20" height="8" x="2" y="2" rx="2" />
+                <rect width="20" height="8" x="2" y="14" rx="2" />
+                <path d="M6 6h.01" />
+                <path d="M6 18h.01" />
+              </svg>
+            )}
+          </div>
+
+          <div class="capability-content">
+            <h3>{item.title}</h3>
+            <p>{item.description}</p>
+          </div>
+
+          <div class="capability-bottom-line"></div>
+        </article>
       ))}
     </div>
-
   </div>
 </section>
 
+<script>
+  const section = document.querySelector("#deploy-intro");
+  const terminal = document.querySelector("#deploy-terminal");
+
+  if (section && terminal) {
+    const steps = terminal.querySelectorAll(".terminal-step");
+    const progress = terminal.querySelector(".terminal-progress");
+
+    const reducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
+
+    let isInView = false;
+    let isRunning = false;
+    let cycleId = 0;
+    let timer: ReturnType<typeof setTimeout> | undefined;
+    let resolveWait: (() => void) | undefined;
+
+    const wait = (ms: number, currentCycle: number) =>
+      new Promise<void>((resolve) => {
+        if (currentCycle !== cycleId) {
+          resolve();
+          return;
+        }
+
+        resolveWait = resolve;
+
+        timer = setTimeout(() => {
+          timer = undefined;
+          resolveWait = undefined;
+          resolve();
+        }, ms);
+      });
+
+    const reveal = async (
+      element: Element | null,
+      currentCycle: number,
+      duration = 350,
+    ) => {
+      if (!element || currentCycle !== cycleId) return;
+
+      element.classList.add("is-visible");
+
+      await wait(reducedMotion ? 0 : duration, currentCycle);
+    };
+
+    const revealSequentially = async (
+      elements: Element[],
+      currentCycle: number,
+      duration = 350,
+      interval = 280,
+    ) => {
+      for (const element of elements) {
+        if (currentCycle !== cycleId) return;
+
+        await reveal(element, currentCycle, duration);
+
+        if (currentCycle !== cycleId) return;
+
+        await wait(reducedMotion ? 0 : interval, currentCycle);
+      }
+    };
+
+    const resetTerminal = () => {
+      steps.forEach((step) => {
+        step.classList.remove("is-visible");
+      });
+
+      progress?.classList.remove("is-filled");
+    };
+
+    const runCycle = async (currentCycle: number) => {
+      resetTerminal();
+
+      await wait(300, currentCycle);
+
+      if (currentCycle !== cycleId) return;
+
+      await reveal(
+        terminal.querySelector(".terminal-command"),
+        currentCycle,
+        450,
+      );
+
+      await revealSequentially(
+        Array.from(
+          terminal.querySelectorAll(
+            ".terminal-input-0, .terminal-input-1, .terminal-input-2, .terminal-input-3",
+          ),
+        ),
+        currentCycle,
+      );
+
+      await reveal(
+        terminal.querySelector(".terminal-build-start"),
+        currentCycle,
+      );
+
+      if (currentCycle !== cycleId) return;
+
+      progress?.classList.add("is-filled");
+
+      await wait(reducedMotion ? 0 : 2800, currentCycle);
+
+      await reveal(
+        terminal.querySelector(".terminal-build-complete"),
+        currentCycle,
+      );
+
+      await reveal(
+        terminal.querySelector(".terminal-provision"),
+        currentCycle,
+      );
+
+      await reveal(
+        terminal.querySelector(".terminal-tls"),
+        currentCycle,
+      );
+
+      await reveal(
+        terminal.querySelector(".terminal-routing"),
+        currentCycle,
+      );
+
+      await revealSequentially(
+        Array.from(
+          terminal.querySelectorAll(
+            ".terminal-output-0, .terminal-output-1, .terminal-output-2",
+          ),
+        ),
+        currentCycle,
+        350,
+        350,
+      );
+
+      await reveal(
+        terminal.querySelector(".terminal-live-url"),
+        currentCycle,
+        400,
+      );
+
+      await reveal(
+        terminal.querySelector(".terminal-deployed-time"),
+        currentCycle,
+      );
+
+      await reveal(
+        terminal.querySelector(".terminal-lifecycle"),
+        currentCycle,
+        400,
+      );
+
+      if (currentCycle !== cycleId) return;
+
+      if (reducedMotion) return;
+
+      await wait(900, currentCycle);
+
+      if (currentCycle !== cycleId) return;
+
+      resetTerminal();
+
+      await wait(150, currentCycle);
+
+      if (currentCycle !== cycleId) return;
+
+      void runCycle(currentCycle);
+    };
+
+    const startAnimation = () => {
+      if (isRunning || !isInView) return;
+
+      isRunning = true;
+      cycleId += 1;
+
+      if (reducedMotion) {
+        steps.forEach((step) => {
+          step.classList.add("is-visible");
+        });
+
+        progress?.classList.add("is-filled");
+        return;
+      }
+
+      void runCycle(cycleId);
+    };
+
+    const stopAnimation = () => {
+      isRunning = false;
+      cycleId += 1;
+
+      if (timer !== undefined) {
+        clearTimeout(timer);
+        timer = undefined;
+      }
+
+      resolveWait?.();
+      resolveWait = undefined;
+
+      resetTerminal();
+    };
+
+    const terminalObserver = new IntersectionObserver(
+      ([entry]) => {
+        isInView = entry.isIntersecting;
+
+        if (isInView) {
+          startAnimation();
+        } else {
+          stopAnimation();
+        }
+      },
+      {
+        threshold: 0.2,
+      },
+    );
+
+    terminalObserver.observe(terminal);
+
+    // Reveal section intro and feature cards on scroll.
+    const revealObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            revealObserver.unobserve(entry.target);
+          }
+        });
+      },
+      {
+        threshold: 0.2,
+      },
+    );
+
+    section.querySelectorAll(".reveal").forEach((element) => {
+      revealObserver.observe(element);
+    });
+  }
+</script>
+
 <style>
-  .deploy-bullet-cell {
-    background: #111;
-    padding: 1.5rem;
+.deploy-section {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  padding: 5rem 1.25rem;
+  box-sizing: border-box;
+}
+
+
+ .deploy-container {
+  position: relative;
+  width: 100%;
+  max-width: 1150px;
+  margin: 0 auto;
+  padding: 0;
+   box-sizing: border-box;
+}
+
+  /* Section intro */
+
+  .deploy-intro {
+    max-width: 48rem;
+    margin: 0 auto 2.5rem;
+    text-align: center;
+  }
+
+  .deploy-intro h2 {
+    margin: 0;
+    color: #fff;
+    font-size: 1.875rem;
+    font-weight: 600;
+    line-height: 1.25;
+    letter-spacing: -0.04em;
+  }
+
+  .deploy-accent {
+    color: var(--primary, #a78bfa);
+  }
+
+  .deploy-intro p {
+    max-width: 42rem;
+    margin: 1.25rem auto 0;
+    color: rgba(255, 255, 255, 0.65);
+    font-size: 1rem;
+    line-height: 1.75;
+  }
+
+  /* Terminal */
+
+  .terminal {
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 1rem;
+    background: #0d0d0f;
+    box-shadow: 0 16px 45px rgba(0, 0, 0, 0.35);
+  }
+
+  .terminal-header {
+    display: flex;
+    height: 2.75rem;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.025);
+  }
+
+  .terminal-dots {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .dot {
+    width: 0.625rem;
+    height: 0.625rem;
+    border-radius: 50%;
+  }
+
+  .dot.red {
+    background: #ff5f57;
+  }
+
+  .dot.yellow {
+    background: #ffbd44;
+  }
+
+  .dot.green {
+    background: #28c840;
+  }
+
+  .terminal-label {
+    color: rgba(255, 255, 255, 0.45);
+    font-family: monospace;
+    font-size: 0.75rem;
+  }
+
+  .terminal-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .terminal-column {
+    min-width: 0;
+    padding: 1.25rem;
+  }
+
+  .terminal-input {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .terminal-heading {
+    margin: 0 0 1.25rem;
+    color: rgba(255, 255, 255, 0.45);
+    font-family: monospace;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+  }
+
+  .terminal-content {
+    color: rgba(255, 255, 255, 0.75);
+    font-family: monospace;
+    font-size: 0.6875rem;
+    line-height: 1.5rem;
+  }
+
+  .terminal-content p {
+    margin: 0;
+  }
+
+  .terminal-primary {
+    color: var(--primary, #a78bfa);
+  }
+
+  .terminal-muted {
+    color: rgba(255, 255, 255, 0.5);
+  }
+
+  .terminal-step {
+    opacity: 0;
+    transform: translateY(4px);
+    transition:
+      opacity 350ms ease-out,
+      transform 350ms ease-out;
+  }
+
+  .terminal-step.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .terminal-command {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  overflow-wrap: anywhere;
+}
+
+.terminal-command .terminal-primary {
+  flex-shrink: 0;
+}
+
+  .terminal-input-lines {
+    margin-top: 1rem;
+    color: rgba(255, 255, 255, 0.5);
+  }
+
+  .terminal-input-lines p {
+    overflow-wrap: anywhere;
+  }
+
+  .terminal-process {
+    margin-top: 1.25rem;
+    color: rgba(255, 255, 255, 0.65);
+  }
+
+  .terminal-progress-wrapper {
+    width: 100%;
+    max-width: 24rem;
+    margin: 0.75rem 0;
+  }
+
+  .terminal-progress-track {
+    width: 100%;
+    height: 0.25rem;
+    overflow: hidden;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+  .terminal-progress {
+    width: 100%;
+    height: 100%;
+    transform: scaleX(0);
+    transform-origin: left;
+    border-radius: 999px;
+    background: var(--primary, #a78bfa);
+    transition: transform 1.9s linear;
+  }
+
+  .terminal-progress.is-filled {
+    transform: scaleX(1);
+  }
+  .terminal-progress:not(.is-filled) {
+  transition-duration: 0.35s;
+}
+
+  .terminal-process-lines {
+    margin-top: 0.5rem;
+  }
+
+  .terminal-output-lines {
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
-    transition: background 0.2s ease;
+    gap: 0.125rem;
   }
 
-  .deploy-bullet-cell:hover {
-    background: #141414;
+ .terminal-output-lines {
+  display: flex;
+  flex-direction: column;
+  gap: 0.125rem;
+}
+
+.terminal-output-lines p {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  overflow-wrap: anywhere;
+}
+
+  .terminal-output-text {
+    color: rgba(255, 255, 255, 0.75);
   }
 
-  :global(.tw-caret) {
-    display: inline-block;
-    color: #a78bfa;
-    font-weight: 700;
-    margin-left: 3px;
-    animation: caretBlink 1s infinite steps(1);
+  .terminal-live-url {
+    margin-top: 1.5rem;
   }
 
-  @keyframes caretBlink {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0; }
+  .terminal-url {
+    margin-top: 0.25rem !important;
+    overflow-wrap: anywhere;
+    color: var(--primary, #a78bfa);
   }
 
-  @keyframes progressFillAnim {
-    from { width: 0%; }
-    to { width: 100%; }
+  .terminal-deployed-time {
+    margin-top: 1.25rem !important;
+  }
+
+ .terminal-lifecycle {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  margin-top: 1.25rem !important;
+  color: rgba(255, 255, 255, 0.8);
+  overflow-wrap: anywhere;
+}
+
+.terminal-lifecycle .terminal-primary {
+  flex-shrink: 0;
+}
+
+  .terminal-footer {
+    grid-column: 1 / -1;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem 1rem;
+    padding: 0.75rem 1.25rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    color: rgba(255, 255, 255, 0.4);
+    font-family: monospace;
+    font-size: 0.625rem;
+  }
+
+  .terminal-footer-info {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.25rem 0.75rem;
+  }
+
+  /* Capability cards */
+
+  .capabilities {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+
+  .capability-card {
+    position: relative;
+    height: 100%;
+    overflow: hidden;
+    padding: 1.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 1rem;
+    background: #0d0d0f;
+    transition:
+      transform 300ms ease,
+      border-color 300ms ease,
+      background 300ms ease;
+  }
+
+  .capability-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(125, 87, 239, 0.3);
+    background: #100d17;
+  }
+
+  .capability-glow {
+    position: absolute;
+    top: -3rem;
+    right: -3rem;
+    width: 8rem;
+    height: 8rem;
+    border-radius: 50%;
+    background: transparent;
+    filter: blur(3rem);
+    transition: background 300ms ease;
+    pointer-events: none;
+  }
+
+  .capability-card:hover .capability-glow {
+    background: rgba(125, 87, 239, 0.1);
+  }
+
+  .capability-icon {
+    position: relative;
+    display: flex;
+    width: 2.75rem;
+    height: 2.75rem;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+    border: 1px solid rgba(125, 87, 239, 0.2);
+    border-radius: 1rem;
+    background: rgba(125, 87, 239, 0.1);
+    color: var(--primary, #a78bfa);
+    transition:
+      border-color 300ms ease,
+      background 300ms ease;
+  }
+
+  .capability-card:hover .capability-icon {
+    border-color: rgba(125, 87, 239, 0.35);
+    background: rgba(125, 87, 239, 0.15);
+  }
+
+  .capability-content {
+    position: relative;
+  }
+
+  .capability-content h3 {
+    margin: 0;
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: -0.025em;
+  }
+
+  .capability-content p {
+    margin: 0.75rem 0 0;
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 0.875rem;
+    line-height: 1.5rem;
+  }
+
+  .capability-bottom-line {
+    position: absolute;
+    right: 1.5rem;
+    bottom: 0;
+    left: 1.5rem;
+    height: 1px;
+    background: linear-gradient(
+      to right,
+      rgba(125, 87, 239, 0.3),
+      rgba(125, 87, 239, 0.1),
+      transparent
+    );
+    opacity: 0;
+    transition: opacity 300ms ease;
+  }
+
+  .capability-card:hover .capability-bottom-line {
+    opacity: 1;
+  }
+
+  /* Scroll reveal */
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(8px);
+    transition:
+      opacity 700ms ease-out,
+      transform 700ms ease-out;
+  }
+
+  .reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .capability-card.reveal {
+    transition-delay: var(--card-delay, 0ms);
+  }
+
+  @media (min-width: 640px) {
+   .deploy-section {
+    padding: 5rem 2rem;
+  }
+
+
+    .deploy-intro {
+      margin-bottom: 3.5rem;
+    }
+
+    .deploy-intro h2 {
+      font-size: 2.25rem;
+    }
+
+    .deploy-intro p {
+      font-size: 1.125rem;
+      line-height: 2rem;
+    }
+
+    .terminal-column {
+      padding: 1.75rem;
+    }
+
+    .terminal-content {
+      font-size: 0.75rem;
+    }
+
+    .terminal-footer {
+      padding-right: 1.75rem;
+      padding-left: 1.75rem;
+    }
+
+    .capabilities {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1.25rem;
+      margin-top: 2.5rem;
+    }
+
+    .capability-card {
+      padding: 1.75rem;
+    }
+
+    .capability-content h3 {
+      font-size: 1.125rem;
+    }
+
+    .capability-content p {
+      font-size: 0.9375rem;
+      line-height: 1.75rem;
+    }
+
+    .capability-bottom-line {
+      right: 1.75rem;
+      left: 1.75rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .deploy-section {
+    padding: 6rem 2rem;
+  }
+
+    .deploy-intro {
+      margin-bottom: 4rem;
+    }
+
+    .deploy-intro h2 {
+      font-size: 3rem;
+    }
+
+    .terminal-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .terminal-input {
+      border-right: 1px solid rgba(255, 255, 255, 0.1);
+      border-bottom: 0;
+    }
   }
 
   @media (prefers-reduced-motion: reduce) {
-    :global(.tw-caret) { display: none !important; }
-  }
-
-  @media (max-width: 768px) {
-    .terminal-grid { grid-template-columns: 1fr !important; }
-    .bullet-grid { grid-template-columns: 1fr !important; }
+    .reveal,
+    .terminal-step,
+    .capability-card,
+    .capability-icon,
+    .capability-glow,
+    .capability-bottom-line,
+    .terminal-progress {
+      transition-duration: 0.01ms !important;
+      transition-delay: 0ms !important;
+    }
   }
 </style>
-
-<script is:inline>
-  function initTwoPanelCLI() {
-    const inputArea = document.getElementById('cli-input-area');
-    const outputArea = document.getElementById('cli-output-area');
-    const panel = document.getElementById('tw-panel');
-
-    if (!inputArea || !outputArea || !panel) return;
-
-    function createCaret() {
-      const caret = document.createElement('span');
-      caret.className = 'tw-caret';
-      caret.textContent = '▍';
-      return caret;
-    }
-
-    function removeCarets() {
-      const carets = panel.querySelectorAll('.tw-caret');
-      carets.forEach(c => c.remove());
-    }
-
-    async function runSequence() {
-      inputArea.innerHTML = '';
-      outputArea.innerHTML = '';
-
-      // Step 1: Type command line character by character
-      const cmdLine = document.createElement('div');
-      cmdLine.innerHTML = `<span style="color:#52525b;">~/my-ai-app</span> <span style="color:#3f3f46;">$</span> <span style="color:#e4e4e7;" id="cmd-typed"></span>`;
-      inputArea.appendChild(cmdLine);
-
-      const typedEl = cmdLine.querySelector('#cmd-typed');
-      const textToType = "nixora deploy";
-      for (let i = 0; i <= textToType.length; i++) {
-        typedEl.textContent = textToType.slice(0, i);
-        removeCarets();
-        typedEl.appendChild(createCaret());
-        await new Promise(r => setTimeout(r, 28));
-      }
-
-      await new Promise(r => setTimeout(r, 300));
-
-      // Step 2: Scan project root
-      removeCarets();
-      const line1 = document.createElement('div');
-      line1.style.color = '#52525b';
-      line1.style.paddingLeft = '0.5rem';
-      line1.textContent = '└─ scanning project root';
-      inputArea.appendChild(line1);
-      line1.appendChild(createCaret());
-      await new Promise(r => setTimeout(r, 250));
-
-      // Step 3: Detect runtime
-      removeCarets();
-      const line2 = document.createElement('div');
-      line2.style.color = '#52525b';
-      line2.style.paddingLeft = '0.5rem';
-      line2.innerHTML = '└─ detecting runtime: <span style="color:#a1a1aa;">node@20</span>';
-      inputArea.appendChild(line2);
-      line2.appendChild(createCaret());
-      await new Promise(r => setTimeout(r, 250));
-
-      // Step 4: Entry point
-      removeCarets();
-      const line3 = document.createElement('div');
-      line3.style.color = '#52525b';
-      line3.style.paddingLeft = '0.5rem';
-      line3.innerHTML = '└─ entry point: <span style="color:#a1a1aa;">server.js</span>';
-      inputArea.appendChild(line3);
-      line3.appendChild(createCaret());
-      await new Promise(r => setTimeout(r, 250));
-
-      // Step 5: Dependencies
-      removeCarets();
-      const line4 = document.createElement('div');
-      line4.style.color = '#52525b';
-      line4.style.paddingLeft = '0.5rem';
-      line4.innerHTML = '└─ dependencies: <span style="color:#a1a1aa;">62 packages</span>';
-      inputArea.appendChild(line4);
-      line4.appendChild(createCaret());
-      await new Promise(r => setTimeout(r, 400));
-
-      // Step 6: Building container + progress bar
-      removeCarets();
-      const buildBox = document.createElement('div');
-      buildBox.style.marginTop = '1.25rem';
-      buildBox.style.display = 'flex';
-      buildBox.style.flexDirection = 'column';
-      buildBox.style.gap = '0.2rem';
-      buildBox.innerHTML = `
-        <div style="color:#52525b;">building container...</div>
-        <div style="height:4px;width:100%;background:#1a1a1a;border-radius:2px;overflow:hidden;margin-top:0.3rem;">
-          <div style="height:100%;width:0%;background:linear-gradient(90deg,#7c3aed,#a78bfa);border-radius:2px;animation:progressFillAnim 1.2s ease-out forwards;"></div>
-        </div>
-      `;
-      inputArea.appendChild(buildBox);
-      buildBox.appendChild(createCaret());
-      await new Promise(r => setTimeout(r, 1200));
-
-      // Step 7: Image built + Output 1
-      removeCarets();
-      const builtMsg = document.createElement('div');
-      builtMsg.style.color = '#3f3f46';
-      builtMsg.style.fontSize = '0.72rem';
-      builtMsg.style.marginTop = '0.25rem';
-      builtMsg.textContent = 'image built in 8.4s';
-      buildBox.appendChild(builtMsg);
-
-      const outGroup = document.createElement('div');
-      outGroup.style.display = 'flex';
-      outGroup.style.flexDirection = 'column';
-      outGroup.style.gap = '0.25rem';
-      outGroup.innerHTML = `<div style="color:#a78bfa;">✔ <span style="color:#71717a;">Container image pushed</span></div>`;
-      outputArea.appendChild(outGroup);
-      outGroup.appendChild(createCaret());
-      await new Promise(r => setTimeout(r, 450));
-
-      // Step 8: Provisioning compute + Output 2
-      removeCarets();
-      const provBox = document.createElement('div');
-      provBox.style.marginTop = '1.25rem';
-      provBox.style.display = 'flex';
-      provBox.style.flexDirection = 'column';
-      provBox.style.gap = '0.15rem';
-      provBox.style.color = '#52525b';
-      provBox.innerHTML = `<div>provisioning compute...</div>`;
-      inputArea.appendChild(provBox);
-
-      outGroup.innerHTML += `<div style="color:#a78bfa;">✔ <span style="color:#71717a;">Compute provisioned (us-east)</span></div>`;
-      outGroup.appendChild(createCaret());
-      await new Promise(r => setTimeout(r, 800));
-
-      // Step 9: Issuing TLS + Output 3
-      removeCarets();
-      provBox.innerHTML += `<div>issuing TLS certificate...</div>`;
-      outGroup.innerHTML += `<div style="color:#a78bfa;">✔ <span style="color:#71717a;">HTTPS certificate issued</span></div>`;
-      outGroup.appendChild(createCaret());
-      await new Promise(r => setTimeout(r, 800));
-
-      // Step 10: Routing traffic + LIVE URL box
-      removeCarets();
-      provBox.innerHTML += `<div>routing traffic...</div>`;
-
-      const urlBox = document.createElement('div');
-      urlBox.style.padding = '1rem';
-      urlBox.style.border = '1px solid rgba(167,139,250,0.15)';
-      urlBox.style.borderRadius = '8px';
-      urlBox.style.background = 'rgba(167,139,250,0.04)';
-      urlBox.innerHTML = `
-        <div style="color:#52525b;font-size:0.72rem;margin-bottom:0.5rem;">LIVE URL</div>
-        <div style="color:#a78bfa;word-break:break-all;">https://my-app.nixora.co.in</div>
-        <div style="color:#3f3f46;font-size:0.72rem;margin-top:0.5rem;">deployed in 12.3s · managed by Nixora</div>
-      `;
-      outputArea.appendChild(urlBox);
-      urlBox.appendChild(createCaret());
-      await new Promise(r => setTimeout(r, 900));
-
-      // Step 11: Final lifecycle text
-      removeCarets();
-      const finalMsg = document.createElement('div');
-      finalMsg.style.paddingTop = '1rem';
-      finalMsg.style.borderTop = '1px solid #1a1a1a';
-      finalMsg.style.color = '#a78bfa';
-      finalMsg.style.fontWeight = '500';
-      finalMsg.innerHTML = `✔ Nixora is now managing your app's lifecycle.`;
-      outputArea.appendChild(finalMsg);
-      finalMsg.appendChild(createCaret());
-
-      // Hold for 2.4s then restart
-      await new Promise(r => setTimeout(r, 2400));
-      runSequence();
-    }
-
-    runSequence();
-  }
-
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initTwoPanelCLI);
-  } else {
-    initTwoPanelCLI();
-  }
-</script>
