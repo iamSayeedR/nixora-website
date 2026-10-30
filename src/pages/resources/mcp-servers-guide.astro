@@ -1,0 +1,1032 @@
+
+---
+import InnerLayout from "../../layouts/InnerLayout.astro";
+
+const tableOfContents = [
+  { id: "what-are-mcp-servers", label: "What Are MCP Servers?" },
+  { id: "why-a-new-approach", label: "Why a New Approach?" },
+  { id: "common-misconceptions", label: "Common Misconceptions" },
+  { id: "core-benefits", label: "Core Benefits" },
+  { id: "step-by-step-framework", label: "Step-by-Step Framework" },
+  { id: "tools-and-resources", label: "Tools and Resources" },
+  { id: "advanced-strategies", label: "Advanced Strategies" },
+  { id: "frequently-asked-questions", label: "Frequently Asked Questions" },
+  { id: "put-servers-under-control", label: "What's Next?" },
+];
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Home", item: "https://nixora.co.in/" },
+    { "@type": "ListItem", position: 2, name: "Resources", item: "https://nixora.co.in/resources" },
+    {
+      "@type": "ListItem",
+      position: 3,
+      name: "MCP Servers: The Field-Tested Guide for 2026",
+      item: "https://nixora.co.in/resources/mcp-servers-guide/",
+    },
+  ],
+};
+---
+
+<InnerLayout
+  title="MCP Servers: The Field-Tested Guide for 2026 | Nixora"
+  description="A practical guide to understanding MCP servers, connecting AI models to tools, securing agent access, and building reliable production workflows."
+  jsonLd={breadcrumbSchema}
+>
+  <main class="article-page">
+    <div class="article-glow"></div>
+
+    <!-- Header -->
+    <header class="article-header">
+      <a href="/resources" class="back-link">
+        <span aria-hidden="true">←</span>
+        Back to Resources
+      </a>
+
+      <div class="article-meta">
+        <span class="category">AI Infrastructure</span>
+        <span>October 2026</span>
+        <span class="meta-dot">·</span>
+        <span>8 min read</span>
+      </div>
+
+      <h1>MCP Servers: The Field-Tested Guide for 2026</h1>
+
+      <p class="article-description">
+        A practical guide to understanding MCP servers, connecting AI models
+        to tools, securing agent access, and building reliable production
+        workflows.
+      </p>
+
+      <div class="author">
+        <div class="author-avatar">N</div>
+        <div>
+          <p class="author-name">Nixora</p>
+          <p class="author-description">AI-native infrastructure</p>
+        </div>
+      </div>
+    </header>
+
+    <!-- Article content -->
+    <div class="article-layout">
+
+      <!-- Table of contents -->
+      <aside class="article-sidebar">
+        <div class="sidebar-inner">
+          <p class="sidebar-heading">On this page</p>
+
+          <nav class="toc" aria-label="Table of contents">
+            {tableOfContents.map((item) => (
+              <a href={`#${item.id}`} class="toc-link">
+                {item.label}
+              </a>
+            ))}
+          </nav>
+
+          <div class="sidebar-author">
+            <p class="sidebar-label">Published by</p>
+            <p class="sidebar-name">Nixora</p>
+            <p class="sidebar-description">AI-native infrastructure</p>
+          </div>
+        </div>
+      </aside>
+
+      <!-- Main article -->
+<article class="article-content">
+
+  <!-- Introduction -->
+  <section id="introduction" class="intro-section">
+    <div class="intro-heading">
+  
+  <h2>
+    Why Modern Code Deployment
+    Demands a New Approach
+  </h2>
+</div>
+
+    <div class="intro-callout">
+      <p>
+        A year ago, AI wrote snippets and a human pasted them in. Now
+        agents open pull requests, edit Terraform, and trigger deploys
+        on their own. The review step that used to catch problems
+        doesn’t scale when 1 engineer supervises 5 agents.
+      </p>
+
+      <p>
+        So the real question changed. It’s no longer “is the code good?”
+        It’s “what is this agent allowed to touch?” MCP servers are the
+        surface agents act through, which makes them the natural place
+        to put control. That’s the idea behind the control plane work we
+        do at Nixora, and it’s why I think of MCP servers as
+        infrastructure, not a developer toy.
+      </p>
+    </div>
+  </section>
+
+        <!-- What are MCP servers -->
+        <section id="what-are-mcp-servers" class="article-section">
+          <div class="section-heading">
+            <h2>What Are MCP Servers?</h2>
+            <div class="heading-line"></div>
+          </div>
+
+          <div class="section-body">
+            <p>
+              MCP servers are lightweight programs that expose tools, data, and
+              prompts to AI models through the Model Context Protocol, an open
+              standard Anthropic released in November 2024. Instead of writing a
+              custom integration for every model and app, you build 1 server and
+              any MCP-compatible client can use it.
+            </p>
+
+          
+
+            <div id="common-misconceptions" class="subsection">
+              <h3>Common Misconceptions to Avoid Upfront</h3>
+              <p>
+                First, MCP is not a replacement for your REST APIs. It’s a layer
+                on top that describes those APIs in a way models can use.
+                Second, MCP is not secure by default. The protocol gives you a
+                structure for auth, not auth itself. Third, MCP servers aren’t
+                only local. The early stdio setups on a laptop got all the
+                attention, but production runs on remote servers over Streamable
+                HTTP.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Core benefits -->
+        <section id="core-benefits" class="article-section">
+          <div class="section-heading">
+            <h2>The Core Benefits of Implementing a Control Plane for AI-Generated Code</h2>
+            <div class="heading-line"></div>
+          </div>
+
+          <div class="section-body">
+            <div class="subsection">
+              <h3>Benefit 1: 1 Integration Instead of 12</h3>
+              <p>
+                Before MCP, connecting 3 models to 4 internal systems meant up
+                to 12 custom integrations. With MCP it’s 4 servers. Teams I’ve
+                worked with cut integration time from weeks to a few days,
+                mostly because nobody argues about schemas anymore.
+              </p>
+            </div>
+
+            <div class="subsection">
+              <h3>Benefit 2: Models Become Swappable</h3>
+              <p>
+                This is the strategic one. When your tools live behind MCP
+                servers, changing model providers doesn’t mean rewriting your
+                integration layer. Pricing and quality shift every few months in
+                this market. Not being locked in is worth real money.
+              </p>
+            </div>
+
+            <div class="subsection">
+              <h3>Benefit 3: Smaller Blast Radius</h3>
+              <p>
+                A well-scoped server lets an agent read deployment status
+                without being able to delete a cluster. Least privilege is
+                boring and it works. Every incident I’ve seen involving an agent
+                doing something destructive traced back to a token that could do
+                far more than the task needed.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Framework -->
+        <section id="step-by-step-framework" class="article-section">
+          <div class="section-heading">
+            <h2>How to Achieve Seamless Code Deployment: A Step-by-Step Framework</h2>
+            <div class="heading-line"></div>
+          </div>
+
+          <div class="section-body">
+            <div class="subsection">
+              <h3>Step 1: Audit What Your Agents Can Already Touch</h3>
+              <p>
+                Make a list of every credential your agents hold today. Check
+                API keys in env files, personal access tokens pasted into
+                configs, and anything running as an admin. Most teams find 3 to
+                10 surprises. Don’t skip this because it’s tedious. It’s the
+                whole foundation.
+              </p>
+            </div>
+
+            <div class="subsection">
+              <h3>Step 2: Ship 1 Narrow Server Behind Real Auth</h3>
+              <p>
+                Pick a single workflow, like “check deploy status and roll
+                back.” Build a server with 5 to 8 tools, no more. Use OAuth 2.1
+                for remote servers, which the spec now supports, and issue
+                short-lived tokens scoped to that workflow. Run it in staging
+                for 2 weeks before anyone calls it production.
+              </p>
+            </div>
+
+            <div class="subsection">
+              <h3>Step 3: Track Every Tool Call and Prune Weekly</h3>
+              <p>
+                Log the tool name, arguments, caller, latency, and outcome for
+                every call. Then look at it weekly. Tools nobody calls get
+                removed. Tools that fail 15% of the time get rewritten, usually
+                because the description confused the model. Measure success
+                rate, p95 latency, and cost per task. If you can’t answer those
+                3, you’re not running a production system yet.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Tools -->
+        <section id="tools-and-resources" class="article-section">
+          <div class="section-heading">
+            <h2>Top Tools and Resources for Deploying MCP Servers</h2>
+            <div class="heading-line"></div>
+          </div>
+
+          <div class="section-body">
+            <div class="subsection">
+              <h3>Tools for Beginners</h3>
+              <p>
+                Start with the official MCP Inspector. It lets you call your
+                tools by hand and see exactly what the model sees. Pair it with
+                FastMCP if you write Python, or the official TypeScript SDK if
+                you don’t. Claude Desktop and Cursor both work as clients for
+                testing. You can have a working server in an afternoon.
+                <br /><br />
+                My opinion: don’t start with a framework that hides the
+                protocol. You’ll hit a bug in week 3 and have no idea where to
+                look. Write 1 server by hand first.
+              </p>
+            </div>
+
+            <div class="subsection">
+              <h3>Enterprise-Grade Solutions</h3>
+              <p>
+                At scale you need 4 things: identity, gateway, observability,
+                and policy. For hosting, Cloudflare Workers and AWS Lambda both
+                handle remote MCP servers well. For identity, plug into what you
+                already run, whether that’s Okta or Entra ID, rather than
+                inventing a new auth system. API gateways like Kong can sit in
+                front for rate limits and audit logs. Docker’s MCP gateway is
+                worth a look if you want containerized isolation per server.
+                <br /><br />
+                None of these give you the governance layer on their own. They
+                move traffic. Deciding what an agent may do, and proving it
+                afterward, is a separate problem. If you landed here searching
+                for Nixora, that’s the problem we spend our time on.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Advanced strategies -->
+        <section id="advanced-strategies" class="article-section">
+          <div class="section-heading">
+            <h2>Advanced Strategies to Scale Your Results</h2>
+            <div class="heading-line"></div>
+          </div>
+
+          <div class="section-body">
+            <div class="subsection">
+              <h3>Overcoming Tool Sprawl</h3>
+              <p>
+                Here’s the bottleneck nobody warns you about. Past roughly 30
+                tools, models start picking the wrong one, and your context
+                window fills with schemas before any real work starts. I’ve
+                watched a server with 70 tools perform worse than a server with
+                12.
+                <br /><br />
+                The fix is to split by domain and load servers on demand. A
+                deploy server, a database server, a ticketing server. Give the
+                agent only what the current task needs. Unpopular take: most “do
+                everything” MCP servers shipping today are a mistake.
+              </p>
+            </div>
+
+            <div class="subsection">
+              <h3>How to Automate Schema and Permission Testing</h3>
+              <p>
+                Tool descriptions are code. Treat them that way. Write 20 to 30
+                test prompts per server and run them in CI against every change,
+                checking that the model calls the right tool with the right
+                arguments. Add a second check that diffs permission scopes on
+                every pull request, so a quiet scope expansion gets flagged
+                before merge. This catches more regressions than any manual
+                review I’ve done.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <!-- FAQ -->
+        <section id="frequently-asked-questions" class="article-section">
+          <div class="section-heading">
+            <h2>Frequently Asked Questions About MCP Servers</h2>
+            <div class="heading-line"></div>
+          </div>
+
+          <div class="section-body">
+            <div class="subsection">
+              <h3>What is an MCP server used for?</h3>
+              <p>
+                It lets an AI model use outside tools and data in a standard
+                way. Typical uses are querying a database, reading logs,
+                creating tickets, and triggering deploys.
+              </p>
+            </div>
+
+            <div class="subsection">
+              <h3>Is an MCP server the same as an API?</h3>
+              <p>
+                No. An API is built for developers writing code. An MCP server
+                describes capabilities in a form a model can discover and call
+                on its own. Most MCP servers wrap existing APIs.
+              </p>
+            </div>
+
+            <div class="subsection">
+              <h3>How do I secure an MCP server?</h3>
+              <p>
+                Use OAuth 2.1 for remote servers, issue short-lived scoped
+                tokens, validate every input, and log every call. Never give a
+                server broader credentials than its narrowest task requires.
+                Treat tool outputs as untrusted too, since prompt injection
+                through returned data is a real attack path.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Closing CTA -->
+        <section id="put-servers-under-control" class="closing-section">
+          <div class="closing-inner">
+            <p class="closing-eyebrow">What's next?</p>
+
+            <h2>Put Your MCP Servers Under Control Before the Next Deploy</h2>
+
+            <p>
+              Pick 1 workflow this week and run the audit from Step 1. You’ll
+              learn more from that list of credentials than from any vendor
+              deck, ours included.
+            </p>
+
+            <p>
+              When you’re ready to go beyond a single server, read how Nixora
+              approaches governing AI-generated software, from access scoping
+              to audit trails. Start small, measure everything, and widen
+              access only when the logs say it’s safe.
+            </p>
+
+            <a href="/resources/ai-agent-control-plane/" class="cta-link">
+              <span class="cta-border"></span>
+              <span class="cta-content">
+                <span>Read our AI Agent Control Plane guide</span>
+                <span class="cta-arrow" aria-hidden="true">↗</span>
+              </span>
+            </a>
+          </div>
+        </section>
+
+        <!-- Back to resources -->
+        <div class="article-footer">
+          <a href="/resources" class="back-link">
+            <span aria-hidden="true">←</span>
+            Back to all resources
+          </a>
+        </div>
+      </article>
+    </div>
+  </main>
+</InnerLayout>
+
+<style>
+  .article-page {
+    position: relative;
+    min-height: 100vh;
+    overflow: hidden;
+    background: var(--background);
+    color: #fff;
+  }
+
+  .article-glow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 650px;
+    pointer-events: none;
+    background: radial-gradient(
+      ellipse at top,
+      rgba(125, 87, 239, 0.13),
+      transparent 65%
+    );
+  }
+
+  /* Header */
+
+  .article-header {
+    position: relative;
+    width: 100%;
+    max-width: 1024px;
+    margin: 0 auto;
+    padding: 40px 40px 48px;
+  }
+
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: rgba(255, 255, 255, 0.45);
+    font-size: 14px;
+    text-decoration: none;
+    transition: color 200ms ease;
+  }
+
+  .back-link:hover {
+    color: #c4b5fd;
+  }
+
+  .article-meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+    margin-top: 40px;
+    color: rgba(255, 255, 255, 0.4);
+    font-size: 12px;
+  }
+
+  .category {
+    padding: 6px 12px;
+    border: 1px solid rgba(167, 139, 250, 0.25);
+    border-radius: 999px;
+    background: rgba(125, 87, 239, 0.1);
+    color: #c4b5fd;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+  }
+
+  .meta-dot {
+    color: rgba(255, 255, 255, 0.2);
+  }
+
+  .article-header h1 {
+    max-width: 850px;
+    margin-top: 28px;
+    color: #fff;
+    font-size: 45px;
+    font-weight: 600;
+    line-height: 1.16;
+    letter-spacing: -0.035em;
+  }
+
+  .article-description {
+    max-width: 760px;
+    margin-top: 28px;
+    color: rgba(255, 255, 255, 0.55);
+    font-size: 16px;
+    line-height: 2;
+  }
+
+  .author {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 36px;
+    padding-top: 24px;
+    border-top: 1px solid rgba(255, 255, 255, 0.09);
+  }
+
+  .author-avatar {
+    display: flex;
+    width: 40px;
+    height: 40px;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(167, 139, 250, 0.25);
+    border-radius: 50%;
+    background: rgba(125, 87, 239, 0.1);
+    color: #c4b5fd;
+    font-size: 14px;
+    font-weight: 600;
+  }
+
+  .author-name {
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 14px;
+    font-weight: 500;
+  }
+
+  .author-description {
+    margin-top: 4px;
+    color: rgba(255, 255, 255, 0.4);
+    font-size: 12px;
+  }
+
+  /* Main article layout */
+
+  .article-layout {
+    position: relative;
+    display: grid;
+    grid-template-columns: 200px minmax(0, 760px);
+    align-items: start;
+    gap: 64px;
+    width: 100%;
+    max-width: 1152px;
+    margin: 0 auto;
+    padding: 0 40px 96px;
+  }
+
+  /* Sidebar */
+
+  .article-sidebar {
+    min-width: 0;
+  }
+
+  .sidebar-inner {
+    position: sticky;
+    top: 112px;
+  }
+
+  .sidebar-heading,
+  .sidebar-label {
+    color: rgba(255, 255, 255, 0.35);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+  }
+
+  .toc {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+    border-left: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .toc-link {
+    display: block;
+    margin-left: -1px;
+    padding: 9px 0 9px 15px;
+    border-left: 1px solid transparent;
+    color: rgba(255, 255, 255, 0.45);
+    font-size: 12px;
+    line-height: 1.65;
+    text-decoration: none;
+    transition: color 200ms ease, border-color 200ms ease;
+  }
+
+  .toc-link:hover {
+    border-left-color: #a78bfa;
+    color: #c4b5fd;
+  }
+
+  .sidebar-author {
+    margin-top: 36px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .sidebar-name {
+    margin-top: 10px;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 14px;
+    font-weight: 500;
+  }
+
+  .sidebar-description {
+    margin-top: 4px;
+    color: rgba(255, 255, 255, 0.4);
+    font-size: 12px;
+  }
+
+  /* Article content */
+
+  .article-content {
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 64px;
+  }
+
+  .article-content section {
+    min-width: 0;
+    scroll-margin-top: 112px;
+  }
+
+  .intro-callout {
+    padding: 26px 28px;
+    border-left: 2px solid rgba(167, 139, 250, 0.7);
+    border-radius: 0 12px 12px 0;
+    background: rgba(125, 87, 239, 0.045);
+  }
+
+  .intro-callout p {
+    color: rgba(255, 255, 255, 0.75);
+    font-size: 16px;
+    line-height: 1.95;
+  }
+
+  .intro-callout p + p {
+    margin-top: 16px;
+  }
+
+  .section-heading {
+    margin-bottom: 24px;
+  }
+
+  .section-heading h2 {
+    color: #fff;
+    font-size: 30px;
+    font-weight: 600;
+    line-height: 1.3;
+    letter-spacing: -0.025em;
+    overflow-wrap: break-word;
+  }
+
+  .heading-line {
+    width: 100%;
+    height: 1px;
+    margin-top: 16px;
+    background: linear-gradient(
+      to right,
+      rgba(167, 139, 250, 0.35),
+      rgba(255, 255, 255, 0.08),
+      transparent
+    );
+  }
+
+  .section-body {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .section-body > p,
+  .subsection p {
+    color: rgba(255, 255, 255, 0.65);
+    font-size: 16px;
+    line-height: 1.9;
+  }
+
+  .subsection {
+    min-width: 0;
+    scroll-margin-top: 112px;
+  }
+
+  .subsection h3 {
+    margin-top: 12px;
+    color: #fff;
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 1.45;
+    letter-spacing: -0.015em;
+  }
+
+  .subsection p {
+    margin-top: 16px;
+  }
+
+  /* Closing CTA */
+
+  .closing-section {
+    overflow: hidden;
+    padding: 52px 48px;
+    border: 1px solid rgba(167, 139, 250, 0.2);
+    border-radius: 16px;
+    background: linear-gradient(
+      135deg,
+      rgba(125, 87, 239, 0.1),
+      rgba(125, 87, 239, 0.045),
+      transparent
+    );
+  }
+
+ .closing-inner {
+  max-width: 640px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+  .closing-eyebrow {
+    color: #c4b5fd;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+
+  .closing-inner h2 {
+    margin-top: 16px;
+    color: #fff;
+    font-size: 30px;
+    font-weight: 600;
+    line-height: 1.25;
+    letter-spacing: -0.025em;
+  }
+
+  .closing-inner > p:not(.closing-eyebrow) {
+    margin-top: 20px;
+    color: rgba(255, 255, 255, 0.65);
+    font-size: 16px;
+    line-height: 1.9;
+  }
+
+  .closing-inner > p + p {
+    margin-top: 16px !important;
+  }
+
+  .cta-link {
+    position: relative;
+    isolation: isolate;
+    display: inline-flex;
+    max-width: 100%;
+    height: 48px;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    margin-top: 32px;
+    padding: 1px;
+    border-radius: 999px;
+    text-decoration: none;
+     margin-left: auto;
+  margin-right: auto;
+    transition: box-shadow 300ms ease;
+  }
+
+  .cta-link:hover {
+    box-shadow: 0 0 14px rgba(125, 87, 239, 0.12);
+  }
+
+  .cta-border {
+    position: absolute;
+    inset: -200%;
+    z-index: -1;
+    background: conic-gradient(
+      from 0deg,
+      transparent 0%,
+      transparent 65%,
+      #7d57ef 75%,
+      #d6c9ff 80%,
+      #7d57ef 85%,
+      transparent 95%
+    );
+    animation: border-spin 4s linear infinite;
+  }
+
+  .cta-content {
+    position: relative;
+    display: flex;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 0 28px;
+    border: 1px solid rgba(125, 87, 239, 0.3);
+    border-radius: 999px;
+    background: #0b0912;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 500;
+    white-space: nowrap;
+    transition: background 300ms ease;
+  }
+
+  .cta-content:hover {
+    background: #130d22;
+  }
+
+  .cta-arrow {
+    transition: transform 300ms ease;
+  }
+
+  .cta-link:hover .cta-arrow {
+    transform: translate(2px, -2px);
+  }
+
+  @keyframes border-spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  /* Footer */
+
+  .article-footer {
+    padding-top: 28px;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  /* Tablet */
+
+  @media (max-width: 1023px) {
+    .article-header {
+      max-width: 850px;
+      padding-right: 32px;
+      padding-left: 32px;
+    }
+
+    .article-layout {
+      display: block;
+      max-width: 850px;
+      padding-right: 32px;
+      padding-left: 32px;
+    }
+
+    .article-sidebar {
+      display: none;
+    }
+
+    .article-content {
+      width: 100%;
+      max-width: 760px;
+      margin: 0 auto;
+    }
+  }
+
+  /* Small tablet and mobile */
+
+  @media (max-width: 640px) {
+    .article-header {
+      padding: 32px 20px 40px;
+    }
+
+    .article-meta {
+      gap: 8px;
+      margin-top: 32px;
+    }
+
+    .article-header h1 {
+      margin-top: 24px;
+      font-size: clamp(30px, 8vw, 36px);
+      line-height: 1.2;
+    }
+
+    .article-description {
+      margin-top: 20px;
+      font-size: 15px;
+      line-height: 1.85;
+    }
+
+    .author {
+      margin-top: 28px;
+      padding-top: 20px;
+    }
+
+    .article-layout {
+      padding: 0 20px 72px;
+    }
+
+    .article-content {
+      gap: 48px;
+    }
+
+    .article-content section {
+      scroll-margin-top: 88px;
+    }
+
+    .intro-callout {
+      padding: 22px 18px;
+    }
+
+    .intro-callout p,
+    .section-body > p,
+    .subsection p,
+    .closing-inner > p:not(.closing-eyebrow) {
+      font-size: 15px;
+      line-height: 1.9;
+    }
+
+    .section-heading {
+      margin-bottom: 20px;
+    }
+
+    .section-heading h2 {
+      font-size: 24px;
+      line-height: 1.3;
+    }
+
+    .heading-line {
+      margin-top: 14px;
+    }
+
+    .section-body {
+      gap: 22px;
+    }
+
+    .subsection h3 {
+      margin-top: 8px;
+      font-size: 17px;
+      line-height: 1.45;
+    }
+
+    .subsection p {
+      margin-top: 12px;
+    }
+
+    .closing-section {
+      padding: 32px 22px;
+      border-radius: 14px;
+    }
+
+    .closing-inner h2 {
+      font-size: 25px;
+      line-height: 1.3;
+    }
+
+    .closing-inner > p:not(.closing-eyebrow) {
+      margin-top: 16px;
+    }
+
+    .cta-link {
+      width: 100%;
+      margin-top: 26px;
+    }
+
+    .cta-content {
+      width: 100%;
+      gap: 8px;
+      padding: 0 14px;
+      font-size: 12px;
+    }
+  }
+
+  /* Very small screens */
+
+  @media (max-width: 380px) {
+    .article-header,
+    .article-layout {
+      padding-right: 16px;
+      padding-left: 16px;
+    }
+
+    .article-header h1 {
+      font-size: 29px;
+    }
+
+    .section-heading h2 {
+      font-size: 22px;
+    }
+
+    .closing-section {
+      padding: 28px 18px;
+    }
+
+    .cta-content {
+      font-size: 11px;
+    }
+  }
+
+  .intro-heading {
+  margin-bottom: 28px;
+}
+
+
+
+.intro-heading h2 {
+  max-width: 680px;
+  margin: 0;
+  color: #f5f3ff;
+  font-size: clamp(25px, 3vw, 34px);
+  font-weight: 650;
+  line-height: 1.25;
+  letter-spacing: -0.045em;
+}
+
+
+
+@media (max-width: 640px) {
+  .intro-heading {
+    margin-bottom: 22px;
+  }
+
+  .intro-heading h2 {
+    font-size: 27px;
+    line-height: 1.3;
+  }
+}
+
+  @media (prefers-reduced-motion: reduce) {
+    .cta-border {
+      animation: none;
+    }
+
+    .back-link,
+    .toc-link,
+    .cta-link,
+    .cta-content,
+    .cta-arrow {
+      transition: none;
+    }
+  }
+</style>
