@@ -1,11 +1,8 @@
-
 ---
 const currentPath = Astro.url.pathname;
 const navLinks = [
   { href: '/product/', label: 'Product' },
-  { href: '/compare/', label: 'Compare' },
   { href: '/resources/', label: 'Resources' },
-  { href: '/traction/', label: 'Traction' },
   { href: '/about/', label: 'About' },
 ];
 ---
@@ -30,13 +27,6 @@ const navLinks = [
 
   <!-- Right CTAs: desktop -->
   <div class="header-ctas">
-    <a
-      href="mailto:ceo@nixora.co.in?subject=Nixora%20Investor%20Deck%20Request"
-      class="deck-link"
-    >
-      Request deck
-    </a>
-
     <a href="/#early-access" class="shiny-cta">
       Get early access
       <svg
@@ -109,13 +99,6 @@ const navLinks = [
 
     <hr class="drawer-divider" />
 
-    <a
-      href="mailto:ceo@nixora.co.in?subject=Nixora%20Investor%20Deck%20Request"
-      class="mobile-deck-link"
-    >
-      Request deck ↗
-    </a>
-
     <a href="/#early-access" class="shiny-cta mobile-cta">
       Get early access
     </a>
@@ -172,18 +155,6 @@ const navLinks = [
     align-items: center;
     gap: 1rem;
     flex-shrink: 0;
-  }
-
-  .deck-link {
-    color: #a1a1aa;
-    font-size: 0.875rem;
-    text-decoration: none;
-    white-space: nowrap;
-    transition: color 0.2s;
-  }
-
-  .deck-link:hover {
-    color: #fff;
   }
 
   .shiny-cta {
@@ -255,12 +226,6 @@ const navLinks = [
     border: none;
     border-top: 1px solid #1f1f1f;
     margin: 0.5rem 0;
-  }
-
-  .mobile-deck-link {
-    color: #a1a1aa;
-    font-size: 0.95rem;
-    text-decoration: none;
   }
 
   .mobile-cta {
