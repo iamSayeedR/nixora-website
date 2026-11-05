@@ -14,7 +14,7 @@ const { title, description, image, canonicalURL, jsonLd } = Astro.props;
 ---
 <Layout title={title} description={description} image={image} canonicalURL={canonicalURL} jsonLd={jsonLd}>
   <Header />
-  <main style="min-height:80vh;">
+  <main id="main-content" style="min-height:80vh;">
     <slot />
   </main>
   <Footer />

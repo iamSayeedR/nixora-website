@@ -1,86 +1,418 @@
+
 ---
 ---
-<section style="
-  position: relative;
-  overflow: hidden;
-  padding: 5rem 2rem 4rem;
-  text-align: center;
-">
-  <!-- Purple radial background glow -->
-  <div style="
-    position: absolute; inset: 0; z-index: 0; pointer-events: none;
-    background: radial-gradient(ellipse 70% 55% at 50% 0%, rgba(139,92,246,0.13), transparent 65%);
-  "></div>
 
-  <div style="position:relative;z-index:1;max-width:850px;margin:0 auto;display:flex;flex-direction:column;align-items:center;gap:2rem;">
+<section class="hero-section">
+  <!-- Existing purple radial background glow -->
+  <div class="hero-glow" aria-hidden="true"></div>
 
-    <!-- Announcement pill with key hero traction numbers -->
+  <div class="hero-content">
+
+    <!-- Traction -->
     <div class="announcement-pill">
       <span class="new-badge">Live</span>
-      65 installs · 47 deployments · 150+ waitlist
+      <span class="traction-separator">·</span>
+      <span>65 installs</span>
+      <span class="traction-separator">·</span>
+      <span>47 deployments</span>
+      <span class="traction-separator">·</span>
+      <span>150+ waitlist</span>
     </div>
 
     <!-- Main headline -->
-    <h1 class="section-headline" style="text-align:center;max-width:700px;">
-      The <span class="accent">Control Plane</span><br>for AI-generated software
+    <h1 class="section-headline hero-heading">
+      The <span class="accent">Control Plane</span>
+      <br />
+      for AI-Generated Software
+      <br class="desktop-break" />
+      and AI Agents
     </h1>
 
-    <!-- Subhead -->
-    <p class="section-para" style="text-align:center;margin:0 auto;">
-      AI writes the software. Nixora is being built to understand it, deploy it, operate it, and evolve the infrastructure around it, for AI-generated apps and the agents themselves.
+    <!-- Description -->
+    <p id="hero-summary" class="section-para hero-description">
+      Nixora is building a control plane for AI-generated software and AI
+      agents. Starting with application deployment and deployment failure
+      diagnosis, Nixora aims to help developers deploy, operate, monitor,
+      troubleshoot, and manage applications and agents throughout their
+      lifecycle.
     </p>
 
     <!-- CTAs -->
-    <div style="display:flex;align-items:center;gap:1rem;flex-wrap:wrap;justify-content:center;">
+    <div class="hero-actions">
       <a href="#early-access" class="shiny-cta">
         Join the waitlist
-        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:14px;height:14px;">
-          <path d="M15.187 11.2362L11.0895 7.13873L12.1696 6.05859L18.1111 12.0001L12.1696 17.9416L11.0895 16.8615L15.187 12.764H5.88892V11.2362H15.187Z" fill="currentColor"/>
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          aria-hidden="true"
+        >
+          <path
+            d="M15.187 11.2362L11.0895 7.13873L12.1696 6.05859L18.1111 12.0001L12.1696 17.9416L11.0895 16.8615L15.187 12.764H5.88892V11.2362H15.187Z"
+            fill="currentColor"
+          />
         </svg>
       </a>
-      <a href="#early-access"
-         style="color:#a1a1aa;font-size:0.875rem;text-decoration:none;padding:0.55rem 1.25rem;border:1px solid #27272a;border-radius:9999px;background:rgba(255,255,255,0.02);transition:color 0.2s, border-color 0.2s;"
-         onmouseover="this.style.color='#fff';this.style.borderColor='rgba(167,139,250,0.4)';" onmouseout="this.style.color='#a1a1aa';this.style.borderColor='#27272a';">
-        Get early access ↓
+
+      <a href="#early-access" class="secondary-cta">
+        Get early access
+        <span aria-hidden="true">↓</span>
       </a>
     </div>
 
-    <!-- Terminal visual container -->
-    <div style="width:100%;max-width:640px;margin-top:0.5rem;">
-      <div id="install-cli" style="
-        width:100%;
-        border-radius:10px;
-        border:1px solid #222;
-        background:#0a0a0a;
-        overflow:hidden;
-        text-align:left;
-        box-shadow: 0 0 0 1px #1a1a1a, 0 24px 60px rgba(0,0,0,0.5);
-      ">
-        <div style="
-          display:flex;align-items:center;justify-content:space-between;
-          padding:0.65rem 1rem;
-          border-bottom:1px solid #1a1a1a;
-          background:#111;
-        ">
-          <div style="display:flex;gap:6px;">
-            <span style="width:12px;height:12px;border-radius:50%;background:#ff5f57;display:block;"></span>
-            <span style="width:12px;height:12px;border-radius:50%;background:#febc2e;display:block;"></span>
-            <span style="width:12px;height:12px;border-radius:50%;background:#28c840;display:block;"></span>
+    <!-- Terminal visual -->
+    <div class="terminal-wrapper">
+      <div id="install-cli" class="terminal-window">
+
+        <div class="terminal-header">
+          <div class="terminal-dots" aria-hidden="true">
+            <span></span>
+            <span></span>
+            <span></span>
           </div>
-          <span style="font-size:0.75rem;color:#555;font-family:'Fira Code',monospace;">bash</span>
+
+          <span class="terminal-label">bash</span>
         </div>
-        <div style="padding:1.5rem;font-family:'Fira Code','Geist Mono',monospace;font-size:0.85rem;line-height:2;color:#666;">
-          <div><span style="color:#444;">$</span> <span style="color:#e4e4e7;">pip install nixora</span></div>
-          <div><span style="color:#444;">$</span> <span style="color:#e4e4e7;">nixora init</span></div>
-          <div><span style="color:#444;">$</span> <span style="color:#e4e4e7;">nixora deploy</span></div>
-          <div style="margin-top:0.5rem;color:#a78bfa;">✔ Your app is live. (status: running)</div>
+
+        <div class="terminal-body">
+          <div>
+            <span class="terminal-prompt">$</span>
+            <span class="terminal-command">pip install nixora</span>
+          </div>
+
+          <div>
+            <span class="terminal-prompt">$</span>
+            <span class="terminal-command">nixora init</span>
+          </div>
+
+          <div>
+            <span class="terminal-prompt">$</span>
+            <span class="terminal-command">nixora deploy</span>
+          </div>
+
+          <div class="terminal-success">
+            ✔ Your app is live. (status: running)
+          </div>
         </div>
       </div>
 
-      <p style="font-size:0.8125rem;color:#71717a;margin-top:0.75rem;margin-bottom:0;text-align:center;">
+      <p class="terminal-caption">
         Available to approved builders: join the waitlist to get access.
       </p>
     </div>
 
   </div>
 </section>
+
+<style>
+  .hero-section {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    padding: 5rem 2rem 4rem;
+    text-align: center;
+  }
+
+  /* Existing background preserved */
+  .hero-glow {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background: radial-gradient(
+      ellipse 70% 55% at 50% 0%,
+      rgba(139, 92, 246, 0.13),
+      transparent 65%
+    );
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 1150px;
+    margin: 0 auto;
+    gap: 2rem;
+  }
+
+  /* Traction pill */
+  .announcement-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: nowrap;
+  gap: 0.45rem;
+  width: fit-content;
+  max-width: 100%;
+  padding: 0.45rem 0.8rem;
+  border: 1px solid rgba(125, 87, 239, 0.4);
+  border-radius: 9999px;
+  background: rgba(125, 87, 239, 0.1);
+  color: #a78bfa;
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.015em;
+}
+
+.new-badge {
+  padding: 0.15rem 0.5rem;
+  border-radius: 9999px;
+  background: #a78bfa;
+  font-size: 0.68rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+  .traction-separator {
+    color: rgba(167, 139, 250, 0.65);
+  }
+
+  /* Heading */
+  .hero-heading {
+    max-width: 1000px;
+    margin: 0;
+    text-align: center;
+    font-size: clamp(2rem, 4.8vw, 3.5rem);
+    letter-spacing: -0.045em;
+    text-wrap: balance;
+  }
+
+  /* Description */
+  .hero-description {
+    max-width: 680px;
+    margin: 0 auto;
+    color: rgba(255, 255, 255, 0.75);
+    font-size: 1rem;
+    line-height: 1.9;
+    text-align: center;
+  }
+
+  /* Buttons */
+  .hero-actions {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.85rem;
+  }
+
+  .hero-actions .shiny-cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.65rem;
+    white-space: nowrap;
+  }
+
+  .hero-actions .shiny-cta svg {
+    width: 14px;
+    height: 14px;
+    flex-shrink: 0;
+    transition: transform 0.25s ease;
+  }
+
+  .hero-actions .shiny-cta:hover svg {
+    transform: translate(2px, -2px);
+  }
+
+  .secondary-cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.65rem;
+    min-height: 44px;
+    padding: 0.55rem 1.25rem;
+    border: 1px solid #27272a;
+    border-radius: 9999px;
+    background: rgba(255, 255, 255, 0.02);
+    color: #a1a1aa;
+    font-size: 0.875rem;
+    text-decoration: none;
+    white-space: nowrap;
+    transition:
+      color 0.25s ease,
+      border-color 0.25s ease;
+  }
+
+  .secondary-cta:hover {
+    color: #fff;
+    border-color: rgba(167, 139, 250, 0.4);
+  }
+
+  /* Terminal */
+  .terminal-wrapper {
+    width: 100%;
+    max-width: 640px;
+    margin-top: 0.5rem;
+  }
+
+  .terminal-window {
+    width: 100%;
+    overflow: hidden;
+    border: 1px solid #222;
+    border-radius: 10px;
+    background: #0a0a0a;
+    text-align: left;
+    box-shadow:
+      0 0 0 1px #1a1a1a,
+      0 24px 60px rgba(0, 0, 0, 0.5);
+  }
+
+  .terminal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.65rem 1rem;
+    border-bottom: 1px solid #1a1a1a;
+    background: #111;
+  }
+
+  .terminal-dots {
+    display: flex;
+    gap: 6px;
+  }
+
+  .terminal-dots span {
+    display: block;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+  }
+
+  .terminal-dots span:nth-child(1) {
+    background: #ff5f57;
+  }
+
+  .terminal-dots span:nth-child(2) {
+    background: #febc2e;
+  }
+
+  .terminal-dots span:nth-child(3) {
+    background: #28c840;
+  }
+
+  .terminal-label {
+    color: #555;
+    font-family: "Fira Code", monospace;
+    font-size: 0.75rem;
+  }
+
+  .terminal-body {
+    padding: 1.5rem;
+    color: #666;
+    font-family: "Fira Code", "Geist Mono", monospace;
+    font-size: 0.85rem;
+    line-height: 2;
+    overflow-x: auto;
+  }
+
+  .terminal-prompt {
+    color: #444;
+  }
+
+  .terminal-command {
+    color: #e4e4e7;
+  }
+
+  .terminal-success {
+    margin-top: 0.5rem;
+    color: #a78bfa;
+  }
+
+  .terminal-caption {
+    margin: 0.75rem 0 0;
+    color: #71717a;
+    font-size: 0.8125rem;
+    line-height: 1.6;
+    text-align: center;
+  }
+
+  /* Tablet */
+  @media (max-width: 768px) {
+    .hero-section {
+      padding: 5rem 1.5rem 3.5rem;
+    }
+
+    .hero-content {
+      gap: 1.75rem;
+    }
+
+    .hero-heading {
+      font-size: clamp(2.2rem, 6vw, 3.2rem);
+    }
+
+    .hero-description {
+      max-width: 600px;
+      font-size: 0.95rem;
+      line-height: 1.8;
+    }
+  }
+
+  /* Mobile */
+  @media (max-width: 480px) {
+    .hero-section {
+      padding: 4.5rem 1.15rem 3rem;
+      font-size: clamp(1.85rem, 8vw, 2.3rem);
+       line-height: 1.1;
+    }
+
+    .hero-content {
+      gap: 1.5rem;
+    }
+
+    .announcement-pill {
+      gap: 0.4rem 0.5rem;
+      padding: 0.55rem 0.8rem;
+      font-size: 0.68rem;
+    }
+
+    .new-badge {
+      font-size: 0.65rem;
+    }
+
+    .hero-heading {
+      font-size: clamp(2rem, 9vw, 2.6rem);
+      line-height: 1.08;
+    }
+
+    .hero-description {
+      font-size: 0.875rem;
+      line-height: 1.75;
+    }
+
+    .hero-actions {
+      width: 100%;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .hero-actions a {
+      width: 100%;
+      max-width: 280px;
+    }
+
+    .terminal-wrapper {
+      margin-top: 0;
+    }
+
+    .terminal-body {
+      padding: 1.1rem;
+      font-size: 0.75rem;
+      line-height: 2;
+    }
+
+    .terminal-caption {
+      font-size: 0.75rem;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero-actions *,
+    .secondary-cta {
+      transition: none !important;
+    }
+  }
+</style>

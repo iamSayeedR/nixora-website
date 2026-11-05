@@ -1,0 +1,490 @@
+
+---
+const stages = [
+  {
+    label: "STAGE 1",
+    title: "Deployment",
+    description:
+      "Provide a reliable way to deploy applications and diagnose deployment failures.",
+    icon: "rocket",
+  },
+  {
+    label: "STAGE 2",
+    title: "Lifecycle Management",
+    description:
+      "Expand into testing, monitoring, troubleshooting, releases, and ongoing operations.",
+    icon: "workflow",
+  },
+  {
+    label: "STAGE 3",
+    title: "Infrastructure Control Plane",
+    description:
+      "Coordinate applications, agents, permissions, and operational workflows across supported infrastructure.",
+    icon: "network",
+  },
+  {
+    label: "STAGE 4",
+    title: "Autonomous Operations",
+    description:
+      "Enable AI systems to perform authorized operational tasks, verify outcomes, and manage software with less manual intervention.",
+    icon: "bot",
+  },
+];
+---
+
+<section class="difference-section">
+  <!-- Background tint -->
+  <div class="difference-background" aria-hidden="true"></div>
+
+  <div class="difference-container">
+
+    <!-- Header -->
+    <div class="difference-intro" data-reveal>
+      <p class="eyebrow">OUR DIFFERENCE</p>
+
+      <h2>
+        From deployment to <br />
+        autonomous operations.
+      </h2>
+
+      <p class="intro-description">
+        Nixora's long-term ambition is to move beyond deployment and
+        become an operational control layer for software created by humans
+        and AI agents.
+      </p>
+
+      <p class="intro-caption">
+        The strategy has four stages.
+      </p>
+    </div>
+
+    <!-- Stages -->
+    <div class="stages-grid">
+      {stages.map((stage, index) => (
+        <article
+          class="stage-card"
+          data-reveal
+          style={`--reveal-delay: ${index * 130}ms`}
+        >
+          <!-- Subtle top accent -->
+          <div class="stage-top-accent"></div>
+
+          <!-- Icon and stage label -->
+          <div class="stage-header">
+            <div class="stage-icon">
+
+              {stage.icon === "rocket" && (
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="21"
+                  height="21"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.6"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                >
+                  <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z" />
+                  <path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6.05 11A22 22 0 0 1 12 15Z" />
+                  <path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0" />
+                  <path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5" />
+                </svg>
+              )}
+
+           {stage.icon === "workflow" && (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="21"
+    height="21"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="2"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    aria-hidden="true"
+  >
+    <rect width="8" height="8" x="3" y="3" rx="2" />
+    <path d="M7 11v4a2 2 0 0 0 2 2h4" />
+    <rect width="8" height="8" x="13" y="13" rx="2" />
+  </svg>
+)}
+
+              {stage.icon === "network" && (
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="21"
+                  height="21"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.6"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                >
+                  <rect x="16" y="16" width="6" height="6" rx="1" />
+                  <rect x="2" y="16" width="6" height="6" rx="1" />
+                  <rect x="9" y="2" width="6" height="6" rx="1" />
+                  <path d="M5 16v-3a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3" />
+                  <path d="M12 12V8" />
+                </svg>
+              )}
+
+              {stage.icon === "bot" && (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="21"
+    height="21"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="2"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    aria-hidden="true"
+  >
+    <path d="M12 8V4H8" />
+    <rect width="16" height="12" x="4" y="8" rx="2" />
+    <path d="M2 14h2" />
+    <path d="M20 14h2" />
+    <path d="M15 13v2" />
+    <path d="M9 13v2" />
+  </svg>
+)}
+
+            </div>
+
+            <p class="stage-label">{stage.label}</p>
+          </div>
+
+          <!-- Title -->
+          <h3>{stage.title}</h3>
+
+          <!-- Description -->
+          <p class="stage-description">{stage.description}</p>
+        </article>
+      ))}
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .difference-section {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    padding: 96px 0;
+    
+    
+  }
+
+ 
+
+  .difference-container {
+    position: relative;
+    width: 100%;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 48px;
+    box-sizing: border-box;
+  }
+
+  /* Header */
+  .difference-intro {
+    width: 100%;
+    max-width: 768px;
+    margin: 0 auto 64px;
+    text-align: center;
+  }
+
+  .eyebrow {
+    margin: 0 0 16px;
+    color: #a78bfa;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+
+  .difference-intro h2 {
+    margin: 0;
+    color: var(--foreground, #fff);
+    font-size: 44px;
+    font-weight: 600;
+    line-height: 1.15;
+    letter-spacing: -0.04em;
+  }
+
+  .intro-description {
+    max-width: 672px;
+    margin: 20px auto 0;
+    color: var(--muted-foreground, rgba(255, 255, 255, 0.55));
+    font-size: 15px;
+    line-height: 1.85;
+  }
+
+  .intro-caption {
+    margin: 16px 0 0;
+    color: var(--muted-foreground, rgba(255, 255, 255, 0.55));
+    font-size: 14px;
+  }
+
+  /* Stage cards */
+  .stages-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 20px;
+  }
+
+  .stage-card {
+    position: relative;
+    display: flex;
+    min-width: 0;
+    flex-direction: column;
+    overflow: hidden;
+    padding: 28px;
+    border: 1px solid rgba(255, 255, 255, 0.09);
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.025);
+    
+  }
+
+
+
+
+
+  .stage-card:hover .stage-top-accent {
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(167, 139, 250, 0.4),
+      transparent
+    );
+  }
+
+  .stage-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 36px;
+  }
+
+  .stage-icon {
+    display: flex;
+    width: 44px;
+    height: 44px;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.035);
+    color: #a78bfa;
+    transition:
+      border-color 0.3s ease,
+      background 0.3s ease;
+  }
+
+  .stage-card:hover .stage-icon {
+    border-color: rgba(167, 139, 250, 0.35);
+    background: rgba(167, 139, 250, 0.08);
+  }
+
+  .stage-icon svg {
+    display: block;
+    width: 21px;
+    height: 21px;
+  }
+
+  .stage-label {
+    flex-shrink: 0;
+    margin: 0;
+    color: rgba(167, 139, 250, 0.8);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+  }
+
+  .stage-card h3 {
+    margin: 0;
+    min-height: 52px;
+    color: var(--foreground, #fff);
+    font-size: 17px;
+    font-weight: 600;
+    line-height: 1.5;
+    overflow-wrap: anywhere;
+  }
+
+  .stage-description {
+    flex: 1;
+    margin: 12px 0 0;
+    color: var(--muted-foreground, rgba(255, 255, 255, 0.55));
+    font-size: 13px;
+    line-height: 1.85;
+    overflow-wrap: anywhere;
+  }
+
+  /* Reveal animation */
+  [data-reveal] {
+    opacity: 0;
+    transform: translateY(18px);
+    transition:
+      opacity 0.55s ease,
+      transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+    transition-delay: var(--reveal-delay, 0ms);
+  }
+
+  [data-reveal].is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Tablet */
+  @media (max-width: 1024px) {
+    .difference-container {
+      padding: 0 32px;
+    }
+
+    .stages-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .stage-header {
+      margin-bottom: 28px;
+    }
+
+    .stage-card h3 {
+      min-height: auto;
+    }
+  }
+
+  /* Mobile */
+  @media (max-width: 600px) {
+    .difference-section {
+      padding: 64px 0;
+    }
+
+    .difference-container {
+      padding: 0 20px;
+    }
+
+    .difference-intro {
+      margin-bottom: 40px;
+    }
+
+    .eyebrow {
+      margin-bottom: 12px;
+      font-size: 10px;
+    }
+
+    .difference-intro h2 {
+      font-size: clamp(27px, 7vw, 32px);
+      line-height: 1.2;
+    }
+
+    .intro-description {
+      margin-top: 16px;
+      font-size: 13px;
+      line-height: 1.8;
+    }
+
+    .intro-caption {
+      margin-top: 12px;
+      font-size: 12px;
+    }
+
+    .stages-grid {
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+
+    .stage-card {
+      padding: 22px;
+    }
+
+    .stage-header {
+      margin-bottom: 24px;
+    }
+
+    .stage-icon {
+      width: 40px;
+      height: 40px;
+    }
+
+    .stage-card h3 {
+      font-size: 16px;
+      line-height: 1.5;
+    }
+
+    .stage-description {
+      margin-top: 10px;
+      font-size: 12px;
+      line-height: 1.85;
+    }
+  }
+
+  @media (max-width: 380px) {
+    .difference-container {
+      padding: 0 16px;
+    }
+
+    .stage-card {
+      padding: 20px;
+    }
+  }
+
+  /* Reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    [data-reveal] {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+
+    .stage-card,
+    .stage-icon,
+    .stage-top-accent {
+      transition: none;
+    }
+  }
+</style>
+
+<script>
+  const revealItems = document.querySelectorAll("[data-reveal]");
+
+  const reduceMotion = window.matchMedia(
+    "(prefers-reduced-motion: reduce)"
+  ).matches;
+
+  if (reduceMotion || !("IntersectionObserver" in window)) {
+    revealItems.forEach((item) => {
+      item.classList.add("is-visible");
+    });
+  } else {
+    const revealObserver = new IntersectionObserver(
+      (entries, observer) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      {
+        threshold: 0.12,
+        rootMargin: "0px 0px -30px 0px",
+      }
+    );
+
+    revealItems.forEach((item) => {
+      revealObserver.observe(item);
+    });
+  }
+</script>

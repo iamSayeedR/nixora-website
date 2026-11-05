@@ -1,6 +1,9 @@
+
 ---
 import InnerLayout from '../layouts/InnerLayout.astro';
 import Founder from '../components/Founder.astro';
+import AboutLongTermVision from "../components/AboutLongTermVision.astro";
+import AboutTargetCustomers from "../components/AboutTargetCustomers.astro";
 
 const personSchema = {
   "@context": "https://schema.org",
@@ -22,78 +25,320 @@ const breadcrumbSchema = {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
   "itemListElement": [
-    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://nixora.co.in/" },
-    { "@type": "ListItem", "position": 2, "name": "About", "item": "https://nixora.co.in/about/" }
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://nixora.co.in/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "About",
+      "item": "https://nixora.co.in/about/"
+    }
   ]
 };
+
+const milestones = [
+  {
+    date: "JULY 2026",
+    title: "Founded & Core Engine Built",
+    description:
+      "Nixora founded by Sayeed Rizwan. Initial core engine built for automated containerization, SSL generation, and compute allocation."
+  },
+  {
+    date: "AUGUST 2026",
+    title: "Public CLI Launched",
+    description:
+      "Nixora CLI released for testing, reaching 65 developer installs, 47 real application deployments, and 150+ waitlist signups."
+  }
+];
 ---
 
-<InnerLayout title="About Nixora | Control Plane for AI Software" description="About Nixora: company story, market vision, and founder bio for Sayeed Rizwan. Building the control plane where AI-generated software operates." jsonLd={[personSchema, breadcrumbSchema]}>
+<InnerLayout
+  title="About Nixora | Control Plane for AI Software"
+  description="About Nixora: company story, market vision, and founder bio for Sayeed Rizwan. Building the control plane where AI-generated software operates."
+  jsonLd={[personSchema, breadcrumbSchema]}
+>
+  <main class="about-page">
 
-  <!-- Company Story & Vision Header -->
-  <div style="padding:4rem 2rem 3rem;max-width:900px;margin:0 auto;display:flex;flex-direction:column;gap:2.5rem;">
-    <div>
-      <div style="font-size:0.72rem;color:#a78bfa;text-transform:uppercase;letter-spacing:0.12em;font-weight:700;margin-bottom:0.75rem;font-family:'Fira Code',monospace;">About Nixora</div>
-      <h1 class="section-headline" style="max-width:720px;">
-        Building the control plane for <span class="accent">AI-generated software</span>
-      </h1>
-    </div>
+    <!-- About Hero -->
+    <section class="about-hero">
+      <div class="about-hero-inner">
+        <p class="eyebrow">About Nixora</p>
 
-    <div style="display:flex;flex-direction:column;gap:1.5rem;color:#a1a1aa;font-size:1.0625rem;line-height:1.8;max-width:760px;">
-      <p style="color:#fff;font-weight:500;font-size:1.125rem;margin:0;">
-        Software creation is becoming nearly free. Software operations are becoming the bottleneck.
-      </p>
-      <p style="margin:0;">
-        GitHub became where source code lives. Docker became the runtime for containers. Kubernetes became the control plane for containers.
-      </p>
-      <p style="color:#e4e4e7;margin:0;">
-        Nixora aims to become the control plane where AI-generated software and AI agents live, the way GitHub became where code lives and Kubernetes became the control plane for containers.
-      </p>
-      
-      <!-- Mission Context Paragraph -->
-      <div style="margin-top:0.5rem;padding:1.5rem;background:#0a0a0a;border:1px solid #1f1f1f;border-radius:10px;display:flex;flex-direction:column;gap:0.75rem;">
-        <div style="font-size:0.875rem;font-weight:600;color:#fff;">Mission & Context</div>
-        <p style="font-size:0.9375rem;line-height:1.75;color:#a1a1aa;margin:0;">
-          Our mission is to eliminate operational friction for AI-generated code. As AI coding tools allow engineers to build software in minutes, Nixora provides the autonomous infrastructure layer that containerizes, provisions, deploys, and operates that software directly from terminal workflows.
+        <h1>
+  Built for the next generation
+  <br />
+  of <span>software.</span>
+</h1>
+
+        <p class="hero-description">
+          We're building the infrastructure that helps AI-generated
+          applications and agents move beyond code and into reliable,
+          real-world use.
         </p>
       </div>
-    </div>
+    </section>
 
-    <!-- Company Timeline Section -->
-    <div style="display:flex;flex-direction:column;gap:1.25rem;max-width:760px;margin-top:1rem;">
-      <div style="font-size:0.875rem;font-weight:700;color:#fff;text-transform:uppercase;letter-spacing:0.08em;font-family:'Fira Code',monospace;">Company Timeline</div>
-      <div style="display:grid;grid-template-columns:repeat(2, 1fr);gap:1.25rem;" class="about-timeline-grid">
-        
-        <div style="background:#0a0a0a;border:1px solid #1f1f1f;border-radius:10px;padding:1.25rem;display:flex;flex-direction:column;gap:0.5rem;">
-          <div style="font-size:0.72rem;color:#a78bfa;font-family:'Fira Code',monospace;font-weight:700;">JULY 2026</div>
-          <div style="font-size:0.9375rem;color:#fff;font-weight:600;">Founded & Core Engine Built</div>
-          <p style="font-size:0.825rem;color:#a1a1aa;margin:0;line-height:1.6;">
-            Nixora founded by Sayeed Rizwan. Initial core engine built for automated containerization, SSL generation, and compute allocation.
-          </p>
+    <!-- Company Journey -->
+    <section class="company-story">
+      <div class="story-inner">
+
+        <div class="journey-heading">
+          <h2>Building Nixora</h2>
+          <p>A look at our progress so far.</p>
         </div>
 
-        <div style="background:#0a0a0a;border:1px solid #1f1f1f;border-radius:10px;padding:1.25rem;display:flex;flex-direction:column;gap:0.5rem;">
-          <div style="font-size:0.72rem;color:#a78bfa;font-family:'Fira Code',monospace;font-weight:700;">AUGUST 2026</div>
-          <div style="font-size:0.9375rem;color:#fff;font-weight:600;">Public CLI Launched</div>
-          <p style="font-size:0.825rem;color:#a1a1aa;margin:0;line-height:1.6;">
-            Nixora CLI released for testing, reaching 65 developer installs, 47 real application deployments, and 100+ waitlist signups.
+        <div class="timeline-grid">
+          {milestones.map((milestone) => (
+            <article class="timeline-card">
+              <span class="timeline-date">{milestone.date}</span>
+
+              <h3>{milestone.title}</h3>
+
+              <p>{milestone.description}</p>
+            </article>
+          ))}
+        </div>
+
+        <!-- Why Nixora Exists -->
+        <div class="problem-section">
+          <h2>
+            The problem we're <span>solving.</span>
+          </h2>
+
+          <p>
+            AI has made creating software faster than ever. But deploying
+            applications, managing infrastructure, and keeping everything
+            running reliably still involve significant operational complexity.
+            Nixora is being built to address that gap.
           </p>
         </div>
 
       </div>
-    </div>
+    </section>
 
-  </div>
+      <!-- 3. Long-Term Vision -->
+  <AboutLongTermVision />
 
-  <!-- Founder Section -->
-  <Founder />
+  <AboutTargetCustomers />
 
+    <!-- Founder -->
+    <Founder />
+
+  </main>
 </InnerLayout>
 
 <style>
+  .about-page {
+    position: relative;
+    overflow: hidden;
+    color: #fff;
+  }
+
+ .about-hero {
+  position: relative;
+  padding: 1.5rem 1.5rem 2.5rem;
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  .about-hero {
+    padding: 1rem 1.35rem 2rem;
+  }
+}
+
+  .about-hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  
+  }
+
+  .about-hero-inner {
+    position: relative;
+    max-width: 850px;
+    margin: 0 auto;
+  }
+
+  .eyebrow {
+    margin: 0;
+    color: #a78bfa;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+  }
+
+  .about-hero h1 {
+    margin: 1.35rem auto 0;
+    font-size: clamp(2.25rem, 5vw, 3.1rem);
+    font-weight: 650;
+    line-height: 1.15;
+    letter-spacing: -0.045em;
+    color: #fff;
+  }
+
+  .about-hero h1 span {
+    color: #a78bfa;
+  }
+
+  .hero-description {
+    max-width: 620px;
+    margin: 1.4rem auto 0;
+    color: #a1a1aa;
+    font-size: 0.95rem;
+    line-height: 1.85;
+  }
+
+  /* Company Story */
+  .company-story {
+    position: relative;
+    padding: 3rem 1.5rem 6rem;
+  }
+
+  .story-inner {
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  /* Timeline Heading */
+  .journey-heading {
+    text-align: center;
+  }
+
+  .journey-heading h2,
+  .problem-section h2 {
+    margin: 0;
+    color: #fff;
+    font-size: clamp(1.55rem, 3vw, 2rem);
+    font-weight: 600;
+    line-height: 1.25;
+    letter-spacing: -0.035em;
+  }
+
+  .journey-heading p {
+    margin: 0.65rem 0 0;
+    color: #71717a;
+    font-size: 0.875rem;
+    line-height: 1.7;
+  }
+
+  /* Timeline Cards */
+  .timeline-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.25rem;
+    margin-top: 2.5rem;
+  }
+
+  .timeline-card {
+    display: flex;
+    min-height: 220px;
+    flex-direction: column;
+    align-items: center;
+    padding: 2.25rem 2rem;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.02);
+    text-align: center;
+    transition:
+      border-color 0.3s ease,
+      background 0.3s ease;
+  }
+
+  .timeline-card:hover {
+    border-color: rgba(167, 139, 250, 0.3);
+    background: rgba(125, 87, 239, 0.025);
+  }
+
+  .timeline-date {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.4rem 0.85rem;
+    border: 1px solid rgba(167, 139, 250, 0.2);
+    border-radius: 999px;
+    background: rgba(167, 139, 250, 0.06);
+    color: #a78bfa;
+    font-family: 'Fira Code', monospace;
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+  }
+
+  .timeline-card h3 {
+    margin: 1.25rem 0 0;
+    color: #fff;
+    font-size: 1.1rem;
+    font-weight: 550;
+    line-height: 1.4;
+    letter-spacing: -0.02em;
+  }
+
+  .timeline-card p {
+    max-width: 390px;
+    margin: 0.75rem 0 0;
+    color: #a1a1aa;
+    font-size: 0.85rem;
+    line-height: 1.8;
+  }
+
+  /* Problem Section */
+  .problem-section {
+    max-width: 760px;
+    margin: 6rem auto 0;
+    text-align: center;
+  }
+
+  .problem-section h2 span {
+    color: #a78bfa;
+  }
+
+  .problem-section p {
+    max-width: 680px;
+    margin: 1.25rem auto 0;
+    color: #a1a1aa;
+    font-size: 0.95rem;
+    line-height: 1.9;
+  }
+
+  /* Responsive */
   @media (max-width: 768px) {
-    .about-timeline-grid {
-      grid-template-columns: 1fr !important;
+     .about-hero {
+    padding: 1rem 1.35rem 2rem;
+  }
+
+    .desktop-break {
+      display: none;
+    }
+
+    .company-story {
+      padding: 2.5rem 1.35rem 4.5rem;
+    }
+
+    .timeline-grid {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+
+    .timeline-card {
+      min-height: auto;
+      padding: 2rem 1.5rem;
+    }
+
+    .problem-section {
+      margin-top: 4.5rem;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .timeline-card {
+      transition: none;
     }
   }
 </style>
+</InnerLayout>

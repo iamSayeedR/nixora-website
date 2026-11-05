@@ -3,40 +3,275 @@ import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
 import Hero from '../components/Hero.astro';
 import DeployIntro from '../components/DeployIntro.astro';
-import Traction from '../components/Traction.astro';
 import AssistantSection from '../components/AssistantSection.astro';
 import Features from '../components/Features.astro';
-import HowItWorks from '../components/HowItWorks.astro';
-import Vision from '../components/Vision.astro';
 import FAQ from '../components/FAQ.astro';
 import EarlyAccess from '../components/EarlyAccess.astro';
-import Founder from '../components/Founder.astro';
 import Footer from '../components/Footer.astro';
+
+const faqQuestions = [
+  {
+    "@type": "Question",
+    "name": "What is Nixora?",
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Nixora is building the control plane for AI-generated software and AI agents. It aims to help developers deploy, operate, monitor, troubleshoot, and manage applications and agents throughout their lifecycle. Nixora is starting with application deployment and deployment failure diagnosis, with a broader vision of infrastructure and operational management."
+    }
+  },
+  {
+    "@type": "Question",
+    "name": "What problem does Nixora solve?",
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "AI coding tools make it easier to create software, but deploying and maintaining applications and AI agents remains complex. Developers still need to manage infrastructure, dependencies, configuration, databases, networking, monitoring, and troubleshooting. Nixora aims to simplify these tasks through a unified platform for managing AI-generated software and agents."
+    }
+  },
+  {
+    "@type": "Question",
+    "name": "Is Nixora a hosting provider?",
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Nixora includes managed application deployment and hosting as part of its initial product experience. However, its broader ambition is not simply to provide hosting. Nixora is building a control plane that aims to manage deployment, operations, monitoring, troubleshooting, scaling, and the lifecycle of AI-generated software and agents."
+    }
+  },
+  {
+    "@type": "Question",
+    "name": "Who is Nixora built for?",
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Nixora is being built for individual developers, technical founders, AI-native startups, engineering teams, and organizations creating applications and AI agents with AI coding tools. Its goal is to reduce the operational complexity involved in deploying and managing the software and agents they create."
+    }
+  },
+  {
+    "@type": "Question",
+    "name": "How is Nixora different from traditional deployment platforms?",
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Traditional deployment platforms primarily focus on getting applications running on infrastructure. Nixora's broader ambition is to provide a control plane for AI-generated software and agents, expanding from deployment into agent workflows, monitoring, troubleshooting, lifecycle management, governance, and autonomous operations."
+    }
+  },
+  {
+    "@type": "Question",
+    "name": "How does Nixora deploy AI-generated software?",
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Nixora's initial product uses a CLI-based workflow to deploy applications from GitHub. Its deployment experience is designed to handle application setup, container building, hosting, and HTTPS configuration. Nixora also focuses on diagnosing deployment failures and helping developers understand what needs to be fixed."
+    }
+  },
+  {
+    "@type": "Question",
+    "name": "Does Nixora support frontend and backend applications?",
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Nixora's product direction includes deployment support for frontend applications, backend services, APIs, and applications built with different programming languages and frameworks. Its current product starts with GitHub-based application deployment. Support for additional frameworks and deployment configurations must be verified against the current implementation."
+    }
+  },
+  {
+    "@type": "Question",
+    "name": "Is Nixora available today?",
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Nixora has developed an initial CLI-based product focused on application deployment and deployment failure diagnosis. CLI access is currently closed while the team strengthens its infrastructure, hardens the architecture, and develops the broader platform. Interested users can follow the official website for access and product updates."
+    }
+  },
+  {
+    "@type": "Question",
+    "name": "How can I get early access to Nixora?",
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Interested developers and teams can visit Nixora's website and use the official early-access or contact option available on the website. CLI access is currently closed while Nixora strengthens its infrastructure and develops the broader product."
+    }
+  },
+  {
+    "@type": "Question",
+    "name": "Can Nixora deploy AI agents?",
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Nixora's long-term product vision includes deploying and managing AI agents as running workloads. The goal is to help developers move agents beyond local scripts and prototypes into production environments. Agent deployment, runtime management, and lifecycle capabilities are roadmap areas and should not be presented as fully available today."
+    }
+  },
+  {
+    "@type": "Question",
+    "name": "How will Nixora test AI agents?",
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Nixora aims to provide agent evaluation capabilities that help developers understand whether their agents work reliably. Planned evaluation areas include task completion, tool usage, policy compliance, failure handling, latency, and execution costs. The objective is to help teams identify unreliable agent behavior before and after deployment."
+    }
+  },
+  {
+    "@type": "Question",
+    "name": "What is the Nixora AI Companion?",
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "The Nixora AI Companion is designed to help users understand, troubleshoot, and manage their applications and AI agents. It is intended to provide explanations, recommend solutions, guide users through operational tasks, and eventually execute authorized actions within user-defined permissions."
+    }
+  },
+  {
+    "@type": "Question",
+    "name": "How does the Nixora AI Companion work?",
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "The AI Companion is designed around three levels of assistance:\n\n• Advice-only mode: Explains problems and recommends solutions while the user performs the actions.\n• Guided mode: Helps users through troubleshooting and deployment workflows, requesting confirmation when necessary.\n• Autonomous mode: The long-term vision is to let the Companion perform authorized tasks, verify the results, and report the actions it completed.\n\nThese modes must be presented as planned product capabilities unless verified in the current implementation."
+    }
+  },
+  {
+    "@type": "Question",
+    "name": "What is the Nixora MCP server?",
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Nixora plans to provide an MCP server that allows compatible AI coding agents to interact with Nixora directly. This is intended to let agents request deployment workflows programmatically instead of requiring developers to manually transfer work between coding tools and deployment platforms. Planned controls include per-agent permissions and audit trails."
+    }
+  },
+  {
+    "@type": "Question",
+    "name": "Can AI coding agents deploy software through Nixora?",
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Nixora's upcoming MCP integration is intended to let compatible AI coding agents request application deployments directly. For example, an agent could generate an application, request a deployment through Nixora, and receive deployment feedback. The broader goal is to make Nixora an infrastructure deployment target for AI-powered development workflows."
+    }
+  },
+  {
+    "@type": "Question",
+    "name": "Does Nixora monitor applications and AI agents?",
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Application and agent monitoring and observability are part of Nixora's longer-term roadmap. The goal is to help users understand workload health, inspect operational information, identify failures, and troubleshoot problems. These capabilities are intended to expand Nixora beyond its current deployment and deployment-diagnosis starting point."
+    }
+  },
+  {
+    "@type": "Question",
+    "name": "Can Nixora automatically scale applications and agents?",
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Nixora's long-term vision includes workload scaling and resource optimization. For example, an application or supported agent workload could receive additional compute resources when demand increases and reduce resources when demand falls. This requires infrastructure orchestration and supported provider integrations, and should not be represented as currently available without implementation evidence."
+    }
+  },
+  {
+    "@type": "Question",
+    "name": "Does Nixora support load balancing?",
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Load balancing is part of the broader infrastructure-management vision. The objective is to help applications distribute traffic across multiple instances and maintain reliability as workloads grow. Actual availability will depend on implemented orchestration capabilities and supported infrastructure integrations."
+    }
+  },
+  {
+    "@type": "Question",
+    "name": "Can Nixora manage multiple applications and AI agents?",
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Nixora's long-term vision includes fleet management for multiple applications and agents. This would give teams a unified way to view, deploy, monitor, govern, and manage their workloads rather than handling every application and agent independently."
+    }
+  },
+  {
+    "@type": "Question",
+    "name": "Does Nixora support multiple cloud providers?",
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Nixora aims to provide a unified management layer across supported infrastructure providers. The goal is to reduce infrastructure fragmentation and make it easier to manage applications and agents through a common interface. Provider support and workload portability depend on the integrations and capabilities actually implemented."
+    }
+  },
+  {
+    "@type": "Question",
+    "name": "Can Nixora integrate with existing CI/CD pipelines?",
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Integration with existing CI/CD workflows is part of the broader product direction. Nixora aims to complement existing development and release processes rather than require every engineering team to replace its current tools. Specific integrations, including Jenkins and other pipeline systems, should only be advertised when implemented and verified."
+    }
+  },
+  {
+    "@type": "Question",
+    "name": "Does Nixora offer a web dashboard?",
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "A web dashboard is part of Nixora's planned product development. The initial product is CLI-based and designed for technical users. The planned web interface aims to make application and infrastructure management more accessible through a visual experience."
+    }
+  },
+  {
+    "@type": "Question",
+    "name": "What is Nixora's long-term vision?",
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Nixora aims to become the operational control plane for AI-generated software and AI agents. As AI makes software creation faster, the number of applications and agents that need to be deployed and maintained will grow. Nixora aims to simplify their deployment, operation, monitoring, troubleshooting, scaling, governance, and lifecycle management."
+    }
+  }
+];
+
+const homepageSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "@id": "https://nixora.co.in/#webpage",
+  "url": "https://nixora.co.in/",
+  "name": "Nixora: The Control Plane for AI-generated software and AI Agents",
+  "description": "Nixora is being built as the control plane for AI-generated software and AI agents: understand, deploy, operate, and evolve the infrastructure around them.",
+  "isPartOf": {
+    "@id": "https://nixora.co.in/#website"
+  },
+  "about": {
+    "@id": "https://nixora.co.in/#organization"
+  },
+  "publisher": {
+    "@id": "https://nixora.co.in/#organization"
+  },
+  "mainEntity": {
+    "@type": "FAQPage",
+    "mainEntity": faqQuestions
+  },
+  "speakable": {
+    "@type": "SpeakableSpecification",
+    "cssSelector": [
+      "#hero-summary",
+      "#what-is-nixora-answer"
+    ]
+  }
+};
 ---
 
-<Layout title="Nixora: The Control Plane for AI-generated software and AI Agents" description="Nixora is being built as the control plane for AI-generated software and AI agents: understand, deploy, operate, and evolve the infrastructure around them.">
+<Layout
+  title="Nixora: The Control Plane for AI-generated software and AI Agents"
+  description="Nixora is being built as the control plane for AI-generated software and AI agents: understand, deploy, operate, and evolve the infrastructure around them."
+  jsonLd={homepageSchema}
+>
+  <a href="#main-content" class="skip-link">Skip to content</a>
   <Header />
-  <main>
+  <main id="main-content">
     <!-- 1. Hero: headline + announcement pill + CTA + terminal visual -->
     <Hero />
     <!-- 2. Control plane vision section ("It's not just deployment") with Architecture Diagram -->
     <AssistantSection />
-    <!-- 3. Features & Roadmap: 6 Redesigned Cards with SVG line icons & hover animations -->
-    <Features />
-    <!-- 4. Feature proof-of-concept: "It all starts with nixora deploy" -->
+    <!-- 3. Feature proof-of-concept: "It all starts with nixora deploy" -->
     <DeployIntro />
-    <!-- 5. How It Works: 3-step workflow -->
-    <HowItWorks />
-    <!-- 6. Traction: stats counters -->
-    <Traction />
-    <!-- 7. Vision closer (links to /about/) -->
-    <Vision />
-    <!-- 8. FAQ Section for AI Search Crawlers & User Intent -->
+    <!-- 4. Features & Roadmap: 6 Redesigned Cards with SVG line icons & hover animations -->
+    <Features />
+
+    <!-- 5. FAQ Section for AI Search Crawlers & User Intent -->
     <FAQ />
-    <!-- 9. Early Access: Name + Email capture form -->
+    <!-- 6. Early Access: Name + Email capture form -->
     <EarlyAccess />
-    <!-- 10. Founder: bio + LinkedIn -->
-    <Founder />
   </main>
   <Footer />
 </Layout>
+
+<style>
+  .skip-link {
+    position: absolute;
+    left: 1rem;
+    top: 1rem;
+    z-index: 1000;
+    padding: 0.75rem 1rem;
+    border: 1px solid rgba(167, 139, 250, 0.5);
+    border-radius: 0.5rem;
+    background: #0a0a0a;
+    color: #fff;
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-decoration: none;
+    transform: translateY(-150%);
+    transition: transform 0.2s ease;
+  }
+
+  .skip-link:focus {
+    transform: translateY(0);
+    outline: 2px solid #a78bfa;
+    outline-offset: 2px;
+  }
+</style>

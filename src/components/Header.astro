@@ -1,3 +1,4 @@
+
 ---
 const currentPath = Astro.url.pathname;
 const navLinks = [
@@ -8,20 +9,19 @@ const navLinks = [
   { href: '/about/', label: 'About' },
 ];
 ---
+
 <header id="site-header" class="site-header">
-  <!-- Logo (SVG: crisp at all sizes) -->
-  <a href="/" aria-label="Home" style="display:flex;align-items:center;text-decoration:none;">
-    <img src="/logo.svg" alt="Nixora" style="height:28px;width:auto;" />
+  <!-- Logo -->
+  <a href="/" aria-label="Home" class="header-logo">
+    <img src="/logo.svg" alt="Nixora" />
   </a>
 
   <!-- Center nav: desktop -->
-  <nav class="header-nav" style="display:flex;gap:2rem;">
+  <nav class="header-nav" aria-label="Main navigation">
     {navLinks.map(link => (
       <a
         href={link.href}
-        style={`color:${currentPath === link.href ? '#fff' : '#a1a1aa'};font-size:0.875rem;text-decoration:none;transition:color 0.2s;`}
-        onmouseover="this.style.color='#fff'"
-        onmouseout={`this.style.color='${currentPath === link.href ? '#fff' : '#a1a1aa'}'`}
+        class:list={['nav-link', { active: currentPath === link.href }]}
       >
         {link.label}
       </a>
@@ -29,31 +29,66 @@ const navLinks = [
   </nav>
 
   <!-- Right CTAs: desktop -->
-  <div class="header-ctas" style="display:flex;align-items:center;gap:1rem;">
+  <div class="header-ctas">
     <a
       href="mailto:ceo@nixora.co.in?subject=Nixora%20Investor%20Deck%20Request"
       class="deck-link"
-      style="color:#a1a1aa;font-size:0.875rem;text-decoration:none;transition:color 0.2s;"
-      onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#a1a1aa'"
     >
       Request deck
     </a>
+
     <a href="/#early-access" class="shiny-cta">
       Get early access
-      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:14px;height:14px;">
-        <path d="M15.187 11.2362L11.0895 7.13873L12.1696 6.05859L18.1111 12.0001L12.1696 17.9416L11.0895 16.8615L15.187 12.764H5.88892V11.2362H15.187Z" fill="currentColor"/>
+      <svg
+        viewBox="0 0 24 24"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        class="cta-arrow"
+      >
+        <path
+          d="M15.187 11.2362L11.0895 7.13873L12.1696 6.05859L18.1111 12.0001L12.1696 17.9416L11.0895 16.8615L15.187 12.764H5.88892V11.2362H15.187Z"
+          fill="currentColor"
+        />
       </svg>
     </a>
   </div>
 
   <!-- Mobile menu button -->
-  <button id="mobile-toggle" aria-label="Toggle navigation menu" class="mobile-toggle">
-    <svg id="hamburger-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <button
+    id="mobile-toggle"
+    aria-label="Toggle navigation menu"
+    aria-expanded="false"
+    aria-controls="mobile-drawer"
+    class="mobile-toggle"
+  >
+    <svg
+      id="hamburger-icon"
+      width="22"
+      height="22"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="#fff"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    >
       <line x1="3" y1="6" x2="21" y2="6"></line>
       <line x1="3" y1="12" x2="21" y2="12"></line>
       <line x1="3" y1="18" x2="21" y2="18"></line>
     </svg>
-    <svg id="close-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none;">
+
+    <svg
+      id="close-icon"
+      width="22"
+      height="22"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="#fff"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      style="display:none;"
+    >
       <line x1="18" y1="6" x2="6" y2="18"></line>
       <line x1="6" y1="6" x2="18" y2="18"></line>
     </svg>
@@ -62,31 +97,112 @@ const navLinks = [
 
 <!-- Mobile Navigation Drawer -->
 <div id="mobile-drawer" class="mobile-drawer">
-  <div style="display:flex;flex-direction:column;gap:1.25rem;padding:1.5rem;">
+  <div class="mobile-drawer-inner">
     {navLinks.map(link => (
       <a
         href={link.href}
-        style={`color:${currentPath === link.href ? '#a78bfa' : '#fff'};font-size:1.1rem;font-weight:600;text-decoration:none;`}
+        class:list={['mobile-nav-link', { active: currentPath === link.href }]}
       >
         {link.label}
       </a>
     ))}
-    <hr style="border:none;border-top:1px solid #1f1f1f;margin:0.5rem 0;" />
+
+    <hr class="drawer-divider" />
+
     <a
       href="mailto:ceo@nixora.co.in?subject=Nixora%20Investor%20Deck%20Request"
-      style="color:#a1a1aa;font-size:0.95rem;text-decoration:none;"
+      class="mobile-deck-link"
     >
       Request deck ↗
     </a>
-    <a href="/#early-access" class="shiny-cta" style="width:100%;text-align:center;margin-top:0.5rem;">
+
+    <a href="/#early-access" class="shiny-cta mobile-cta">
       Get early access
     </a>
   </div>
 </div>
 
 <style>
+.site-header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  box-sizing: border-box;
+  padding-left: clamp(20px, 4.5vw, 64px);
+  padding-right: clamp(20px, 4.5vw, 64px);
+}
+  .header-logo {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+    text-decoration: none;
+  }
+
+  .header-logo img {
+    height: 28px;
+    width: auto;
+    display: block;
+  }
+
+  .header-nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    min-width: 0;
+  }
+
+  .nav-link {
+    color: #a1a1aa;
+    font-size: 0.875rem;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: color 0.2s;
+  }
+
+  .nav-link:hover,
+  .nav-link.active {
+    color: #fff;
+  }
+
+  .header-ctas {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-shrink: 0;
+  }
+
+  .deck-link {
+    color: #a1a1aa;
+    font-size: 0.875rem;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: color 0.2s;
+  }
+
+  .deck-link:hover {
+    color: #fff;
+  }
+
+  .shiny-cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    white-space: nowrap;
+  }
+
+  .cta-arrow {
+    width: 14px;
+    height: 14px;
+    flex-shrink: 0;
+  }
+
   .mobile-toggle {
     display: none;
+    flex-shrink: 0;
     background: none;
     border: 1px solid #27272a;
     border-radius: 8px;
@@ -102,21 +218,111 @@ const navLinks = [
     top: 60px;
     left: 0;
     width: 100%;
+    box-sizing: border-box;
     background: #0a0a0a;
     border-bottom: 1px solid #1f1f1f;
     z-index: 49;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.8);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8);
+    max-height: calc(100dvh - 60px);
+    overflow-y: auto;
   }
 
   .mobile-drawer.open {
     display: block;
   }
 
+  .mobile-drawer-inner {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    padding: 1.5rem;
+  }
+
+  .mobile-nav-link {
+    color: #fff;
+    font-size: 1.1rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .mobile-nav-link.active {
+    color: #a78bfa;
+  }
+
+  .drawer-divider {
+    width: 100%;
+    border: none;
+    border-top: 1px solid #1f1f1f;
+    margin: 0.5rem 0;
+  }
+
+  .mobile-deck-link {
+    color: #a1a1aa;
+    font-size: 0.95rem;
+    text-decoration: none;
+  }
+
+  .mobile-cta {
+    width: 100%;
+    box-sizing: border-box;
+    text-align: center;
+    margin-top: 0.5rem;
+  }
+
+  /* Smaller desktop and tablet */
+  @media (max-width: 1100px) {
+    .site-header {
+      gap: 1rem;
+    }
+
+    .header-nav {
+      gap: 1.25rem;
+    }
+
+    .header-ctas {
+      gap: 0.75rem;
+    }
+  }
+
+  /* Tablet and mobile navigation */
+  @media (max-width: 900px) {
+    .header-nav,
+    .header-ctas {
+      display: none !important;
+    }
+
+    .mobile-toggle {
+      display: flex !important;
+    }
+  }
+
+  /* Mobile */
   @media (max-width: 768px) {
-    .header-nav { display: none !important; }
-    .deck-link { display: none !important; }
-    .mobile-toggle { display: flex !important; }
-    .site-header { padding: 0 1.25rem !important; }
+     .site-header {
+    padding-left: 24px !important;
+    padding-right: 24px !important;
+  }
+
+    .mobile-drawer-inner {
+      padding: 1.5rem 1.25rem;
+    }
+  }
+
+  /* Small mobile */
+  @media (max-width: 380px) {
+   .site-header {
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+  }
+
+    .mobile-drawer-inner {
+      padding: 1.25rem 1rem;
+    }
+
+    .header-logo img {
+      height: 26px;
+    }
   }
 </style>
 
@@ -134,46 +340,60 @@ const navLinks = [
 
       function updateHeader() {
         if (window.scrollY > scrollThreshold) {
-          header?.classList.add('scrolled');
+          header.classList.add('scrolled');
         } else {
-          header?.classList.remove('scrolled');
+          header.classList.remove('scrolled');
         }
+
         ticking = false;
       }
 
-      window.addEventListener('scroll', () => {
-        if (!ticking) {
-          window.requestAnimationFrame(updateHeader);
-          ticking = true;
-        }
-      }, { passive: true });
+      window.addEventListener(
+        'scroll',
+        () => {
+          if (!ticking) {
+            window.requestAnimationFrame(updateHeader);
+            ticking = true;
+          }
+        },
+        { passive: true }
+      );
 
       updateHeader();
     }
 
     if (toggle && drawer && hamburger && close) {
       let isOpen = false;
+
+      function closeDrawer() {
+        drawer.classList.remove('open');
+        hamburger.style.display = 'block';
+        close.style.display = 'none';
+        toggle.setAttribute('aria-expanded', 'false');
+        isOpen = false;
+      }
+
       toggle.addEventListener('click', () => {
         isOpen = !isOpen;
+
         if (isOpen) {
           drawer.classList.add('open');
           hamburger.style.display = 'none';
           close.style.display = 'block';
+          toggle.setAttribute('aria-expanded', 'true');
         } else {
-          drawer.classList.remove('open');
-          hamburger.style.display = 'block';
-          close.style.display = 'none';
+          closeDrawer();
         }
       });
 
-      // Close drawer on link click
       drawer.querySelectorAll('a').forEach(a => {
-        a.addEventListener('click', () => {
-          drawer.classList.remove('open');
-          hamburger.style.display = 'block';
-          close.style.display = 'none';
-          isOpen = false;
-        });
+        a.addEventListener('click', closeDrawer);
+      });
+
+      window.addEventListener('resize', () => {
+        if (window.innerWidth > 900) {
+          closeDrawer();
+        }
       });
     }
   }

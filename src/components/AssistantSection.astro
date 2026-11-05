@@ -11,11 +11,7 @@
       </h2>
 
       <p class="control-description">
-        Deployment is the first capability, not the product. Nixora is the
-        control plane for AI-generated software and AI agents: deploy and
-        diagnose today, agent-native access through MCP next, and over time
-        monitoring, scaling, governance, and multi-agent systems, all
-        managed in one place.
+       Deployment is where Nixora starts. The broader goal is to provide one operational layer for the applications and AI agents built with AI.
       </p>
     </div>
 
@@ -31,9 +27,7 @@
           </h3>
 
           <p class="card-description">
-            Go from AI-generated code to a live, running application in
-            seconds. Diagnose why an AI-generated deployment failed and
-            what to change.
+            Deploy applications through Nixora's CLI and diagnose deployment failures to understand what went wrong and what needs to change.
           </p>
         </div>
       </div>
@@ -46,13 +40,11 @@
           </p>
 
           <h3 class="card-title direction-title">
-            Control plane for AI-generated software
+            A control plane for applications and agents
           </h3>
 
           <p class="card-description">
-            Agent-native deployment target via MCP, multi-agent access
-            with per-agent permissions, deep monitoring, autonomous
-            scaling, and multi-agent system governance.
+            Extend beyond deployment to manage the software lifecycle from testing and releases to monitoring, troubleshooting, scaling, and governance. Enable AI agents to interact with infrastructure through MCP-based workflows and controlled permissions.
           </p>
         </div>
       </div>
@@ -66,12 +58,11 @@
     position: relative;
     overflow: hidden;
     padding: 2rem 1.25rem 4rem;
-    background: var(--background);
   }
 
   .control-container {
     width: 100%;
-    max-width: 1150px;
+    max-width: 1180px;
     margin: 0 auto;
   }
 
@@ -122,21 +113,14 @@
     border: 1px solid rgb(255 255 255 / 14%);
     border-radius: 1rem;
     background: #0d0d0f;
-    transition: border-color 0.3s ease;
   }
 
-  .today-card:hover {
-    border-color: rgb(255 255 255 / 22%);
-  }
-
+ 
   .direction-card {
-    border-color: rgb(125 87 239 / 25%);
-    box-shadow: 0 0 24px rgb(125 87 239 / 5%);
+    border-color: rgb(125 87 239 / 28%);
+   
   }
 
-  .direction-card:hover {
-    border-color: rgb(125 87 239 / 40%);
-  }
 
   .card-content {
     position: relative;
@@ -165,11 +149,12 @@
     letter-spacing: -0.025em;
   }
 
-  .direction-title {
-    max-width: 36rem;
-    font-size: 1.25rem;
-    line-height: 1.4;
-  }
+.direction-title {
+  max-width: none;
+  font-size: 1.25rem;
+  line-height: 1.4;
+  white-space: nowrap;
+}
 
   .card-description {
     margin: 1rem 0 0;
@@ -207,6 +192,12 @@
   .reveal-stagger.is-visible .reveal:nth-child(2) {
     transition-delay: 100ms;
   }
+
+  @media (max-width: 639px) {
+  .direction-title {
+    white-space: normal;
+  }
+}
 
   /* Tablet */
   @media (min-width: 640px) {

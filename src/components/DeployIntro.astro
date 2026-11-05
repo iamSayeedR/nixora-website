@@ -24,19 +24,19 @@ const capabilities = [
   {
     title: "Zero-config deploy",
     description:
-      "Auto-detects runtime, containerizes, and ships with no Dockerfile required.",
+     "Auto-detects runtime, containerizes, and deploys applications without requiring a Dockerfile.",
     icon: "package",
   },
   {
     title: "HTTPS by default",
     description:
-      "TLS certificate issued and attached to every deployment automatically.",
+      "Automatically provisions and attaches TLS certificates to deployments.",
     icon: "shield",
   },
   {
-    title: "Persistent hosting",
+    title: "Deployment diagnosis",
     description:
-      "Nixora handles uptime, restarts, and availability so you don't have to.",
+    "Identifies deployment failures and explains what went wrong and what needs to be fixed.",
     icon: "server",
   },
 ];
@@ -54,8 +54,7 @@ const capabilities = [
       </h2>
 
       <p>
-        Bridge the gap between AI-generated code and a live, managed
-        application, with hosting, HTTPS, and compute handled automatically.
+        Turn application code into a live deployment with runtime detection, containerization, compute provisioning, and HTTPS all handled through Nixora.
       </p>
     </div>
 
@@ -507,7 +506,7 @@ const capabilities = [
  .deploy-container {
   position: relative;
   width: 100%;
-  max-width: 1150px;
+  max-width: 1180px;
   margin: 0 auto;
   padding: 0;
    box-sizing: border-box;
@@ -834,7 +833,7 @@ const capabilities = [
     justify-content: center;
     margin-bottom: 1.5rem;
     border: 1px solid rgba(125, 87, 239, 0.2);
-    border-radius: 1rem;
+    border-radius: 0.8rem;
     background: rgba(125, 87, 239, 0.1);
     color: var(--primary, #a78bfa);
     transition:

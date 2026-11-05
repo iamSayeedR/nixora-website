@@ -149,7 +149,32 @@ const nixoraSchema = {
   )}
 </head>
 <body>
+  <a href="#main-content" class="skip-link">Skip to content</a>
   <CursorGlow />
   <slot />
+  <style>
+    .skip-link {
+      position: absolute;
+      left: 1rem;
+      top: 1rem;
+      z-index: 1000;
+      padding: 0.75rem 1rem;
+      border: 1px solid rgba(167, 139, 250, 0.5);
+      border-radius: 0.5rem;
+      background: #0a0a0a;
+      color: #fff;
+      font-size: 0.875rem;
+      font-weight: 600;
+      text-decoration: none;
+      transform: translateY(-150%);
+      transition: transform 0.2s ease;
+    }
+
+    .skip-link:focus {
+      transform: translateY(0);
+      outline: 2px solid #a78bfa;
+      outline-offset: 2px;
+    }
+  </style>
 </body>
 </html>

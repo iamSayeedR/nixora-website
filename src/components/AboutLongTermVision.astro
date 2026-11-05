@@ -1,0 +1,437 @@
+
+<section
+  aria-labelledby="long-term-vision-heading"
+  class="long-term-vision"
+>
+  <!-- Subtle background -->
+  
+
+  <div class="vision-inner">
+
+    <!-- Vision Introduction -->
+    <header class="vision-header" data-reveal>
+      <div class="vision-eyebrow">
+      
+        <p>Long-term vision</p>
+   
+      </div>
+
+      <h2 id="long-term-vision-heading">
+        The future of software
+        <br class="desktop-break" />
+        <span> needs a new foundation.</span>
+      </h2>
+
+      <p class="vision-description">
+        Nixora&apos;s long-term vision is to become the control plane for
+        AI-generated software and AI agents.
+      </p>
+    </header>
+
+    <!-- Main Narrative -->
+    <div class="vision-content">
+
+      <!-- The Changing Landscape -->
+      <div class="changing-landscape" data-reveal>
+        <p>
+          As software becomes easier to create,
+          operating it reliably becomes a bigger challenge.
+        </p>
+      </div>
+
+      <p class="landscape-description" data-reveal>
+        As AI makes software creation faster and more accessible, the number
+        of applications and agents that need to be deployed and maintained
+        will continue to grow. Managing every workload manually will become
+        increasingly difficult.
+      </p>
+
+      <!-- Nixora's Role -->
+      <div class="nixora-role" data-reveal>
+        <p class="section-label">Where Nixora comes in</p>
+
+        <p class="role-description">
+          Nixora aims to provide the infrastructure and operational layer
+          that helps users
+          <span> deploy, operate, troubleshoot, govern, and manage </span>
+          those workloads through a unified platform.
+        </p>
+      </div>
+
+      <!-- AI Companion -->
+      <div class="ai-companion" data-reveal>
+        <h3>AI Companion</h3>
+
+        <p>
+          The AI Companion will eventually help users move from manually
+          performing operational tasks toward safely delegating authorized
+          work to AI.
+        </p>
+      </div>
+
+      <!-- Closing Thought -->
+      <p class="closing-thought" data-reveal>
+        The goal is to make software operations simpler, more reliable, and
+        more accessible as AI-generated software becomes increasingly
+        common.
+      </p>
+
+    </div>
+
+    <!-- Core Mission -->
+    <div class="core-mission" data-reveal>
+      <div class="mission-background" aria-hidden="true"></div>
+
+      <div class="mission-content">
+       <p class="mission-label">Nixora's Core Vision</p>
+
+        <p class="mission-first">
+          AI helps people build software.
+        </p>
+
+        <p class="mission-second">
+          Nixora aims to help them deploy, operate
+          <br class="desktop-break" />
+          and manage it.
+        </p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<script>
+  const revealElements =
+    document.querySelectorAll<HTMLElement>(".long-term-vision [data-reveal]");
+
+  const prefersReducedMotion = window.matchMedia(
+    "(prefers-reduced-motion: reduce)"
+  ).matches;
+
+  if (!prefersReducedMotion && "IntersectionObserver" in window) {
+    const observer = new IntersectionObserver(
+      (entries, currentObserver) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            currentObserver.unobserve(entry.target);
+          }
+        });
+      },
+      {
+        threshold: 0.15,
+        rootMargin: "0px 0px -40px 0px",
+      }
+    );
+
+    revealElements.forEach((element) => observer.observe(element));
+  } else {
+    revealElements.forEach((element) => {
+      element.classList.add("is-visible");
+    });
+  }
+</script>
+
+<style>
+  /* Main Section */
+  .long-term-vision {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    padding: 6rem 1.25rem;
+   
+    color: #fff;
+  }
+
+
+
+  .vision-inner {
+    max-width: 1024px;
+    margin: 0 auto;
+  }
+
+  /* Vision Introduction */
+  .vision-header {
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .vision-eyebrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+  }
+
+  .vision-eyebrow p {
+    margin: 0;
+    color: #a78bfa;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+  }
+
+  .vision-eyebrow span {
+    width: 2rem;
+    height: 1px;
+    background: rgba(167, 139, 250, 0.7);
+  }
+
+  .vision-header h2 {
+    margin: 1.5rem auto 0;
+    color: #fff;
+   font-size: clamp(2.1rem, 4.5vw, 3.25rem);
+    font-weight: 600;
+    line-height: 1.13;
+    letter-spacing: -0.05em;
+  }
+
+  .vision-header h2 span {
+    color: #a78bfa;
+  }
+
+  .vision-description {
+    max-width: 672px;
+    margin: 1.5rem auto 0;
+    color: rgba(255, 255, 255, 0.55);
+    font-size: 1rem;
+    line-height: 2;
+  }
+
+  /* Main Narrative */
+  .vision-content {
+    max-width: 768px;
+    margin: 4rem auto 0;
+    text-align: center;
+  }
+
+  .changing-landscape p {
+    margin: 0;
+    color: #fff;
+    font-size: clamp(1.5rem, 3vw, 1.875rem);
+    font-weight: 500;
+    line-height: 1.55;
+    letter-spacing: -0.035em;
+  }
+
+  .changing-landscape span {
+    color: #a78bfa;
+  }
+
+  .landscape-description {
+    max-width: 672px;
+    margin: 1.5rem auto 0;
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 1rem;
+    line-height: 2;
+  }
+
+  /* Nixora's Role */
+  .nixora-role {
+    margin-top: 3.5rem;
+    padding: 3rem 0;
+  }
+
+  .section-label {
+    margin: 0;
+    color: #a78bfa;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+  }
+
+  .role-description {
+    max-width: 768px;
+    margin: 1.25rem auto 0;
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 1.25rem;
+    font-weight: 500;
+    line-height: 1.75;
+    letter-spacing: -0.025em;
+  }
+
+  .role-description span {
+    color: #a78bfa;
+  }
+
+  /* AI Companion */
+  .ai-companion {
+    max-width: 672px;
+    margin: 3.5rem auto 0;
+  }
+
+  .ai-companion h3 {
+    margin: 0;
+    color: #fff;
+    font-size: 1.875rem;
+    font-weight: 600;
+    letter-spacing: -0.035em;
+  }
+
+  .ai-companion p {
+    margin: 1rem auto 0;
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 1rem;
+    line-height: 2;
+  }
+
+  /* Closing Thought */
+  .closing-thought {
+    max-width: 672px;
+    margin: 2.5rem auto 0;
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 1rem;
+    line-height: 2;
+  }
+
+  /* Core Mission */
+  .core-mission {
+    position: relative;
+    overflow: hidden;
+    margin-top: 5rem;
+    padding: 5rem 1rem;
+    text-align: center;
+  }
+
+  .mission-background {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: radial-gradient(
+      ellipse at 50% 100%,
+      rgba(125, 87, 239, 0.08),
+      transparent 65%
+    );
+  }
+
+  .mission-content {
+    position: relative;
+    max-width: 896px;
+    margin: 0 auto;
+  }
+
+  .mission-label {
+    margin: 0;
+    color: #a78bfa;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+  }
+
+  .mission-first {
+    margin: 2rem 0 0;
+    color: rgba(255, 255, 255, 0.7);
+   font-size: clamp(1.4rem, 2.7vw, 2rem);
+    font-weight: 500;
+    line-height: 1.6;
+    letter-spacing: -0.04em;
+  }
+
+  .mission-second {
+    margin: 0.75rem 0 0;
+    color: #a78bfa;
+   font-size: clamp(1.4rem, 3vw, 2.6rem);
+    font-weight: 600;
+    line-height: 1.4;
+    letter-spacing: -0.045em;
+  }
+
+  /* Scroll Reveal */
+  @media (prefers-reduced-motion: no-preference) {
+    .long-term-vision [data-reveal] {
+      opacity: 0;
+      transform: translateY(18px);
+      transition:
+        opacity 650ms ease-out,
+        transform 650ms ease-out;
+    }
+
+    .long-term-vision [data-reveal].is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .long-term-vision {
+      padding: 4.5rem 1.35rem;
+    }
+
+    .vision-header h2 {
+      font-size: clamp(2.1rem, 7vw, 3rem);
+    }
+
+    .vision-description {
+      font-size: 0.95rem;
+      line-height: 1.85;
+    }
+
+    .vision-content {
+      margin-top: 3rem;
+    }
+
+    .changing-landscape p {
+      font-size: 1.5rem;
+      line-height: 1.5;
+    }
+
+    .landscape-description,
+    .ai-companion p,
+    .closing-thought {
+      font-size: 0.95rem;
+      line-height: 1.9;
+    }
+
+    .nixora-role {
+      margin-top: 2.5rem;
+      padding: 2rem 0;
+    }
+
+    .role-description {
+      font-size: 1.1rem;
+      line-height: 1.7;
+    }
+
+    .ai-companion {
+      margin-top: 2.5rem;
+    }
+
+    .ai-companion h3 {
+      font-size: 1.6rem;
+    }
+
+    .closing-thought {
+      margin-top: 2rem;
+    }
+
+    .core-mission {
+      margin-top: 3.5rem;
+      padding: 3.5rem 0;
+    }
+
+    .mission-first {
+      margin-top: 1.5rem;
+    }
+
+    .mission-second {
+      font-size: clamp(1.5rem, 6vw, 2.25rem);
+    }
+
+    .desktop-break {
+      display: none;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .long-term-vision [data-reveal] {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+  }
+</style>

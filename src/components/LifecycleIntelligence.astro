@@ -1,92 +1,84 @@
+
 ---
 ---
 
 <section class="lifecycle-section">
-  
+  <div class="section-tint" aria-hidden="true"></div>
 
-  <div class="lifecycle-content">
-    <p class="coming-soon" data-reveal>
-      <span class="status-dot">
-        <span class="dot-pulse"></span>
-        <span class="dot-core"></span>
-      </span>
-      Coming soon
-    </p>
-
-    <h2 data-reveal>
+  <div class="lifecycle-content" data-reveal>
+    <h2 class="lifecycle-title">
       Lifecycle <span>Intelligence</span>
     </h2>
 
-    <p class="description" data-reveal>
-      Nixora will learn from every deployment, tracking what changed, how it
-      affects your app, and surfacing issues before they become failures.
+    <h3 class="lifecycle-subtitle">
+      Understand what changes. Know what needs attention.
+    </h3>
+
+    <p class="lifecycle-description">
+      Nixora aims to build on deployment history and application signals to
+      track changes, understand their impact, and help identify potential
+      issues before they affect application reliability.
     </p>
   </div>
 </section>
 
+<script>
+  const sections = document.querySelectorAll("[data-reveal]");
+
+  if ("IntersectionObserver" in window) {
+    const observer = new IntersectionObserver(
+      (entries, observer) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      {
+        threshold: 0.15,
+        rootMargin: "0px 0px -80px 0px",
+      }
+    );
+
+    sections.forEach((section) => observer.observe(section));
+  } else {
+    sections.forEach((section) => section.classList.add("is-visible"));
+  }
+</script>
+
 <style>
-.lifecycle-section {
-  position: relative;
-  isolation: isolate;
-  overflow: hidden;
-  padding: 5rem 0;
-}
- .roadmap-tint {
-  display: none;
-}
+  .lifecycle-section {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    padding: 5rem 1.25rem;
+   
+  }
+
 
   .lifecycle-content {
     position: relative;
     width: 100%;
     max-width: 56rem;
-    margin: 0 auto;
-    padding: 0 1.25rem;
+    margin-inline: auto;
     text-align: center;
+
+    opacity: 0;
+    transform: translateY(14px);
+    transition:
+      opacity 550ms ease-out,
+      transform 550ms ease-out;
   }
 
-  .coming-soon {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.625rem;
-    padding: 0.5rem 1rem;
-    border: 1px solid rgba(125, 87, 239, 0.35);
-    border-radius: 9999px;
-    background: rgba(125, 87, 239, 0.1);
-    color: rgba(255, 255, 255, 0.85);
-    font-size: 10px;
-    font-weight: 500;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    box-shadow: 0 0 24px rgba(125, 87, 239, 0.1);
+  .lifecycle-content.is-visible {
+    opacity: 1;
+    transform: translateY(0);
   }
 
-  .status-dot {
-    position: relative;
-    display: flex;
-    width: 0.5rem;
-    height: 0.5rem;
-    flex-shrink: 0;
-  }
-
-  .dot-pulse {
-    position: absolute;
-    inset: 0;
-    border-radius: 50%;
-    background: var(--primary, #a78bfa);
-    opacity: 0.5;
-    animation: dot-ping 2s cubic-bezier(0, 0, 0.2, 1) infinite;
-  }
-
-  .dot-core {
-    position: relative;
-    width: 0.5rem;
-    height: 0.5rem;
-    border-radius: 50%;
-    background: var(--primary, #a78bfa);
-  }
-
-  .lifecycle-content h2 {
-    margin-top: 1.5rem;
+  /* Heading */
+  .lifecycle-title {
+    margin-top: 1.25rem;
     color: #fff;
     font-size: 1.875rem;
     font-weight: 600;
@@ -94,126 +86,75 @@
     letter-spacing: -0.045em;
   }
 
-  .lifecycle-content h2 span {
-    color: var(--primary, #a78bfa);
+  /* Purple highlight */
+  .lifecycle-title span {
+    color: #a78bfa;
   }
 
-  .description {
+  /* Subtitle */
+  .lifecycle-subtitle {
     max-width: 42rem;
-    margin: 1.25rem auto 0;
-    color: rgba(255, 255, 255, 0.7);
+    margin: 1.5rem auto 0;
+    color: rgb(255 255 255 / 85%);
+    font-size: 1.125rem;
+    font-weight: 500;
+    line-height: 1.625;
+    letter-spacing: -0.025em;
+  }
+
+  /* Description */
+  .lifecycle-description {
+    max-width: 42rem;
+    margin: 1rem auto 0;
+    color: rgb(255 255 255 / 55%);
     font-size: 0.875rem;
-    line-height: 1.75rem;
+    line-height: 1.75;
   }
 
-  [data-reveal] {
-    opacity: 0;
-    transform: translateY(14px);
-    transition:
-      opacity 0.55s ease-out,
-      transform 0.55s ease-out;
-  }
-
-  [data-reveal].is-visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  .coming-soon.is-visible {
-    transition-delay: 0s;
-  }
-
-  h2.is-visible {
-    transition-delay: 0.1s;
-  }
-
-  .description.is-visible {
-    transition-delay: 0.2s;
-  }
-
-  @keyframes dot-ping {
-    75%,
-    100% {
-      transform: scale(2);
-      opacity: 0;
-    }
-  }
-
+  /* Small tablets */
   @media (min-width: 640px) {
     .lifecycle-section {
-      padding: 6rem 0;
+      padding: 6rem 2rem;
     }
 
-    .lifecycle-content {
-      padding: 0 2rem;
-    }
-
-    .coming-soon {
-      font-size: 0.75rem;
-    }
-
-    .lifecycle-content h2 {
-      margin-top: 1.75rem;
+    .lifecycle-title {
+      margin-top: 1.5rem;
       font-size: 2.25rem;
     }
 
-    .description {
-      margin-top: 1.5rem;
+    .lifecycle-subtitle {
+      margin-top: 1.75rem;
+      font-size: 1.25rem;
+    }
+
+    .lifecycle-description {
+      margin-top: 1.25rem;
       font-size: 1rem;
-      line-height: 2rem;
+      line-height: 2;
     }
   }
 
+  /* Desktop */
   @media (min-width: 1024px) {
     .lifecycle-section {
-      padding: 7rem 0;
+      padding: 7rem 3rem;
     }
 
-    .lifecycle-content {
-      padding: 0 3rem;
-    }
-
-    .lifecycle-content h2 {
+    .lifecycle-title {
       font-size: 3rem;
     }
 
-    .description {
-      font-size: 1.125rem;
+    .lifecycle-subtitle {
+      font-size: 1.5rem;
     }
   }
 
+  /* Reduced motion accessibility */
   @media (prefers-reduced-motion: reduce) {
-    .dot-pulse {
-      animation: none;
-    }
-
-    [data-reveal] {
+    .lifecycle-content {
       opacity: 1;
       transform: none;
       transition: none;
     }
   }
 </style>
-
-<script>
-  const revealElements = document.querySelectorAll("[data-reveal]");
-
-  const revealObserver = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("is-visible");
-          revealObserver.unobserve(entry.target);
-        }
-      });
-    },
-    {
-      threshold: 0.15,
-      rootMargin: "0px 0px -80px 0px",
-    },
-  );
-
-  revealElements.forEach((element) => {
-    revealObserver.observe(element);
-  });
-</script>

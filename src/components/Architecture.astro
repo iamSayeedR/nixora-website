@@ -1,3 +1,4 @@
+
 ---
 const withoutSteps = [
   { title: "AI generates code", subtitle: "agent outputs" },
@@ -13,14 +14,22 @@ const withChecks = [
   "HTTPS certificate issued",
   "Hosting provisioned",
 ];
+
+const applicationTypes = [
+  "Frontend applications",
+  "Backend services",
+  "APIs & web services",
+  "Different languages & frameworks",
+];
 ---
 
-<section class="why-infra">
-  <div class="why-infra-tint"></div>
+<section class="product-why-infra">
+  <div class="background-tint"></div>
 
-  <div class="why-infra-container">
+  <div class="infra-container">
+
     <!-- Intro -->
-    <div class="why-infra-intro" data-reveal>
+    <div class="section-intro" data-reveal>
       <h2>Why traditional infra fails AI code</h2>
 
       <p>
@@ -31,470 +40,515 @@ const withChecks = [
     </div>
 
     <!-- Comparison -->
-    <div class="why-infra-comparison" data-reveal>
-      <!-- Without Nixora -->
-      <div class="infra-comparison-panel">
-        <div class="infra-panel-content">
-          <div class="infra-panel-heading" data-reveal>
-            <span class="infra-heading-icon infra-heading-cross">×</span>
+    <div class="comparison-wrapper" data-reveal>
 
-            <p class="infra-heading-text">
-              Without Nixora: manual, fragile
-            </p>
-          </div>
+      <!-- WITHOUT NIXORA -->
+      <div class="comparison-section without-section">
 
-          <!-- Traditional flow -->
-          <div class="infra-manual-flow" data-stagger>
-            {withoutSteps.map((step, index) => (
-              <div class="infra-manual-step" data-reveal>
-                <div class:list={[
-                  "infra-step-card",
-                  index === 0 ? "infra-step-first" : "",
-                ]}>
-                  <p class="infra-step-title">{step.title}</p>
-                  <p class="infra-step-subtitle">{step.subtitle}</p>
-                </div>
+        <div class="section-label" data-reveal>
+          <span class="label-cross">×</span>
 
-                {index < withoutSteps.length - 1 && (
-                  <span class="infra-step-arrow">→</span>
-                )}
-              </div>
-            ))}
-          </div>
+          <p>Without Nixora: manual, fragile</p>
         </div>
+
+        <!-- Traditional flow -->
+        <ul class="traditional-flow" aria-label="Without Nixora: manual, fragile">
+          {withoutSteps.map((step, index) => (
+            <li
+              class="traditional-step"
+              data-reveal
+              style={`--reveal-delay: ${index * 70}ms`}
+            >
+              <div class:list={[
+                "traditional-step-card",
+                index === 0 ? "first-step" : "",
+              ]}>
+                <p class="step-title">{step.title}</p>
+                <p class="step-subtitle">{step.subtitle}</p>
+              </div>
+
+              {index < withoutSteps.length - 1 && (
+                <span class="traditional-arrow">→</span>
+              )}
+            </li>
+          ))}
+        </ul>
       </div>
 
-      <!-- Divider -->
-      <div class="infra-divider"></div>
+      <div class="comparison-divider"></div>
 
-      <!-- With Nixora -->
-      <div class="infra-comparison-panel infra-panel-nixora">
-        <div class="infra-panel-tint"></div>
+      <!-- WITH NIXORA -->
+      <div class="comparison-section with-section">
 
-        <div class="infra-panel-content">
-          <div class="infra-panel-heading" data-reveal>
-            <span class="infra-heading-icon infra-heading-check">✓</span>
+        <div class="with-background"></div>
 
-            <p class="infra-heading-text infra-heading-primary">
-              With Nixora: automated deploy, hosting &amp; HTTPS
-            </p>
-          </div>
+        <div class="section-label with-label" data-reveal>
+          <span class="label-check">✓</span>
 
-          <!-- Nixora flow -->
-          <div class="infra-nixora-flow" data-stagger>
-            <!-- Input -->
-            <div class="infra-flow-input" data-reveal>
-              <p class="infra-flow-label">
-                AI-generated application
-              </p>
-
-              <p class="infra-flow-title">
-                AI generates code
-              </p>
-
-              <p class="infra-flow-subtitle">
-                agent outputs
-              </p>
-            </div>
-
-            <!-- Arrow -->
-            <span class="infra-flow-arrow">→</span>
-
-            <!-- Command -->
-            <div class="infra-flow-command" data-reveal>
-              <div class="infra-command-box">
-                <span>nixora deploy</span>
-              </div>
-            </div>
-
-            <!-- Arrow -->
-            <span class="infra-flow-arrow">→</span>
-
-            <!-- Result -->
-            <div class="infra-flow-result" data-reveal>
-              <div class="infra-result-heading">
-                <span class="infra-result-dot"></span>
-
-                <p>Live &amp; running</p>
-              </div>
-
-              <div class="infra-check-list">
-                {withChecks.map((item) => (
-                  <div class="infra-check-item">
-                    <span>✓</span>
-                    <span>{item}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
+          <p>With Nixora: automated deploy, hosting &amp; HTTPS</p>
         </div>
+
+        <!-- Nixora flow -->
+        <ol class="nixora-flow" aria-label="With Nixora: automated deploy, hosting and HTTPS">
+
+          <!-- Input -->
+          <li class="flow-input" data-reveal>
+            <p class="input-label">AI-generated application</p>
+
+            <p class="input-title">AI generates code</p>
+
+            <p class="input-subtitle">agent outputs</p>
+          </li>
+
+          <!-- Arrow -->
+          <li class="flow-arrow" aria-hidden="true">→</li>
+
+          <!-- Command -->
+          <li class="flow-command" data-reveal>
+            <span>nixora deploy</span>
+          </li>
+
+          <!-- Arrow -->
+          <li class="flow-arrow" aria-hidden="true">→</li>
+
+          <!-- Result -->
+          <li class="flow-result" data-reveal>
+            <div class="result-heading">
+              <span class="status-dot"></span>
+
+              <p>Live &amp; running</p>
+            </div>
+
+            <div class="result-checks">
+              {withChecks.map((item, index) => (
+                <div
+                  class="result-check"
+                  data-reveal
+                  style={`--reveal-delay: ${index * 70}ms`}
+                >
+                  <span>✓</span>
+                  <p>{item}</p>
+                </div>
+              ))}
+            </div>
+          </li>
+
+        </ol>
       </div>
     </div>
+
+    <!-- Application scope -->
+    <div class="application-scope" data-reveal>
+
+      <div class="scope-intro">
+        <p class="scope-label">Broader product direction</p>
+
+        <h3>
+          One operational layer for different kinds of software
+        </h3>
+
+        <p class="scope-description">
+          Nixora&apos;s longer-term direction is to support applications and
+          services built with different languages and frameworks, while
+          reducing the manual work involved in deploying and operating them.
+        </p>
+      </div>
+
+      <div class="application-types">
+        {applicationTypes.map((type, index) => (
+          <span
+            class="application-type"
+            data-reveal
+            style={`--reveal-delay: ${index * 70}ms`}
+          >
+            {type}
+          </span>
+        ))}
+      </div>
+    </div>
+
+    <!-- Diagnose context -->
+    <p class="diagnose-context" data-reveal>
+      Deployment is only one part of the workflow. When a deployment fails,
+      Nixora&apos;s Diagnose capability is intended to help developers
+      understand what went wrong and identify what needs attention.
+    </p>
+
   </div>
 </section>
 
-<script>
-  const revealElements = document.querySelectorAll(
-    ".why-infra [data-reveal]"
-  );
-
-  const revealObserver = new IntersectionObserver(
-    (entries, observer) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          const parent = entry.target.parentElement;
-
-          if (parent?.hasAttribute("data-stagger")) {
-            const siblings = Array.from(
-              parent.querySelectorAll(":scope > [data-reveal]")
-            );
-
-            siblings.forEach((sibling, index) => {
-              sibling.style.transitionDelay = `${index * 0.07}s`;
-            });
-          }
-
-          entry.target.classList.add("is-visible");
-          observer.unobserve(entry.target);
-        }
-      });
-    },
-    {
-      threshold: 0.15,
-      rootMargin: "0px 0px -40px 0px",
-    }
-  );
-
-  revealElements.forEach((element) => {
-    revealObserver.observe(element);
-  });
-</script>
-
 <style>
- .why-infra {
-  position: relative;
-  isolation: isolate;
-  overflow: hidden;
-  padding: 4rem 1rem;
-  background: var(--background);
-  box-sizing: border-box;
-}
+  /* Main section */
 
-.why-infra *,
-.why-infra *::before,
-.why-infra *::after {
-  box-sizing: border-box;
-}
+  .product-why-infra {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    padding: 4rem 0;
+   
 
-
- .why-infra-container {
-  position: relative;
-  width: 100%;
-  max-width: 1250px;
-  margin-inline: auto;
-  padding: 0;
-}
-
- /* Intro */
-
-.why-infra-intro {
-  width: 100%;
-  max-width: 48rem;
-  margin: 0 auto;
-  text-align: center;
-}
-
- .why-infra-intro h2 {
-  margin: 0;
-  color: #fff;
-  font-size: clamp(1.75rem, 4vw, 3rem);
-  font-weight: 600;
-  line-height: 1.25;
-  letter-spacing: -0.04em;
-  overflow-wrap: break-word;
-}
-
-  .why-infra-intro p {
-  width: 100%;
-  max-width: 42rem;
-  margin: 1.25rem auto 0;
-  color: rgba(255, 255, 255, 0.65);
-  font-size: clamp(0.9375rem, 1.5vw, 1.125rem);
-  line-height: 1.75;
-}
-
- /* Comparison wrapper */
-
-.why-infra-comparison {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  min-width: 0;
-  margin-top: 2.5rem;
-  overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 1rem;
-  background: #0d0d0f;
-  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.2);
-}
-
-.infra-comparison-panel {
-  position: relative;
-  display: flex;
-  flex: 1 1 0;
-  flex-direction: column;
-  min-width: 0;
-}
-
-  .infra-panel-content {
-  position: relative;
-  display: flex;
-  flex: 1;
-  flex-direction: column;
-  min-width: 0;
-  padding: 1.5rem 1.25rem;
-}
-
-.infra-panel-nixora {
-  background: #0d0d0f;
-}
-
- .infra-panel-tint {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  background: rgba(125, 87, 239, 0.035);
-}
-
- /* Headings */
-.infra-panel-heading {
-  display: flex;
-  align-items: flex-start;
-  gap: 0.625rem;
-  min-width: 0;
-}
-
-  .infra-heading-icon {
-  flex-shrink: 0;
-  font-size: 1rem;
-  line-height: 1.5;
-}
-
- .infra-heading-cross {
-  color: rgba(255, 255, 255, 0.45);
-  font-size: 1.125rem;
-}
-
-  .infra-heading-check {
-  color: var(--primary, #a78bfa);
-}
-
-  .infra-heading-text {
-  min-width: 0;
-  margin: 0;
-  color: rgba(255, 255, 255, 0.6);
-  font-size: 0.7rem;
-  font-weight: 600;
-  line-height: 1.6;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  overflow-wrap: anywhere;
-}
-
-  .infra-heading-primary {
-    color: var(--primary, #a78bfa);
   }
 
-  /* Traditional manual flow */
+ 
 
-.infra-manual-flow {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  min-width: 0;
-  margin-top: 1.5rem;
-}
-
- .infra-manual-step {
-  display: flex;
-  flex: 1 1 0;
-  align-items: stretch;
-  min-width: 0;
-}
-
-
-  .infra-step-card {
-  display: flex;
-  flex: 1 1 0;
-  flex-direction: column;
-  justify-content: center;
-  min-width: 0;
-  min-height: 4.5rem;
-  padding: 0.75rem;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 0.75rem;
-  background: #0d0d0f;
-}
-
-  .infra-step-first {
-    border-color: rgba(255, 255, 255, 0.15);
+  .infra-container {
+    position: relative;
+    width: 100%;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 1.25rem;
   }
 
-  .infra-step-title {
-  margin: 0;
-  color: rgba(255, 255, 255, 0.65);
-  font-size: 0.8125rem;
-  font-weight: 500;
-  line-height: 1.5;
-  overflow-wrap: anywhere;
-}
+  /* Intro */
 
-  .infra-step-first .infra-step-title {
-    color: rgba(255, 255, 255, 0.8);
+  .section-intro {
+    max-width: 48rem;
+    margin: 0 auto;
+    text-align: center;
   }
 
- .infra-step-subtitle {
-  margin: 0.25rem 0 0;
-  color: rgba(255, 255, 255, 0.4);
-  font-size: 0.75rem;
-  line-height: 1.5;
-}
+  .section-intro h2 {
+    margin: 0;
+    color: #fff;
+    font-size: clamp(1.875rem, 4vw, 3rem);
+    font-weight: 600;
+    line-height: 1.2;
+    letter-spacing: -0.04em;
+  }
 
- .infra-step-arrow {
-  display: none;
-  flex-shrink: 0;
-  align-items: center;
-  justify-content: center;
-  width: 1.5rem;
-  color: rgba(255, 255, 255, 0.25);
-  font-size: 1rem;
-}
+  .section-intro > p {
+    max-width: 42rem;
+    margin: 1.25rem auto 0;
+    color: rgb(255 255 255 / 65%);
+    font-size: 1rem;
+    line-height: 1.75;
+  }
+
+  /* Comparison wrapper */
+
+  .comparison-wrapper {
+    margin-top: 3rem;
+    overflow: hidden;
+    border: 1px solid rgb(255 255 255 / 10%);
+    border-radius: 1rem;
+    background: #0d0d0f;
+    box-shadow: 0 24px 80px rgb(0 0 0 / 25%);
+  }
+
+  .comparison-section {
+    position: relative;
+    padding: 2rem 2.5rem;
+  }
+
+  .without-section {
+    background: #0d0d0f;
+  }
+
+  .comparison-divider {
+    height: 1px;
+    background: rgb(255 255 255 / 10%);
+  }
+
+  /* Section labels */
+
+  .section-label {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .section-label p {
+    margin: 0;
+    color: rgb(255 255 255 / 60%);
+    font-size: 0.875rem;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+  }
+
+  .label-cross {
+    color: rgb(255 255 255 / 45%);
+    font-size: 1.125rem;
+    line-height: 1;
+  }
+
+  .label-check {
+    color: #a78bfa;
+    font-size: 1rem;
+    line-height: 1;
+  }
+
+  /* Traditional flow */
+
+  .traditional-flow,
+  .nixora-flow {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .traditional-flow {
+    display: flex;
+    align-items: stretch;
+    gap: 0;
+    margin-top: 1.75rem;
+  }
+
+  .traditional-step {
+    display: flex;
+    flex: 1;
+    align-items: stretch;
+    min-width: 0;
+  }
+
+  .traditional-step-card {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    justify-content: center;
+    min-width: 0;
+    min-height: 5rem;
+    padding: 0.75rem 1.25rem;
+    border: 1px solid rgb(255 255 255 / 10%);
+    border-radius: 0.75rem;
+    background: #0d0d0f;
+  }
+
+  .traditional-step-card.first-step {
+    border-color: rgb(255 255 255 / 15%);
+  }
+
+  .step-title {
+    margin: 0;
+    color: rgb(255 255 255 / 65%);
+    font-size: 0.9375rem;
+    font-weight: 500;
+  }
+
+  .first-step .step-title {
+    color: rgb(255 255 255 / 80%);
+  }
+
+  .step-subtitle {
+    margin: 0.25rem 0 0;
+    color: rgb(255 255 255 / 40%);
+    font-size: 0.75rem;
+  }
+
+  .traditional-arrow {
+    display: none;
+    width: 2rem;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    color: rgb(255 255 255 / 25%);
+    font-size: 1.125rem;
+  }
+
+  /* With Nixora */
+
+  .with-section {
+    isolation: isolate;
+  }
+
+  .with-background {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background: rgb(125 87 239 / 4.5%);
+  }
+
+  .with-label {
+    position: relative;
+  }
+
+  .with-label p {
+    color: #a78bfa;
+  }
+
   /* Nixora flow */
 
-  .infra-nixora-flow {
+  .nixora-flow {
+    position: relative;
     display: grid;
-    grid-template-columns: minmax(0, 1fr);
-    align-items: center;
     gap: 1rem;
     margin-top: 1.75rem;
   }
 
-  .infra-flow-input,
-  .infra-flow-command,
-  .infra-flow-result {
+  .flow-input,
+  .flow-command,
+  .flow-result {
     min-width: 0;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 1rem 1.25rem;
+    border: 1px solid rgb(255 255 255 / 10%);
     border-radius: 8px;
     background: #0d0d0f;
   }
 
-  .infra-flow-input {
-    padding: 1rem;
-  }
-
-  .infra-flow-label {
+  .input-label {
     margin: 0;
-    color: rgba(255, 255, 255, 0.4);
-    font-size: 10px;
+    color: rgb(255 255 255 / 40%);
+    font-size: 0.625rem;
     letter-spacing: 0.14em;
     text-transform: uppercase;
   }
 
-  .infra-flow-title {
+  .input-title {
     margin: 0.375rem 0 0;
-    color: rgba(255, 255, 255, 0.8);
-    font-size: 0.875rem;
+    color: rgb(255 255 255 / 80%);
+    font-size: 0.9375rem;
     font-weight: 500;
   }
 
-  .infra-flow-subtitle {
+  .input-subtitle {
     margin: 0.25rem 0 0;
-    color: rgba(255, 255, 255, 0.4);
+    color: rgb(255 255 255 / 40%);
     font-size: 0.75rem;
   }
 
-  .infra-flow-arrow {
+  .flow-arrow {
     display: none;
-    color: var(--primary, #a78bfa);
+    color: #a78bfa;
     font-size: 1.25rem;
   }
 
-  .infra-flow-command {
+  .flow-command {
     display: flex;
-    justify-content: center;
-    padding: 1rem;
-  }
-
-  .infra-command-box {
-    display: inline-flex;
     align-items: center;
-    padding: 1rem 1.25rem;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 8px;
-    background: #0d0d0f;
+    justify-content: center;
   }
 
-  .infra-command-box span {
-    color: var(--primary, #a78bfa);
-    font-size: 0.875rem;
+  .flow-command span {
+    color: #a78bfa;
+    font-size: 1rem;
     font-weight: 500;
   }
 
-  .infra-flow-result {
-    padding: 1rem 1.25rem;
-  }
+  /* Result */
 
-  .infra-result-heading {
+  .result-heading {
     display: flex;
     align-items: center;
     gap: 0.625rem;
   }
 
-  .infra-result-heading p {
+  .result-heading p {
     margin: 0;
     color: #fff;
-    font-size: 0.875rem;
+    font-size: 1rem;
     font-weight: 500;
   }
 
-  .infra-result-dot {
+  .status-dot {
     width: 0.5rem;
     height: 0.5rem;
     flex-shrink: 0;
     border-radius: 50%;
-    background: var(--primary, #a78bfa);
-    box-shadow: 0 0 10px rgba(125, 87, 239, 0.65);
+    background: #a78bfa;
+    box-shadow: 0 0 10px rgb(125 87 239 / 65%);
   }
 
-  .infra-check-list {
+  .result-checks {
     display: grid;
-    grid-template-columns: minmax(0, 1fr);
-    gap: 0.5rem 1.25rem;
+    gap: 0.5rem;
     margin-top: 1rem;
   }
 
-  .infra-check-item {
+  .result-check {
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    color: rgba(255, 255, 255, 0.65);
+    min-width: 0;
+  }
+
+  .result-check > span {
+    color: #a78bfa;
+    font-size: 0.875rem;
+  }
+
+  .result-check p {
+    margin: 0;
+    color: rgb(255 255 255 / 65%);
+    font-size: 0.8125rem;
+  }
+
+  /* Application scope */
+
+  .application-scope {
+    max-width: 64rem;
+    margin: 3rem auto 0;
+  }
+
+  .scope-intro {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    text-align: center;
+  }
+
+  .scope-label {
+    margin: 0;
+    color: #a78bfa;
     font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
   }
 
-  .infra-check-item span:first-child {
-    color: var(--primary, #a78bfa);
+  .scope-intro h3 {
+    margin: 0;
+    color: #fff;
+    font-size: 1.5rem;
+    font-weight: 500;
+    letter-spacing: -0.025em;
   }
 
-  /* Divider */
-
-  .infra-divider {
-    height: 1px;
-    flex-shrink: 0;
-    background: rgba(255, 255, 255, 0.1);
+  .scope-description {
+    max-width: 42rem;
+    margin: 0 auto;
+    color: rgb(255 255 255 / 55%);
+    font-size: 0.875rem;
+    line-height: 1.75;
   }
 
-  /* Reveal animation */
+  .application-types {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.625rem;
+    margin-top: 1.5rem;
+  }
+
+  .application-type {
+    padding: 0.625rem 1rem;
+    border: 1px solid rgb(255 255 255 / 10%);
+    border-radius: 999px;
+    background: rgb(255 255 255 / 2.5%);
+    color: rgb(255 255 255 / 65%);
+    font-size: 0.75rem;
+    transition:
+      border-color 0.2s ease,
+      color 0.2s ease;
+  }
+
+  .application-type:hover {
+    border-color: rgb(167 139 250 / 50%);
+    color: #fff;
+  }
+
+  /* Diagnose context */
+
+  .diagnose-context {
+    max-width: 42rem;
+    margin: 2rem auto 0;
+    color: rgb(255 255 255 / 50%);
+    font-size: 0.875rem;
+    line-height: 1.75;
+    text-align: center;
+  }
+
+  /* Scroll reveal */
 
   [data-reveal] {
     opacity: 0;
@@ -502,6 +556,7 @@ const withChecks = [
     transition:
       opacity 0.5s ease,
       transform 0.5s ease;
+    transition-delay: var(--reveal-delay, 0ms);
   }
 
   [data-reveal].is-visible {
@@ -509,102 +564,170 @@ const withChecks = [
     transform: translateY(0);
   }
 
+  /* Tablet and desktop */
+
   @media (min-width: 640px) {
-    .why-infra {
+    .product-why-infra {
       padding: 5rem 0;
     }
 
-    .why-infra-container {
+    .infra-container {
       padding: 0 2rem;
     }
 
-    .why-infra-intro h2 {
-      font-size: 2.25rem;
-    }
-
-    .why-infra-intro p {
-      font-size: 1.125rem;
-      line-height: 2rem;
-    }
-
-    .why-infra-comparison {
-      margin-top: 3rem;
-    }
-
-    .infra-panel-content {
+    .comparison-section {
       padding: 2rem;
     }
 
-    .infra-heading-text {
-      font-size: 0.875rem;
-    }
-
-    .infra-manual-flow {
-      flex-direction: row;
-      align-items: stretch;
-      gap: 0;
-    }
-
-    .infra-manual-step {
-      align-items: stretch;
-    }
-
-    .infra-step-card {
+    .traditional-step-card {
       min-height: 5rem;
       padding: 0.75rem 1rem;
     }
 
-    .infra-step-title {
-      font-size: 0.9375rem;
-    }
-
-    .infra-step-arrow {
+    .traditional-arrow {
       display: flex;
     }
 
-    .infra-check-list {
+    .result-checks {
       grid-template-columns: repeat(2, minmax(0, 1fr));
+      column-gap: 1.25rem;
+      row-gap: 0.5rem;
+    }
+
+    .scope-intro h3 {
+      font-size: 1.5rem;
+    }
+
+    .scope-description {
+      font-size: 1rem;
+    }
+
+    .application-type {
+      font-size: 0.875rem;
+    }
+
+    .diagnose-context {
+      margin-top: 2.5rem;
+      font-size: 1rem;
     }
   }
 
   @media (min-width: 1024px) {
-    .why-infra {
+    .product-why-infra {
       padding: 6rem 0;
     }
 
-    .why-infra-container {
+    .infra-container {
       padding: 0 3rem;
     }
 
-    .why-infra-intro h2 {
-      font-size: 3rem;
-    }
-
-    .infra-panel-content {
+    .comparison-section {
       padding: 2.25rem 2.5rem;
     }
 
-    .infra-step-card {
-      padding: 0.75rem 1.25rem;
-    }
-
-    .infra-nixora-flow {
+    .nixora-flow {
       grid-template-columns:
-        minmax(0, 0.8fr)
-        auto
-        minmax(0, 0.8fr)
-        auto
-        minmax(0, 1.6fr);
+        0.8fr auto 0.8fr auto 1.6fr;
+      align-items: center;
+      gap: 1rem;
     }
 
-    .infra-flow-arrow {
+    .flow-arrow {
       display: block;
     }
 
-    .infra-check-list {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
+    .flow-command {
+      padding: 1rem 1.25rem;
+    }
+
+    .flow-result {
+      padding: 1rem 1.25rem;
     }
   }
+
+  /* Smaller screens */
+
+  @media (max-width: 639px) {
+    .product-why-infra {
+      padding: 4rem 0;
+    }
+
+    .infra-container {
+      padding: 0 1.25rem;
+    }
+
+    .comparison-wrapper {
+      margin-top: 2.5rem;
+    }
+
+    .comparison-section {
+      padding: 1.75rem 1.25rem;
+    }
+
+    .section-label {
+      gap: 0.625rem;
+    }
+
+    .section-label p {
+      font-size: 0.6875rem;
+      letter-spacing: 0.12em;
+    }
+
+    .traditional-flow {
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .traditional-step {
+      flex-direction: column;
+    }
+
+    .traditional-step-card {
+      min-height: 4.5rem;
+      padding: 0.75rem 1rem;
+    }
+
+    .traditional-arrow {
+      display: none;
+    }
+
+    .nixora-flow {
+      gap: 0.875rem;
+    }
+
+    .flow-command {
+      justify-self: center;
+      width: fit-content;
+      padding: 0.875rem 1.5rem;
+    }
+
+    .flow-result {
+      padding: 1rem;
+    }
+
+    .result-checks {
+      grid-template-columns: 1fr;
+    }
+
+    .application-scope {
+      margin-top: 2.5rem;
+    }
+
+    .scope-intro h3 {
+      font-size: 1.25rem;
+    }
+
+    .application-types {
+      gap: 0.5rem;
+    }
+
+    .application-type {
+      padding: 0.625rem 0.875rem;
+      font-size: 0.75rem;
+    }
+  }
+
+  /* Reduced motion */
 
   @media (prefers-reduced-motion: reduce) {
     [data-reveal] {
@@ -613,7 +736,42 @@ const withChecks = [
       transition: none;
     }
   }
-
-
-  
 </style>
+
+<script>
+  const revealElements = document.querySelectorAll(
+    ".product-why-infra [data-reveal]"
+  );
+
+  const prefersReducedMotion = window.matchMedia(
+    "(prefers-reduced-motion: reduce)"
+  ).matches;
+
+  if (
+    prefersReducedMotion ||
+    !("IntersectionObserver" in window)
+  ) {
+    revealElements.forEach((element) => {
+      element.classList.add("is-visible");
+    });
+  } else {
+    const revealObserver = new IntersectionObserver(
+      (entries, observer) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      {
+        threshold: 0.12,
+        rootMargin: "0px 0px -30px 0px",
+      }
+    );
+
+    revealElements.forEach((element) => {
+      revealObserver.observe(element);
+    });
+  }
+</script>

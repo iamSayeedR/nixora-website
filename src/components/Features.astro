@@ -5,42 +5,42 @@ const groups = [
     label: "Today",
     title: "Deploy & Diagnose",
     description:
-      "Go from AI-generated code to a live, running application in seconds. Diagnose why an AI-generated deployment failed and what to change.",
+      "Deploy applications through Nixora's CLI and diagnose deployment failures to understand what went wrong and identify what needs to be fixed.",
     icon: "terminal",
   },
   {
     label: "Next",
     title: "Agent Access & MCP",
     description:
-      "Agent-native deployment target via MCP server, multi-agent access with per-agent permissions and audit trail, web dashboard, and Fargate infrastructure.",
+      "Enable AI coding agents to request deployments through an MCP server, with controlled access, per-agent permissions, and audit trails.",
     icon: "users",
   },
   {
     label: "Later",
     title: "Monitoring & Observability",
     description:
-      "Deep application understanding, continuous monitoring, and real-time observability for agent-built software.",
+      "Track application health, runtime behaviour, and operational signals to identify issues and understand application performance.",
     icon: "chart",
   },
   {
     label: "Later",
     title: "Scaling & Optimization",
     description:
-      "Autonomous scaling, auto-sleep, auto-retirement, and resource optimization as workloads grow.",
+      "Adapt infrastructure to workload demands through automated scaling, idle resource management, and resource optimization.",
     icon: "zap",
   },
   {
     label: "Later",
-    title: "Governance & Systems",
+    title: "Governance & Lifecycle Operations",
     description:
-      "Multi-agent system deployment, AI agent lifecycle management, security policies, and governance.",
+      "Manage AI agent lifecycles, permissions, security policies, and interactions across multi-agent systems.",
     icon: "shield",
   },
   {
     label: "Later",
-    title: "Platform & Ecosystem",
+    title: "Platform & Infrastructure Integrations",
     description:
-      "Extensible platform integrations, marketplace, REST APIs, and no-code tools.",
+      "Expand Nixora with platform integrations, a web dashboard, multi-cloud capabilities, CI/CD workflows, fleet management, and broader lifecycle operations as the product matures.",
     icon: "box",
   },
 ];
@@ -50,21 +50,16 @@ const groups = [
   <div class="roadmap-glow"></div>
 
   <div class="roadmap-container">
-    <!-- Section heading -->
     <div class="roadmap-intro" data-reveal>
       <h2 class="section-headline">
         Where Nixora is <span class="accent">going.</span>
       </h2>
 
       <p class="roadmap-description">
-        Today, Nixora deploys AI-generated apps and diagnoses why they fail.
-        Next, it becomes a deployment target your AI agents call directly
-        through an MCP server. Later, we're building toward infrastructure
-        that understands, monitors, and adapts as your applications grow.
+        Nixora's roadmap extends beyond deployment towards a unified operational layer for AI-generated applications and agents bringing their deployment, lifecycle management, infrastructure, and governance together.
       </p>
     </div>
 
-    <!-- Roadmap cards -->
     <div class="detailed-cards-grid">
       {groups.map((item, index) => (
         <article
@@ -142,7 +137,6 @@ const groups = [
       ))}
     </div>
 
-    <!-- Product architecture link -->
     <div class="roadmap-cta" data-reveal>
       <a href="/product/" class="arch-product-link">
         <span>View Full Product Architecture</span>
@@ -161,24 +155,7 @@ const groups = [
     position: relative;
     isolation: isolate;
     overflow: hidden;
-    padding: 2rem 1.25rem 4rem; 
-  }
-
-  .roadmap-glow {
-    position: absolute;
-    top: -40px;
-    left: 50%;
-    z-index: -1;
-    width: 100%;
-    max-width: 700px;
-    height: 140px;
-    transform: translateX(-50%);
-    background: radial-gradient(
-      ellipse 55% 40% at 50% 0%,
-      rgb(125 87 239 / 10%),
-      transparent 70%
-    );
-    pointer-events: none;
+    padding: 2.5rem 1rem 4rem;
   }
 
   .roadmap-container {
@@ -186,9 +163,9 @@ const groups = [
     z-index: 1;
     display: flex;
     flex-direction: column;
-    gap: 2.5rem;
+    gap: 2rem;
     width: 100%;
-    max-width: 1150px;
+    max-width: 1180px;
     margin: 0 auto;
   }
 
@@ -198,6 +175,7 @@ const groups = [
     flex-direction: column;
     align-items: center;
     gap: 1rem;
+    width: 100%;
     max-width: 48rem;
     margin: 0 auto;
     text-align: center;
@@ -206,10 +184,11 @@ const groups = [
   .section-headline {
     margin: 0;
     color: #fff;
-    font-size: 1.875rem;
+    font-size: clamp(1.75rem, 6vw, 3rem);
     font-weight: 600;
     line-height: 1.2;
     letter-spacing: -0.04em;
+    overflow-wrap: break-word;
   }
 
   .section-headline .accent {
@@ -217,11 +196,13 @@ const groups = [
   }
 
   .roadmap-description {
+    width: 100%;
     max-width: 42rem;
     margin: 0 auto;
     color: rgb(255 255 255 / 65%);
-    font-size: 1rem;
-    line-height: 1.75;
+    font-size: clamp(0.9rem, 2vw, 1.0625rem);
+    line-height: 1.8;
+    overflow-wrap: break-word;
   }
 
   /* Responsive grid */
@@ -238,33 +219,17 @@ const groups = [
     position: relative;
     display: flex;
     min-width: 0;
-    min-height: 0;
     flex-direction: column;
-    overflow: hidden;
-    padding: 1.25rem;
+    padding: clamp(1.125rem, 3vw, 1.75rem);
     border: 1px solid rgb(255 255 255 / 14%);
     border-radius: 1rem;
     background: #0d0d0f;
-    transition:
-      transform 0.3s ease,
-      border-color 0.3s ease,
-      box-shadow 0.3s ease;
   }
 
-.hero-card-live {
-  border-color: rgba(167, 139, 250, 0.40);
-  box-shadow: 0 0 16px rgba(125, 87, 239, 0.04);
-}
-
-.hero-card-next {
-  border-color: rgba(167, 139, 250, 0.40);
-}
-
-.hero-card:hover {
-  transform: translateY(-2px);
- border-color: rgba(167, 139, 250, 0.50);
-  box-shadow: 0 4px 12px rgba(167, 139, 250, 0.04);
-}
+  .hero-card-live,
+  .hero-card-next {
+    border-color: rgb(167 139 250 / 40%);
+  }
 
   /* Status */
   .card-top {
@@ -272,6 +237,7 @@ const groups = [
     align-items: center;
     justify-content: space-between;
     gap: 0.75rem;
+    width: 100%;
   }
 
   .status-badge {
@@ -297,42 +263,28 @@ const groups = [
     color: rgb(255 255 255 / 55%);
   }
 
-  .pulse-dot {
-    width: 6px;
-    height: 6px;
-    flex-shrink: 0;
-    border-radius: 50%;
-    background: var(--primary, #a78bfa);
-    box-shadow: 0 0 8px rgb(167 139 250 / 80%);
-    animation: dotPulse 2s ease-in-out infinite;
-  }
+ .pulse-dot {
+  width: 6px;
+  height: 6px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: var(--primary, #a78bfa);
+}
 
-  @keyframes dotPulse {
-    0%, 100% {
-      opacity: 1;
-      transform: scale(1);
-    }
-    50% {
-      opacity: 0.45;
-      transform: scale(0.85);
-    }
-  }
+ 
 
   /* Icon */
   .roadmap-icon {
     display: flex;
-    width: 3rem;
-    height: 3rem;
+    width: 2.875rem;
+    height: 2.875rem;
     flex-shrink: 0;
     align-items: center;
     justify-content: center;
     border: 1px solid rgb(125 87 239 / 25%);
-    border-radius: 1rem;
+    border-radius: 0.875rem;
     background: rgb(125 87 239 / 8%);
     color: var(--primary, #a78bfa);
-    transition:
-      background 0.3s ease,
-      border-color 0.3s ease;
   }
 
   .hero-card-live .roadmap-icon,
@@ -342,13 +294,8 @@ const groups = [
   }
 
   .roadmap-icon svg {
-    width: 1.5rem;
-    height: 1.5rem;
-  }
-
-  .hero-card:hover .roadmap-icon {
-    border-color: rgb(125 87 239 / 50%);
-    background: rgb(125 87 239 / 16%);
+    width: 1.4rem;
+    height: 1.4rem;
   }
 
   /* Card content */
@@ -356,22 +303,18 @@ const groups = [
     display: flex;
     flex-direction: column;
     gap: 0.65rem;
-    margin-top: 1.5rem;
+    min-width: 0;
+    margin-top: 1.25rem;
   }
 
   .card-text h3 {
     margin: 0;
     color: #fff;
-    font-size: 1.25rem;
+    font-size: clamp(1.125rem, 2vw, 1.35rem);
     font-weight: 600;
     line-height: 1.4;
     letter-spacing: -0.025em;
-    overflow-wrap: anywhere;
-    transition: color 0.3s ease;
-  }
-
-  .hero-card:hover .card-text h3 {
-    color: var(--primary, #a78bfa);
+    overflow-wrap: break-word;
   }
 
   .card-text p {
@@ -379,14 +322,15 @@ const groups = [
     color: rgb(255 255 255 / 65%);
     font-size: 0.9375rem;
     line-height: 1.75;
-    overflow-wrap: anywhere;
+    overflow-wrap: break-word;
   }
 
   /* Architecture link */
   .roadmap-cta {
     display: flex;
     justify-content: center;
-    margin-top: 0.5rem;
+    width: 100%;
+    margin-top: 0.25rem;
     text-align: center;
   }
 
@@ -396,16 +340,15 @@ const groups = [
     justify-content: center;
     gap: 0.625rem;
     max-width: 100%;
-    padding: 0.75rem 1.25rem;
+    padding: 0.75rem 1.125rem;
     border-radius: 999px;
     background: rgb(255 255 255 / 4%);
     color: #fff;
     font-size: 0.875rem;
     font-weight: 500;
+    line-height: 1.5;
     text-decoration: none;
-    transition:
-      background 0.3s ease,
-      color 0.3s ease;
+    transition: background 0.3s ease, color 0.3s ease;
   }
 
   .arch-product-link:hover {
@@ -428,9 +371,7 @@ const groups = [
   [data-reveal] {
     opacity: 0;
     transform: translateY(18px);
-    transition:
-      opacity 0.65s ease,
-      transform 0.65s ease;
+    transition: opacity 0.65s ease, transform 0.65s ease;
   }
 
   [data-reveal].is-visible {
@@ -442,28 +383,56 @@ const groups = [
     transition-delay: calc(var(--card-index, 0) * 80ms);
   }
 
-  /* Tablet */
-  @media (min-width: 640px) {
+  /* Small mobile */
+  @media (max-width: 380px) {
     .roadmap-section {
-      padding: 2.5rem 2rem 5rem;
+      padding-right: 0.875rem;
+      padding-left: 0.875rem;
     }
 
     .roadmap-container {
-      gap: 3rem;
+      gap: 1.75rem;
     }
 
-    .section-headline {
-      font-size: 2.25rem;
+    .hero-card {
+      padding: 1rem;
     }
 
-    .roadmap-description {
-      font-size: 1.0625rem;
-      line-height: 2rem;
+    .status-badge {
+      font-size: 0.625rem;
+      padding: 0.25rem 0.55rem;
+    }
+
+    .roadmap-icon {
+      width: 2.625rem;
+      height: 2.625rem;
+    }
+
+    .roadmap-icon svg {
+      width: 1.25rem;
+      height: 1.25rem;
+    }
+
+    .arch-product-link {
+      gap: 0.4rem;
+      padding: 0.7rem 0.85rem;
+      font-size: 0.8rem;
+    }
+  }
+
+  /* Tablet */
+  @media (min-width: 640px) {
+    .roadmap-section {
+      padding: 3rem 1.5rem 5rem;
+    }
+
+    .roadmap-container {
+      gap: 2.75rem;
     }
 
     .detailed-cards-grid {
       grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 1.25rem;
+      gap: 1.125rem;
     }
 
     .hero-card {
@@ -475,41 +444,33 @@ const groups = [
     }
 
     .roadmap-icon {
-      width: 3.5rem;
-      height: 3.5rem;
+      width: 3.25rem;
+      height: 3.25rem;
     }
 
     .roadmap-icon svg {
-      width: 1.75rem;
-      height: 1.75rem;
+      width: 1.6rem;
+      height: 1.6rem;
     }
 
-    .card-text h3 {
-      font-size: 1.375rem;
+    .card-text {
+      margin-top: 1.5rem;
     }
 
     .card-text p {
       font-size: 1rem;
       line-height: 1.8;
     }
-
-    .arch-product-link {
-      font-size: 1rem;
-    }
   }
 
   /* Desktop */
   @media (min-width: 1024px) {
     .roadmap-section {
-      padding: 3rem 2rem 6rem;
+      padding: 3.5rem 2rem 6rem;
     }
 
     .roadmap-container {
-      gap: 3.5rem;
-    }
-
-    .section-headline {
-      font-size: 3rem;
+      gap: 3.25rem;
     }
 
     .detailed-cards-grid {
@@ -556,8 +517,6 @@ const groups = [
       transition: none;
     }
 
-    .hero-card,
-    .roadmap-icon,
     .arch-product-link,
     .arch-product-link svg {
       transition: none;

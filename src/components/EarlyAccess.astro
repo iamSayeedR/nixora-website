@@ -1,10 +1,10 @@
 
 ---
 ---
-<section id="early-access" style="padding:5rem 2rem;text-align:center;">
-  <div style="max-width:560px;margin:0 auto;display:flex;flex-direction:column;gap:2rem;align-items:center;">
+<section id="early-access">
+  <div class="early-access-content">
 
-    <div style="display:flex;flex-direction:column;gap:0.75rem;align-items:center;width:100%;">
+    <div class="early-access-copy">
 
       <!-- Social Proof Waitlist Counter Badge -->
       <div class="early-access-badge">
@@ -15,45 +15,72 @@
       </div>
 
       <h2 class="section-headline">Get early access</h2>
-      <p class="section-para">Be among the first to experience Nixora. Join the early access list and we'll reach out when your access is ready.</p>
+      <p class="section-para">
+      Be among the first to experience Nixora. Join the early access list and we'll reach out when your access is ready.
+    </p>
     </div>
 
     <!-- Form card -->
-    <div style="width:100%;border:1px solid #1f1f1f;border-radius:10px;background:#0a0a0a;padding:2rem;text-align:left;position:relative;overflow:hidden;">
+    <div class="early-access-card">
 
       <!-- Success state -->
-      <div id="form-success" style="display:none;position:absolute;inset:0;background:#0a0a0a;border-radius:10px;align-items:center;justify-content:center;flex-direction:column;gap:0.85rem;text-align:center;padding:2rem;z-index:5;">
-        <div style="width:48px;height:48px;border-radius:50%;border:1px solid rgba(167,139,250,0.4);background:rgba(167,139,250,0.1);display:flex;align-items:center;justify-content:center;margin:0 auto;box-shadow:0 0 20px rgba(139,92,246,0.2);">
-          <span style="font-size:1.3rem;">🎉</span>
+      <div id="form-success" class="form-success">
+        <div class="success-icon">
+          <span>🎉</span>
         </div>
-        <h3 style="color:#fff;font-weight:700;font-size:1.25rem;margin:0;">You're on the list!</h3>
-        <p style="color:#a1a1aa;font-size:0.9375rem;line-height:1.6;margin:0;max-width:400px;">
+
+        <h3>You're on the list!</h3>
+
+        <p>
           Thanks for signing up for Nixora Early Access. We'll reach out personally when your spot is ready. See you inside!
         </p>
       </div>
 
-      <!-- Lead capture form with direct Google Sheets webhook endpoint -->
-      <form id="waitlist-form" action="https://script.google.com/macros/s/AKfycbzyXb8n7BJrkK-U4qsNyu9eqAutFDmyJytC36hPT-9DqOuV2w6fGkYoXYNFFK9NkQDbVg/exec" method="POST" style="display:flex;flex-direction:column;gap:1.25rem;">
-        <div style="display:flex;flex-direction:column;gap:0.4rem;">
-          <label for="name" style="font-size:0.8rem;color:#71717a;font-weight:500;">Your name</label>
-          <input type="text" name="name" id="name" required placeholder="Jane Doe"
-            style="background:#111;border:1px solid #2a2a2a;border-radius:6px;padding:0.65rem 0.9rem;color:#fff;font-size:0.9rem;outline:none;transition:border-color 0.2s;width:100%;box-sizing:border-box;"
-            onfocus="this.style.borderColor='rgba(167,139,250,0.5)'" onblur="this.style.borderColor='#2a2a2a'"/>
+      <!-- Lead capture form -->
+      <form
+        id="waitlist-form"
+        action="https://script.google.com/macros/s/AKfycbzyXb8n7BJrkK-U4qsNyu9eqAutFDmyJytC36hPT-9DqOuV2w6fGkYoXYNFFK9NkQDbVg/exec"
+        method="POST"
+      >
+
+        <div class="early-access-field">
+          <label for="name">Your name</label>
+          <input
+            type="text"
+            name="name"
+            id="name"
+            required
+            placeholder="Jane Doe"
+          />
         </div>
-        <div style="display:flex;flex-direction:column;gap:0.4rem;">
-          <label for="email" style="font-size:0.8rem;color:#71717a;font-weight:500;">Email address</label>
-          <input type="email" name="email" id="email" required placeholder="you@domain.com"
-            style="background:#111;border:1px solid #2a2a2a;border-radius:6px;padding:0.65rem 0.9rem;color:#fff;font-size:0.9rem;outline:none;transition:border-color 0.2s;width:100%;box-sizing:border-box;"
-            onfocus="this.style.borderColor='rgba(167,139,250,0.5)'" onblur="this.style.borderColor='#2a2a2a'"/>
+
+        <div class="early-access-field">
+          <label for="email">Email address</label>
+          <input
+            type="email"
+            name="email"
+            id="email"
+            required
+            placeholder="you@domain.com"
+          />
         </div>
-        <div style="display:flex;justify-content:center;width:100%;margin-top:0.4rem;">
+
+        <div class="early-access-submit">
           <button type="submit" class="shiny-cta" id="submit-btn">
             Get early access
-            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:14px;height:14px;">
-              <path d="M15.187 11.2362L11.0895 7.13873L12.1696 6.05859L18.1111 12.0001L12.1696 17.9416L11.0895 16.8615L15.187 12.764H5.88892V11.2362H15.187Z" fill="currentColor"/>
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M15.187 11.2362L11.0895 7.13873L12.1696 6.05859L18.1111 12.0001L12.1696 17.9416L11.0895 16.8615L15.187 12.764H5.88892V11.2362H15.187Z"
+                fill="currentColor"
+              />
             </svg>
           </button>
         </div>
+
       </form>
     </div>
 
@@ -74,12 +101,14 @@
       dateStyle: 'medium',
       timeStyle: 'short'
     }) + ' IST';
+
     data.append('IST_time', istTime);
 
     if (submitBtn) submitBtn.setAttribute('disabled', 'true');
 
     try {
       const payload = new URLSearchParams();
+
       data.forEach((val, key) => {
         payload.append(key, val.toString());
       });
@@ -101,7 +130,77 @@
 </script>
 
 <style>
-  /* Early Access Heading — same size as other sections */
+  /* Main Section */
+
+  #early-access {
+    padding: 5rem 2rem;
+    text-align: center;
+    box-sizing: border-box;
+  }
+
+  #early-access * {
+    box-sizing: border-box;
+  }
+
+  .early-access-content {
+    width: 100%;
+    max-width: 560px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  .early-access-copy {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  /* Social Proof Badge */
+
+  #early-access .early-access-badge {
+    display: inline-flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 0.55rem;
+
+    width: fit-content;
+    max-width: 100%;
+    padding: 0.5rem 0.9rem;
+
+    border: 1px solid rgba(167, 139, 250, 0.3);
+    border-radius: 9999px;
+    background: rgba(167, 139, 250, 0.08);
+
+    color: #a78bfa;
+    font-family: 'Fira Code', monospace;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    line-height: 1.45;
+    text-align: center;
+  }
+
+  #early-access .early-access-badge-dot {
+    display: block;
+    flex: 0 0 7px;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #a78bfa;
+    box-shadow: 0 0 8px #a78bfa;
+  }
+
+  #early-access .early-access-badge-text {
+    min-width: 0;
+    white-space: normal;
+  }
+
+  /* Heading and Description */
 
   #early-access .section-headline {
     margin: 0;
@@ -116,73 +215,143 @@
     color: var(--primary, #a78bfa);
   }
 
-  /* Responsive Social Proof Badge */
-
-  #early-access .early-access-badge {
-  display: inline-flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-
-width: fit-content;
-  max-width: 100%;
-  box-sizing: border-box;
-
-   padding: 0.45rem 0.85rem;
-  border: 1px solid rgba(167, 139, 250, 0.3);
-  border-radius: 9999px;
-  background: rgba(167, 139, 250, 0.08);
-
-
-   color: #a78bfa;
-  font-family: 'Fira Code', monospace;
-  font-size: 0.8125rem;
-  font-weight: 600;
-  line-height: 1.4;
-  white-space: nowrap;
+  #early-access .section-para {
+    max-width: 500px;
+    margin: 0;
+    line-height: 1.7;
   }
 
-  
-#early-access .early-access-badge-dot {
-  display: block;
-  flex: 0 0 7px;
-  width: 7px;
-  min-width: 7px;
-  height: 7px;
-  min-height: 7px;
-  border-radius: 50%;
-  background: #a78bfa;
-  box-shadow: 0 0 8px #a78bfa;
-}
+  /* Form Card */
 
-  #early-access .early-access-badge-text {
-  white-space: nowrap;
-}
+  .early-access-card {
+    position: relative;
+    width: 100%;
+    padding: 2rem;
+    border: 1px solid #1f1f1f;
+    border-radius: 10px;
+    background: #0a0a0a;
+    text-align: left;
+    overflow: hidden;
+  }
 
+  #waitlist-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    width: 100%;
+  }
 
-@media (max-width: 380px) {
-  #early-access .early-access-badge {
+  .early-access-field {
+    display: flex;
+    flex-direction: column;
     gap: 0.4rem;
-    padding: 0.4rem 0.6rem;
-    font-size: 0.68rem;
+    width: 100%;
+    min-width: 0;
   }
-}
 
-  @media (max-width: 480px) {
-    #early-access .early-access-badge {
-      align-items: flex-start;
-      gap: 0.5rem;
-      padding: 0.5rem 0.75rem;
-      font-size: 0.75rem;
-      line-height: 1.6;
-      border-radius: 12px;
-    }
-
-    #early-access .early-access-badge-dot {
-      margin-top: 0.35rem;
-    }
+  .early-access-field label {
+    font-size: 0.8rem;
+    color: #71717a;
+    font-weight: 500;
   }
+
+  .early-access-field input {
+    width: 100%;
+    min-width: 0;
+    padding: 0.75rem 0.9rem;
+
+    background: #111;
+    border: 1px solid #2a2a2a;
+    border-radius: 6px;
+
+    color: #fff;
+    font-size: 0.9rem;
+    outline: none;
+
+    transition: border-color 0.2s;
+  }
+
+  .early-access-field input:focus {
+    border-color: rgba(167, 139, 250, 0.5);
+  }
+
+  .early-access-field input::placeholder {
+    color: #52525b;
+  }
+
+  /* Submit Button */
+
+  .early-access-submit {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-top: 0.4rem;
+  }
+
+  .early-access-submit button {
+    max-width: 100%;
+  }
+
+  .early-access-submit svg {
+    width: 14px;
+    height: 14px;
+    flex-shrink: 0;
+  }
+
+  /* Success State */
+
+  .form-success {
+    display: none;
+    position: absolute;
+    inset: 0;
+    z-index: 5;
+
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 0.85rem;
+
+    padding: 2rem;
+    border-radius: 10px;
+    background: #0a0a0a;
+    text-align: center;
+  }
+
+  .success-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 48px;
+    height: 48px;
+    margin: 0 auto;
+
+    border: 1px solid rgba(167, 139, 250, 0.4);
+    border-radius: 50%;
+    background: rgba(167, 139, 250, 0.1);
+    box-shadow: 0 0 20px rgba(139, 92, 246, 0.2);
+  }
+
+  .success-icon span {
+    font-size: 1.3rem;
+  }
+
+  .form-success h3 {
+    margin: 0;
+    color: #fff;
+    font-size: 1.25rem;
+    font-weight: 700;
+  }
+
+  .form-success p {
+    max-width: 400px;
+    margin: 0;
+    color: #a1a1aa;
+    font-size: 0.9375rem;
+    line-height: 1.6;
+  }
+
+  /* Tablet */
 
   @media (min-width: 640px) {
     #early-access .section-headline {
@@ -190,20 +359,112 @@ width: fit-content;
     }
   }
 
+  /* Desktop */
+
   @media (min-width: 1024px) {
+    #early-access {
+      padding: 5rem 2rem;
+    }
+
     #early-access .section-headline {
       font-size: 3rem;
     }
   }
 
-  @media (max-width: 480px) {
+  /* Mobile */
+
+  @media (max-width: 639px) {
     #early-access {
-      padding-right: 1rem !important;
-      padding-left: 1rem !important;
+      padding: 4rem 1.25rem;
     }
 
-    #early-access > div > div[style*="border:1px solid"] {
-      padding: 1.25rem !important;
+    .early-access-content {
+      gap: 1.75rem;
+    }
+
+    .early-access-copy {
+      gap: 0.85rem;
+    }
+
+    #early-access .early-access-badge {
+      gap: 0.5rem;
+      padding: 0.5rem 0.85rem;
+      font-size: 0.75rem;
+      line-height: 1.4;
+    }
+
+    #early-access .section-headline {
+      font-size: clamp(1.75rem, 7vw, 2.1rem);
+    }
+
+    #early-access .section-para {
+      font-size: 0.9rem;
+      line-height: 1.65;
+    }
+
+    .early-access-card {
+      padding: 1.5rem;
+    }
+
+    #waitlist-form {
+      gap: 1.1rem;
+    }
+  }
+
+  /* Small Mobile */
+
+  @media (max-width: 380px) {
+    #early-access {
+      padding: 3.5rem 1rem;
+    }
+
+    #early-access .early-access-badge {
+      gap: 0.45rem;
+      padding: 0.45rem 0.7rem;
+      font-size: 0.68rem;
+      line-height: 1.4;
+      border-radius: 14px;
+    }
+
+    #early-access .early-access-badge-dot {
+      flex-basis: 6px;
+      width: 6px;
+      height: 6px;
+    }
+
+    .early-access-card {
+      padding: 1.15rem;
+    }
+
+    #early-access .section-headline {
+      font-size: 1.75rem;
+    }
+
+    .early-access-field input {
+      padding: 0.7rem 0.75rem;
+      font-size: 16px;
+    }
+
+    .form-success {
+      padding: 1.25rem;
+    }
+  }
+
+  /* Very Small Screens */
+
+  @media (max-width: 340px) {
+    #early-access {
+      padding-right: 0.85rem;
+      padding-left: 0.85rem;
+    }
+
+    #early-access .early-access-badge {
+      font-size: 0.65rem;
+      padding: 0.45rem 0.6rem;
+    }
+
+    .early-access-card {
+      padding: 1rem;
     }
   }
 </style>

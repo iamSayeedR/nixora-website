@@ -2,43 +2,39 @@
 ---
 ---
 
-<hr class="separator" />
-
-<section id="how-it-works" class="product-journey">
+<section class="product-journey">
   <!-- Uniform purple-tinted background -->
   <div class="journey-background" aria-hidden="true"></div>
 
   <div class="journey-container">
-    <!-- Heading -->
-    <div class="journey-heading journey-reveal">
-  <h2 class="journey-title">
-  From AI output to <span class="accent-text">live production</span>
-  <br class="heading-break" />
-  in seconds
-</h2>
 
-  <p class="journey-description">
-    From generated code to production-ready software, with infrastructure
-    handled by Nixora.
-  </p>
-</div>
+    <!-- Heading -->
+    <div class="journey-heading reveal">
+      <h2>
+        Building software
+        <br class="desktop-break" /> is only the beginning.
+      </h2>
+
+      <p>
+        AI makes creating software faster. But getting that software into
+        production and keeping it running requires an operational
+        foundation.
+      </p>
+    </div>
 
     <!-- Creation to operations -->
-    <div class="journey-cards journey-stagger">
+    <div class="journey-grid">
+
       <!-- Connecting line -->
-      <div
-        class="journey-connecting-line"
-        aria-hidden="true"
-      ></div>
+      <div class="journey-connector" aria-hidden="true"></div>
 
       <!-- Software creation -->
-      <div class="journey-card creation-card journey-reveal">
-        <div class="card-background" aria-hidden="true"></div>
+      <div class="journey-card creation-card reveal">
+        <div class="card-gradient" aria-hidden="true"></div>
 
         <div class="card-content">
           <div class="card-top">
-            <div class="card-icon creation-icon">
-              <!-- Zap icon -->
+            <div class="card-icon">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="20"
@@ -51,34 +47,31 @@
                 stroke-linejoin="round"
                 aria-hidden="true"
               >
-                <path d="M4 14.5 12 3l-1 8h8L8 21l1-8H4z" />
+                <path d="M4 14.5 9.5 3l1.5 7h9l-5.5 11-1.5-7z"/>
               </svg>
             </div>
 
-            <span class="card-number">01</span>
+            <span class="card-label">CREATE</span>
           </div>
 
-          <p class="card-label">Software creation</p>
+          <p class="card-category">Software creation</p>
 
-          <h3 class="card-title">
-            AI builds the software.
-          </h3>
+          <h3>AI builds the software.</h3>
 
           <p class="card-description">
-            Applications can be generated faster than ever, turning ideas
-            into working code.
+            AI coding tools turn ideas into applications, generating code
+            and working software faster than ever.
           </p>
         </div>
       </div>
 
       <!-- Software operations -->
-      <div class="journey-card operations-card journey-reveal">
-        <div class="card-background" aria-hidden="true"></div>
+      <div class="journey-card operations-card reveal">
+        <div class="card-gradient" aria-hidden="true"></div>
 
         <div class="card-content">
           <div class="card-top">
-            <div class="card-icon operations-icon">
-              <!-- Layers3 icon -->
+            <div class="card-icon">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="20"
@@ -91,129 +84,100 @@
                 stroke-linejoin="round"
                 aria-hidden="true"
               >
-                <path d="m12 2 8 4.5-8 4.5-8-4.5L12 2z" />
-                <path d="m4 12 8 4.5 8-4.5" />
-                <path d="m4 17 8 4.5 8-4.5" />
+                <path d="m12 2 9 5-9 5-9-5 9-5Z"/>
+                <path d="m3 12 9 5 9-5"/>
+                <path d="m3 17 9 5 9-5"/>
               </svg>
             </div>
 
-            <span class="card-number">02</span>
+            <span class="card-label">OPERATE</span>
           </div>
 
-          <p class="card-label">Software operations</p>
+          <p class="card-category">Software operations</p>
 
-          <h3 class="card-title">
-            Nixora handles the infrastructure.
-          </h3>
+          <h3>Nixora handles the infrastructure.</h3>
 
           <p class="card-description">
-            Deploy and operate AI-built applications through a unified
-            control plane.
+            Nixora provides the infrastructure layer to deploy applications,
+            diagnose failures, and support their ongoing operations through
+            a unified control plane.
           </p>
         </div>
       </div>
+
     </div>
   </div>
 </section>
 
-<hr class="separator" />
-
 <style>
   /* Section */
+
   .product-journey {
     position: relative;
     isolation: isolate;
     overflow: hidden;
-    padding: 4rem 2rem;
-      background: transparent;
-
-  }
-  .journey-background {
-  display: none;
-}
-
-  /* Uniform purple-tinted background */
-  .journey-background {
-    position: absolute;
-    inset: 0;
-    z-index: -1;
-    pointer-events: none;
-    background: rgba(255, 255, 255, 0.02);
+    padding: 4rem 0;
   }
 
-  /* Container */
+
+
   .journey-container {
-    position: relative;
-    z-index: 1;
     width: 100%;
-    max-width: 1150px;
+    max-width: 1280px;
     margin: 0 auto;
+    padding: 0 1.25rem;
   }
 
   /* Heading */
+
   .journey-heading {
-    width: 100%;
     max-width: 56rem;
     margin: 0 auto;
     text-align: center;
   }
-  .accent-text {
-  color: var(--primary, #a78bfa);
-}
 
-  .journey-description {
-  max-width: 42rem;
-  margin: 1rem auto 0;
-  color: rgba(255, 255, 255, 0.55);
-  font-size: 0.9375rem;
-  font-weight: 400;
-  line-height: 1.6;
-  text-align: center;
-}
-
-@media (min-width: 640px) {
-  .journey-description {
-    font-size: 1rem;
-  }
-}
-
-  .journey-title {
+  .journey-heading h2 {
     margin: 0;
     color: #fff;
     font-size: 1.875rem;
     font-weight: 600;
-    line-height: 1.2;
+    line-height: 1.25;
     letter-spacing: -0.04em;
   }
 
-  .heading-break {
-    display: none;
+  .journey-heading p {
+    max-width: 42rem;
+    margin: 1.25rem auto 0;
+    color: rgba(255, 255, 255, 0.55);
+    font-size: 0.875rem;
+    line-height: 1.75;
   }
 
-  /* Cards grid */
-  .journey-cards {
+  /* Cards Grid */
+
+  .journey-grid {
     position: relative;
     display: grid;
-    grid-template-columns: minmax(0, 1fr);
+    grid-template-columns: 1fr;
     gap: 1rem;
-    width: 100%;
+    max-width: none;
     margin: 2.5rem auto 0;
   }
 
-  /* Card */
+  .journey-connector {
+    display: none;
+  }
+
+  /* Cards */
+
   .journey-card {
     position: relative;
-    min-width: 0;
     overflow: hidden;
     padding: 1.5rem;
     border: 1px solid rgba(255, 255, 255, 0.09);
     border-radius: 1rem;
     background: rgba(13, 13, 15, 0.9);
     transition: border-color 0.3s ease;
-  }
-
-  .creation-card {
-    border-color: rgba(255, 255, 255, 0.09);
   }
 
   .creation-card:hover {
@@ -228,31 +192,32 @@
     border-color: rgba(125, 87, 239, 0.35);
   }
 
-  /* Card gradient */
-  .card-background {
+  .card-gradient {
     position: absolute;
     inset: 0;
     pointer-events: none;
     background: linear-gradient(
       to bottom right,
       rgba(255, 255, 255, 0.035),
-      transparent
+      transparent 60%
     );
   }
 
-  .operations-card .card-background {
+  .operations-card .card-gradient {
     background: linear-gradient(
       to bottom right,
       rgba(125, 87, 239, 0.08),
-      transparent
+      transparent 60%
     );
   }
 
   .card-content {
     position: relative;
+    z-index: 1;
   }
 
-  /* Card top row */
+  /* Card Top */
+
   .card-top {
     display: flex;
     align-items: center;
@@ -263,7 +228,6 @@
     display: flex;
     width: 3rem;
     height: 3rem;
-    flex-shrink: 0;
     align-items: center;
     justify-content: center;
     border: 1px solid rgba(255, 255, 255, 0.1);
@@ -272,44 +236,45 @@
     color: rgba(255, 255, 255, 0.8);
   }
 
-  .operations-icon {
+  .operations-card .card-icon {
     border-color: rgba(125, 87, 239, 0.25);
     background: rgba(125, 87, 239, 0.1);
     color: #b9a2ff;
   }
 
-  .card-number {
-    color: rgba(255, 255, 255, 0.3);
-    font-size: 0.75rem;
-    font-weight: 500;
-    letter-spacing: 0.05em;
-  }
-
-  .operations-card .card-number {
-    color: rgba(185, 162, 255, 0.45);
-  }
-
-  /* Card text */
   .card-label {
+    color: rgba(255, 255, 255, 0.35);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+  }
+
+  .operations-card .card-label {
+    color: rgba(185, 162, 255, 0.65);
+  }
+
+  /* Card Text */
+
+  .card-category {
     margin: 1.75rem 0 0;
     color: rgba(255, 255, 255, 0.45);
     font-size: 0.75rem;
     font-weight: 500;
-    letter-spacing: 0.15em;
     text-transform: uppercase;
+    letter-spacing: 0.15em;
   }
 
-  .operations-card .card-label {
+  .operations-card .card-category {
     color: rgba(185, 162, 255, 0.75);
   }
 
-  .card-title {
+  .card-content h3 {
     margin: 0.5rem 0 0;
     color: #fff;
     font-size: 1.25rem;
     font-weight: 600;
-    line-height: 1.35;
     letter-spacing: -0.025em;
+    line-height: 1.3;
   }
 
   .card-description {
@@ -324,46 +289,41 @@
     color: rgba(255, 255, 255, 0.6);
   }
 
-  /* Connecting line */
-  .journey-connecting-line {
-    display: none;
-  }
+  /* Reveal Animation */
 
-  /* Reveal animation */
-  .journey-reveal {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  .journey-animate .journey-reveal {
+  .reveal {
     opacity: 0;
     transform: translateY(16px);
     transition:
-      opacity 0.6s ease-out,
-      transform 0.6s ease-out;
-    transition-delay: var(--reveal-delay, 0ms);
+      opacity 0.6s ease,
+      transform 0.6s ease;
   }
 
-  .journey-animate .journey-reveal.is-visible {
+  .reveal.is-visible {
     opacity: 1;
     transform: translateY(0);
   }
 
-  /* Small screens and above: 640px */
+  .journey-grid .journey-card:nth-of-type(2) {
+    transition-delay: 0.14s;
+  }
+
+  /* Tablet */
+
   @media (min-width: 640px) {
-    .product-journey {
-      padding: 5rem 2rem;
+    .journey-container {
+      padding: 0 2rem;
     }
 
-    .journey-title {
+    .journey-heading h2 {
       font-size: 2.25rem;
     }
 
-    .heading-break {
-      display: block;
+    .journey-heading p {
+      font-size: 1rem;
     }
 
-    .journey-cards {
+    .journey-grid {
       grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 1.5rem;
       margin-top: 3.5rem;
@@ -373,15 +333,11 @@
       padding: 1.75rem;
     }
 
-    .card-title {
+    .card-content h3 {
       font-size: 1.5rem;
     }
 
-    .card-description {
-      font-size: 0.9375rem;
-    }
-
-    .journey-connecting-line {
+    .journey-connector {
       position: absolute;
       top: 50%;
       left: 50%;
@@ -395,18 +351,27 @@
         rgba(125, 87, 239, 0.6),
         rgba(255, 255, 255, 0.1)
       );
-      pointer-events: none;
+      z-index: 2;
     }
   }
 
-  /* Large screens: 1024px */
+  /* Desktop */
+
   @media (min-width: 1024px) {
     .product-journey {
-      padding: 6rem 3rem;
+      padding: 6rem 0;
     }
 
-    .journey-title {
+    .journey-container {
+      padding: 0 3rem;
+    }
+
+    .journey-heading h2 {
       font-size: 3rem;
+    }
+
+    .journey-grid {
+      margin-top: 3.5rem;
     }
 
     .journey-card {
@@ -414,95 +379,46 @@
     }
   }
 
-  /* Mobile */
-  @media (max-width: 639px) {
-    .product-journey {
-      padding: 4rem 1.25rem;
-    }
+  /* Reduced Motion */
 
-    .journey-title {
-      font-size: 1.875rem;
-    }
-
-    .journey-cards {
-      gap: 1rem;
-      margin-top: 2.5rem;
+  @media (prefers-reduced-motion: reduce) {
+    .reveal {
+      opacity: 1;
+      transform: none;
+      transition: none;
     }
 
     .journey-card {
-      padding: 1.5rem;
-    }
-
-    .card-title {
-      font-size: 1.25rem;
-    }
-
-    .card-description {
-      font-size: 0.875rem;
-    }
-  }
-
-  /* Reduced motion accessibility */
-  @media (prefers-reduced-motion: reduce) {
-    .journey-animate .journey-reveal {
-      opacity: 1;
-      transform: none;
       transition: none;
     }
   }
 </style>
 
 <script>
-  const journeySection = document.querySelector("#how-it-works");
+  const revealElements = document.querySelectorAll(".reveal");
 
-  if (journeySection) {
-    const heading = journeySection.querySelector(".journey-heading");
-    const cardsContainer = journeySection.querySelector(".journey-stagger");
-    const cards = cardsContainer?.querySelectorAll(".journey-card");
+  if ("IntersectionObserver" in window) {
+    const revealObserver = new IntersectionObserver(
+      (entries, observer) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      {
+        threshold: 0.15,
+        rootMargin: "0px 0px -80px 0px",
+      }
+    );
 
-    const prefersReducedMotion = window.matchMedia(
-      "(prefers-reduced-motion: reduce)"
-    ).matches;
-
-    if (
-      !prefersReducedMotion &&
-      "IntersectionObserver" in window &&
-      heading &&
-      cardsContainer &&
-      cards
-    ) {
-      journeySection.classList.add("journey-animate");
-
-      heading.style.setProperty("--reveal-delay", "0ms");
-
-      cards.forEach((card, index) => {
-        card.style.setProperty(
-          "--reveal-delay",
-          `${index * 140}ms`
-        );
-      });
-
-      const revealObserver = new IntersectionObserver(
-        (entries, observer) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add("is-visible");
-              observer.unobserve(entry.target);
-            }
-          });
-        },
-        {
-          threshold: 0.2,
-          rootMargin: "0px 0px -80px 0px",
-        }
-      );
-
-      revealObserver.observe(heading);
-      revealObserver.observe(cardsContainer);
-
-      cards.forEach((card) => {
-        revealObserver.observe(card);
-      });
-    }
+    revealElements.forEach((element) => {
+      revealObserver.observe(element);
+    });
+  } else {
+    revealElements.forEach((element) => {
+      element.classList.add("is-visible");
+    });
   }
 </script>

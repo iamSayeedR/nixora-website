@@ -1,0 +1,569 @@
+
+---
+interface Props {
+  visual: string;
+}
+
+const { visual } = Astro.props;
+---
+
+<div class={`article-artwork artwork-${visual}`} aria-hidden="true">
+  {visual === "control-plane" && (
+    <div class="control-visual">
+      <div class="control-orbit orbit-one"></div>
+      <div class="control-orbit orbit-two"></div>
+      <div class="control-core">
+        <span class="core-dot"></span>
+        <span>NIXORA</span>
+      </div>
+      <div class="control-node node-one">APP</div>
+      <div class="control-node node-two">AGENT</div>
+      <div class="control-node node-three">INFRA</div>
+      <div class="control-node node-four">TOOLS</div>
+    </div>
+  )}
+
+  {visual === "mcp" && (
+    <div class="mcp-visual">
+      <div class="mcp-model">AI MODEL</div>
+      <div class="mcp-connector">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <div class="mcp-server">MCP SERVER</div>
+      <div class="mcp-tools">
+        <span>DATABASE</span>
+        <span>API</span>
+        <span>TOOLS</span>
+      </div>
+    </div>
+  )}
+
+  {visual === "gemini-deployment" && (
+    <div class="deployment-visual">
+      <div class="deployment-window">
+        <div class="window-top">
+          <i></i><i></i><i></i>
+          <span>terminal</span>
+        </div>
+        <div class="terminal-lines">
+          <p><b>$</b> gemini deploy</p>
+          <p class="terminal-muted">Building application...</p>
+          <p class="terminal-success">✓ Deployment ready</p>
+          <p class="terminal-url">https://app.nixora.dev</p>
+        </div>
+      </div>
+    </div>
+  )}
+
+  {visual === "mcp-cloud" && (
+    <div class="cloud-visual">
+      <div class="cloud-center">MCP</div>
+      <div class="cloud-item cloud-top">AGENT</div>
+      <div class="cloud-item cloud-left">CLOUD</div>
+      <div class="cloud-item cloud-right">TOOLS</div>
+      <div class="cloud-item cloud-bottom">POLICY</div>
+      <span class="cloud-line line-top"></span>
+      <span class="cloud-line line-left"></span>
+      <span class="cloud-line line-right"></span>
+      <span class="cloud-line line-bottom"></span>
+    </div>
+  )}
+
+  {visual === "deployment" && (
+    <div class="pipeline-visual">
+      <div class="pipeline-step">
+        <span>01</span>
+        <b>CODE</b>
+      </div>
+      <div class="pipeline-arrow">→</div>
+      <div class="pipeline-step">
+        <span>02</span>
+        <b>BUILD</b>
+      </div>
+      <div class="pipeline-arrow">→</div>
+      <div class="pipeline-step pipeline-active">
+        <span>03</span>
+        <b>DEPLOY</b>
+      </div>
+    </div>
+  )}
+
+  {visual === "production" && (
+    <div class="production-visual">
+      <div class="production-panel">
+        <div class="production-heading">
+          <span>APPLICATION HEALTH</span>
+          <i></i>
+        </div>
+        <div class="health-chart">
+          <svg viewBox="0 0 320 100" role="presentation">
+            <path d="M0 76 L30 68 L55 72 L80 36 L105 48 L130 24 L155 39 L180 18 L205 34 L230 15 L255 26 L280 10 L320 18" />
+          </svg>
+        </div>
+        <div class="health-footer">
+          <span>UPTIME</span>
+          <b>99.9%</b>
+          <span class="health-status">OPERATIONAL</span>
+        </div>
+      </div>
+    </div>
+  )}
+
+  {visual === "terminal" && (
+    <div class="terminal-visual">
+      <div class="terminal-window">
+        <div class="window-top">
+          <i></i><i></i><i></i>
+          <span>nixora — bash</span>
+        </div>
+        <div class="terminal-lines">
+          <p><b>$</b> nixora deploy</p>
+          <p class="terminal-muted">Detecting runtime...</p>
+          <p class="terminal-muted">Provisioning infrastructure...</p>
+          <p class="terminal-success">✓ Application deployed</p>
+          <p class="terminal-url">Live → app.nixora.dev</p>
+        </div>
+      </div>
+    </div>
+  )}
+
+  {visual === "infrastructure" && (
+    <div class="infrastructure-visual">
+      <div class="infra-layer infra-top">APPLICATIONS</div>
+      <div class="infra-connector"></div>
+      <div class="infra-layer infra-middle">CONTROL PLANE</div>
+      <div class="infra-connector"></div>
+      <div class="infra-bottom">
+        <span>COMPUTE</span>
+        <span>NETWORK</span>
+        <span>STORAGE</span>
+      </div>
+    </div>
+  )}
+</div>
+
+<style>
+  .article-artwork {
+    position: relative;
+    width: 100%;
+    height: 190px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background:
+      radial-gradient(ellipse at center, rgba(167,139,250,0.09), transparent 70%),
+      #0d0d10;
+    border-bottom: 1px solid #1f1f1f;
+  }
+
+  /* Control plane */
+
+  .control-visual {
+    position: relative;
+    width: 230px;
+    height: 160px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .control-core {
+    z-index: 2;
+    width: 82px;
+    height: 82px;
+    border: 1px solid rgba(167,139,250,0.55);
+    border-radius: 50%;
+    background: #171321;
+    color: #c4b5fd;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    font: 700 9px 'Fira Code', monospace;
+    box-shadow: 0 0 35px rgba(167,139,250,0.1);
+  }
+
+  .core-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #a78bfa;
+    box-shadow: 0 0 12px #a78bfa;
+  }
+
+  .control-orbit {
+    position: absolute;
+    border: 1px solid rgba(167,139,250,0.18);
+    border-radius: 50%;
+  }
+
+  .orbit-one {
+    width: 140px;
+    height: 140px;
+  }
+
+  .orbit-two {
+    width: 195px;
+    height: 155px;
+    transform: rotate(-25deg);
+  }
+
+  .control-node {
+    position: absolute;
+    padding: 5px 8px;
+    border: 1px solid #34303f;
+    border-radius: 5px;
+    background: #15131a;
+    color: #a1a1aa;
+    font: 9px 'Fira Code', monospace;
+  }
+
+  .node-one { top: 5px; left: 92px; }
+  .node-two { right: 0; top: 70px; }
+  .node-three { bottom: 5px; left: 90px; }
+  .node-four { left: 0; top: 70px; }
+
+  /* MCP */
+
+  .mcp-visual {
+    width: 270px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 9px;
+  }
+
+  .mcp-model,
+  .mcp-server {
+    padding: 10px 24px;
+    border: 1px solid rgba(167,139,250,0.4);
+    border-radius: 7px;
+    background: #171321;
+    color: #c4b5fd;
+    font: 10px 'Fira Code', monospace;
+    letter-spacing: 0.08em;
+  }
+
+  .mcp-connector {
+    display: flex;
+    gap: 6px;
+  }
+
+  .mcp-connector span {
+    width: 2px;
+    height: 13px;
+    background: #a78bfa;
+    opacity: 0.65;
+  }
+
+  .mcp-tools {
+    display: flex;
+    gap: 9px;
+  }
+
+  .mcp-tools span {
+    padding: 6px 9px;
+    border: 1px solid #29252f;
+    border-radius: 4px;
+    color: #a1a1aa;
+    font: 8px 'Fira Code', monospace;
+  }
+
+  /* Deployment terminal */
+
+  .deployment-visual,
+  .terminal-visual {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 0 20px;
+  }
+
+  .deployment-window,
+  .terminal-window {
+    width: 100%;
+    max-width: 340px;
+    border: 1px solid #302a3c;
+    border-radius: 9px;
+    overflow: hidden;
+    background: #09090b;
+    box-shadow: 0 12px 35px rgba(0,0,0,0.25);
+  }
+
+  .window-top {
+    height: 30px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 0 10px;
+    border-bottom: 1px solid #222;
+    background: #111114;
+  }
+
+  .window-top i {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #52525b;
+  }
+
+  .window-top span {
+    margin-left: 8px;
+    color: #71717a;
+    font: 9px 'Fira Code', monospace;
+  }
+
+  .terminal-lines {
+    padding: 14px 16px;
+    font: 10px/1.8 'Fira Code', monospace;
+  }
+
+  .terminal-lines p {
+    margin: 0;
+    color: #d4d4d8;
+  }
+
+  .terminal-lines b,
+  .terminal-success {
+    color: #a78bfa !important;
+  }
+
+  .terminal-muted { color: #71717a !important; }
+  .terminal-url { color: #c4b5fd !important; }
+
+  /* MCP cloud */
+
+  .cloud-visual {
+    position: relative;
+    width: 250px;
+    height: 160px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .cloud-center {
+    z-index: 2;
+    width: 62px;
+    height: 62px;
+    display: grid;
+    place-items: center;
+    border: 1px solid rgba(167,139,250,0.5);
+    border-radius: 50%;
+    background: #171321;
+    color: #c4b5fd;
+    font: 700 11px 'Fira Code', monospace;
+  }
+
+  .cloud-item {
+    position: absolute;
+    z-index: 2;
+    padding: 7px 10px;
+    border: 1px solid #34303f;
+    border-radius: 5px;
+    background: #111114;
+    color: #a1a1aa;
+    font: 8px 'Fira Code', monospace;
+  }
+
+  .cloud-top { top: 0; left: 50%; transform: translateX(-50%); }
+  .cloud-bottom { bottom: 0; left: 50%; transform: translateX(-50%); }
+  .cloud-left { left: 0; top: 50%; transform: translateY(-50%); }
+  .cloud-right { right: 0; top: 50%; transform: translateY(-50%); }
+
+  .cloud-line {
+    position: absolute;
+    background: rgba(167,139,250,0.35);
+  }
+
+  .line-top, .line-bottom {
+    width: 1px;
+    height: 35px;
+    left: 50%;
+  }
+
+  .line-top { top: 28px; }
+  .line-bottom { bottom: 28px; }
+
+  .line-left, .line-right {
+    height: 1px;
+    width: 45px;
+    top: 50%;
+  }
+
+  .line-left { left: 35px; }
+  .line-right { right: 35px; }
+
+  /* Deployment pipeline */
+
+  .pipeline-visual {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 15px;
+  }
+
+  .pipeline-step {
+    width: 72px;
+    height: 72px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 7px;
+    border: 1px solid #302a3c;
+    border-radius: 8px;
+    background: #111114;
+    color: #a1a1aa;
+  }
+
+  .pipeline-step span {
+    color: #71717a;
+    font: 9px 'Fira Code', monospace;
+  }
+
+  .pipeline-step b {
+    font: 9px 'Fira Code', monospace;
+  }
+
+  .pipeline-active {
+    border-color: rgba(167,139,250,0.5);
+    background: rgba(167,139,250,0.08);
+    color: #c4b5fd;
+  }
+
+  .pipeline-arrow {
+    color: #a78bfa;
+    font-size: 16px;
+  }
+
+  /* Production monitoring */
+
+  .production-visual {
+    width: 100%;
+    padding: 0 20px;
+    display: flex;
+    justify-content: center;
+  }
+
+  .production-panel {
+    width: 100%;
+    max-width: 340px;
+    padding: 15px;
+    border: 1px solid #302a3c;
+    border-radius: 9px;
+    background: #0b0b0e;
+  }
+
+  .production-heading,
+  .health-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    color: #71717a;
+    font: 8px 'Fira Code', monospace;
+  }
+
+  .production-heading i {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #a78bfa;
+    box-shadow: 0 0 8px rgba(167,139,250,0.6);
+  }
+
+  .health-chart {
+    height: 75px;
+    margin: 10px 0;
+  }
+
+  .health-chart svg {
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+  }
+
+  .health-chart path {
+    fill: none;
+    stroke: #a78bfa;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .health-footer b {
+    color: #c4b5fd;
+    font-size: 12px;
+  }
+
+  .health-status {
+    color: #a78bfa;
+  }
+
+  /* Infrastructure layers */
+
+  .infrastructure-visual {
+    width: 260px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .infra-layer {
+    width: 190px;
+    padding: 12px;
+    border: 1px solid #302a3c;
+    border-radius: 6px;
+    text-align: center;
+    background: #111114;
+    color: #a1a1aa;
+    font: 9px 'Fira Code', monospace;
+  }
+
+  .infra-middle {
+    border-color: rgba(167,139,250,0.5);
+    background: rgba(167,139,250,0.08);
+    color: #c4b5fd;
+  }
+
+  .infra-connector {
+    height: 12px;
+    width: 1px;
+    background: rgba(167,139,250,0.5);
+  }
+
+  .infra-bottom {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 7px;
+  }
+
+  .infra-bottom span {
+    padding: 8px 9px;
+    border: 1px solid #29252f;
+    border-radius: 5px;
+    color: #a1a1aa;
+    font: 8px 'Fira Code', monospace;
+  }
+
+  @media (max-width: 480px) {
+    .article-artwork {
+      height: 170px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .article-artwork,
+    .article-artwork * {
+      animation: none !important;
+      transition: none !important;
+    }
+  }
+</style>

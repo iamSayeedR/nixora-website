@@ -1,3 +1,4 @@
+
 ---
 import InnerLayout from '../layouts/InnerLayout.astro';
 import Traction from '../components/Traction.astro';
@@ -7,72 +8,426 @@ const breadcrumbSchema = {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
   "itemListElement": [
-    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://nixora.co.in/" },
-    { "@type": "ListItem", "position": 2, "name": "Traction", "item": "https://nixora.co.in/traction/" }
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://nixora.co.in/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Traction",
+      "item": "https://nixora.co.in/traction/"
+    }
   ]
 };
+
+const milestones = [
+  {
+    title: "Core Engine Built",
+    description:
+      "Automated containerization, SSL generation, and lifecycle management engine constructed."
+  },
+  {
+    
+    title: "Public CLI Launch (Market Validation)",
+    description:
+      "Nixora CLI released for testing, reaching 65 developer installs, 47 real deployments, and 150+ waitlist signups."
+  }
+];
 ---
 
-<InnerLayout title="Developer Adoption Metrics & Milestones | Nixora Traction" description="Factual metrics detailing Nixora CLI installs, real application deployments, core engine milestones, and pre-seed SAFE funding status." jsonLd={breadcrumbSchema}>
+<InnerLayout
+  title="Developer Adoption Metrics & Milestones | Nixora Traction"
+  description="Factual metrics detailing Nixora CLI installs, real application deployments, and core engine milestones."
+  jsonLd={breadcrumbSchema}
+>
+  <main class="traction-page">
 
-  <!-- Page Header -->
-  <div style="padding:4rem 2rem 2rem;max-width:900px;margin:0 auto;">
-    <div style="font-size:0.72rem;color:#a78bfa;text-transform:uppercase;letter-spacing:0.12em;font-weight:700;margin-bottom:0.75rem;font-family:'Fira Code',monospace;">Traction & Milestones</div>
-    <h1 class="section-headline" style="max-width:600px;">Blunt honesty over <span class="accent">marketing polish.</span></h1>
-    <p style="font-size:1.0625rem;line-height:1.75;color:#a1a1aa;max-width:580px;display:block;margin:1.25rem 0 0;">
-      Our MVP has been live since July 2026. Here are the exact, unrounded numbers backing Nixora's early developer adoption and pre-seed round as of August 2026.
-    </p>
-  </div>
-  
-  <Traction />
+    <!-- Page Header -->
+    <section class="traction-hero">
+      <div class="section-label">Traction & Milestones</div>
 
-  <!-- Detailed Traction Breakdown -->
-  <section style="padding:5rem 2rem;max-width:900px;margin:0 auto;">
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:2rem;" class="arch-grid">
-      
-      <!-- Key Milestones -->
-      <div style="background:#0a0a0a;border:1px solid #1f1f1f;border-radius:12px;padding:2rem;display:flex;flex-direction:column;gap:1rem;">
-        <h2 style="font-size:1.125rem;font-weight:700;color:#fff;margin:0;">Key Milestones</h2>
-        <div style="display:flex;flex-direction:column;gap:1rem;border-top:1px solid #1a1a1a;padding-top:1rem;">
-          <div>
-            <div style="font-size:0.75rem;color:#a78bfa;font-family:'Fira Code',monospace;">JULY 2026</div>
-            <div style="font-size:0.9375rem;color:#fff;font-weight:600;margin-top:0.2rem;">Core Engine Built</div>
-            <div style="font-size:0.85rem;color:#71717a;margin-top:0.15rem;">Automated containerization, SSL generation, and lifecycle management engine constructed.</div>
-          </div>
-          <div style="border-top:1px solid #1a1a1a;padding-top:1rem;">
-            <div style="font-size:0.75rem;color:#a78bfa;font-family:'Fira Code',monospace;">AUGUST 2026</div>
-            <div style="font-size:0.9375rem;color:#fff;font-weight:600;margin-top:0.2rem;">Public CLI Launch</div>
-            <div style="font-size:0.85rem;color:#71717a;margin-top:0.15rem;">Nixora CLI released for testing, reaching 65 developer installs, 47 real deployments, and 100+ waitlist signups.</div>
-          </div>
-        </div>
+      <h1 class="section-headline">
+        Blunt honesty over
+        <span class="accent"> marketing polish.</span>
+      </h1>
+
+      <p class="hero-description">
+        Our MVP has been live since July 2026. Here are the exact,
+        unrounded numbers backing Nixora's early developer adoption
+        as of August 2026.
+      </p>
+    </section>
+
+    <!-- Traction Metrics -->
+    <Traction />
+
+    <!-- Detailed Traction Breakdown -->
+    <section class="traction-details">
+
+      <div class="details-heading" data-reveal>
+        <h2>Progress backed by numbers.</h2>
+        <p>
+          A closer look at the milestones we've reached as Nixora
+          continues its next phase of development.
+        </p>
       </div>
 
-      <!-- Pre-Seed Ask -->
-      <div style="background:#0a0a0a;border:1px solid #1f1f1f;border-radius:12px;padding:2rem;display:flex;flex-direction:column;gap:1rem;">
-        <h2 style="font-size:1.125rem;font-weight:700;color:#fff;margin:0;">Pre-Seed Round Details</h2>
-        <div style="display:flex;flex-direction:column;gap:0.8rem;border-top:1px solid #1a1a1a;padding-top:1rem;font-size:0.9rem;color:#a1a1aa;">
-          <div style="display:flex;justify-content:space-between;border-bottom:1px solid #151515;padding-bottom:0.5rem;">
-            <span>Target Raise:</span>
-            <span style="color:#fff;font-weight:600;">$450,000</span>
+      <div class="details-grid">
+
+        <!-- Key Milestones -->
+        <article class="detail-card" data-reveal>
+          <div class="card-heading">
+            <h3>Key Milestones</h3>
           </div>
-          <div style="display:flex;justify-content:space-between;border-bottom:1px solid #151515;padding-bottom:0.5rem;">
-            <span>Instrument:</span>
-            <span style="color:#fff;font-weight:600;">SAFE</span>
+
+          <div class="milestone-list">
+            {milestones.map((milestone, index) => (
+              <div class="milestone-item">
+                <div class="milestone-marker">
+                  <span class="milestone-dot"></span>
+                  {index !== milestones.length - 1 && (
+                    <span class="milestone-line"></span>
+                  )}
+                </div>
+
+                <div class="milestone-content">
+                  {milestone.date && (
+                    <span class="milestone-date">
+                      {milestone.date}
+                    </span>
+                  )}
+                  <h4>{milestone.title}</h4>
+                  <p>{milestone.description}</p>
+                </div>
+              </div>
+            ))}
           </div>
-          <div style="display:flex;justify-content:space-between;border-bottom:1px solid #151515;padding-bottom:0.5rem;">
-            <span>Target Runway:</span>
-            <span style="color:#fff;font-weight:600;">12 to 14 Months</span>
-          </div>
-          <div style="display:flex;justify-content:space-between;">
-            <span>Use of Funds:</span>
-            <span style="color:#a78bfa;font-weight:600;">Phase 2 & 3 Fleet Control</span>
-          </div>
-        </div>
+        </article>
+
       </div>
+    </section>
 
-    </div>
-  </section>
+    <!-- Early Access -->
+    <EarlyAccess />
 
-  <EarlyAccess />
-
+  </main>
 </InnerLayout>
+
+<style>
+  .traction-page {
+    width: 100%;
+    overflow: hidden;
+  }
+
+  /* Hero */
+
+  .traction-hero {
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2rem 2rem 1rem;
+    text-align: center;
+  }
+
+  .section-label {
+    display: inline-block;
+    margin-bottom: 1rem;
+    color: #a78bfa;
+    font-family: 'Fira Code', monospace;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .traction-hero .section-headline {
+    max-width: 750px;
+    margin: 0 auto;
+    font-size: clamp(2.25rem, 5vw, 3.5rem);
+    line-height: 1.12;
+    text-align: center;
+  }
+
+  .traction-hero .accent {
+    color: #a78bfa;
+  }
+
+  .hero-description {
+    max-width: 620px;
+    margin: 1.1rem auto 0;
+    color: #a1a1aa;
+    font-size: 1rem;
+    line-height: 1.8;
+  }
+
+  /* Detailed breakdown */
+
+  .traction-details {
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 3rem 2rem 4rem;
+  }
+
+  .details-heading {
+    max-width: 620px;
+    margin: 0 auto 2rem;
+    text-align: center;
+  }
+
+  .details-heading .section-label {
+    margin-bottom: 0.75rem;
+  }
+
+  .details-heading h2 {
+    margin: 0;
+    color: #fff;
+    font-size: clamp(1.75rem, 3vw, 2.25rem);
+    font-weight: 650;
+    letter-spacing: -0.035em;
+    line-height: 1.2;
+  }
+
+  .details-heading p {
+    margin: 0.85rem auto 0;
+    color: #71717a;
+    font-size: 0.9375rem;
+    line-height: 1.75;
+  }
+
+  .details-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    max-width: 700px;
+    margin: 0 auto;
+    gap: 1.25rem;
+    align-items: stretch;
+  }
+
+  /* Cards */
+
+  .detail-card {
+    min-width: 0;
+    padding: 2rem;
+    border: 1px solid #1f1f1f;
+    border-radius: 14px;
+    background: #0a0a0a;
+  }
+
+  .card-heading {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    padding-bottom: 1.25rem;
+    border-bottom: 1px solid #1a1a1a;
+  }
+
+  .card-heading h3 {
+    margin: 0;
+    color: #fff;
+    font-size: 1.0625rem;
+    font-weight: 650;
+    letter-spacing: -0.02em;
+  }
+
+  .card-icon {
+    display: flex;
+    width: 38px;
+    height: 38px;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(167, 139, 250, 0.2);
+    border-radius: 10px;
+    background: rgba(167, 139, 250, 0.07);
+    color: #a78bfa;
+  }
+
+  .card-icon svg {
+    width: 19px;
+    height: 19px;
+  }
+
+  /* Milestones */
+
+  .milestone-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    padding-top: 1.35rem;
+  }
+
+  .milestone-item {
+    display: grid;
+    grid-template-columns: 12px minmax(0, 1fr);
+    gap: 1rem;
+  }
+
+  .milestone-marker {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    padding-top: 4px;
+  }
+
+  .milestone-dot {
+    position: relative;
+    z-index: 1;
+    width: 8px;
+    height: 8px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    background: #a78bfa;
+    box-shadow: 0 0 9px rgba(167, 139, 250, 0.35);
+  }
+
+  .milestone-line {
+    position: absolute;
+    top: 13px;
+    bottom: -25px;
+    width: 1px;
+    background: #292333;
+  }
+
+  .milestone-content {
+    min-width: 0;
+  }
+
+  .milestone-date {
+    color: #a78bfa;
+    font-family: 'Fira Code', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.06em;
+  }
+
+  .milestone-content h4 {
+    margin: 0.45rem 0 0;
+    color: #fff;
+    font-size: 0.9375rem;
+    font-weight: 600;
+  }
+
+  .milestone-content p {
+    margin: 0.45rem 0 0;
+    color: #71717a;
+    font-size: 0.825rem;
+    line-height: 1.75;
+  }
+
+  /* Reveal animation */
+
+  [data-reveal] {
+    opacity: 0;
+    transform: translateY(10px);
+    transition:
+      opacity 0.5s ease,
+      transform 0.5s ease;
+  }
+
+  [data-reveal].is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Tablet */
+
+  @media (max-width: 760px) {
+    .traction-hero {
+      padding: 2rem 1.5rem 1rem;
+    }
+
+    .traction-details {
+      padding: 2.5rem 1.5rem 3.5rem;
+    }
+
+    .details-heading {
+      margin-bottom: 1.75rem;
+    }
+  }
+
+  /* Mobile */
+
+  @media (max-width: 480px) {
+    .traction-hero {
+      padding: 1.75rem 1.25rem 0.75rem;
+    }
+
+    .traction-hero .section-headline {
+      font-size: clamp(2rem, 9vw, 2.65rem);
+    }
+
+    .hero-description {
+      margin-top: 0.9rem;
+      font-size: 0.9rem;
+      line-height: 1.75;
+    }
+
+    .traction-details {
+      padding: 2.25rem 1.25rem 3rem;
+    }
+
+    .details-heading h2 {
+      font-size: 1.7rem;
+    }
+
+    .details-heading p {
+      font-size: 0.875rem;
+    }
+
+    .detail-card {
+      padding: 1.35rem;
+      border-radius: 12px;
+    }
+
+    .card-heading h3 {
+      font-size: 1rem;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    [data-reveal] {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+
+    .detail-card {
+      transition: none;
+    }
+  }
+</style>
+
+<script>
+  const revealElements = document.querySelectorAll("[data-reveal]");
+
+  const prefersReducedMotion = window.matchMedia(
+    "(prefers-reduced-motion: reduce)"
+  ).matches;
+
+  if (prefersReducedMotion || !("IntersectionObserver" in window)) {
+    revealElements.forEach((element) => {
+      element.classList.add("is-visible");
+    });
+  } else {
+    const observer = new IntersectionObserver(
+      (entries, currentObserver) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            currentObserver.unobserve(entry.target);
+          }
+        });
+      },
+      {
+        threshold: 0.15,
+      }
+    );
+
+    revealElements.forEach((element) => {
+      observer.observe(element);
+    });
+  }
+</script>
