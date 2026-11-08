@@ -50,10 +50,8 @@ This document provides a line-by-line audit and inventory of metadata across all
 
 ### 5. `/compare/`
 - **Status**: Fixed & Expanded
-- **Title (Before)**: `Developer Platform Comparisons | Nixora Platform Comparisons` (64 chars)
-- **Title (After)**: `Developer Platform Comparisons | Nixora` (42 chars)
-- **Meta Description (Before)**: Truncated / Overlength (168 chars)
-- **Meta Description (After)**: `Compare Nixora with traditional cloud platforms and deployment tools. Understand how an AI control plane manages AI-generated software and agents.` (147 chars)
+- **Title**: `Developer Platform Comparisons | Nixora` (42 chars)
+- **Meta Description**: `Compare Nixora with traditional cloud platforms and developer deployment tools. Understand how an AI-native control plane helps manage AI-generated software and agents.` (168 chars)
 - **Canonical**: `https://nixora.co.in/compare/`
 - **OG Type**: `website`
 - **JSON-LD**: `BreadcrumbList`, `WebPage`
