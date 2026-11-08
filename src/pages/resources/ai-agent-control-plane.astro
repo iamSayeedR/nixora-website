@@ -37,6 +37,35 @@ const subheadingClass =
 const paragraphClass =
   "text-[15px] leading-[1.9] text-white/65 sm:text-base";
 
+const articleSchema = {
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://nixora.co.in/resources/ai-agent-control-plane/"
+  },
+  "headline": "AI Agent Control Plane: The Complete Technical Guide",
+  "description": "Learn how an AI agent control plane helps teams govern AI-generated code, manage deployments, enforce policies, and maintain control as agents become more autonomous.",
+  "image": "https://nixora.co.in/og-image-v2.png",
+  "author": {
+    "@type": "Person",
+    "name": "Sayeed Rizwan",
+    "jobTitle": "Founder",
+    "sameAs": "https://www.linkedin.com/in/sayeedrizwan/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Nixora",
+    "url": "https://nixora.co.in/",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://nixora.co.in/logo-full.jpg"
+    }
+  },
+  "datePublished": "2026-08-20",
+  "dateModified": "2026-11-08"
+};
+
 const breadcrumbSchema = {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
@@ -55,8 +84,8 @@ const breadcrumbSchema = {
 
 <InnerLayout
   title="AI Agent Control Plane: Ultimate Guide for 2026 | Nixora"
-  description="Learn how an AI agent control plane helps teams govern AI-generated code, manage deployments, enforce policies, and maintain control as agents become more autonomous."
-  jsonLd={breadcrumbSchema}
+  description="Learn how an AI agent control plane governs AI-generated code, manages deployments, enforces policies, and keeps autonomous agents under control."
+  jsonLd={[articleSchema, breadcrumbSchema]}
 >
   <main class="relative min-h-screen overflow-hidden bg-background text-white">
     

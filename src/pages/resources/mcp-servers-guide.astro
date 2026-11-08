@@ -14,6 +14,35 @@ const tableOfContents = [
   { id: "put-servers-under-control", label: "What's Next?" },
 ];
 
+const articleSchema = {
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://nixora.co.in/resources/mcp-servers-guide/"
+  },
+  "headline": "MCP Servers: The Field-Tested Guide for AI Infrastructure",
+  "description": "A practical guide to understanding MCP servers, connecting AI models to tools, securing agent access, and building reliable production workflows.",
+  "image": "https://nixora.co.in/og-image-v2.png",
+  "author": {
+    "@type": "Person",
+    "name": "Sayeed Rizwan",
+    "jobTitle": "Founder",
+    "sameAs": "https://www.linkedin.com/in/sayeedrizwan/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Nixora",
+    "url": "https://nixora.co.in/",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://nixora.co.in/logo-full.jpg"
+    }
+  },
+  "datePublished": "2026-10-15",
+  "dateModified": "2026-11-08"
+};
+
 const breadcrumbSchema = {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
@@ -33,7 +62,7 @@ const breadcrumbSchema = {
 <InnerLayout
   title="MCP Servers: The Field-Tested Guide for 2026 | Nixora"
   description="A practical guide to understanding MCP servers, connecting AI models to tools, securing agent access, and building reliable production workflows."
-  jsonLd={breadcrumbSchema}
+  jsonLd={[articleSchema, breadcrumbSchema]}
 >
   <main class="article-page">
     <div class="article-glow"></div>

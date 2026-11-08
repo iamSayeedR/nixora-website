@@ -1,19 +1,18 @@
-
 ---
 import InnerLayout from '../../layouts/InnerLayout.astro';
 
 const comparisons = [
   {
-    title: "Nixora vs Traditional Cloud Deployment",
-    slug: "/compare/nixora-vs-traditional-cloud/",
-    description: "Compare manual Dockerfile setup, cloud compute configuration, and ingress routing against Nixora's zero-config CLI deployment.",
-    focus: "Cloud Infrastructure"
-  },
-  {
     title: "Nixora vs Vercel",
     slug: "/compare/nixora-vs-vercel/",
-    description: "Compare Vercel's Git-centric frontend platform with Nixora's control plane built specifically for AI-generated applications.",
+    description: "Compare Vercel's frontend-focused web platform with Nixora's control plane built specifically for full-stack AI-generated applications and persistent AI agents.",
     focus: "Developer Platforms"
+  },
+  {
+    title: "Nixora vs Traditional Cloud Deployment",
+    slug: "/compare/nixora-vs-traditional-cloud/",
+    description: "Compare manual Dockerfile setup, cloud compute configuration, and ingress routing against Nixora's zero-config CLI deployment and diagnostic engine.",
+    focus: "Cloud Infrastructure"
   }
 ];
 
@@ -28,8 +27,8 @@ const breadcrumbSchema = {
 ---
 
 <InnerLayout
-  title="Platform Comparisons | Nixora"
-  description="Factual architectural comparisons between Nixora's deployment control plane and traditional cloud hosting platforms."
+  title="Developer Platform Comparisons | Nixora"
+  description="Compare Nixora with traditional cloud platforms and deployment tools. Understand how an AI control plane manages AI-generated software and agents."
   jsonLd={breadcrumbSchema}
 >
   <main class="compare-page">
@@ -39,11 +38,11 @@ const breadcrumbSchema = {
       <div class="compare-eyebrow">Platform Architecture</div>
 
       <h1 class="section-headline">
-        Platform <span class="accent">Comparisons</span>
+        Developer Platform <span class="accent">Comparisons</span>
       </h1>
 
       <p class="section-para">
-        Factual architectural comparisons between Nixora's deployment model for AI software and AI agents and existing hosting platforms.
+        Factual architectural comparisons between Nixora's control plane for AI-generated software and agents and existing developer hosting platforms.
       </p>
     </header>
 
@@ -75,6 +74,69 @@ const breadcrumbSchema = {
         </article>
       ))}
     </div>
+
+    <!-- Editorial Context -->
+    <section class="compare-overview">
+      <div class="overview-section">
+        <h2>The Deployment Landscape for AI-Generated Software</h2>
+        <p>
+          AI coding agents such as Cursor, Claude Code, Codex, and Gemini CLI enable developers to produce working software prototypes, backend APIs, and agent workflows in minutes. However, moving generated applications from a local development environment into production requires solving an operational challenge: containerization, port mapping, environment provisioning, networking, failure diagnosis, and persistent hosting.
+        </p>
+        <p>
+          When choosing an infrastructure target for AI-generated code, engineering teams typically navigate three distinct approaches:
+        </p>
+      </div>
+
+      <div class="paradigms-grid">
+        <div class="paradigm-card">
+          <div class="paradigm-num">01</div>
+          <h3>Traditional Cloud Infrastructure</h3>
+          <p>
+            Platforms such as AWS, Google Cloud, and DigitalOcean provide raw virtual machines, container clusters, and flexible networking. They grant complete operational control, but require manual Dockerfiles, reverse proxies, and infrastructure configuration for every project.
+          </p>
+          <div class="paradigm-meta">Best for: Enterprise teams with dedicated DevOps resources.</div>
+        </div>
+
+        <div class="paradigm-card">
+          <div class="paradigm-num">02</div>
+          <h3>Frontend & Serverless Clouds</h3>
+          <p>
+            Platforms like Vercel and Netlify excel at frontend web hosting, Git-push workflows, and serverless edge functions. However, applications with persistent backend processes, WebSocket connections, or background agent loops often hit serverless execution constraints.
+          </p>
+          <div class="paradigm-meta">Best for: Next.js, static sites, and frontend-heavy web apps.</div>
+        </div>
+
+        <div class="paradigm-card paradigm-card-highlight">
+          <div class="paradigm-num">03</div>
+          <h3>AI-Native Control Planes (Nixora)</h3>
+          <p>
+            Nixora is being built as the operational control plane specifically designed for AI-generated software and AI agents. It simplifies deployment to a single CLI command (<code>nixora deploy</code>), automatically diagnoses deployment failures (<code>nixora diagnose</code>), and provides a long-term roadmap toward agent-native MCP deployment, monitoring, and autonomous operations.
+          </p>
+          <div class="paradigm-meta">Best for: Developers building with AI coding agents and autonomous workflows.</div>
+        </div>
+      </div>
+
+      <div class="overview-section">
+        <h2>Evaluating the Right Architecture for Your Workload</h2>
+        <p>
+          Every deployment model represents architectural trade-offs between flexibility, setup friction, and workload compatibility:
+        </p>
+        <ul class="compare-bullet-list">
+          <li>
+            <strong>Application Architecture:</strong> If your project is primarily a static frontend or serverless Next.js website, a platform like Vercel is well-established and mature. If your application requires a persistent container, background processes, or Python/FastAPI runtimes generated by AI coding tools, containerized deployment provides greater architectural flexibility.
+          </li>
+          <li>
+            <strong>DevOps Overhead:</strong> If your team has dedicated infrastructure engineers who maintain Terraform scripts and Kubernetes clusters, traditional cloud providers offer maximum configurability. If your priority is shipping AI-generated applications rapidly without authoring Dockerfiles or server configs, automated containerization reduces setup friction.
+          </li>
+          <li>
+            <strong>Diagnostic Capabilities:</strong> When an AI coding agent outputs application code, initial deployments frequently fail due to port binding mismatches or missing environment variables. An operational platform with built-in failure diagnosis helps developers identify and resolve configuration errors immediately.
+          </li>
+        </ul>
+        <p>
+          Explore our detailed technical comparisons above to understand how Nixora's CLI deployment model compares to <a href="/compare/nixora-vs-vercel/" class="inline-link">Vercel</a> and <a href="/compare/nixora-vs-traditional-cloud/" class="inline-link">Traditional Cloud Infrastructure</a>.
+        </p>
+      </div>
+    </section>
 
   </main>
 </InnerLayout>
@@ -188,6 +250,127 @@ const breadcrumbSchema = {
 
   .compare-link:hover {
     color: #c4b5fd;
+  }
+
+  /* Overview & Content Expansion */
+  .compare-overview {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    border-top: 1px solid #1f1f1f;
+    padding-top: 3.5rem;
+  }
+
+  .overview-section {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    color: #a1a1aa;
+    font-size: 0.95rem;
+    line-height: 1.85;
+  }
+
+  .overview-section h2 {
+    font-size: 1.45rem;
+    color: #fff;
+    font-weight: 700;
+    margin: 0;
+    letter-spacing: -0.02em;
+  }
+
+  .paradigms-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1.5rem;
+  }
+
+  .paradigm-card {
+    background: #0d0d0f;
+    border: 1px solid #1f1f1f;
+    border-radius: 12px;
+    padding: 1.75rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+  }
+
+  .paradigm-card-highlight {
+    border-color: rgba(167, 139, 250, 0.35);
+    background: rgba(167, 139, 250, 0.03);
+  }
+
+  .paradigm-num {
+    font-family: 'Fira Code', monospace;
+    font-size: 0.75rem;
+    color: #a78bfa;
+    font-weight: 700;
+  }
+
+  .paradigm-card h3 {
+    font-size: 1.1rem;
+    color: #fff;
+    font-weight: 600;
+    margin: 0;
+  }
+
+  .paradigm-card p {
+    font-size: 0.875rem;
+    color: #a1a1aa;
+    line-height: 1.7;
+    margin: 0;
+  }
+
+  .paradigm-meta {
+    font-size: 0.75rem;
+    color: #71717a;
+    margin-top: auto;
+    padding-top: 0.75rem;
+    border-top: 1px solid #1a1a1a;
+  }
+
+  .compare-bullet-list {
+    margin: 0;
+    padding-left: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+  }
+
+  .compare-bullet-list li {
+    color: #a1a1aa;
+    font-size: 0.95rem;
+    line-height: 1.8;
+  }
+
+  .compare-bullet-list strong {
+    color: #fff;
+  }
+
+  .inline-link {
+    color: #a78bfa;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    transition: color 0.2s ease;
+  }
+
+  .inline-link:hover {
+    color: #c4b5fd;
+  }
+
+  code {
+    font-family: 'Fira Code', monospace;
+    font-size: 0.825rem;
+    color: #a78bfa;
+    background: rgba(167, 139, 250, 0.1);
+    padding: 0.15rem 0.4rem;
+    border-radius: 4px;
+    border: 1px solid rgba(167, 139, 250, 0.2);
+  }
+
+  @media (max-width: 900px) {
+    .paradigms-grid {
+      grid-template-columns: 1fr;
+    }
   }
 
   @media (max-width: 768px) {
