@@ -199,6 +199,8 @@ const faqQuestions = [
 const homepageSchema = {
   "@context": "https://schema.org",
   "@type": "WebPage",
+  "datePublished": "2026-07-01",
+  "dateModified": "2026-11-08",
   "@id": "https://nixora.co.in/#webpage",
   "url": "https://nixora.co.in/",
   "name": "Nixora: The Control Plane for AI-generated software and AI Agents",
@@ -229,7 +231,7 @@ const homepageSchema = {
 <Layout
   title="Nixora: The Control Plane for AI-generated software and AI Agents"
   description="Nixora is being built as the control plane for AI-generated software and AI agents: understand, deploy, operate, and evolve the infrastructure around them."
-  jsonLd={homepageSchema}
+  jsonLd={[homepageSchema, { "@context": "https://schema.org", "@type": "FAQPage", "mainEntity": faqQuestions }]}
 >
   <a href="#main-content" class="skip-link">Skip to content</a>
   <Header />

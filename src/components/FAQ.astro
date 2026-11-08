@@ -184,8 +184,6 @@ const getAnswerId = (id) =>
     </header>
 
     <div class="faq-tabs" role="tablist" aria-label="FAQ categories">
-      <span class="faq-active-indicator" aria-hidden="true"></span>
-
       {categories.map((category, index) => (
         <button
           class:list={["faq-tab", { active: index === 0 }]}
@@ -253,36 +251,11 @@ const getAnswerId = (id) =>
 <script>
   const faqTabs = document.querySelectorAll("[data-faq-tab]");
   const faqPanels = document.querySelectorAll("[data-faq-panel]");
-  const indicator = document.querySelector(".faq-active-indicator");
   const allFaqItems = document.querySelectorAll(".faq-item");
 
   let activeCategory = "fundamentals";
   let isSwitching = false;
   let switchTimeout;
-
-  // Move the purple active category indicator
-  function moveIndicator(tab) {
-    if (!indicator || !tab) return;
-
-    const container = tab.parentElement;
-    const tabRect = tab.getBoundingClientRect();
-    const containerRect = container.getBoundingClientRect();
-
-    indicator.style.width = `${tabRect.width}px`;
-    indicator.style.transform = `translateX(${
-      tabRect.left - containerRect.left + container.scrollLeft
-    }px)`;
-  }
-
-  function updateIndicator() {
-    const activeTab = document.querySelector(
-      `[data-faq-tab="${activeCategory}"]`
-    );
-
-    if (activeTab) {
-      moveIndicator(activeTab);
-    }
-  }
 
   // Switch between FAQ categories with exit and enter animations
   function switchCategory(selectedCategory) {
@@ -312,8 +285,6 @@ const getAnswerId = (id) =>
       tab.classList.toggle("active", isActive);
       tab.setAttribute("aria-selected", String(isActive));
     });
-
-    moveIndicator(selectedTab);
 
     // Close any open question before changing category
     allFaqItems.forEach((item) => {
@@ -362,9 +333,6 @@ const getAnswerId = (id) =>
     });
   });
 
-  updateIndicator();
-
-  window.addEventListener("resize", updateIndicator);
 </script>
 
 <style>
@@ -451,22 +419,6 @@ const getAnswerId = (id) =>
     display: none;
   }
 
-  .faq-active-indicator {
-    position: absolute;
-    top: 6px;
-    left: 0;
-    width: 0;
-    height: calc(100% - 12px);
-    border: 1px solid rgb(125 87 239 / 40%);
-    border-radius: 999px;
-    background: rgb(125 87 239 / 20%);
-    box-shadow: 0 0 24px rgb(125 87 239 / 12%);
-    pointer-events: none;
-    transition:
-      transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
-      width 0.4s cubic-bezier(0.22, 1, 0.36, 1);
-  }
-
   .faq-tab {
     position: relative;
     z-index: 1;
@@ -483,7 +435,7 @@ const getAnswerId = (id) =>
     white-space: nowrap;
     cursor: pointer;
     scroll-snap-align: center;
-    transition: color 0.25s ease;
+    transition: color 0.25s ease, background-color 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
   }
 
   .faq-tab:hover {
@@ -492,6 +444,9 @@ const getAnswerId = (id) =>
 
   .faq-tab.active {
     color: #fff;
+    background: rgb(125 87 239 / 20%);
+    border-color: rgb(125 87 239 / 40%);
+    box-shadow: 0 0 24px rgb(125 87 239 / 12%);
   }
 
   .faq-tab:focus-visible {
@@ -906,10 +861,6 @@ const getAnswerId = (id) =>
     white-space: normal;
     font-size: 0.75rem;
     line-height: 1.35;
-  }
-
-  .faq-active-indicator {
-    display: none;
   }
 
   .faq-tab.active {

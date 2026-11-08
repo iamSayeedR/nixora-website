@@ -23,6 +23,7 @@ const {
 
 const siteUrl = "https://nixora.co.in/";
 const imageUrl = new URL(image, siteUrl).href;
+const imageUrlWebp = new URL(image.replace(/\.png$/, '.webp'), siteUrl).href;
 const logoUrl = new URL("/logo-full.jpg", siteUrl).href;
 
 // Enhanced Nixora Entity Schema (@graph) per claude-seo E-E-A-T & Schema guidelines
@@ -38,7 +39,14 @@ const nixoraSchema = {
       "logo": logoUrl,
       "email": "ceo@nixora.co.in",
       "foundingDate": "2026-07-01",
+      "dateModified": "2026-11-08",
       "description": "Nixora is the control plane for AI-generated software and AI agents.",
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "email": "ceo@nixora.co.in",
+        "contactType": "customer support",
+        "url": "https://nixora.co.in/about/"
+      },
       "founder": {
         "@type": "Person",
         "name": "Sayeed Rizwan",
@@ -126,15 +134,23 @@ const nixoraSchema = {
   <!-- Twitter / X Cards -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:site" content="@wearenixora" />
-  <meta name="twitter:creator" content="@wearenixora" />
+  <meta name="twitter:creator" content="@sayeedrizwan" />
   <meta name="twitter:title" content={title} />
   <meta name="twitter:description" content={description} />
   <meta name="twitter:image" content={imageUrl} />
 
-  <!-- Inter Font -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <!-- Inter Font (non-render-blocking) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet"
+    media="print"
+    onload="this.media='all'"
+  />
+  <noscript>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  </noscript>
 
   <!-- Core Entity Structured Data (JSON-LD) -->
   <script type="application/ld+json" set:html={JSON.stringify(nixoraSchema)} />
