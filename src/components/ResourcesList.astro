@@ -1,6 +1,30 @@
 
 ---
 const resources = [
+
+   {
+  type: "article",
+  category: "AI Infrastructure",
+  date: "November 2026",
+  readTime: "7 min read",
+  title: "AI Agent Deploy Access: How to Keep Control (2026)",
+  description:
+    "Learn how to control AI agent deployment access with scoped permissions, approval gates, environment separation, and audit trails.",
+  href: "/resources/ai-agent-deploy-access",
+  visual: "deploy-access",
+},
+
+{
+  type: "article",
+  category: "Deployment",
+  date: "November 2026",
+  readTime: "10 min read",
+  title: "Where to Deploy AI-Built Apps: An Honest Comparison",
+  description:
+    "Compare Render, Railway, Fly.io, Vercel, and Nixora to find the right deployment platform for your AI-built app.",
+  href: "/resources/where-to-deploy-ai-built-apps",
+  visual: "platform-comparison",
+},
   {
     type: "article",
     category: "AI Infrastructure",
@@ -12,6 +36,8 @@ const resources = [
     href: "/resources/ai-agent-control-plane",
     visual: "control-plane",
   },
+  
+
   {
     type: "article",
     category: "AI Infrastructure",
@@ -27,7 +53,7 @@ const resources = [
     type: "article",
     title:
       "How to Deploy Gemini CLI, Codex & Open-Source AI Agent Apps to Production",
-    category: "Technical Guide",
+   category: "Deployment",
     date: "September 2026",
     readTime: "5 min read",
     description:
@@ -49,7 +75,7 @@ const resources = [
   },
   {
     type: "article",
-    category: "Deployment Guide",
+    category: "Deployment",
     date: "September 2026",
     readTime: "5 min read",
     title: "How to Deploy a Cursor or Claude Code-Generated App to Production",
@@ -71,7 +97,7 @@ const resources = [
   },
   {
     type: "article",
-    category: "CLI Deployment",
+   category: "Deployment",
     date: "August 2026",
     readTime: "4 min read",
     title: "Zero-Config CLI Deployment for AI-Generated Applications",
@@ -107,7 +133,6 @@ const topicFilters = [
   "AI Infrastructure",
   "Deployment",
   "Developer Infrastructure",
-  "Technical Guide",
   "Architecture Guide",
 ];
 
@@ -252,6 +277,151 @@ function getFilterCategory(category: string) {
               <div class="absolute inset-0 bg-linear-to-br from-[#7D57EF]/9 via-transparent to-transparent"></div>
 
               <div class="resource-artwork-inner relative z-10 w-full min-w-0 px-4 sm:px-5 md:px-6 lg:px-7">
+
+
+              
+                {/* Agent Deploy Access */}
+                {resource.visual === "deploy-access" && (
+                  <div class="mx-auto w-full max-w-97.5">
+                    <div class="mb-4 flex items-center justify-between gap-2">
+                      <span class="text-[10px] font-medium tracking-wide text-white/45">
+                        AGENT DEPLOY ACCESS
+                      </span>
+                      <span class="text-[9px] text-white/30">NIXORA</span>
+                    </div>
+
+                    {/* Architecture flow */}
+                    <div class="grid grid-cols-[1fr_18px_1fr_18px_1fr] items-center gap-1">
+                      
+                      {/* AI Agent */}
+                      <div class="flex min-w-0 flex-col items-center justify-center rounded-lg border border-white/10 bg-[#19191F] px-1 py-3.5">
+                        <svg viewBox="0 0 32 32" class="h-7 w-7 text-white/65" fill="none">
+                          <rect x="5" y="7" width="22" height="18" rx="5" stroke="currentColor" stroke-width="1.4"/>
+                          <path d="M11 14h.01M21 14h.01M12 19h8M16 3v4M16 25v4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                        </svg>
+                        <span class="mt-2 text-[9px] font-medium text-white/75">
+                          AI Agent
+                        </span>
+                        <span class="mt-1 text-[7px] text-white/35">
+                          Identity
+                        </span>
+                      </div>
+
+                      {/* Connector */}
+                      <div class="flex items-center justify-center">
+                        <svg viewBox="0 0 20 12" class="w-full text-[#a78bfa]/65" fill="none">
+                          <path d="M1 6h17m-5-4 5 4-5 4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                      </div>
+
+                      {/* Nixora */}
+                      <div class="flex min-w-0 flex-col items-center justify-center rounded-lg border border-[#a78bfa]/35 bg-[#7D57EF]/12 px-1 py-3.5">
+                        <svg viewBox="0 0 32 32" class="h-7 w-7 text-[#c4b5fd]" fill="none">
+                          <path d="M16 3 27 9v14l-11 6L5 23V9l11-6Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/>
+                          <path d="m11 16 3 3 7-7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        <span class="mt-2 text-[9px] font-semibold text-[#d6caff]">
+                          Nixora
+                        </span>
+                        <span class="mt-1 text-[7px] text-white/45">
+                          Control layer
+                        </span>
+                      </div>
+
+                      {/* Connector */}
+                      <div class="flex items-center justify-center">
+                        <svg viewBox="0 0 20 12" class="w-full text-[#a78bfa]/65" fill="none">
+                          <path d="M1 6h17m-5-4 5 4-5 4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                      </div>
+
+                      {/* Production */}
+                      <div class="flex min-w-0 flex-col items-center justify-center rounded-lg border border-white/10 bg-[#19191F] px-1 py-3.5">
+                        <svg viewBox="0 0 32 32" class="h-7 w-7 text-white/65" fill="none">
+                          <rect x="5" y="5" width="22" height="22" rx="4" stroke="currentColor" stroke-width="1.4"/>
+                          <path d="M10 12h12M10 17h12M10 22h7" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+                        </svg>
+                        <span class="mt-2 text-[9px] font-medium text-white/75">
+                          Production
+                        </span>
+                        <span class="mt-1 text-[7px] text-white/35">
+                          Environment
+                        </span>
+                      </div>
+                    </div>
+
+                    {/* Access controls */}
+                    <div class="mt-3 flex flex-wrap items-center justify-center gap-1.5">
+                      {["Scoped access", "Approval gates", "Audit trail"].map((item) => (
+                        <span class="rounded-full border border-white/10 bg-white/[0.035] px-2 py-1 text-[8px] text-white/50">
+                          {item}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                )}
+                
+
+
+{/* Platform Comparison */}
+{resource.visual === "platform-comparison" && (
+  <div class="mx-auto w-full max-w-97.5">
+    <div class="mb-4 flex items-center justify-between gap-2">
+      <span class="text-[10px] font-medium tracking-wide text-white/45">
+        DEPLOYMENT PLATFORMS
+      </span>
+      <span class="text-[9px] text-white/35">5 OPTIONS</span>
+    </div>
+
+    <div class="grid grid-cols-5 gap-2">
+      {[
+        { initials: "Re", name: "Render" },
+        { initials: "Ra", name: "Railway" },
+        { initials: "F", name: "Fly.io" },
+        { initials: "V", name: "Vercel" },
+        { initials: "N", name: "Nixora", featured: true },
+      ].map((platform) => (
+        <div
+          class:list={[
+            "flex min-w-0 flex-col items-center justify-center rounded-lg border px-1 py-4",
+            platform.featured
+              ? "border-[#a78bfa]/35 bg-[#7D57EF]/12"
+              : "border-white/10 bg-[#19191F]",
+          ]}
+        >
+          <div
+            class:list={[
+              "flex h-8 w-8 items-center justify-center rounded-lg text-xs font-semibold",
+              platform.featured
+                ? "bg-[#7D57EF]/25 text-[#c4b5fd]"
+                : "bg-white/[0.06] text-white/65",
+            ]}
+          >
+            {platform.initials}
+          </div>
+
+          <span
+            class:list={[
+              "mt-2 text-[9px] font-medium",
+              platform.featured ? "text-[#c4b5fd]" : "text-white/65",
+            ]}
+          >
+            {platform.name}
+          </span>
+        </div>
+      ))}
+    </div>
+
+    <div class="mt-4 flex items-center justify-center gap-2">
+      <span class="h-px w-8 bg-white/10"></span>
+      <span class="text-[9px] tracking-wide text-white/40">
+        COMPARE · CHOOSE · DEPLOY
+      </span>
+      <span class="h-px w-8 bg-white/10"></span>
+    </div>
+  </div>
+)}
+
 
                 <!-- Control Plane -->
                 {resource.visual === "control-plane" && (
