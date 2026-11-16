@@ -47,7 +47,6 @@ const applicationTypes = [
 
         <div class="section-label" data-reveal>
           <span class="label-cross">×</span>
-
           <p>Without Nixora: manual, fragile</p>
         </div>
 
@@ -84,7 +83,6 @@ const applicationTypes = [
 
         <div class="section-label with-label" data-reveal>
           <span class="label-check">✓</span>
-
           <p>With Nixora: automated deploy, hosting &amp; HTTPS</p>
         </div>
 
@@ -94,9 +92,7 @@ const applicationTypes = [
           <!-- Input -->
           <li class="flow-input" data-reveal>
             <p class="input-label">AI-generated application</p>
-
             <p class="input-title">AI generates code</p>
-
             <p class="input-subtitle">agent outputs</p>
           </li>
 
@@ -115,7 +111,6 @@ const applicationTypes = [
           <li class="flow-result" data-reveal>
             <div class="result-heading">
               <span class="status-dot"></span>
-
               <p>Live &amp; running</p>
             </div>
 
@@ -185,11 +180,7 @@ const applicationTypes = [
     isolation: isolate;
     overflow: hidden;
     padding: 4rem 0;
-   
-
   }
-
- 
 
   .infra-container {
     position: relative;
@@ -550,18 +541,20 @@ const applicationTypes = [
 
   /* Scroll reveal */
 
-  [data-reveal] {
+  .product-why-infra [data-reveal] {
     opacity: 0;
-    transform: translateY(10px);
+    transform: translateY(14px);
     transition:
-      opacity 0.5s ease,
-      transform 0.5s ease;
+      opacity 0.75s cubic-bezier(0.22, 1, 0.36, 1),
+      transform 0.75s cubic-bezier(0.22, 1, 0.36, 1);
     transition-delay: var(--reveal-delay, 0ms);
+    will-change: opacity, transform;
   }
 
-  [data-reveal].is-visible {
+  .product-why-infra [data-reveal].is-visible {
     opacity: 1;
     transform: translateY(0);
+    will-change: auto;
   }
 
   /* Tablet and desktop */
@@ -730,31 +723,36 @@ const applicationTypes = [
   /* Reduced motion */
 
   @media (prefers-reduced-motion: reduce) {
-    [data-reveal] {
+    .product-why-infra [data-reveal] {
       opacity: 1;
       transform: none;
       transition: none;
+      will-change: auto;
     }
   }
 </style>
 
 <script>
-  const revealElements = document.querySelectorAll(
-    ".product-why-infra [data-reveal]"
-  );
+  const initProductReveal = () => {
+    const revealElements = document.querySelectorAll(
+      ".product-why-infra [data-reveal]:not(.is-visible)"
+    );
 
-  const prefersReducedMotion = window.matchMedia(
-    "(prefers-reduced-motion: reduce)"
-  ).matches;
+    const prefersReducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches;
 
-  if (
-    prefersReducedMotion ||
-    !("IntersectionObserver" in window)
-  ) {
-    revealElements.forEach((element) => {
-      element.classList.add("is-visible");
-    });
-  } else {
+    if (
+      prefersReducedMotion ||
+      !("IntersectionObserver" in window)
+    ) {
+      revealElements.forEach((element) => {
+        element.classList.add("is-visible");
+      });
+
+      return;
+    }
+
     const revealObserver = new IntersectionObserver(
       (entries, observer) => {
         entries.forEach((entry) => {
@@ -765,13 +763,17 @@ const applicationTypes = [
         });
       },
       {
-        threshold: 0.12,
-        rootMargin: "0px 0px -30px 0px",
+        threshold: 0.1,
+        rootMargin: "0px 0px -35px 0px",
       }
     );
 
     revealElements.forEach((element) => {
       revealObserver.observe(element);
     });
-  }
+  };
+
+  initProductReveal();
+
+  document.addEventListener("astro:page-load", initProductReveal);
 </script>

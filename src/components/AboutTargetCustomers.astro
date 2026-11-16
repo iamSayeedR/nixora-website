@@ -33,14 +33,27 @@ const segments = [
   <div class="target-inner">
 
     <!-- Heading -->
-    <header class="target-header" data-reveal>
-      <p class="target-eyebrow">Target customers</p>
+    <header class="target-header">
+      <p
+        class="target-eyebrow"
+        data-reveal
+        style="--reveal-delay: 0ms;"
+      >
+        Target customers
+      </p>
 
-      <h2>
+      <h2
+        data-reveal
+        style="--reveal-delay: 300ms;"
+      >
         Who Nixora is <span>built for.</span>
       </h2>
 
-      <p class="target-description">
+      <p
+        class="target-description"
+        data-reveal
+        style="--reveal-delay: 600ms;"
+      >
         Nixora is intended to serve several customer groups, from individual
         developers to enterprise teams.
       </p>
@@ -48,8 +61,12 @@ const segments = [
 
     <!-- Customer Segments -->
     <div class="segments-list">
-      {segments.map((segment) => (
-        <article class="segment-row" data-reveal>
+      {segments.map((segment, index) => (
+        <article
+          class="segment-row"
+          data-reveal
+          style={`--reveal-delay: ${index * 300}ms;`}
+        >
           <div class="segment-heading">
             <h3>{segment.name}</h3>
           </div>
@@ -62,7 +79,11 @@ const segments = [
     </div>
 
     <!-- Disclaimer and Product Link -->
-    <div class="target-footer" data-reveal>
+    <div
+      class="target-footer"
+      data-reveal
+      style="--reveal-delay: 250ms;"
+    >
       <p class="target-note">
         These are target customer segments. Supporting each segment's
         complete requirements will require product development and customer
@@ -93,14 +114,28 @@ const segments = [
 </section>
 
 <script>
-  const revealElements =
-    document.querySelectorAll<HTMLElement>(".target-customers [data-reveal]");
+  function initTargetCustomersReveal() {
+    const revealElements = document.querySelectorAll<HTMLElement>(
+      ".target-customers [data-reveal]:not(.is-visible)"
+    );
 
-  const prefersReducedMotion = window.matchMedia(
-    "(prefers-reduced-motion: reduce)"
-  ).matches;
+    if (!revealElements.length) return;
 
-  if (!prefersReducedMotion && "IntersectionObserver" in window) {
+    const prefersReducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches;
+
+    if (
+      prefersReducedMotion ||
+      !("IntersectionObserver" in window)
+    ) {
+      revealElements.forEach((element) => {
+        element.classList.add("is-visible");
+      });
+
+      return;
+    }
+
     const observer = new IntersectionObserver(
       (entries, currentObserver) => {
         entries.forEach((entry) => {
@@ -111,17 +146,22 @@ const segments = [
         });
       },
       {
-        threshold: 0.15,
-        rootMargin: "0px 0px -40px 0px",
+        threshold: 0.08,
+        rootMargin: "0px 0px -50px 0px",
       }
     );
 
-    revealElements.forEach((element) => observer.observe(element));
-  } else {
     revealElements.forEach((element) => {
-      element.classList.add("is-visible");
+      observer.observe(element);
     });
   }
+
+  initTargetCustomersReveal();
+
+  document.addEventListener(
+    "astro:page-load",
+    initTargetCustomersReveal
+  );
 </script>
 
 <style>
@@ -129,7 +169,6 @@ const segments = [
   .target-customers {
     position: relative;
     overflow: hidden;
-
     padding: 6rem 1.5rem;
     color: #fff;
   }
@@ -137,6 +176,23 @@ const segments = [
   .target-inner {
     max-width: 1152px;
     margin: 0 auto;
+  }
+
+  /* Smooth Scroll Reveal */
+  .target-customers [data-reveal] {
+    opacity: 0;
+    transform: translate3d(0, 20px, 0);
+    transition:
+      opacity 1300ms cubic-bezier(0.22, 1, 0.36, 1),
+      transform 1300ms cubic-bezier(0.22, 1, 0.36, 1);
+    transition-delay: var(--reveal-delay, 0ms);
+    will-change: opacity, transform;
+  }
+
+  .target-customers [data-reveal].is-visible {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+    will-change: auto;
   }
 
   /* Heading */
@@ -279,22 +335,6 @@ const segments = [
     transform: translateX(4px);
   }
 
-  /* Scroll Reveal */
-  @media (prefers-reduced-motion: no-preference) {
-    .target-customers [data-reveal] {
-      opacity: 0;
-      transform: translateY(14px);
-      transition:
-        opacity 550ms ease-out,
-        transform 550ms ease-out;
-    }
-
-    .target-customers [data-reveal].is-visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
   /* Responsive */
   @media (min-width: 1024px) {
     .segment-row {
@@ -318,58 +358,60 @@ const segments = [
     }
   }
 
- @media (max-width: 768px) {
-  .target-customers {
-    padding: 4rem 1.35rem;
+  @media (max-width: 768px) {
+    .target-customers {
+      padding: 4rem 1.35rem;
+    }
+
+    .segments-list {
+      margin-top: 2.5rem;
+    }
+
+    .segment-row {
+      padding: 1.5rem 1.25rem;
+    }
+
+    .segment-heading h3 {
+      font-size: 1.05rem;
+    }
+
+    .segment-description {
+      font-size: 0.875rem;
+      line-height: 1.8;
+    }
+
+    .target-footer {
+      width: 100%;
+      align-items: center;
+      text-align: center;
+    }
+
+    .target-note {
+      width: 100%;
+      max-width: 100%;
+      text-align: center;
+    }
+
+    .product-link {
+      align-self: center;
+      justify-content: center;
+    }
   }
 
-  .segments-list {
-    margin-top: 2.5rem;
-  }
-
-  .segment-row {
-    padding: 1.5rem 1.25rem;
-  }
-
-  .segment-heading h3 {
-    font-size: 1.05rem;
-  }
-
-  .segment-description {
-    font-size: 0.875rem;
-    line-height: 1.8;
-  }
-
-  .target-footer {
-    width: 100%;
-    align-items: center;
-    text-align: center;
-  }
-
-  .target-note {
-    width: 100%;
-    max-width: 100%;
-    text-align: center;
-  }
-
-  .product-link {
-    align-self: center;
-    justify-content: center;
-  }
-}
-
+  /* Reduced Motion */
   @media (prefers-reduced-motion: reduce) {
+    .target-customers [data-reveal] {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+
     .segment-row,
     .segment-row::before,
     .segment-heading h3,
     .product-link,
     .product-link svg {
       transition: none;
-    }
-
-    .target-customers [data-reveal] {
-      opacity: 1;
-      transform: none;
     }
   }
 </style>

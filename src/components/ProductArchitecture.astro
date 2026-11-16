@@ -21,7 +21,7 @@ const next = {
   group: "GROUP 02",
   title: "Agent Access & MCP",
   description:
-    "Planned MCP integration will let compatible AI coding agents request deployments directly through Nixora, with per-agent permissions, audit trails, and structured access controls. The goal is to make Nixora a deployment target for AI-powered development workflows while keeping agent actions governed and traceable. A web dashboard is also a planned platform capability to support broader operational visibility.",
+    "Planned MCP integration will let compatible AI coding agents request deployments directly through Nixora, with per-agent permissions, audit trails, and structured access controls. The goal is to make Nixora a deployment target for AI-powered development workflows while keeping agent actions governed and traceable.",
   tags: [
     "MCP-based deployment workflows",
     "AI coding-agent deployment requests",
@@ -29,49 +29,59 @@ const next = {
     "Audit trail",
     "Compatible AI coding agents",
     "MCP server for agents",
-    "Web dashboard",
     "Governed agent access",
   ],
 };
 
 const later = [
   {
-    group: "GROUP 03",
-    title: "Monitoring & Observability",
-    description:
-      "Planned monitoring and observability for applications and AI agents, including evaluation of task completion, tool usage, policy compliance, failure handling, latency, and execution costs to help teams understand reliability and operational health.",
-    tags: [
-      "Comprehensive monitoring & observability",
-      "Continuous monitoring",
-      "Agent testing & evaluation",
-      "Task completion & success",
-      "Tool usage & correctness",
-      "Policy compliance evaluation",
-      "Failure handling & reliability",
-      "Latency & execution costs",
-      "Cost controls",
-      "Telemetry analytics",
-    ],
-  },
+  group: "GROUP 03",
+  title: "Monitoring & Observability",
+  description:
+    "Planned monitoring and observability for applications and AI agents, including monitoring application health, identifying operational problems, inspecting logs and diagnostic information, explaining failures and their likely causes, and recommending corrective actions. Agent testing and evaluation will cover task completion and success rates, tool usage and tool-call correctness, policy compliance, failure handling and reliability, latency and execution costs, and resistance to prompt injection and unsafe behavior. Longer term, Nixora aims to execute authorized remediation and verify the results.",
+  tags: [
+    "Monitoring application health",
+    "Operational problem detection",
+    "Logs & diagnostic information",
+    "Failure explanations & likely causes",
+    "Recommended corrective actions",
+    "Agent testing & evaluation",
+    "Task completion & success rates",
+    "Tool usage & correctness",
+    "Policy compliance",
+    "Failure handling & reliability",
+    "Latency & execution costs",
+    "Prompt-injection & unsafe-behavior resistance",
+    "Authorized remediation",
+    "Remediation verification",
+  ],
+},
   {
-    group: "GROUP 04",
-    title: "Scaling & Optimization",
-    description:
-      "Planned automated scaling, resource optimization, load balancing, and infrastructure adaptation as workloads grow, helping teams manage demand while controlling cost and operational complexity.",
-    tags: [
-      "Automated scaling & load balancing",
-      "Autonomous scaling",
-      "Resource optimization",
-      "Cost controls",
-      "Workload management",
-      "Infrastructure adaptation",
-    ],
-  },
+  group: "GROUP 04",
+  title: "Scaling & Optimization",
+  description:
+    "Planned continuous optimization, workload scaling, health checks, resource management, load balancing, controlled recovery from failures, and infrastructure cost visibility. The broader optimization direction includes improving infrastructure cost, application performance, agent execution cost, resource utilization, reliability, and deployment efficiency while balancing cost with performance and security. Supporting these capabilities will require appropriate infrastructure integrations and orchestration.",
+  tags: [
+    "Continuous optimization",
+    "Workload scaling",
+    "Health checks",
+    "Resource management",
+    "Load balancing",
+    "Controlled failure recovery",
+    "Infrastructure cost visibility",
+    "Application performance",
+    "Agent execution cost",
+    "Resource utilization",
+    "Reliability",
+    "Deployment efficiency",
+    "Cost, performance & security balance",
+  ],
+},
   {
     group: "GROUP 05",
     title: "Governance & Lifecycle Operations",
     description:
-      "Planned governance for AI agent operations, full lifecycle management, permissions, policy enforcement, and unified control across multi-agent systems and supported workloads.",
+      "Planned deployment and lifecycle management of AI agents as production workloads, alongside governance, permissions, policy enforcement, and unified control across multi-agent systems and supported workloads.",
     tags: [
       "Multi-agent systems",
       "Full lifecycle management",
@@ -84,18 +94,53 @@ const later = [
     ],
   },
   {
-    group: "GROUP 06",
-    title: "Platform & Infrastructure Integrations",
+  group: "GROUP 06",
+  title: "Platform & Infrastructure Integrations",
+  description:
+    "Planned expansion of platform and infrastructure integrations, including future support for infrastructure providers, CI/CD and release workflows, REST APIs, SDKs, and no-code tooling. These integrations are intended to extend deployment, operations, and lifecycle management across supported environments.",
+  tags: [
+    "Planned infrastructure integrations",
+    "Planned CI/CD workflows",
+    "Release management",
+    "REST APIs & SDKs",
+    "No-code web interface",
+    "Infrastructure provider integrations",
+    "Multi-cloud support",
+    "Platform integrations",
+  ],
+},
+  {
+    group: "GROUP 07",
+    title: "Agent Intelligence & Orchestration",
     description:
-      "Planned platform growth across multiple infrastructure providers, CI/CD and release workflows, REST APIs, SDKs, and no-code tooling, with a broader focus on deployment, operations, and lifecycle management across supported environments.",
+      "Understand how AI agents interact with each other, use tools, access services, and depend on shared infrastructure. Coordinate agent relationships, dependencies, permissions, and interactions across multi-agent systems.",
     tags: [
-      "Multiple infrastructure providers",
-      "CI/CD workflows",
-      "Release management",
-      "REST APIs & SDKs",
-      "No-code web interface",
-      "Multi-cloud support",
-      "Infrastructure integrations",
+      "Agent intelligence",
+      "Multi-agent orchestration",
+      "Agent dependency mapping",
+      "MCP tool awareness",
+      "Tool & API dependencies",
+      "Agent interaction mapping",
+      "Permission awareness",
+      "Dependency monitoring",
+    ],
+  },
+  {
+    group: "GROUP 08",
+    title: "Autonomous Operations & Nixora Autopilot",
+    description:
+      "Nixora Autopilot is designed to understand application and agent environments, detect operational issues, identify likely root causes, predict infrastructure risks, recommend actions, and execute authorized remediation with continuous verification.",
+    tags: [
+      "Nixora Autopilot",
+      "Autonomous operations",
+      "Cross-layer intelligence",
+      "Autonomous self-healing",
+      "Predictive infrastructure intelligence",
+      "Root cause analysis",
+      "Automated remediation",
+      "Continuous verification",
+      "Operational Intelligence Profiles",
+      "Human approval controls",
     ],
   },
 ];
@@ -103,16 +148,71 @@ const later = [
 const scalingVisuals = [
   { icon: "⚡", label: "Auto-scale" },
   { icon: "⇄", label: "Load balancing" },
-  { icon: "◫", label: "Resource opt." },
-  { icon: "💡", label: "Cost controls" },
+  { icon: "◫", label: "Resources" },
+  { icon: "💡", label: "Cost visibility" },
+];
+
+const releaseVisuals = [
+  "Application updates",
+  "Release verification",
+  "Rollback",
+  "Retirement",
 ];
 
 const integrationVisuals = [
-  "CI/CD",
+  "CI/CD workflows",
   "Release mgmt.",
   "APIs & SDKs",
-  "Multi-cloud",
+  "Infrastructure",
 ];
+
+const intelligenceVisuals = [
+  "Agents",
+  "Tools & MCP",
+  "Dependencies",
+  "Permissions",
+];
+
+const autopilotSteps = [
+  "Detect",
+  "Diagnose",
+  "Recommend",
+  "Verify",
+];
+
+const companionModes = [
+  {
+    icon: "message",
+    title: "Advice-only",
+    description:
+      "Provides recommendations and guidance while the user remains in control of every action.",
+  },
+  {
+    icon: "route",
+    title: "Guided",
+    description:
+      "Helps users work through operational tasks with guidance and approval before actions are taken.",
+  },
+  {
+    icon: "bot",
+    title: "Autonomous",
+    description:
+      "Can carry out authorized actions within defined permissions and operational boundaries.",
+  },
+];
+
+const companionTags = [
+  "Advice Mode",
+  "Guided Mode",
+  "Autonomous Mode",
+  "AI-powered troubleshooting",
+  "Recommended actions",
+  "Controlled execution",
+ 
+];
+
+const companionDescription =
+  "An intelligent operational assistant that helps developers understand issues, make informed decisions, and manage applications and agents. Supports advisory guidance, step-by-step execution, and policy-controlled autonomous actions.";
 ---
 
 <section class="roadmap-section">
@@ -125,10 +225,9 @@ const integrationVisuals = [
         Nixora’s current product focus is CLI-based deployment for
         applications and deployment failure diagnosis. The roadmap extends
         beyond today’s deployment workflow toward MCP-based AI coding-agent
-        access, monitoring and observability, scaling and resource
-        optimization, lifecycle management, governance, multi-cloud and
-        infrastructure integrations, and the broader operational control of
-        AI-generated software and agents.
+        access, monitoring and observability, scaling and reliability,
+        lifecycle management, infrastructure governance, agent intelligence,
+        and autonomous operations.
       </p>
     </div>
 
@@ -297,7 +396,10 @@ const integrationVisuals = [
 
         <div class="later-groups">
           {later.map((item) => (
-            <article class="roadmap-card later-card" data-reveal>
+            <article
+              class={`roadmap-card later-card ${item.group === "GROUP 08" ? "autopilot-card" : ""}`}
+              data-reveal
+            >
               <span class="roadmap-status roadmap-status-later" aria-hidden="true"></span>
 
               <div class="roadmap-content-grid">
@@ -305,20 +407,67 @@ const integrationVisuals = [
                   <p class="group-label">{item.group}</p>
                   <h3>{item.title}</h3>
                   <p class="group-description">{item.description}</p>
+
+                  {/* Group 08: Autopilot tags and workflow on the left */}
+                  {item.group === "GROUP 08" && (
+                    <>
+                      <div class="tags-list autopilot-tags">
+                        {item.tags.map((tag, index) => (
+                          <span
+                            class="roadmap-tag roadmap-tag-later"
+                            data-reveal
+                            style={`--reveal-delay: ${400 + index * 60}ms`}
+                          >
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+
+                      <div class="autopilot-visual">
+                        <p class="autopilot-flow-heading" data-reveal>
+                          Autonomous Operations Workflow
+                        </p>
+
+                        <div class="autopilot-flow">
+                          {autopilotSteps.map((step, index) => (
+                            <>
+                              <div
+                                class="autopilot-step"
+                                data-reveal
+                                style={`--reveal-delay: ${400 + index * 80}ms`}
+                              >
+                              
+                                <span>{step}</span>
+                              </div>
+
+                              {index !== autopilotSteps.length - 1 && (
+                                <span class="autopilot-arrow" aria-hidden="true">
+                                  →
+                                </span>
+                              )}
+                            </>
+                          ))}
+                        </div>
+                      </div>
+                    </>
+                  )}
                 </div>
 
                 <div class="roadmap-visual-content">
-                  <div class="tags-list">
-                    {item.tags.map((tag, index) => (
-                      <span
-                        class="roadmap-tag roadmap-tag-later"
-                        data-reveal
-                        style={`--reveal-delay: ${400 + index * 60}ms`}
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
+                  {/* Other groups keep their tags on the right */}
+                  {item.group !== "GROUP 08" && (
+                    <div class="tags-list">
+                      {item.tags.map((tag, index) => (
+                        <span
+                          class="roadmap-tag roadmap-tag-later"
+                          data-reveal
+                          style={`--reveal-delay: ${400 + index * 60}ms`}
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                  )}
 
                   {item.group === "GROUP 04" && (
                     <div class="scaling-visuals">
@@ -359,6 +508,125 @@ const integrationVisuals = [
                       ))}
                     </div>
                   )}
+
+                  {item.group === "GROUP 07" && (
+                    <div class="intelligence-visual">
+                      {intelligenceVisuals.map((label, index) => (
+                        <div
+                          class="intelligence-visual-card"
+                          data-reveal
+                          style={`--reveal-delay: ${400 + index * 80}ms`}
+                        >
+                          <span class="intelligence-dot"></span>
+                          {label}
+                        </div>
+                      ))}
+                    </div>
+                  )}
+
+                  {/* Group 08: AI Companion stays separately on the right */}
+                  {item.group === "GROUP 08" && (
+                    <div class="companion-panel">
+                      <div class="companion-heading" data-reveal>
+                        <p class="companion-eyebrow">AI COMPANION</p>
+                        <h4>Choose how Nixora assists</h4>
+                      </div>
+
+                      <p class="companion-description" data-reveal>
+                        {companionDescription}
+                      </p>
+
+                      <div class="tags-list companion-tags">
+                        {companionTags.map((tag, index) => (
+                          <span
+                            class="roadmap-tag roadmap-tag-later"
+                            data-reveal
+                            style={`--reveal-delay: ${400 + index * 60}ms`}
+                          >
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+
+                      <div class="companion-modes">
+                        {companionModes.map((mode, index) => (
+                          <div
+                            class="companion-mode"
+                            data-reveal
+                            style={`--reveal-delay: ${400 + index * 80}ms`}
+                          >
+                            <span class="companion-icon">
+                              {mode.icon === "message" && (
+                                <svg
+                                  xmlns="http://www.w3.org/2000/svg"
+                                  width="24"
+                                  height="24"
+                                  viewBox="0 0 24 24"
+                                  fill="none"
+                                  stroke="currentColor"
+                                  stroke-width="2"
+                                  stroke-linecap="round"
+                                  stroke-linejoin="round"
+                                  aria-hidden="true"
+                                >
+                                  <path d="M22 17a2 2 0 0 1-2 2H6.828a2 2 0 0 0-1.414.586l-2.202 2.202A.71.71 0 0 1 2 21.286V5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2z" />
+                                  <path d="M7 11h10" />
+                                  <path d="M7 15h6" />
+                                  <path d="M7 7h8" />
+                                </svg>
+                              )}
+
+                              {mode.icon === "route" && (
+                                <svg
+                                  xmlns="http://www.w3.org/2000/svg"
+                                  width="24"
+                                  height="24"
+                                  viewBox="0 0 24 24"
+                                  fill="none"
+                                  stroke="currentColor"
+                                  stroke-width="2"
+                                  stroke-linecap="round"
+                                  stroke-linejoin="round"
+                                  aria-hidden="true"
+                                >
+                                  <circle cx="6" cy="19" r="3" />
+                                  <path d="M9 19h8.5a3.5 3.5 0 0 0 0-7h-11a3.5 3.5 0 0 1 0-7H15" />
+                                  <circle cx="18" cy="5" r="3" />
+                                </svg>
+                              )}
+
+                              {mode.icon === "bot" && (
+                                <svg
+                                  xmlns="http://www.w3.org/2000/svg"
+                                  width="24"
+                                  height="24"
+                                  viewBox="0 0 24 24"
+                                  fill="none"
+                                  stroke="currentColor"
+                                  stroke-width="2"
+                                  stroke-linecap="round"
+                                  stroke-linejoin="round"
+                                  aria-hidden="true"
+                                >
+                                  <path d="M12 8V4H8" />
+                                  <rect width="16" height="12" x="4" y="8" rx="2" />
+                                  <path d="M2 14h2" />
+                                  <path d="M20 14h2" />
+                                  <path d="M15 13v2" />
+                                  <path d="M9 13v2" />
+                                </svg>
+                              )}
+                            </span>
+
+                            <div class="companion-mode-content">
+                              <h5>{mode.title}</h5>
+                              <p>{mode.description}</p>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
                 </div>
               </div>
             </article>
@@ -381,10 +649,7 @@ const integrationVisuals = [
     overflow: hidden;
     padding: 96px 0;
     color: #fff;
-
   }
-
-
 
   .roadmap-container {
     position: relative;
@@ -403,6 +668,20 @@ const integrationVisuals = [
     text-align: center;
   }
 
+  /* Roadmap intro - slow and smooth reveal */
+.roadmap-intro[data-reveal] {
+  opacity: 0;
+  transform: translate3d(0, 24px, 0);
+  transition:
+    opacity 1.5s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 1.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.roadmap-intro[data-reveal].is-visible {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+
   .roadmap-intro h2 {
     margin: 0;
     color: #fff;
@@ -410,6 +689,15 @@ const integrationVisuals = [
     font-weight: 600;
     line-height: 1.2;
     letter-spacing: -0.04em;
+  }
+
+  .autopilot-flow-heading {
+    margin: 0 0 16px;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-align: center;
   }
 
   .roadmap-intro > p {
@@ -440,7 +728,7 @@ const integrationVisuals = [
     align-items: center;
     gap: 10px;
     margin: 0;
-     color: #a78bfa;
+    color: #a78bfa;
     font-size: 12px;
     font-weight: 500;
     letter-spacing: 0.16em;
@@ -451,7 +739,52 @@ const integrationVisuals = [
     width: 24px;
     height: 1px;
     flex-shrink: 0;
-  color: #a78bfa;
+    background: #a78bfa;
+  }
+
+  /* Governance visual */
+  .governance-visual {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+    margin-top: 20px;
+  }
+
+  .governance-node,
+  .governance-system {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 36px;
+    padding: 8px 12px;
+    border: 1px solid rgba(167, 139, 250, 0.3);
+    border-radius: 8px;
+    background: rgba(167, 139, 250, 0.08);
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 12px;
+  }
+
+  .governance-arrow {
+    color: #a78bfa;
+    font-size: 16px;
+    animation: governance-arrow-move 1.8s ease-in-out infinite;
+  }
+
+  @keyframes governance-arrow-move {
+    0%, 100% {
+      transform: translateX(0);
+    }
+
+    50% {
+      transform: translateX(4px);
+    }
+  }
+
+  .governance-system {
+    border: 1px solid rgba(167, 139, 250, 0.2);
+    background: rgba(167, 139, 250, 0.14);
+    color: rgba(255, 255, 255, 0.9);
   }
 
   /* Shared cards */
@@ -474,37 +807,35 @@ const integrationVisuals = [
     box-shadow: 0 20px 70px rgba(167, 139, 250, 0.08);
   }
 
- .roadmap-status {
-  position: absolute;
-  top: 24px;
-  right: 24px;
-  z-index: 2;
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: #a78bfa;
-  box-shadow: 0 0 8px rgba(167, 139, 250, 0.5);
-}
+  .roadmap-status {
+    position: absolute;
+    top: 24px;
+    right: 24px;
+    z-index: 2;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #a78bfa;
+    box-shadow: 0 0 8px rgba(167, 139, 250, 0.5);
+  }
 
+  .roadmap-status-later {
+    background: rgba(255, 255, 255, 0.3);
+    box-shadow: none;
+    transition:
+      background 0.3s ease,
+      box-shadow 0.3s ease;
+  }
 
-.roadmap-status-later {
-  background: rgba(255, 255, 255, 0.3);
-  box-shadow: none;
-  transition:
-    background 0.3s ease,
-    box-shadow 0.3s ease;
-}
-
-
-.later-card:hover .roadmap-status-later {
-  background: #a78bfa;
-  box-shadow: 0 0 8px rgba(167, 139, 250, 0.5);
-}
+  .later-card:hover .roadmap-status-later {
+    background: #a78bfa;
+    box-shadow: 0 0 8px rgba(167, 139, 250, 0.5);
+  }
 
   /* Group content */
   .group-label {
     margin: 0;
-     color: #a78bfa;
+    color: #a78bfa;
     font-size: 11px;
     font-weight: 500;
     letter-spacing: 0.15em;
@@ -563,10 +894,10 @@ const integrationVisuals = [
     color: rgba(255, 255, 255, 0.72);
   }
 
-.roadmap-card:hover .roadmap-tag {
-  border-color: rgba(167, 139, 250, 0.38);
-  background: rgba(167, 139, 250, 0.085);
-}
+  .roadmap-card:hover .roadmap-tag {
+    border-color: rgba(167, 139, 250, 0.38);
+    background: rgba(167, 139, 250, 0.085);
+  }
 
   /* Today */
   .today-grid {
@@ -667,7 +998,7 @@ const integrationVisuals = [
 
   .terminal-prompt {
     margin-right: 8px;
-   color: #a78bfa;
+    color: #a78bfa;
   }
 
   .terminal-output {
@@ -699,7 +1030,7 @@ const integrationVisuals = [
 
   .terminal-check {
     margin-right: 8px;
-     color: #a78bfa;
+    color: #a78bfa;
   }
 
   .terminal-live {
@@ -814,6 +1145,11 @@ const integrationVisuals = [
     align-items: flex-start;
   }
 
+  /* Group 08 tags below description */
+  .autopilot-card .autopilot-tags {
+    margin-top: 20px;
+  }
+
   /* Agent flow */
   .agent-flow {
     margin-top: 20px;
@@ -852,7 +1188,7 @@ const integrationVisuals = [
   }
 
   .agent-flow-arrow {
-   color: #a78bfa;
+    color: #a78bfa;
     font-size: 16px;
     text-align: center;
   }
@@ -873,9 +1209,9 @@ const integrationVisuals = [
     gap: 16px;
   }
 
- .later-card {
-  padding: 0;
-}
+  .later-card {
+    padding: 0;
+  }
 
   /* Scaling visual */
   .scaling-visuals {
@@ -894,19 +1230,11 @@ const integrationVisuals = [
     padding: 12px 6px;
     border: 1px solid rgba(167, 139, 250, 0.25);
     border-radius: 8px;
-
     text-align: center;
-   
   }
-  
-
- .scaling-visual-card:hover,
-.integration-visual-card:hover {
-
-}
 
   .scaling-icon {
-    color: var(--roadmap-accent);
+    color: #a78bfa;
     font-size: 14px;
   }
 
@@ -918,52 +1246,7 @@ const integrationVisuals = [
     overflow-wrap: anywhere;
   }
 
-  /* Governance visual */
-  .governance-visual {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 8px;
-    margin-top: 20px;
-  }
-
-  .governance-node,
-  .governance-system {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 36px;
-    padding: 8px 12px;
-    border: 1px solid rgba(167, 139, 250, 0.3);
-    border-radius: 8px;
-    background: rgba(167, 139, 250, 0.08);
-    color: rgba(255, 255, 255, 0.7);
-    font-size: 12px;
-  }
-
-  .governance-arrow {
-     color: #a78bfa;
-    font-size: 16px;
-    animation: governance-arrow-move 1.8s ease-in-out infinite;
-  }
-
-  @keyframes governance-arrow-move {
-    0%, 100% {
-      transform: translateX(0);
-    }
-
-    50% {
-      transform: translateX(4px);
-    }
-  }
-
-  .governance-system {
-  border: 1px solid rgba(167, 139, 250, 0.2);
-    background: rgba(167, 139, 250, 0.14);
-    color: rgba(255, 255, 255, 0.9);
-  }
-
-  /* Integrations visual */
+  /* Integration and release visuals */
   .integration-visuals {
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -991,8 +1274,190 @@ const integrationVisuals = [
   }
 
   .integration-visual-card:hover {
-    border-color: var(--roadmap-accent);
+    border-color: #a78bfa;
     background: rgba(167, 139, 250, 0.13);
+  }
+
+  /* Agent intelligence visual */
+  .intelligence-visual {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+    margin-top: 20px;
+  }
+
+  .intelligence-visual-card {
+    display: flex;
+    min-width: 0;
+    align-items: center;
+    gap: 10px;
+    min-height: 44px;
+    padding: 10px 12px;
+    border: 1px solid rgba(167, 139, 250, 0.22);
+    border-radius: 8px;
+    background: rgba(167, 139, 250, 0.055);
+    color: rgba(255, 255, 255, 0.72);
+    font-size: 11px;
+    overflow-wrap: anywhere;
+  }
+
+  .intelligence-dot {
+    width: 6px;
+    height: 6px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    background: #a78bfa;
+  }
+
+  /* Autonomous operations workflow - left column */
+  .autopilot-visual {
+    margin-top: 24px;
+    padding: 18px;
+    border: 1px solid rgba(167, 139, 250, 0.22);
+    border-radius: 10px;
+    background: rgba(167, 139, 250, 0.035);
+  }
+
+  .autopilot-flow {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr) auto minmax(0, 1fr) auto minmax(0, 1fr);
+    align-items: center;
+    gap: 7px;
+  }
+
+  .autopilot-step {
+    display: flex;
+    min-width: 0;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    min-height: 66px;
+    padding: 10px 5px;
+    border: 1px solid rgba(167, 139, 250, 0.25);
+    border-radius: 8px;
+    background: rgba(167, 139, 250, 0.07);
+    color: rgba(255, 255, 255, 0.82);
+    font-size: 11px;
+    text-align: center;
+  }
+
+  .autopilot-step-number {
+    color: #a78bfa;
+    font-size: 9px;
+    letter-spacing: 0.12em;
+  }
+
+  .autopilot-arrow {
+    color: #a78bfa;
+    font-size: 14px;
+  }
+
+  /* AI Companion - right column */
+  .companion-panel {
+    min-width: 0;
+  }
+
+  .companion-heading {
+    margin: 0;
+    padding: 0;
+    text-align: center;
+  }
+
+  .companion-eyebrow {
+    margin: 0;
+    color: #a78bfa;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+  }
+
+  .companion-heading h4 {
+    margin: 8px 0 0;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 500;
+    letter-spacing: -0.02em;
+  }
+
+  .companion-description {
+    max-width: 620px;
+    margin: 12px auto 0;
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 12px;
+    line-height: 1.8;
+    text-align: center;
+  }
+
+  .companion-tags {
+    justify-content: center;
+    margin-top: 16px;
+  }
+
+  .companion-modes {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+    margin-top: 20px;
+  }
+
+  .companion-mode {
+    display: flex;
+    min-width: 0;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 16px;
+    border: 1px solid rgba(167, 139, 250, 0.2);
+    border-radius: 10px;
+    background: rgba(167, 139, 250, 0.045);
+    transition:
+      border-color 0.3s ease,
+      background 0.3s ease;
+  }
+
+  .companion-mode:hover {
+    border-color: rgba(167, 139, 250, 0.45);
+    background: rgba(167, 139, 250, 0.08);
+  }
+
+  .companion-icon {
+    display: flex;
+    width: 36px;
+    height: 36px;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(167, 139, 250, 0.3);
+    border-radius: 10px;
+    background: rgba(167, 139, 250, 0.1);
+    color: #a78bfa;
+  }
+
+  .companion-icon svg {
+    display: block;
+    width: 19px;
+    height: 19px;
+    flex-shrink: 0;
+  }
+
+  .companion-mode-content {
+    min-width: 0;
+    flex: 1;
+  }
+
+  .companion-mode h5 {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 13px;
+    font-weight: 500;
+  }
+
+  .companion-mode p {
+    margin: 8px 0 0;
+    color: rgba(255, 255, 255, 0.55);
+    font-size: 11px;
+    line-height: 1.75;
+    overflow-wrap: anywhere;
   }
 
   /* Closing note */
@@ -1045,6 +1510,14 @@ const integrationVisuals = [
       padding-left: 0;
       border-top: 1px solid rgba(167, 139, 250, 0.15);
       border-left: 0;
+    }
+
+    .autopilot-visual {
+      margin-top: 20px;
+    }
+
+    .companion-panel {
+      max-width: 100%;
     }
   }
 
@@ -1177,13 +1650,54 @@ const integrationVisuals = [
       grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
-    .governance-visual {
-      gap: 7px;
+    .autopilot-visual {
+      margin-top: 20px;
+      padding: 14px;
     }
 
-    .governance-node,
-    .governance-system {
-      font-size: 11px;
+    .autopilot-flow {
+      grid-template-columns: 1fr;
+      gap: 6px;
+    }
+
+    .autopilot-step {
+      min-height: 42px;
+      flex-direction: row;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .autopilot-arrow {
+      line-height: 1;
+      transform: rotate(90deg);
+      text-align: center;
+    }
+
+    .companion-modes {
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+
+    .companion-mode {
+      flex-direction: row;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 15px;
+    }
+
+    .companion-icon {
+      width: 34px;
+      height: 34px;
+    }
+
+    .companion-icon svg {
+      width: 18px;
+      height: 18px;
+    }
+
+    .companion-mode-content {
+      flex: 1;
+      padding-top: 2px;
     }
 
     .roadmap-closing {
@@ -1201,7 +1715,6 @@ const integrationVisuals = [
       font-size: 29px;
     }
 
-   
     .terminal-area {
       padding: 14px;
     }
@@ -1224,21 +1737,27 @@ const integrationVisuals = [
       transition: none;
     }
 
+    .roadmap-intro[data-reveal] {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
     .terminal-line {
       opacity: 1;
       transform: none;
       animation: none;
     }
 
-    .ready-indicator,
-    .governance-arrow {
+    .ready-indicator {
       animation: none;
     }
 
     .roadmap-card,
     .roadmap-tag,
     .scaling-visual-card,
-    .integration-visual-card {
+    .integration-visual-card,
+    .companion-mode {
       transition: none;
     }
   }

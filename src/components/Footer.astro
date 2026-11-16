@@ -1,72 +1,329 @@
+
 ---
 ---
-<footer style="padding:4rem 2rem 2.5rem;max-width:1200px;margin:0 auto;display:flex;flex-direction:column;gap:3rem;">
+<footer class="site-footer">
 
   <!-- Top row: Logo + Social + Grouped Columns -->
-  <div style="display:grid;grid-template-columns:2fr 1fr 1fr;gap:3rem;align-items:start;" class="footer-grid">
-    
+  <div class="footer-grid">
+
     <!-- Left Column: Logo & Social -->
-    <div style="display:flex;flex-direction:column;gap:1.25rem;">
-      <a href="/" aria-label="Nixora Home" style="display:flex;align-items:center;text-decoration:none;">
-        <img src="/logo.svg" alt="Nixora" width="90" height="26" loading="lazy" style="height:26px;width:auto;" />
+    <div class="footer-brand footer-reveal" data-footer-reveal style="--footer-delay: 0ms;">
+      <a href="/" aria-label="Nixora Home" class="footer-logo">
+        <img
+          src="/logo.svg"
+          alt="Nixora"
+          width="90"
+          height="26"
+          loading="lazy"
+        />
       </a>
-      
-      <div style="display:flex;align-items:center;gap:1.25rem;font-size:0.85rem;flex-wrap:wrap;">
-        <a href="https://x.com/wearenixora" target="_blank" rel="noopener noreferrer"
-           style="color:#a1a1aa;text-decoration:none;transition:color 0.2s;display:flex;align-items:center;gap:0.4rem;"
-           onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#a1a1aa'">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+
+      <div class="footer-social">
+        <a
+          href="https://x.com/wearenixora"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="footer-link"
+        >
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+          </svg>
           X (Twitter) ↗
         </a>
-        <a href="https://www.linkedin.com/company/nixora-hq/" target="_blank" rel="noopener noreferrer"
-           style="color:#a1a1aa;text-decoration:none;transition:color 0.2s;display:flex;align-items:center;gap:0.4rem;"
-           onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#a1a1aa'">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg>
+
+        <a
+          href="https://www.linkedin.com/company/nixora-hq/"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="footer-link"
+        >
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/>
+          </svg>
           LinkedIn ↗
         </a>
       </div>
     </div>
 
-    <!-- Column 1: Company & Resources -->
-    <div style="display:flex;flex-direction:column;gap:0.85rem;">
-      <div style="font-size:0.75rem;color:#fff;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;">Platform & Company</div>
-      <a href="/product/" style="font-size:0.875rem;color:#a1a1aa;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#a1a1aa'">Product</a>
-      <a href="/resources/" style="font-size:0.875rem;color:#a1a1aa;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#a1a1aa'">Resources</a>
-      <a href="/compare/" style="font-size:0.875rem;color:#a1a1aa;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#a1a1aa'">Compare</a>
-      <a href="/traction/" style="font-size:0.875rem;color:#a1a1aa;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#a1a1aa'">Traction</a>
-      <a href="/about/" style="font-size:0.875rem;color:#a1a1aa;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#a1a1aa'">About</a>
-      <a href="mailto:ceo@nixora.co.in" style="font-size:0.875rem;color:#a1a1aa;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#a1a1aa'">Contact</a>
+    <!-- Column 1: Platform & Company -->
+    <div class="footer-column footer-reveal" data-footer-reveal style="--footer-delay: 120ms;">
+      <div class="footer-heading">Platform & Company</div>
+
+      <a href="/product/" class="footer-link">Product</a>
+      <a href="/resources/" class="footer-link">Resources</a>
+      <a href="/compare/" class="footer-link">Compare</a>
+      <a href="/traction/" class="footer-link">Traction</a>
+      <a href="/about/" class="footer-link">About</a>
+      <a href="mailto:ceo@nixora.co.in" class="footer-link">Contact</a>
     </div>
 
     <!-- Column 2: Legal -->
-    <div style="display:flex;flex-direction:column;gap:0.85rem;">
-      <div style="font-size:0.75rem;color:#fff;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;">Legal</div>
-      <a href="/terms/" style="font-size:0.875rem;color:#a1a1aa;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#a1a1aa'">Terms of Service</a>
-      <a href="/privacy/" style="font-size:0.875rem;color:#a1a1aa;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#a1a1aa'">Privacy Policy</a>
+    <div class="footer-column footer-reveal" data-footer-reveal style="--footer-delay: 220ms;">
+      <div class="footer-heading">Legal</div>
+
+      <a href="/terms/" class="footer-link">Terms of Service</a>
+      <a href="/privacy/" class="footer-link">Privacy Policy</a>
     </div>
 
   </div>
 
   <!-- Bottom Bar: SAFE notice & Copyright -->
-  <div style="padding-top:2rem;border-top:1px solid #1f1f1f;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;font-size:0.8rem;color:#52525b;">
-    <p style="margin:0;">
+  <div class="footer-bottom footer-reveal" data-footer-reveal style="--footer-delay: 300ms;">
+    <p class="footer-notice">
       Nixora is currently raising a pre-seed round via SAFE.&nbsp;
-      <a href="mailto:ceo@nixora.co.in?subject=Nixora%20SAFE%20Investment%20Inquiry"
-         style="color:#a1a1aa;text-decoration:underline;transition:color 0.2s;"
-         onmouseover="this.style.color='#a78bfa'" onmouseout="this.style.color='#a1a1aa'">
-        Get in touch
-      </a> for details.
+      <a
+        href="mailto:ceo@nixora.co.in?subject=Nixora%20SAFE%20Investment%20Inquiry"
+        class="footer-contact-link"
+      >
+      Get in touch
+       </a> for details.
+       
     </p>
-    <p style="margin:0;color:#52525b;">© {new Date().getFullYear()} Nixora</p>
+
+    <p class="footer-copyright">
+      © {new Date().getFullYear()} Nixora
+    </p>
   </div>
 
 </footer>
 
 <style>
+  /* Main Footer */
+
+  .site-footer {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 4rem 2rem 2.5rem;
+
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+  }
+
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 3rem;
+    align-items: start;
+  }
+
+  /* Brand Column */
+
+  .footer-brand {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    min-width: 0;
+  }
+
+  .footer-logo {
+    display: flex;
+    align-items: center;
+    width: fit-content;
+    text-decoration: none;
+  }
+
+  .footer-logo img {
+    height: 26px;
+    width: auto;
+  }
+
+  .footer-social {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    flex-wrap: wrap;
+    font-size: 0.85rem;
+  }
+
+  /* Footer Columns */
+
+  .footer-column {
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+    min-width: 0;
+  }
+
+  .footer-heading {
+    font-size: 0.75rem;
+    color: #fff;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  /* Links */
+
+  .footer-link {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+
+    width: fit-content;
+    max-width: 100%;
+
+    color: #a1a1aa;
+    font-size: 0.875rem;
+    text-decoration: none;
+
+    transition: color 250ms ease;
+  }
+
+  .footer-link:hover {
+    color: #fff;
+  }
+
+  /* Bottom Bar */
+
+  .footer-bottom {
+    padding-top: 2rem;
+    border-top: 1px solid #1f1f1f;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+
+    font-size: 0.8rem;
+    color: #52525b;
+  }
+
+  .footer-notice,
+  .footer-copyright {
+    margin: 0;
+  }
+
+  .footer-contact-link {
+    color: #a1a1aa;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    transition: color 250ms ease;
+  }
+
+  .footer-contact-link:hover {
+    color: #a78bfa;
+  }
+
+  .footer-copyright {
+    color: #52525b;
+  }
+
+  /* Smooth Reveal */
+
+  .site-footer .footer-reveal {
+    opacity: 0;
+    transform: translate3d(0, 18px, 0);
+
+    transition:
+      opacity 900ms cubic-bezier(0.16, 1, 0.3, 1),
+      transform 900ms cubic-bezier(0.16, 1, 0.3, 1);
+
+    transition-delay: var(--footer-delay, 0ms);
+    will-change: opacity, transform;
+  }
+
+  .site-footer .footer-reveal.is-visible {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+    will-change: auto;
+  }
+
+  /* Tablet and Mobile */
+
   @media (max-width: 768px) {
+    .site-footer {
+      gap: 2.5rem;
+    }
+
     .footer-grid {
-      grid-template-columns: 1fr !important;
-      gap: 2rem !important;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+  }
+
+  @media (max-width: 639px) {
+    .site-footer {
+      padding: 3.5rem 1.25rem 2rem;
+      gap: 2.5rem;
+    }
+
+    .footer-bottom {
+      align-items: flex-start;
+      flex-direction: column;
+      gap: 0.85rem;
+      padding-top: 1.5rem;
+    }
+
+    .footer-notice {
+      line-height: 1.7;
+    }
+  }
+
+  @media (max-width: 380px) {
+    .site-footer {
+      padding-right: 1rem;
+      padding-left: 1rem;
+    }
+
+    .footer-social {
+      gap: 1rem;
+    }
+  }
+
+  /* Reduced Motion */
+
+  @media (prefers-reduced-motion: reduce) {
+    .site-footer .footer-reveal {
+      opacity: 1;
+      transform: none;
+      transition: none;
+      will-change: auto;
+    }
+
+    .site-footer .footer-link,
+    .site-footer .footer-contact-link {
+      transition: none;
     }
   }
 </style>
+
+<script>
+  const footerRevealElements = document.querySelectorAll(
+    '.site-footer [data-footer-reveal]'
+  );
+
+  const footerPrefersReducedMotion = window.matchMedia(
+    '(prefers-reduced-motion: reduce)'
+  ).matches;
+
+  if (
+    footerPrefersReducedMotion ||
+    !('IntersectionObserver' in window)
+  ) {
+    footerRevealElements.forEach((element) => {
+      element.classList.add('is-visible');
+    });
+  } else {
+    const footerObserver = new IntersectionObserver(
+      (entries, observer) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        });
+      },
+      {
+        threshold: 0.08,
+        rootMargin: '0px 0px -25px 0px'
+      }
+    );
+
+    footerRevealElements.forEach((element) => {
+      footerObserver.observe(element);
+    });
+  }
+</script>

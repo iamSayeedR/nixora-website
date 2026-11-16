@@ -210,5 +210,56 @@ const nixoraSchema = {
       outline-offset: 2px;
     }
   </style>
+
+
+<script>
+  import Lenis from "lenis";
+
+  let lenis;
+  let rafId;
+
+  function destroyLenis() {
+    if (rafId) {
+      cancelAnimationFrame(rafId);
+      rafId = undefined;
+    }
+
+    if (lenis) {
+      lenis.destroy();
+      lenis = undefined;
+    }
+  }
+
+  function initLenis() {
+    destroyLenis();
+
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      return;
+    }
+
+    lenis = new Lenis({
+      lerp: 0.06,
+      smoothWheel: true,
+      wheelMultiplier: 0.65,
+      touchMultiplier: 1.2,
+      infinite: false,
+    });
+
+    function raf(time) {
+      if (!lenis) return;
+
+      lenis.raf(time);
+      rafId = requestAnimationFrame(raf);
+    }
+
+    rafId = requestAnimationFrame(raf);
+  }
+
+  initLenis();
+
+  document.addEventListener("astro:before-swap", destroyLenis);
+  document.addEventListener("astro:page-load", initLenis);
+</script>
+
 </body>
 </html>

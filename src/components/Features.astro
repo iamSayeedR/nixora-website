@@ -19,29 +19,43 @@ const groups = [
     label: "Later",
     title: "Monitoring & Observability",
     description:
-      "Track application health, runtime behaviour, and operational signals to identify issues and understand application performance.",
+      "Monitor application and agent health, evaluate agent performance, task completion, tool usage, policy compliance, runtime behaviour, and operational signals.",
     icon: "chart",
   },
   {
     label: "Later",
     title: "Scaling & Optimization",
     description:
-      "Adapt infrastructure to workload demands through automated scaling, idle resource management, and resource optimization.",
+      "Continuously optimize infrastructure around workload demands through automated scaling, load balancing, idle resource management, and resource optimization.",
     icon: "zap",
   },
   {
     label: "Later",
     title: "Governance & Lifecycle Operations",
     description:
-      "Manage AI agent lifecycles, permissions, security policies, and interactions across multi-agent systems.",
+      "Manage application and AI agent lifecycles, permissions, security policies, and operational control across individual agents and multi-agent systems.",
     icon: "shield",
   },
   {
     label: "Later",
     title: "Platform & Infrastructure Integrations",
     description:
-      "Expand Nixora with platform integrations, a web dashboard, multi-cloud capabilities, CI/CD workflows, fleet management, and broader lifecycle operations as the product matures.",
+      "Expand Nixora through infrastructure provider integrations, platform connectivity, CI/CD workflows, APIs, SDKs, and a unified web interface as the product matures.",
     icon: "box",
+  },
+  {
+    label: "Later",
+    title: "Agent Intelligence & Orchestration",
+    description:
+      "Understand how AI agents interact with each other, use tools, access services, and depend on shared infrastructure. Coordinate agent relationships, dependencies, permissions, and interactions across multi-agent systems.",
+    icon: "network",
+  },
+  {
+    label: "Later",
+    title: "Autonomous Operations & Nixora Autopilot",
+    description:
+      "Understand application and agent environments, detect operational issues, predict infrastructure risks, identify root causes, and support authorized remediation with continuous verification.",
+    icon: "bot",
   },
 ];
 ---
@@ -56,7 +70,7 @@ const groups = [
       </h2>
 
       <p class="roadmap-description">
-        Nixora's roadmap extends beyond deployment towards a unified operational layer for AI-generated applications and agents bringing their deployment, lifecycle management, infrastructure, and governance together.
+        Nixora's roadmap extends beyond deployment towards a unified operational layer for AI-generated applications and agents, bringing their deployment, lifecycle management, infrastructure, intelligence, and governance together.
       </p>
     </div>
 
@@ -124,6 +138,34 @@ const groups = [
                   <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4a2 2 0 0 0 1-1.73z" />
                   <polyline points="3.27 6.96 12 12.01 20.73 6.96" />
                   <line x1="12" y1="22.08" x2="12" y2="12" />
+                </svg>
+              )}
+
+              {item.icon === "network" && (
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="9" y="2" width="6" height="6" rx="1" />
+                  <rect x="2" y="16" width="6" height="6" rx="1" />
+                  <rect x="16" y="16" width="6" height="6" rx="1" />
+                  <path d="M12 8v4M5 16v-4h14v4" />
+                </svg>
+              )}
+
+              {item.icon === "bot" && (
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.6"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                >
+                  <path d="M12 8V4H8" />
+                  <rect width="16" height="12" x="4" y="8" rx="2" />
+                  <path d="M2 14h2" />
+                  <path d="M20 14h2" />
+                  <path d="M15 13v2" />
+                  <path d="M9 13v2" />
                 </svg>
               )}
             </span>
@@ -263,15 +305,13 @@ const groups = [
     color: rgb(255 255 255 / 55%);
   }
 
- .pulse-dot {
-  width: 6px;
-  height: 6px;
-  flex-shrink: 0;
-  border-radius: 50%;
-  background: var(--primary, #a78bfa);
-}
-
- 
+  .pulse-dot {
+    width: 6px;
+    height: 6px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    background: var(--primary, #a78bfa);
+  }
 
   /* Icon */
   .roadmap-icon {
@@ -370,17 +410,22 @@ const groups = [
   /* Scroll reveal */
   [data-reveal] {
     opacity: 0;
-    transform: translateY(18px);
-    transition: opacity 0.65s ease, transform 0.65s ease;
+    transform: translate3d(0, 26px, 0);
+    transition:
+      opacity 850ms cubic-bezier(0.22, 1, 0.36, 1),
+      transform 850ms cubic-bezier(0.22, 1, 0.36, 1);
+    will-change: opacity, transform;
   }
 
   [data-reveal].is-visible {
     opacity: 1;
-    transform: translateY(0);
+    transform: translate3d(0, 0, 0);
+    will-change: auto;
   }
 
+  /* Cards reveal in a subtle stagger */
   .detailed-cards-grid [data-reveal] {
-    transition-delay: calc(var(--card-index, 0) * 80ms);
+    transition-delay: calc(var(--card-index, 0) * 120ms);
   }
 
   /* Small mobile */
@@ -515,6 +560,7 @@ const groups = [
       opacity: 1;
       transform: none;
       transition: none;
+      will-change: auto;
     }
 
     .arch-product-link,
@@ -552,6 +598,7 @@ const groups = [
       },
       {
         threshold: 0.12,
+        rootMargin: "0px 0px -35px 0px",
       }
     );
 

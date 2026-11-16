@@ -20,13 +20,12 @@ const stats = [
     label: "Early Access Signups",
     color: "#a78bfa",
   },
-    {
+  {
     value: "2",
     target: "2",
     label: "LOIs",
     color: "#a78bfa",
   },
-
 ];
 ---
 
@@ -34,16 +33,25 @@ const stats = [
   <div class="traction-tint"></div>
 
   <div class="traction-container">
-    <p class="traction-caption">
+    <p
+      class="traction-caption"
+      data-reveal
+      style="--reveal-delay: 0ms;"
+    >
       Building since September 2026 · CLI launched August 2026
     </p>
 
     <div class="traction-grid">
-      {stats.map((stat) => (
-        <div class="stat-card">
-        {stat.label === "Early Access Signups" && (
-  <div class="stat-highlight-sweep"></div>
-)}
+      {stats.map((stat, index) => (
+        <div
+          class="stat-card"
+          data-reveal
+          style={`--reveal-delay: ${200 + index * 350}ms;`}
+        >
+          {stat.label === "Early Access Signups" && (
+            <div class="stat-highlight-sweep"></div>
+          )}
+
           <div class="stat-number-wrap">
             <div
               class="stat-number"
@@ -63,22 +71,37 @@ const stats = [
 </section>
 
 <script>
-  const tractionSection = document.querySelector("#traction");
+  function initTractionSection() {
+    const tractionSection = document.querySelector("#traction");
 
-  if (tractionSection) {
+    if (!tractionSection) return;
+
+    const revealElements =
+      tractionSection.querySelectorAll<HTMLElement>(
+        "[data-reveal]:not(.is-visible)"
+      );
+
     const counters =
-      tractionSection.querySelectorAll<HTMLElement>(".stat-number[data-target]");
+      tractionSection.querySelectorAll<HTMLElement>(
+        ".stat-number[data-target]"
+      );
 
     const reducedMotion = window.matchMedia(
-      "(prefers-reduced-motion: reduce)",
+      "(prefers-reduced-motion: reduce)"
     ).matches;
+
+    const animatedCounters = new WeakSet<HTMLElement>();
 
     function setFinalValue(el: HTMLElement) {
       el.textContent =
-        el.dataset.target + (el.dataset.suffix || "");
+        (el.dataset.target || "0") + (el.dataset.suffix || "");
     }
 
     function animateCounter(el: HTMLElement) {
+      if (animatedCounters.has(el)) return;
+
+      animatedCounters.add(el);
+
       const target = Number(el.dataset.target || 0);
       const suffix = el.dataset.suffix || "";
 
@@ -87,7 +110,7 @@ const stats = [
         return;
       }
 
-      const duration = 1400;
+      const duration = 1800;
       const startTime = performance.now();
 
       function update(now: number) {
@@ -99,20 +122,25 @@ const stats = [
 
         if (progress < 1) {
           requestAnimationFrame(update);
+        } else {
+          setFinalValue(el);
         }
       }
 
       requestAnimationFrame(update);
     }
 
-    if (
-      reducedMotion ||
-      typeof IntersectionObserver === "undefined"
-    ) {
-      counters.forEach(setFinalValue);
-    } else {
-      const observer = new IntersectionObserver(
-        (entries) => {
+    function startCounterObserver() {
+      if (
+        reducedMotion ||
+        typeof IntersectionObserver === "undefined"
+      ) {
+        counters.forEach(setFinalValue);
+        return;
+      }
+
+      const counterObserver = new IntersectionObserver(
+        (entries, observer) => {
           entries.forEach((entry) => {
             if (entry.isIntersecting) {
               animateCounter(entry.target as HTMLElement);
@@ -120,12 +148,49 @@ const stats = [
             }
           });
         },
-        { threshold: 0.2 },
+        {
+          threshold: 0.4,
+        }
       );
 
-      counters.forEach((counter) => observer.observe(counter));
+      counters.forEach((counter) => {
+        counterObserver.observe(counter);
+      });
     }
+
+    if (
+      reducedMotion ||
+      typeof IntersectionObserver === "undefined"
+    ) {
+      revealElements.forEach((element) => {
+        element.classList.add("is-visible");
+      });
+    } else {
+      const revealObserver = new IntersectionObserver(
+        (entries, observer) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("is-visible");
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        {
+          threshold: 0.08,
+          rootMargin: "0px 0px -45px 0px",
+        }
+      );
+
+      revealElements.forEach((element) => {
+        revealObserver.observe(element);
+      });
+    }
+
+    startCounterObserver();
   }
+
+  initTractionSection();
+  document.addEventListener("astro:page-load", initTractionSection);
 </script>
 
 <style>
@@ -179,6 +244,8 @@ const stats = [
   }
 
   .stat-card {
+    position: relative;
+    isolation: isolate;
     min-width: 0;
     min-height: 190px;
     padding: 2rem 1rem;
@@ -219,7 +286,71 @@ const stats = [
     font-weight: 700;
     line-height: 1.6;
     letter-spacing: 0.1em;
-    text-transform: uppercase;
+  }
+
+  /* Early Access Highlight */
+
+  .stat-highlight-sweep {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    border: 1px solid transparent;
+    border-radius: inherit;
+    background:
+      linear-gradient(
+        120deg,
+        transparent 20%,
+        rgba(167, 139, 250, 0.35),
+        transparent 80%
+      ) border-box;
+    background-size: 200% 100%;
+    background-position: 200% 0;
+    animation: stat-highlight-sweep 4.5s linear infinite;
+    z-index: 0;
+  }
+
+  .stat-card:has(.stat-highlight-sweep) {
+    background-color: rgba(125, 87, 239, 0.06);
+  }
+
+  .stat-card > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  .stat-card .stat-highlight-sweep {
+    position: absolute;
+    z-index: 0;
+  }
+
+  @keyframes stat-highlight-sweep {
+    from {
+      background-position: 200% 0;
+    }
+
+    to {
+      background-position: -200% 0;
+    }
+  }
+
+  /* Smooth Scroll Reveal */
+
+  @media (prefers-reduced-motion: no-preference) {
+    #traction [data-reveal] {
+      opacity: 0;
+      transform: translate3d(0, 22px, 0);
+      transition:
+        opacity 1300ms cubic-bezier(0.22, 1, 0.36, 1),
+        transform 1300ms cubic-bezier(0.22, 1, 0.36, 1);
+      transition-delay: var(--reveal-delay, 0ms);
+      will-change: transform, opacity;
+    }
+
+    #traction [data-reveal].is-visible {
+      opacity: 1;
+      transform: translate3d(0, 0, 0);
+      will-change: auto;
+    }
   }
 
   @media (min-width: 640px) {
@@ -278,64 +409,22 @@ const stats = [
     }
   }
 
+  /* Reduced Motion */
+
   @media (prefers-reduced-motion: reduce) {
+    #traction [data-reveal] {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+
     .stat-card {
       transition: none;
     }
+
+    .stat-highlight-sweep {
+      animation: none;
+      background-position: center;
+    }
   }
-
-  .stat-card {
-  position: relative;
-  isolation: isolate;
-}
-
-.stat-highlight-sweep {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  border: 1px solid transparent;
-  border-radius: inherit;
-  background:
-    linear-gradient(
-      120deg,
-      transparent 20%,
-      rgba(167, 139, 250, 0.35),
-      transparent 80%
-    ) border-box;
-  background-size: 200% 100%;
-  background-position: 200% 0;
-  animation: stat-highlight-sweep 4.5s linear infinite;
-  z-index: 0;
-}
-
-.stat-card:has(.stat-highlight-sweep) {
-  background-color: rgba(125, 87, 239, 0.06);
-}
-
-.stat-card > * {
-  position: relative;
-  z-index: 1;
-}
-
-.stat-card .stat-highlight-sweep {
-  position: absolute;
-  z-index: 0;
-}
-
-@keyframes stat-highlight-sweep {
-  from {
-    background-position: 200% 0;
-  }
-
-  to {
-    background-position: -200% 0;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .stat-highlight-sweep {
-    animation: none;
-    background-position: center;
-  }
-}
 </style>

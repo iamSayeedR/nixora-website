@@ -3,26 +3,33 @@
   aria-labelledby="long-term-vision-heading"
   class="long-term-vision"
 >
-  <!-- Subtle background -->
-  
-
   <div class="vision-inner">
 
     <!-- Vision Introduction -->
-    <header class="vision-header" data-reveal>
-      <div class="vision-eyebrow">
-      
+    <header class="vision-header">
+      <div
+        class="vision-eyebrow"
+        data-reveal
+        style="--reveal-delay: 0ms;"
+      >
         <p>Long-term vision</p>
-   
       </div>
 
-      <h2 id="long-term-vision-heading">
+      <h2
+        id="long-term-vision-heading"
+        data-reveal
+        style="--reveal-delay: 300ms;"
+      >
         The future of software
         <br class="desktop-break" />
         <span> needs a new foundation.</span>
       </h2>
 
-      <p class="vision-description">
+      <p
+        class="vision-description"
+        data-reveal
+        style="--reveal-delay: 600ms;"
+      >
         Nixora&apos;s long-term vision is to become the control plane for
         AI-generated software and AI agents.
       </p>
@@ -32,14 +39,21 @@
     <div class="vision-content">
 
       <!-- The Changing Landscape -->
-      <div class="changing-landscape" data-reveal>
-        <p>
+      <div class="changing-landscape">
+        <p
+          data-reveal
+          style="--reveal-delay: 0ms;"
+        >
           As software becomes easier to create,
           operating it reliably becomes a bigger challenge.
         </p>
       </div>
 
-      <p class="landscape-description" data-reveal>
+      <p
+        class="landscape-description"
+        data-reveal
+        style="--reveal-delay: 350ms;"
+      >
         As AI makes software creation faster and more accessible, the number
         of applications and agents that need to be deployed and maintained
         will continue to grow. Managing every workload manually will become
@@ -47,10 +61,20 @@
       </p>
 
       <!-- Nixora's Role -->
-      <div class="nixora-role" data-reveal>
-        <p class="section-label">Where Nixora comes in</p>
+      <div class="nixora-role">
+        <p
+          class="section-label"
+          data-reveal
+          style="--reveal-delay: 0ms;"
+        >
+          Where Nixora comes in
+        </p>
 
-        <p class="role-description">
+        <p
+          class="role-description"
+          data-reveal
+          style="--reveal-delay: 350ms;"
+        >
           Nixora aims to provide the infrastructure and operational layer
           that helps users
           <span> deploy, operate, troubleshoot, govern, and manage </span>
@@ -59,10 +83,18 @@
       </div>
 
       <!-- AI Companion -->
-      <div class="ai-companion" data-reveal>
-        <h3>AI Companion</h3>
+      <div class="ai-companion">
+        <h3
+          data-reveal
+          style="--reveal-delay: 0ms;"
+        >
+          AI Companion
+        </h3>
 
-        <p>
+        <p
+          data-reveal
+          style="--reveal-delay: 350ms;"
+        >
           The AI Companion will eventually help users move from manually
           performing operational tasks toward safely delegating authorized
           work to AI.
@@ -70,7 +102,11 @@
       </div>
 
       <!-- Closing Thought -->
-      <p class="closing-thought" data-reveal>
+      <p
+        class="closing-thought"
+        data-reveal
+        style="--reveal-delay: 0ms;"
+      >
         The goal is to make software operations simpler, more reliable, and
         more accessible as AI-generated software becomes increasingly
         common.
@@ -79,17 +115,31 @@
     </div>
 
     <!-- Core Mission -->
-    <div class="core-mission" data-reveal>
+    <div class="core-mission">
       <div class="mission-background" aria-hidden="true"></div>
 
       <div class="mission-content">
-       <p class="mission-label">Nixora's Core Vision</p>
+        <p
+          class="mission-label"
+          data-reveal
+          style="--reveal-delay: 0ms;"
+        >
+          Nixora's Core Vision
+        </p>
 
-        <p class="mission-first">
+        <p
+          class="mission-first"
+          data-reveal
+          style="--reveal-delay: 350ms;"
+        >
           AI helps people build software.
         </p>
 
-        <p class="mission-second">
+        <p
+          class="mission-second"
+          data-reveal
+          style="--reveal-delay: 700ms;"
+        >
           Nixora aims to help them deploy, operate
           <br class="desktop-break" />
           and manage it.
@@ -101,14 +151,28 @@
 </section>
 
 <script>
-  const revealElements =
-    document.querySelectorAll<HTMLElement>(".long-term-vision [data-reveal]");
+  function initLongTermVisionReveal() {
+    const revealElements = document.querySelectorAll<HTMLElement>(
+      ".long-term-vision [data-reveal]:not(.is-visible)"
+    );
 
-  const prefersReducedMotion = window.matchMedia(
-    "(prefers-reduced-motion: reduce)"
-  ).matches;
+    if (!revealElements.length) return;
 
-  if (!prefersReducedMotion && "IntersectionObserver" in window) {
+    const prefersReducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches;
+
+    if (
+      prefersReducedMotion ||
+      !("IntersectionObserver" in window)
+    ) {
+      revealElements.forEach((element) => {
+        element.classList.add("is-visible");
+      });
+
+      return;
+    }
+
     const observer = new IntersectionObserver(
       (entries, currentObserver) => {
         entries.forEach((entry) => {
@@ -119,17 +183,22 @@
         });
       },
       {
-        threshold: 0.15,
-        rootMargin: "0px 0px -40px 0px",
+        threshold: 0.08,
+        rootMargin: "0px 0px -55px 0px",
       }
     );
 
-    revealElements.forEach((element) => observer.observe(element));
-  } else {
     revealElements.forEach((element) => {
-      element.classList.add("is-visible");
+      observer.observe(element);
     });
   }
+
+  initLongTermVisionReveal();
+
+  document.addEventListener(
+    "astro:page-load",
+    initLongTermVisionReveal
+  );
 </script>
 
 <style>
@@ -139,15 +208,29 @@
     isolation: isolate;
     overflow: hidden;
     padding: 6rem 1.25rem;
-   
     color: #fff;
   }
-
-
 
   .vision-inner {
     max-width: 1024px;
     margin: 0 auto;
+  }
+
+  /* Smooth Scroll Reveal */
+  .long-term-vision [data-reveal] {
+    opacity: 0;
+    transform: translate3d(0, 22px, 0);
+    transition:
+      opacity 1300ms cubic-bezier(0.22, 1, 0.36, 1),
+      transform 1300ms cubic-bezier(0.22, 1, 0.36, 1);
+    transition-delay: var(--reveal-delay, 0ms);
+    will-change: opacity, transform;
+  }
+
+  .long-term-vision [data-reveal].is-visible {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+    will-change: auto;
   }
 
   /* Vision Introduction */
@@ -182,7 +265,7 @@
   .vision-header h2 {
     margin: 1.5rem auto 0;
     color: #fff;
-   font-size: clamp(2.1rem, 4.5vw, 3.25rem);
+    font-size: clamp(2.1rem, 4.5vw, 3.25rem);
     font-weight: 600;
     line-height: 1.13;
     letter-spacing: -0.05em;
@@ -325,7 +408,7 @@
   .mission-first {
     margin: 2rem 0 0;
     color: rgba(255, 255, 255, 0.7);
-   font-size: clamp(1.4rem, 2.7vw, 2rem);
+    font-size: clamp(1.4rem, 2.7vw, 2rem);
     font-weight: 500;
     line-height: 1.6;
     letter-spacing: -0.04em;
@@ -334,26 +417,10 @@
   .mission-second {
     margin: 0.75rem 0 0;
     color: #a78bfa;
-   font-size: clamp(1.4rem, 3vw, 2.6rem);
+    font-size: clamp(1.4rem, 3vw, 2.6rem);
     font-weight: 600;
     line-height: 1.4;
     letter-spacing: -0.045em;
-  }
-
-  /* Scroll Reveal */
-  @media (prefers-reduced-motion: no-preference) {
-    .long-term-vision [data-reveal] {
-      opacity: 0;
-      transform: translateY(18px);
-      transition:
-        opacity 650ms ease-out,
-        transform 650ms ease-out;
-    }
-
-    .long-term-vision [data-reveal].is-visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
   }
 
   /* Responsive */
@@ -427,6 +494,7 @@
     }
   }
 
+  /* Reduced Motion */
   @media (prefers-reduced-motion: reduce) {
     .long-term-vision [data-reveal] {
       opacity: 1;

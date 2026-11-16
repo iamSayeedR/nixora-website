@@ -1,30 +1,28 @@
 
 ---
 const resources = [
-
-   {
-  type: "article",
-  category: "AI Infrastructure",
-  date: "November 2026",
-  readTime: "7 min read",
-  title: "AI Agent Deploy Access: How to Keep Control (2026)",
-  description:
-    "Learn how to control AI agent deployment access with scoped permissions, approval gates, environment separation, and audit trails.",
-  href: "/resources/ai-agent-deploy-access",
-  visual: "deploy-access",
-},
-
-{
-  type: "article",
-  category: "Deployment",
-  date: "November 2026",
-  readTime: "10 min read",
-  title: "Where to Deploy AI-Built Apps: An Honest Comparison",
-  description:
-    "Compare Render, Railway, Fly.io, Vercel, and Nixora to find the right deployment platform for your AI-built app.",
-  href: "/resources/where-to-deploy-ai-built-apps",
-  visual: "platform-comparison",
-},
+  {
+    type: "article",
+    category: "AI Infrastructure",
+    date: "November 2026",
+    readTime: "7 min read",
+    title: "AI Agent Deploy Access: How to Keep Control (2026)",
+    description:
+      "Learn how to control AI agent deployment access with scoped permissions, approval gates, environment separation, and audit trails.",
+    href: "/resources/ai-agent-deploy-access",
+    visual: "deploy-access",
+  },
+  {
+    type: "article",
+    category: "Deployment",
+    date: "November 2026",
+    readTime: "10 min read",
+    title: "Where to Deploy AI-Built Apps: An Honest Comparison",
+    description:
+      "Compare Render, Railway, Fly.io, Vercel, and Nixora to find the right deployment platform for your AI-built app.",
+    href: "/resources/where-to-deploy-ai-built-apps",
+    visual: "platform-comparison",
+  },
   {
     type: "article",
     category: "AI Infrastructure",
@@ -36,8 +34,6 @@ const resources = [
     href: "/resources/ai-agent-control-plane",
     visual: "control-plane",
   },
-  
-
   {
     type: "article",
     category: "AI Infrastructure",
@@ -53,7 +49,7 @@ const resources = [
     type: "article",
     title:
       "How to Deploy Gemini CLI, Codex & Open-Source AI Agent Apps to Production",
-   category: "Deployment",
+    category: "Deployment",
     date: "September 2026",
     readTime: "5 min read",
     description:
@@ -97,7 +93,7 @@ const resources = [
   },
   {
     type: "article",
-   category: "Deployment",
+    category: "Deployment",
     date: "August 2026",
     readTime: "4 min read",
     title: "Zero-Config CLI Deployment for AI-Generated Applications",
@@ -154,15 +150,27 @@ function getFilterCategory(category: string) {
     <!-- Heading -->
     <div class="mb-8 flex flex-col gap-4 sm:mb-10 sm:flex-row sm:items-end sm:justify-between">
       <div class="min-w-0">
-        <p class="text-[10px] font-medium uppercase tracking-[0.16em] text-[#a78bfa] sm:text-[11px]">
+        <p
+          data-reveal
+          style="--reveal-delay: 0ms"
+          class="text-[10px] font-medium uppercase tracking-[0.16em] text-[#a78bfa] sm:text-[11px]"
+        >
           THE NIXORA LIBRARY
         </p>
 
-        <h2 class="mt-3 text-2xl font-semibold tracking-tight text-white sm:text-3xl">
+        <h2
+          data-reveal
+          style="--reveal-delay: 350ms"
+          class="mt-3 text-2xl font-semibold tracking-tight text-white sm:text-3xl"
+        >
           Ideas, guides &amp; insights
         </h2>
 
-        <p class="mt-2 max-w-xl text-[13px] leading-6 text-white/50 sm:text-sm">
+        <p
+          data-reveal
+          style="--reveal-delay: 700ms"
+          class="mt-2 max-w-xl text-[13px] leading-6 text-white/50 sm:text-sm"
+        >
           Practical thinking on AI infrastructure, deployment, and building
           software with autonomous agents.
         </p>
@@ -170,7 +178,11 @@ function getFilterCategory(category: string) {
     </div>
 
     <!-- Search -->
-    <div class="mb-6 sm:mb-7">
+    <div
+      data-reveal
+      style="--reveal-delay: 150ms"
+      class="mb-6 sm:mb-7"
+    >
       <div class="relative w-full max-w-md">
         <svg
           viewBox="0 0 24 24"
@@ -194,7 +206,11 @@ function getFilterCategory(category: string) {
 
     <!-- Content Type Filters -->
     <div class="mb-4">
-      <p class="mb-3 text-[10px] font-medium uppercase tracking-[0.13em] text-white/35">
+      <p
+        data-reveal
+        style="--reveal-delay: 0ms"
+        class="mb-3 text-[10px] font-medium uppercase tracking-[0.13em] text-white/35"
+      >
         CONTENT TYPE
       </p>
 
@@ -207,6 +223,8 @@ function getFilterCategory(category: string) {
           <button
             type="button"
             data-type-filter={type.value}
+            data-reveal
+            style={`--reveal-delay: ${180 + index * 130}ms`}
             aria-pressed={index === 0 ? "true" : "false"}
             class:list={[
               "shrink-0 rounded-full border px-3 py-2 text-[11px] font-medium transition-colors duration-200 sm:px-4 sm:py-2.5 sm:text-xs",
@@ -221,34 +239,40 @@ function getFilterCategory(category: string) {
       </div>
     </div>
 
-   <!-- Topic Filters -->
-<div
-  id="resource-topic-filters"
-  class="mb-7 border-b border-white/8 pb-4 sm:mb-9 sm:pb-5"
-  aria-label="Filter by topic"
->
-  <p class="mb-3 text-[10px] font-medium uppercase tracking-[0.13em] text-white/35">
-    TOPICS
-  </p>
-
-  <div class="flex flex-wrap items-center gap-2">
-    {topicFilters.map((filter, index) => (
-      <button
-        type="button"
-        data-topic-filter={filter}
-        aria-pressed={index === 0 ? "true" : "false"}
-        class:list={[
-          "shrink-0 rounded-full border px-3 py-2 text-[11px] font-medium transition-colors duration-200 sm:px-4 sm:py-2.5 sm:text-xs",
-          index === 0
-            ? "border-[#a78bfa]/40 bg-[#7D57EF]/13 text-[#c4b5fd]"
-            : "border-transparent text-white/50 hover:border-white/10 hover:text-white",
-        ]}
+    <!-- Topic Filters -->
+    <div
+      id="resource-topic-filters"
+      class="mb-7 border-b border-white/8 pb-4 sm:mb-9 sm:pb-5"
+      aria-label="Filter by topic"
+    >
+      <p
+        data-reveal
+        style="--reveal-delay: 0ms"
+        class="mb-3 text-[10px] font-medium uppercase tracking-[0.13em] text-white/35"
       >
-        {filter}
-      </button>
-    ))}
-  </div>
-</div>
+        TOPICS
+      </p>
+
+      <div class="flex flex-wrap items-center gap-2">
+        {topicFilters.map((filter, index) => (
+          <button
+            type="button"
+            data-topic-filter={filter}
+            data-reveal
+            style={`--reveal-delay: ${180 + index * 160}ms`}
+            aria-pressed={index === 0 ? "true" : "false"}
+            class:list={[
+              "shrink-0 rounded-full border px-3 py-2 text-[11px] font-medium transition-colors duration-200 sm:px-4 sm:py-2.5 sm:text-xs",
+              index === 0
+                ? "border-[#a78bfa]/40 bg-[#7D57EF]/13 text-[#c4b5fd]"
+                : "border-transparent text-white/50 hover:border-white/10 hover:text-white",
+            ]}
+          >
+            {filter}
+          </button>
+        ))}
+      </div>
+    </div>
 
     <!-- Resources -->
     <div
@@ -261,7 +285,8 @@ function getFilterCategory(category: string) {
           data-type={resource.type}
           data-category={getFilterCategory(resource.category)}
           data-search={`${resource.title} ${resource.description} ${resource.category} ${resource.type}`.toLowerCase()}
-          style={`--card-index: ${index}`}
+          data-reveal
+          style={`--card-index: ${index}; --reveal-delay: ${(index % 3) * 280}ms`}
           class="min-w-0"
         >
           <a
@@ -278,8 +303,6 @@ function getFilterCategory(category: string) {
 
               <div class="resource-artwork-inner relative z-10 w-full min-w-0 px-4 sm:px-5 md:px-6 lg:px-7">
 
-
-              
                 {/* Agent Deploy Access */}
                 {resource.visual === "deploy-access" && (
                   <div class="mx-auto w-full max-w-97.5">
@@ -292,7 +315,7 @@ function getFilterCategory(category: string) {
 
                     {/* Architecture flow */}
                     <div class="grid grid-cols-[1fr_18px_1fr_18px_1fr] items-center gap-1">
-                      
+
                       {/* AI Agent */}
                       <div class="flex min-w-0 flex-col items-center justify-center rounded-lg border border-white/10 bg-[#19191F] px-1 py-3.5">
                         <svg viewBox="0 0 32 32" class="h-7 w-7 text-white/65" fill="none">
@@ -360,70 +383,67 @@ function getFilterCategory(category: string) {
                     </div>
                   </div>
                 )}
-                
 
+                {/* Platform Comparison */}
+                {resource.visual === "platform-comparison" && (
+                  <div class="mx-auto w-full max-w-97.5">
+                    <div class="mb-4 flex items-center justify-between gap-2">
+                      <span class="text-[10px] font-medium tracking-wide text-white/45">
+                        DEPLOYMENT PLATFORMS
+                      </span>
+                      <span class="text-[9px] text-white/35">5 OPTIONS</span>
+                    </div>
 
-{/* Platform Comparison */}
-{resource.visual === "platform-comparison" && (
-  <div class="mx-auto w-full max-w-97.5">
-    <div class="mb-4 flex items-center justify-between gap-2">
-      <span class="text-[10px] font-medium tracking-wide text-white/45">
-        DEPLOYMENT PLATFORMS
-      </span>
-      <span class="text-[9px] text-white/35">5 OPTIONS</span>
-    </div>
+                    <div class="grid grid-cols-5 gap-2">
+                      {[
+                        { initials: "Re", name: "Render" },
+                        { initials: "Ra", name: "Railway" },
+                        { initials: "F", name: "Fly.io" },
+                        { initials: "V", name: "Vercel" },
+                        { initials: "N", name: "Nixora", featured: true },
+                      ].map((platform) => (
+                        <div
+                          class:list={[
+                            "flex min-w-0 flex-col items-center justify-center rounded-lg border px-1 py-4",
+                            platform.featured
+                              ? "border-[#a78bfa]/35 bg-[#7D57EF]/12"
+                              : "border-white/10 bg-[#19191F]",
+                          ]}
+                        >
+                          <div
+                            class:list={[
+                              "flex h-8 w-8 items-center justify-center rounded-lg text-xs font-semibold",
+                              platform.featured
+                                ? "bg-[#7D57EF]/25 text-[#c4b5fd]"
+                                : "bg-white/[0.06] text-white/65",
+                            ]}
+                          >
+                            {platform.initials}
+                          </div>
 
-    <div class="grid grid-cols-5 gap-2">
-      {[
-        { initials: "Re", name: "Render" },
-        { initials: "Ra", name: "Railway" },
-        { initials: "F", name: "Fly.io" },
-        { initials: "V", name: "Vercel" },
-        { initials: "N", name: "Nixora", featured: true },
-      ].map((platform) => (
-        <div
-          class:list={[
-            "flex min-w-0 flex-col items-center justify-center rounded-lg border px-1 py-4",
-            platform.featured
-              ? "border-[#a78bfa]/35 bg-[#7D57EF]/12"
-              : "border-white/10 bg-[#19191F]",
-          ]}
-        >
-          <div
-            class:list={[
-              "flex h-8 w-8 items-center justify-center rounded-lg text-xs font-semibold",
-              platform.featured
-                ? "bg-[#7D57EF]/25 text-[#c4b5fd]"
-                : "bg-white/[0.06] text-white/65",
-            ]}
-          >
-            {platform.initials}
-          </div>
+                          <span
+                            class:list={[
+                              "mt-2 text-[9px] font-medium",
+                              platform.featured ? "text-[#c4b5fd]" : "text-white/65",
+                            ]}
+                          >
+                            {platform.name}
+                          </span>
+                        </div>
+                      ))}
+                    </div>
 
-          <span
-            class:list={[
-              "mt-2 text-[9px] font-medium",
-              platform.featured ? "text-[#c4b5fd]" : "text-white/65",
-            ]}
-          >
-            {platform.name}
-          </span>
-        </div>
-      ))}
-    </div>
+                    <div class="mt-4 flex items-center justify-center gap-2">
+                      <span class="h-px w-8 bg-white/10"></span>
+                      <span class="text-[9px] tracking-wide text-white/40">
+                        COMPARE · CHOOSE · DEPLOY
+                      </span>
+                      <span class="h-px w-8 bg-white/10"></span>
+                    </div>
+                  </div>
+                )}
 
-    <div class="mt-4 flex items-center justify-center gap-2">
-      <span class="h-px w-8 bg-white/10"></span>
-      <span class="text-[9px] tracking-wide text-white/40">
-        COMPARE · CHOOSE · DEPLOY
-      </span>
-      <span class="h-px w-8 bg-white/10"></span>
-    </div>
-  </div>
-)}
-
-
-                <!-- Control Plane -->
+                {/* Control Plane */}
                 {resource.visual === "control-plane" && (
                   <div class="mx-auto w-full max-w-97.5">
                     <div class="mb-3 flex items-center justify-between">
@@ -456,7 +476,7 @@ function getFilterCategory(category: string) {
                   </div>
                 )}
 
-                <!-- MCP -->
+                {/* MCP */}
                 {resource.visual === "mcp" && (
                   <div class="mx-auto w-full max-w-97.5">
                     <div class="mb-3 text-[10px] font-medium tracking-wide text-white/45">MODEL CONTEXT PROTOCOL</div>
@@ -486,7 +506,7 @@ function getFilterCategory(category: string) {
                   </div>
                 )}
 
-                <!-- Gemini Deployment -->
+                {/* Gemini Deployment */}
                 {resource.visual === "gemini-deployment" && (
                   <div class="mx-auto w-full max-w-97.5">
                     <div class="mb-3 flex items-center justify-between gap-2">
@@ -532,7 +552,7 @@ function getFilterCategory(category: string) {
                   </div>
                 )}
 
-                <!-- MCP Cloud -->
+                {/* MCP Cloud */}
                 {resource.visual === "mcp-cloud" && (
                   <div class="mx-auto w-full max-w-97.5">
                     <div class="mb-3 flex items-center justify-between gap-2">
@@ -586,7 +606,7 @@ function getFilterCategory(category: string) {
                   </div>
                 )}
 
-                <!-- Application Deployment -->
+                {/* Application Deployment */}
                 {resource.visual === "deployment" && (
                   <div class="mx-auto w-full max-w-97.5">
                     <div class="mb-3 text-[10px] font-medium tracking-wide text-white/45">APPLICATION DEPLOYMENT</div>
@@ -625,7 +645,7 @@ function getFilterCategory(category: string) {
                   </div>
                 )}
 
-                <!-- Production -->
+                {/* Production */}
                 {resource.visual === "production" && (
                   <div class="mx-auto w-full max-w-97.5">
                     <div class="mb-3 text-[10px] font-medium tracking-wide text-white/45">CODE IS NOT THE FINISH LINE</div>
@@ -656,7 +676,7 @@ function getFilterCategory(category: string) {
                   </div>
                 )}
 
-                <!-- Terminal -->
+                {/* Terminal */}
                 {resource.visual === "terminal" && (
                   <div class="mx-auto w-full max-w-97.5 overflow-hidden rounded-lg border border-white/10 bg-[#17171C]">
                     <div class="flex items-center justify-between border-b border-white/8 px-3 py-2.5 sm:px-4">
@@ -675,7 +695,7 @@ function getFilterCategory(category: string) {
                   </div>
                 )}
 
-                <!-- Infrastructure -->
+                {/* Infrastructure */}
                 {resource.visual === "infrastructure" && (
                   <div class="mx-auto w-full max-w-97.5">
                     <div class="mb-3 text-[10px] font-medium tracking-wide text-white/45">THE INFRASTRUCTURE LAYER</div>
@@ -799,11 +819,28 @@ function getFilterCategory(category: string) {
     display: none !important;
   }
 
-  /* Card entrance animation */
+  /* Smooth scroll reveal */
+  #resources-list [data-reveal] {
+    opacity: 0;
+    transform: translate3d(0, 24px, 0);
+    transition:
+      opacity 1400ms cubic-bezier(0.22, 1, 0.36, 1),
+      transform 1400ms cubic-bezier(0.22, 1, 0.36, 1);
+    transition-delay: var(--reveal-delay, 0ms);
+    will-change: opacity, transform;
+  }
+
+  #resources-list [data-reveal].is-visible {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+    will-change: auto;
+  }
+
+  /* Filter-result animation */
   @keyframes resourceFadeIn {
     from {
-      opacity: 0;
-      transform: translateY(12px);
+      opacity: 0.7;
+      transform: translateY(8px);
     }
 
     to {
@@ -813,8 +850,7 @@ function getFilterCategory(category: string) {
   }
 
   #resources-list .animate-resource-in {
-    animation: resourceFadeIn 0.4s ease-out both;
-    animation-delay: min(calc(var(--card-index) * 40ms), 160ms);
+    animation: resourceFadeIn 450ms cubic-bezier(0.22, 1, 0.36, 1) both;
   }
 
   /* Small mobile: 320px - 374px */
@@ -877,6 +913,13 @@ function getFilterCategory(category: string) {
 
   /* Reduced motion accessibility */
   @media (prefers-reduced-motion: reduce) {
+    #resources-list [data-reveal] {
+      opacity: 1;
+      transform: none;
+      transition: none;
+      will-change: auto;
+    }
+
     #resources-list *,
     #resources-list *::before,
     #resources-list *::after {
@@ -980,26 +1023,31 @@ function getFilterCategory(category: string) {
     }
   }
 
-  function updateButtonStyles(
-    buttons: HTMLButtonElement[],
-    activeValue: string,
-    dataAttribute: "typeFilter" | "topicFilter",
-  ) {
-    buttons.forEach((button) => {
-      const value =
-        dataAttribute === "typeFilter"
-          ? button.dataset.typeFilter
-          : button.dataset.topicFilter;
+  
+function updateButtonStyles(
+  buttons: HTMLButtonElement[],
+  activeValue: string,
+  dataAttribute: "typeFilter" | "topicFilter",
+) {
+  buttons.forEach((button) => {
+    const value =
+      dataAttribute === "typeFilter"
+        ? button.dataset.typeFilter
+        : button.dataset.topicFilter;
 
-      const isActive = value === activeValue;
+    const isActive = value === activeValue;
 
-      button.setAttribute("aria-pressed", String(isActive));
+    button.setAttribute("aria-pressed", String(isActive));
 
-      button.className = isActive
-        ? "shrink-0 rounded-full border border-[#a78bfa]/40 bg-[#7D57EF]/13 px-3 py-2 text-[11px] font-medium text-[#c4b5fd] transition-colors duration-200 sm:px-4 sm:py-2.5 sm:text-xs"
-        : "shrink-0 rounded-full border border-transparent px-3 py-2 text-[11px] font-medium text-white/50 transition-colors duration-200 hover:border-white/10 hover:text-white sm:px-4 sm:py-2.5 sm:text-xs";
-    });
-  }
+    button.classList.toggle("border-[#a78bfa]/40", isActive);
+    button.classList.toggle("bg-[#7D57EF]/13", isActive);
+    button.classList.toggle("text-[#c4b5fd]", isActive);
+
+    button.classList.toggle("border-transparent", !isActive);
+    button.classList.toggle("text-white/50", !isActive);
+  });
+}
+
 
   typeFilterContainer?.addEventListener("click", (event) => {
     const target = event.target;
@@ -1049,4 +1097,50 @@ function getFilterCategory(category: string) {
   });
 
   updateResources();
+
+  // Smooth scroll reveal
+  function initResourceReveal() {
+    const revealElements = document.querySelectorAll<HTMLElement>(
+      "#resources-list [data-reveal]:not(.is-visible)",
+    );
+
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      revealElements.forEach((element) => {
+        element.classList.add("is-visible");
+      });
+      return;
+    }
+
+    if (!("IntersectionObserver" in window)) {
+      revealElements.forEach((element) => {
+        element.classList.add("is-visible");
+      });
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries, currentObserver) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+
+          const element = entry.target as HTMLElement;
+
+          element.classList.add("is-visible");
+          currentObserver.unobserve(element);
+        });
+      },
+      {
+        threshold: 0.08,
+        rootMargin: "0px 0px -55px 0px",
+      },
+    );
+
+    revealElements.forEach((element) => {
+      observer.observe(element);
+    });
+  }
+
+  initResourceReveal();
+
+  document.addEventListener("astro:page-load", initResourceReveal);
 </script>
