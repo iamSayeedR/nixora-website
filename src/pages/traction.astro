@@ -1,4 +1,3 @@
-
 ---
 import InnerLayout from '../layouts/InnerLayout.astro';
 import Traction from '../components/Traction.astro';
@@ -42,32 +41,20 @@ const milestones = [
   description="Factual metrics detailing Nixora CLI installs, real application deployments, and core engine milestones."
   jsonLd={breadcrumbSchema}
 >
-  <main class="traction-page">
+  <div class="traction-page">
 
     <!-- Page Header -->
     <section class="traction-hero">
-      <div
-        class="section-label"
-        data-reveal
-        style="--reveal-delay: 0ms;"
-      >
+      <div class="section-label">
         Traction & Milestones
       </div>
 
-      <h1
-        class="section-headline"
-        data-reveal
-        style="--reveal-delay: 300ms;"
-      >
+      <h1 class="section-headline">
         Blunt honesty over
         <span class="accent"> marketing polish.</span>
       </h1>
 
-      <p
-        class="hero-description"
-        data-reveal
-        style="--reveal-delay: 650ms;"
-      >
+      <p class="hero-description">
         Our MVP has been live since July 2026. Here are the exact,
         unrounded numbers backing Nixora's early developer adoption
         as of August 2026.
@@ -75,19 +62,15 @@ const milestones = [
     </section>
 
     <!-- Traction Metrics -->
-    <div data-reveal style="--reveal-delay: 150ms;">
-      <Traction />
-    </div>
+    <Traction />
 
     <!-- Detailed Traction Breakdown -->
     <section class="traction-details">
 
       <div class="details-heading">
-        <h2 data-reveal style="--reveal-delay: 0ms;">
-          Progress backed by numbers.
-        </h2>
+        <h2>Progress backed by numbers.</h2>
 
-        <p data-reveal style="--reveal-delay: 350ms;">
+        <p>
           A closer look at the milestones we've reached as Nixora
           continues its next phase of development.
         </p>
@@ -96,22 +79,14 @@ const milestones = [
       <div class="details-grid">
 
         <!-- Key Milestones -->
-        <article
-          class="detail-card"
-          data-reveal
-          style="--reveal-delay: 200ms;"
-        >
+        <article class="detail-card">
           <div class="card-heading">
             <h3>Key Milestones</h3>
           </div>
 
           <div class="milestone-list">
             {milestones.map((milestone, index) => (
-              <div
-                class="milestone-item"
-                data-reveal
-                style={`--reveal-delay: ${index * 400}ms;`}
-              >
+              <div class="milestone-item">
                 <div class="milestone-marker">
                   <span class="milestone-dot"></span>
                   {index !== milestones.length - 1 && (
@@ -139,55 +114,14 @@ const milestones = [
     <!-- Early Access -->
     <EarlyAccess />
 
-  </main>
+  </div>
 </InnerLayout>
-
-<script>
-  function initTractionReveal() {
-    const revealElements =
-      document.querySelectorAll<HTMLElement>(
-        ".traction-page [data-reveal]:not(.is-visible)"
-      );
-
-    const prefersReducedMotion = window.matchMedia(
-      "(prefers-reduced-motion: reduce)"
-    ).matches;
-
-    if (prefersReducedMotion || !("IntersectionObserver" in window)) {
-      revealElements.forEach((element) => {
-        element.classList.add("is-visible");
-      });
-      return;
-    }
-
-    const observer = new IntersectionObserver(
-      (entries, currentObserver) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("is-visible");
-            currentObserver.unobserve(entry.target);
-          }
-        });
-      },
-      {
-        threshold: 0.08,
-        rootMargin: "0px 0px -50px 0px",
-      }
-    );
-
-    revealElements.forEach((element) => {
-      observer.observe(element);
-    });
-  }
-
-  initTractionReveal();
-  document.addEventListener("astro:page-load", initTractionReveal);
-</script>
 
 <style>
   .traction-page {
     width: 100%;
-    overflow: hidden;
+    overflow: clip;
+    padding-top: 60px; /* pehle nested <main> se aa raha tha, ab yahan se */
   }
 
   /* Hero */
@@ -385,26 +319,6 @@ const milestones = [
     line-height: 1.75;
   }
 
-  /* Smooth Reveal Animation */
-
-  @media (prefers-reduced-motion: no-preference) {
-    .traction-page [data-reveal] {
-      opacity: 0;
-      transform: translate3d(0, 22px, 0);
-      transition:
-        opacity 1300ms cubic-bezier(0.22, 1, 0.36, 1),
-        transform 1300ms cubic-bezier(0.22, 1, 0.36, 1);
-      transition-delay: var(--reveal-delay, 0ms);
-      will-change: transform, opacity;
-    }
-
-    .traction-page [data-reveal].is-visible {
-      opacity: 1;
-      transform: translate3d(0, 0, 0);
-      will-change: auto;
-    }
-  }
-
   /* Tablet */
 
   @media (max-width: 760px) {
@@ -463,12 +377,6 @@ const milestones = [
   /* Reduced Motion */
 
   @media (prefers-reduced-motion: reduce) {
-    .traction-page [data-reveal] {
-      opacity: 1;
-      transform: none;
-      transition: none;
-    }
-
     .detail-card {
       transition: none;
     }

@@ -194,7 +194,7 @@ const companionModes = [
       "Helps users work through operational tasks with guidance and approval before actions are taken.",
   },
   {
-    icon: "bot",
+    icon: "loop",
     title: "Autonomous",
     description:
       "Can carry out authorized actions within defined permissions and operational boundaries.",
@@ -595,27 +595,26 @@ const companionDescription =
                                 </svg>
                               )}
 
-                              {mode.icon === "bot" && (
-                                <svg
-                                  xmlns="http://www.w3.org/2000/svg"
-                                  width="24"
-                                  height="24"
-                                  viewBox="0 0 24 24"
-                                  fill="none"
-                                  stroke="currentColor"
-                                  stroke-width="2"
-                                  stroke-linecap="round"
-                                  stroke-linejoin="round"
-                                  aria-hidden="true"
-                                >
-                                  <path d="M12 8V4H8" />
-                                  <rect width="16" height="12" x="4" y="8" rx="2" />
-                                  <path d="M2 14h2" />
-                                  <path d="M20 14h2" />
-                                  <path d="M15 13v2" />
-                                  <path d="M9 13v2" />
-                                </svg>
-                              )}
+                              {mode.icon === "loop" && (
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                >
+                  <path d="M20 12a8 8 0 0 1-13.66 5.66" />
+                  <path d="M4 12a8 8 0 0 1 13.66-5.66" />
+                  <path d="M18 3v4h-4" />
+                  <path d="M6 21v-4h4" />
+                  <path d="m9.5 12 2 2 3.5-4" />
+                </svg>
+              )}
                             </span>
 
                             <div class="companion-mode-content">
@@ -723,24 +722,11 @@ const companionDescription =
     margin-bottom: 16px;
   }
 
-  .period-label {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin: 0;
-    color: #a78bfa;
-    font-size: 12px;
-    font-weight: 500;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-  }
+ .period-label {
+  color: #fff;
+}
 
-  .period-line {
-    width: 24px;
-    height: 1px;
-    flex-shrink: 0;
-    background: #a78bfa;
-  }
+
 
   /* Governance visual */
   .governance-visual {
@@ -1415,10 +1401,7 @@ const companionDescription =
       background 0.3s ease;
   }
 
-  .companion-mode:hover {
-    border-color: rgba(167, 139, 250, 0.45);
-    background: rgba(167, 139, 250, 0.08);
-  }
+  
 
   .companion-icon {
     display: flex;
@@ -1427,10 +1410,10 @@ const companionDescription =
     flex-shrink: 0;
     align-items: center;
     justify-content: center;
-    border: 1px solid rgba(167, 139, 250, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 10px;
-    background: rgba(167, 139, 250, 0.1);
-    color: #a78bfa;
+   background: rgba(255, 255, 255, 0.02);
+   color: rgba(255, 255, 255, 0.82);
   }
 
   .companion-icon svg {

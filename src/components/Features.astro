@@ -1,4 +1,3 @@
-
 ---
 const groups = [
   {
@@ -64,7 +63,7 @@ const groups = [
   <div class="roadmap-glow"></div>
 
   <div class="roadmap-container">
-    <div class="roadmap-intro" data-reveal>
+    <div class="roadmap-intro">
       <h2 class="section-headline">
         Where Nixora is <span class="accent">going.</span>
       </h2>
@@ -82,8 +81,6 @@ const groups = [
             index === 0 && "hero-card-live",
             index === 1 && "hero-card-next",
           ]}
-          data-reveal
-          style={`--card-index: ${index % 3};`}
         >
           <div class="card-top">
             <span
@@ -179,7 +176,7 @@ const groups = [
       ))}
     </div>
 
-    <div class="roadmap-cta" data-reveal>
+    <div class="roadmap-cta">
       <a href="/product/" class="arch-product-link">
         <span>View Full Product Architecture</span>
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -196,7 +193,7 @@ const groups = [
   .roadmap-section {
     position: relative;
     isolation: isolate;
-    overflow: hidden;
+    overflow: clip;
     padding: 2.5rem 1rem 4rem;
   }
 
@@ -263,14 +260,37 @@ const groups = [
     min-width: 0;
     flex-direction: column;
     padding: clamp(1.125rem, 3vw, 1.75rem);
-    border: 1px solid rgb(255 255 255 / 14%);
+    border: 1px solid rgb(255 255 255 / 8%);
     border-radius: 1rem;
-    background: #0d0d0f;
+    background: rgba(13, 13, 15, 0.82);
+    transition: border-color 220ms ease, background-color 220ms ease;
   }
 
-  .hero-card-live,
+  .hero-card-live {
+    background: rgba(22, 17, 31, 0.92);
+    border-color: rgba(167, 139, 250, 0.2);
+  }
+
   .hero-card-next {
-    border-color: rgb(167 139 250 / 40%);
+    background: rgba(15, 15, 18, 0.9);
+    border-color: rgba(255, 255, 255, 0.1);
+  }
+
+  .hero-card-live .status-badge,
+  .hero-card-next .status-badge {
+    border-color: rgba(167, 139, 250, 0.2);
+  }
+
+  .hero-card-live .status-badge {
+    background: rgba(167, 139, 250, 0.08);
+    color: rgba(216, 204, 255, 0.95);
+  }
+
+  .hero-card-live .roadmap-icon,
+  .hero-card-next .roadmap-icon {
+    border-color: rgba(167, 139, 250, 0.22);
+    background: rgba(167, 139, 250, 0.06);
+    color: rgba(216, 204, 255, 0.94);
   }
 
   /* Status */
@@ -288,10 +308,10 @@ const groups = [
     gap: 0.5rem;
     min-height: 26px;
     padding: 0.3rem 0.65rem;
-    border: 1px solid rgb(167 139 250 / 35%);
+    border: 1px solid rgb(255 255 255 / 10%);
     border-radius: 999px;
-    background: rgb(167 139 250 / 12%);
-    color: var(--primary, #a78bfa);
+    background: rgb(255 255 255 / 3%);
+    color: rgba(255, 255, 255, 0.7);
     font-size: 0.6875rem;
     font-weight: 600;
     letter-spacing: 0.12em;
@@ -300,9 +320,9 @@ const groups = [
   }
 
   .status-badge-later {
-    border-color: rgb(255 255 255 / 10%);
-    background: rgb(255 255 255 / 4%);
-    color: rgb(255 255 255 / 55%);
+    border-color: rgb(255 255 255 / 8%);
+    background: rgb(255 255 255 / 2%);
+    color: rgb(255 255 255 / 50%);
   }
 
   .pulse-dot {
@@ -311,6 +331,7 @@ const groups = [
     flex-shrink: 0;
     border-radius: 50%;
     background: var(--primary, #a78bfa);
+    box-shadow: 0 0 0 4px rgb(167 139 250 / 12%);
   }
 
   /* Icon */
@@ -321,16 +342,10 @@ const groups = [
     flex-shrink: 0;
     align-items: center;
     justify-content: center;
-    border: 1px solid rgb(125 87 239 / 25%);
+    border: 1px solid rgb(255 255 255 / 8%);
     border-radius: 0.875rem;
-    background: rgb(125 87 239 / 8%);
-    color: var(--primary, #a78bfa);
-  }
-
-  .hero-card-live .roadmap-icon,
-  .hero-card-next .roadmap-icon {
-    border-color: rgb(125 87 239 / 40%);
-    background: rgb(125 87 239 / 14%);
+    background: rgb(255 255 255 / 2%);
+    color: rgba(255, 255, 255, 0.78);
   }
 
   .roadmap-icon svg {
@@ -381,51 +396,32 @@ const groups = [
     gap: 0.625rem;
     max-width: 100%;
     padding: 0.75rem 1.125rem;
+    border: 1px solid rgb(255 255 255 / 8%);
     border-radius: 999px;
-    background: rgb(255 255 255 / 4%);
+    background: rgb(255 255 255 / 2%);
     color: #fff;
     font-size: 0.875rem;
     font-weight: 500;
     line-height: 1.5;
     text-decoration: none;
-    transition: background 0.3s ease, color 0.3s ease;
+    transition: border-color 220ms ease, color 220ms ease, background-color 220ms ease;
   }
 
   .arch-product-link:hover {
-    background: rgb(125 87 239 / 10%);
-    color: var(--primary, #a78bfa);
+    background: rgb(255 255 255 / 3%);
+    border-color: rgb(255 255 255 / 12%);
+    color: rgba(255, 255, 255, 0.86);
   }
 
   .arch-product-link svg {
     width: 1rem;
     height: 1rem;
     flex-shrink: 0;
-    transition: transform 0.3s ease;
+    transition: transform 220ms ease;
   }
 
   .arch-product-link:hover svg {
-    transform: translateX(3px);
-  }
-
-  /* Scroll reveal */
-  [data-reveal] {
-    opacity: 0;
-    transform: translate3d(0, 26px, 0);
-    transition:
-      opacity 850ms cubic-bezier(0.22, 1, 0.36, 1),
-      transform 850ms cubic-bezier(0.22, 1, 0.36, 1);
-    will-change: opacity, transform;
-  }
-
-  [data-reveal].is-visible {
-    opacity: 1;
-    transform: translate3d(0, 0, 0);
-    will-change: auto;
-  }
-
-  /* Cards reveal in a subtle stagger */
-  .detailed-cards-grid [data-reveal] {
-    transition-delay: calc(var(--card-index, 0) * 120ms);
+    transform: translateX(2px);
   }
 
   /* Small mobile */
@@ -519,13 +515,22 @@ const groups = [
     }
 
     .detailed-cards-grid {
-      grid-template-columns: repeat(3, minmax(0, 1fr));
+      grid-template-columns: repeat(12, minmax(0, 1fr));
       gap: 1.25rem;
     }
 
     .hero-card {
+      grid-column: span 4;
       min-height: 260px;
       padding: 1.5rem;
+    }
+
+    .hero-card-live {
+      grid-column: span 7;
+    }
+
+    .hero-card-next {
+      grid-column: span 5;
     }
 
     .card-text h3 {
@@ -556,54 +561,9 @@ const groups = [
 
   /* Reduced motion */
   @media (prefers-reduced-motion: reduce) {
-    [data-reveal] {
-      opacity: 1;
-      transform: none;
-      transition: none;
-      will-change: auto;
-    }
-
     .arch-product-link,
     .arch-product-link svg {
       transition: none;
     }
-
-    .pulse-dot {
-      animation: none;
-    }
   }
 </style>
-
-<script>
-  const roadmapRevealElements =
-    document.querySelectorAll("#features [data-reveal]");
-
-  const prefersReducedMotion = window.matchMedia(
-    "(prefers-reduced-motion: reduce)"
-  ).matches;
-
-  if (prefersReducedMotion || !("IntersectionObserver" in window)) {
-    roadmapRevealElements.forEach((element) => {
-      element.classList.add("is-visible");
-    });
-  } else {
-    const roadmapObserver = new IntersectionObserver(
-      (entries, observer) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("is-visible");
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      {
-        threshold: 0.12,
-        rootMargin: "0px 0px -35px 0px",
-      }
-    );
-
-    roadmapRevealElements.forEach((element) => {
-      roadmapObserver.observe(element);
-    });
-  }
-</script>

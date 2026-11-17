@@ -1,0 +1,268 @@
+<script>
+  import Lenis from "lenis";
+  import gsap from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+  import { SplitText } from "gsap/SplitText";
+
+  gsap.registerPlugin(ScrollTrigger, SplitText);
+
+  const root = document.documentElement;
+  const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  if (reduce) {
+    root.classList.remove("anim");
+  } else {
+    // ================= 1. Smooth scroll (inertia) =================
+    const lenis = new Lenis({
+      lerp: 0.08,
+      wheelMultiplier: 1,
+      smoothWheel: true,
+      anchors: { offset: -60 },
+    });
+    lenis.on("scroll", ScrollTrigger.update);
+    gsap.ticker.add((t) => lenis.raf(t * 1000));
+    gsap.ticker.lagSmoothing(0);
+
+    const main = (document.querySelector("main") ||
+      document.querySelector("#main-content") ||
+      document.body) as HTMLElement;
+
+    const all = (sel: string) =>
+      Array.from(main.querySelectorAll<HTMLElement>(sel));
+
+    // ---- Jinko script bilkul nahi chhuegi ----
+    const SKIP =
+      '[data-no-anim], .site-header, nav, .skip-link, .sr-only, [class*="terminal"], [class*="progress"], [class*="typing"], [class*="cursor"], pre, code, svg *, script, style, noscript';
+
+    const HEADING_SEL = "h1, h2, h3";
+
+   const CARD_SEL =
+  '[class*="card"]:not([class*="grid"]), .feature-cell, [class*="grid"] > *, .roadmap-cta, .early-access-badge';
+
+
+    const VISUAL_SEL = 'img, video, canvas, [class*="diagram"], [class*="mockup"]';
+
+    const NO_TEXT_TAGS = new Set([
+      "SCRIPT", "STYLE", "NOSCRIPT", "OPTION", "TEXTAREA", "INPUT", "BR", "SVG", "PATH",
+    ]);
+
+    const skipped = (el: HTMLElement) => !!el.closest(SKIP);
+    const outermost = (els: HTMLElement[]) =>
+      els.filter((el) => !els.some((o) => o !== el && o.contains(el)));
+    const hasOwnText = (el: HTMLElement) =>
+      Array.from(el.childNodes).some(
+        (n) => n.nodeType === 3 && (n.textContent || "").trim().length > 1
+      );
+    const byDomOrder = (a: Element, b: Element) =>
+      a.compareDocumentPosition(b) & Node.DOCUMENT_POSITION_FOLLOWING ? -1 : 1;
+
+    // ======= Feel ke knobs (yahan se tune karo) =======
+    const SCRUB = 0.6;               // chhota = tez follow, bada = zyada silky lag
+    const TEXT_START = "top 96%";    // element screen ke neeche se aana shuru
+    const TEXT_END = "top 68%";      // yahan tak pura visible
+    const CARD_START = "top 98%";
+    const CARD_END = "top 66%";
+    const RISE = 56;                 // px neeche se uthna (text)
+    const CARD_RISE = 90;            // px neeche se uthna (cards)
+
+    const run = () => {
+      const vh = window.innerHeight;
+
+      const bigVisuals = outermost(all(VISUAL_SEL)).filter(
+        (el) => !skipped(el) && el.getBoundingClientRect().width > 300
+      );
+
+      const cards = outermost(all(CARD_SEL).filter((c) => !skipped(c)));
+
+      const textUnits = all("*").filter(
+        (el) =>
+          !NO_TEXT_TAGS.has(el.tagName.toUpperCase()) &&
+          !skipped(el) &&
+          hasOwnText(el)
+      );
+      const mediaUnits = all("img, figure").filter(
+        (el) => !skipped(el) && !bigVisuals.some((v) => v === el || v.contains(el))
+      );
+      const headings = all(HEADING_SEL).filter((h) => !skipped(h));
+
+      let units = Array.from(
+        new Set<HTMLElement>([...headings, ...cards, ...textUnits, ...mediaUnits])
+      ).sort(byDomOrder);
+      units = units.filter(
+        (el) => el.matches(HEADING_SEL) || !el.closest(HEADING_SEL)
+      );
+      units = outermost(units);
+
+      // Page load par jo pehle se screen me hain (hero) -> timed intro
+      let introIndex = 0;
+
+      units.forEach((el) => {
+        const rect = el.getBoundingClientRect();
+        const inViewAtLoad = rect.top < vh * 0.9 && rect.bottom > 0;
+        const introDelay = 0.15 + introIndex * 0.16;
+        if (inViewAtLoad) introIndex++;
+
+        const isCard = el.matches(CARD_SEL);
+
+        // Grid ke siblings ko halka stagger (left se right)
+        let sibIdx = 0;
+        if (isCard && el.parentElement) {
+          sibIdx = Array.from(el.parentElement.children).indexOf(el);
+        }
+        const cardStart = `top ${98 - Math.min(sibIdx, 5) * 2}%`;
+        const cardEnd = `top ${66 - Math.min(sibIdx, 5) * 4}%`;
+
+        // ---------------- Headings ----------------
+        if (el.matches(HEADING_SEL)) {
+          gsap.set(el, { visibility: "visible" });
+          SplitText.create(el, {
+            type: "lines",
+            mask: "lines",
+            autoSplit: true,
+            onSplit(self) {
+              // g, y, p ke neeche wale hisse kat-ne se bachao
+              (self.masks || []).forEach((m: HTMLElement) => {
+                m.style.paddingTop = "0.15em";
+                m.style.paddingBottom = "0.2em";
+                m.style.marginTop = "-0.15em";
+                m.style.marginBottom = "-0.2em";
+              });
+
+              if (inViewAtLoad) {
+                return gsap.from(self.lines, {
+                  yPercent: 120,
+                  duration: 1.2,
+                  ease: "expo.out",
+                  stagger: 0.12,
+                  delay: introDelay,
+                });
+              }
+              return gsap.from(self.lines, {
+                yPercent: 120,
+                ease: "none",
+                stagger: 0.25,
+                scrollTrigger: {
+                  trigger: el,
+                  start: "top 94%",
+                  end: "top 62%",
+                  scrub: SCRUB,
+                },
+              });
+            },
+          });
+          return;
+        }
+
+        // ---------------- Cards / Text / Media ----------------
+        const fromVars: gsap.TweenVars = isCard
+          ? { opacity: 0, y: CARD_RISE, scale: 0.95 }
+          : { opacity: 0, y: RISE, filter: "blur(6px)" };
+
+        const toVars: gsap.TweenVars = {
+          opacity: 1,
+          y: 0,
+          scale: 1,
+          filter: "blur(0px)",
+          clearProps: "transform,filter,opacity", // CSS hover safe
+        };
+
+        if (inViewAtLoad) {
+          gsap.fromTo(el, fromVars, {
+            ...toVars,
+            duration: isCard ? 1.3 : 1.1,
+            ease: isCard ? "expo.out" : "power3.out",
+            delay: introDelay,
+          });
+        } else {
+          gsap.fromTo(el, fromVars, {
+            ...toVars,
+            ease: "none",
+            scrollTrigger: {
+              trigger: el,
+              start: isCard ? cardStart : TEXT_START,
+              end: isCard ? cardEnd : TEXT_END,
+              scrub: SCRUB,
+            },
+          });
+        }
+      });
+
+      // ---------- Big visuals: scroll ke saath rise ----------
+      bigVisuals.forEach((el) => {
+        gsap.fromTo(
+          el,
+          { y: 100, scale: 0.94 },
+          {
+            y: 0,
+            scale: 1,
+            ease: "none",
+            scrollTrigger: {
+              trigger: el,
+              start: "top 98%",
+              end: "top 50%",
+              scrub: SCRUB,
+            },
+          }
+        );
+      });
+
+      // ---------- Section exit: blur + fade (desktop only) ----------
+      if (main.tagName === "MAIN" && window.matchMedia("(min-width: 769px)").matches) {
+        const holder =
+          main.children.length === 1 ? (main.children[0] as HTMLElement) : main;
+        const sections = Array.from(holder.children) as HTMLElement[];
+        sections.forEach((sec, i) => {
+          if (i === sections.length - 1) return;
+          gsap.to(sec, {
+            opacity: 0.2,
+            filter: "blur(5px)",
+            ease: "none",
+            scrollTrigger: {
+              trigger: sec,
+              start: "bottom 30%",
+              end: "bottom 0%",
+              scrub: true,
+              onLeaveBack: () => gsap.set(sec, { clearProps: "filter,opacity" }),
+            },
+          });
+        });
+      }
+
+      root.classList.remove("anim");
+    };
+
+    document.fonts.ready.then(() => {
+      run();
+      ScrollTrigger.refresh();
+    });
+
+    window.addEventListener("load", () => ScrollTrigger.refresh());
+    if ("ResizeObserver" in window) {
+      let t: number;
+      new ResizeObserver(() => {
+        clearTimeout(t);
+        t = window.setTimeout(() => ScrollTrigger.refresh(), 250);
+      }).observe(main);
+    }
+  }
+</script>
+
+<style is:global>
+  html.lenis,
+  html.lenis body {
+    height: auto;
+  }
+  .lenis.lenis-smooth {
+    scroll-behavior: auto !important;
+  }
+  .lenis.lenis-smooth [data-lenis-prevent] {
+    overscroll-behavior: contain;
+  }
+  .lenis.lenis-stopped {
+    overflow: hidden;
+  }
+
+  html.anim :is(h1, h2, h3):not(.site-header *) {
+    visibility: hidden;
+  }
+</style>

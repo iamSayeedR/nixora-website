@@ -23,7 +23,7 @@ const modes = [
   },
   {
     title: "Autonomous mode",
-    icon: "bot",
+    icon: "loop",
     status: "Long-term goal",
     description:
       "The long-term goal is for the Companion to execute authorized tasks within user-defined permissions. For example, it could diagnose a deployment failure, apply an approved fix, redeploy the application, verify the result, and report what it changed.",
@@ -36,7 +36,7 @@ const modes = [
   <div class="companion-container">
 
     <!-- Section introduction -->
-    <div class="companion-intro" data-reveal>
+    <div class="companion-intro">
       <h2>
         An AI companion for your
         <span> software and AI agents.</span>
@@ -54,12 +54,8 @@ const modes = [
 
     <!-- Assistance modes -->
     <div class="modes-grid">
-      {modes.map((mode, index) => (
-        <article
-          class="mode-card"
-          data-reveal
-          style={`--reveal-delay: ${index * 200}ms`}
-        >
+      {modes.map((mode) => (
+        <article class="mode-card">
           <div class="card-top-line"></div>
 
           <!-- Icon and status -->
@@ -104,7 +100,7 @@ const modes = [
                 </svg>
               )}
 
-              {mode.icon === "bot" && (
+      {mode.icon === "loop" && (
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="24"
@@ -117,12 +113,11 @@ const modes = [
                   stroke-linejoin="round"
                   aria-hidden="true"
                 >
-                  <path d="M12 8V4H8" />
-                  <rect width="16" height="12" x="4" y="8" rx="2" />
-                  <path d="M2 14h2" />
-                  <path d="M20 14h2" />
-                  <path d="M15 13v2" />
-                  <path d="M9 13v2" />
+                  <path d="M20 12a8 8 0 0 1-13.66 5.66" />
+                  <path d="M4 12a8 8 0 0 1 13.66-5.66" />
+                  <path d="M18 3v4h-4" />
+                  <path d="M6 21v-4h4" />
+                  <path d="m9.5 12 2 2 3.5-4" />
                 </svg>
               )}
             </div>
@@ -160,7 +155,7 @@ const modes = [
     </div>
 
     <!-- Safeguards -->
-    <div class="safeguards" data-reveal>
+    <div class="safeguards">
       <div class="safeguard-icon">
         <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
           <path
@@ -193,56 +188,6 @@ const modes = [
 
   </div>
 </section>
-
-<script>
-  const initCompanionReveal = () => {
-    const sections = document.querySelectorAll(".ai-companion");
-
-    sections.forEach((section) => {
-      const revealElements = section.querySelectorAll(
-        "[data-reveal]:not(.is-visible)"
-      );
-
-      const prefersReducedMotion = window.matchMedia(
-        "(prefers-reduced-motion: reduce)"
-      ).matches;
-
-      if (
-        prefersReducedMotion ||
-        !("IntersectionObserver" in window)
-      ) {
-        revealElements.forEach((element) => {
-          element.classList.add("is-visible");
-        });
-
-        return;
-      }
-
-      const observer = new IntersectionObserver(
-        (entries, currentObserver) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add("is-visible");
-              currentObserver.unobserve(entry.target);
-            }
-          });
-        },
-        {
-          threshold: 0.08,
-          rootMargin: "0px 0px -45px 0px",
-        }
-      );
-
-      revealElements.forEach((element) => {
-        observer.observe(element);
-      });
-    });
-  };
-
-  initCompanionReveal();
-
-  document.addEventListener("astro:page-load", initCompanionReveal);
-</script>
 
 <style>
   .ai-companion {
@@ -318,7 +263,7 @@ const modes = [
     min-width: 0;
     padding: 28px;
     overflow: hidden;
-    border: 1px solid rgba(255, 255, 255, 0.09);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 16px;
     background: rgba(255, 255, 255, 0.025);
     transition:
@@ -330,22 +275,10 @@ const modes = [
   .mode-card:hover {
     border-color: rgba(255, 255, 255, 0.18);
     background: rgba(255, 255, 255, 0.04);
-    transform: translateY(-3px);
+    transform: none;
   }
 
-  .card-top-line {
-    position: absolute;
-    top: 0;
-    left: 24px;
-    right: 24px;
-    height: 1px;
-    background: linear-gradient(
-      90deg,
-      transparent,
-      rgba(255, 255, 255, 0.15),
-      transparent
-    );
-  }
+
 
   .card-header {
     display: flex;
@@ -364,10 +297,11 @@ const modes = [
     width: 44px;
     height: 44px;
     border: 1px solid rgba(167, 139, 250, 0.2);
+    border-color: rgba(255, 255, 255, 0.1);
     border-radius: 13px;
-    background: rgba(167, 139, 250, 0.08);
-    color: #b8a4ff;
-    transition: background 0.3s ease;
+    background: rgba(255, 255, 255, 0.02);
+    color: rgba(255, 255, 255, 0.82);
+    transition: border-color 220ms ease;
   }
 
   .mode-icon svg {
@@ -375,10 +309,7 @@ const modes = [
     height: 20px;
   }
 
-  .mode-card:hover .mode-icon {
-    background: rgba(167, 139, 250, 0.13);
-  }
-
+ 
   .mode-status {
     max-width: 100%;
     padding: 6px 12px;
@@ -491,42 +422,6 @@ const modes = [
     font-weight: 500;
   }
 
-  /* Scroll reveal */
-
-  .ai-companion [data-reveal] {
-    opacity: 0;
-    transform: translate3d(0, 16px, 0);
-    transition:
-      opacity 1200ms cubic-bezier(0.22, 1, 0.36, 1),
-    transform 1200ms cubic-bezier(0.22, 1, 0.36, 1);
-    transition-delay: var(--reveal-delay, 0ms);
-    will-change: opacity, transform;
-  }
-
-  .ai-companion [data-reveal].is-visible {
-    opacity: 1;
-    transform: translate3d(0, 0, 0);
-    will-change: auto;
-  }
-
-  /* Reveal sequence */
-
- .mode-card:nth-child(1) {
-  --reveal-delay: 200ms;
-}
-
-.mode-card:nth-child(2) {
-  --reveal-delay: 550ms;
-}
-
-.mode-card:nth-child(3) {
-  --reveal-delay: 900ms;
-}
-
-.safeguards {
-  --reveal-delay: 900ms;
-}
-
   /* Tablet */
 
   @media (max-width: 900px) {
@@ -617,24 +512,6 @@ const modes = [
 
     .safeguards {
       padding: 21px;
-    }
-  }
-
-  /* Reduced motion */
-
-  @media (prefers-reduced-motion: reduce) {
-    .ai-companion *,
-    .ai-companion *::before,
-    .ai-companion *::after {
-      scroll-behavior: auto !important;
-      animation: none !important;
-      transition: none !important;
-    }
-
-    .ai-companion [data-reveal] {
-      opacity: 1;
-      transform: none;
-      will-change: auto;
     }
   }
 </style>

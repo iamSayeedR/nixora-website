@@ -1,4 +1,3 @@
-
 ---
 const stats = [
   {
@@ -33,21 +32,14 @@ const stats = [
   <div class="traction-tint"></div>
 
   <div class="traction-container">
-    <p
-      class="traction-caption"
-      data-reveal
-      style="--reveal-delay: 0ms;"
-    >
+    <p class="traction-caption">
       Building since September 2026 · CLI launched August 2026
     </p>
 
-    <div class="traction-grid">
-      {stats.map((stat, index) => (
-        <div
-          class="stat-card"
-          data-reveal
-          style={`--reveal-delay: ${200 + index * 350}ms;`}
-        >
+    <!-- Rise: global script. Fade + blur: niche wali script. -->
+    <div class="traction-grid traction-mockup">
+      {stats.map((stat) => (
+        <div class="stat-card" data-no-anim>
           {stat.label === "Early Access Signups" && (
             <div class="stat-highlight-sweep"></div>
           )}
@@ -71,122 +63,94 @@ const stats = [
 </section>
 
 <script>
+  import gsap from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  gsap.registerPlugin(ScrollTrigger);
+
   function initTractionSection() {
-    const tractionSection = document.querySelector("#traction");
+    const section = document.querySelector<HTMLElement>("#traction");
+    if (!section) return;
 
-    if (!tractionSection) return;
+    const grid = section.querySelector<HTMLElement>(".traction-grid");
+    const counters = Array.from(
+      section.querySelectorAll<HTMLElement>(".stat-number[data-target]")
+    );
 
-    const revealElements =
-      tractionSection.querySelectorAll<HTMLElement>(
-        "[data-reveal]:not(.is-visible)"
-      );
-
-    const counters =
-      tractionSection.querySelectorAll<HTMLElement>(
-        ".stat-number[data-target]"
-      );
+    if (!grid) return;
 
     const reducedMotion = window.matchMedia(
       "(prefers-reduced-motion: reduce)"
     ).matches;
 
-    const animatedCounters = new WeakSet<HTMLElement>();
-
-    function setFinalValue(el: HTMLElement) {
+    const setFinalValue = (el: HTMLElement) => {
       el.textContent =
         (el.dataset.target || "0") + (el.dataset.suffix || "");
+    };
+
+    if (reducedMotion) {
+      counters.forEach(setFinalValue);
+      return;
     }
 
-    function animateCounter(el: HTMLElement) {
-      if (animatedCounters.has(el)) return;
+    // ---------- Count-up ----------
+    const started = new WeakSet<HTMLElement>();
 
-      animatedCounters.add(el);
+    const animateCounter = (el: HTMLElement) => {
+      if (started.has(el)) return;
+      started.add(el);
 
       const target = Number(el.dataset.target || 0);
       const suffix = el.dataset.suffix || "";
-
-      if (reducedMotion) {
-        setFinalValue(el);
-        return;
-      }
-
       const duration = 1800;
       const startTime = performance.now();
 
-      function update(now: number) {
+      const update = (now: number) => {
         const progress = Math.min((now - startTime) / duration, 1);
         const eased = 1 - Math.pow(1 - progress, 3);
-        const current = Math.round(eased * target);
-
-        el.textContent = current + suffix;
+        el.textContent = Math.round(eased * target) + suffix;
 
         if (progress < 1) {
           requestAnimationFrame(update);
         } else {
           setFinalValue(el);
         }
-      }
+      };
 
       requestAnimationFrame(update);
-    }
+    };
 
-    function startCounterObserver() {
-      if (
-        reducedMotion ||
-        typeof IntersectionObserver === "undefined"
-      ) {
-        counters.forEach(setFinalValue);
-        return;
+    // Numbers 0 se shuru (block abhi hidden hai, to koi jump nahi dikhega)
+    counters.forEach((el) => {
+      el.textContent = "0" + (el.dataset.suffix || "");
+    });
+
+    // ---------- Poora block: scroll se pehle gayab, scroll par dhundhla se sharp ----------
+    // Grid aur uska content ek hi tween me, to chaaron cards barabar dikhte hain
+    gsap.fromTo(
+      grid,
+      { opacity: 0, filter: "blur(8px)" },
+      {
+        opacity: 1,
+        filter: "blur(0px)",
+        ease: "none",
+        scrollTrigger: {
+          trigger: grid,
+          start: "top 96%",
+          end: "top 55%",
+          scrub: 0.6,
+          onLeave: () => gsap.set(grid, { clearProps: "filter" }),
+        },
       }
+    );
 
-      const counterObserver = new IntersectionObserver(
-        (entries, observer) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              animateCounter(entry.target as HTMLElement);
-              observer.unobserve(entry.target);
-            }
-          });
-        },
-        {
-          threshold: 0.4,
-        }
-      );
-
-      counters.forEach((counter) => {
-        counterObserver.observe(counter);
-      });
-    }
-
-    if (
-      reducedMotion ||
-      typeof IntersectionObserver === "undefined"
-    ) {
-      revealElements.forEach((element) => {
-        element.classList.add("is-visible");
-      });
-    } else {
-      const revealObserver = new IntersectionObserver(
-        (entries, observer) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add("is-visible");
-              observer.unobserve(entry.target);
-            }
-          });
-        },
-        {
-          threshold: 0.08,
-          rootMargin: "0px 0px -45px 0px",
-        }
-      );
-
-      revealElements.forEach((element) => {
-        revealObserver.observe(element);
-      });
-    }
-
-    startCounterObserver();
+    // ---------- Counter tab chale jab block kaafi sharp ho jaye ----------
+    ScrollTrigger.create({
+      trigger: grid,
+      start: "top 65%",
+      once: true,
+      onEnter: () => counters.forEach(animateCounter),
+    });
   }
 
   initTractionSection();
@@ -196,7 +160,7 @@ const stats = [
 <style>
   .traction-section {
     position: relative;
-    overflow: hidden;
+    overflow: clip;
     padding: 4.5rem 1.25rem;
     text-align: center;
     box-sizing: border-box;
@@ -333,26 +297,6 @@ const stats = [
     }
   }
 
-  /* Smooth Scroll Reveal */
-
-  @media (prefers-reduced-motion: no-preference) {
-    #traction [data-reveal] {
-      opacity: 0;
-      transform: translate3d(0, 22px, 0);
-      transition:
-        opacity 1300ms cubic-bezier(0.22, 1, 0.36, 1),
-        transform 1300ms cubic-bezier(0.22, 1, 0.36, 1);
-      transition-delay: var(--reveal-delay, 0ms);
-      will-change: transform, opacity;
-    }
-
-    #traction [data-reveal].is-visible {
-      opacity: 1;
-      transform: translate3d(0, 0, 0);
-      will-change: auto;
-    }
-  }
-
   @media (min-width: 640px) {
     .traction-section {
       padding: 5rem 2rem;
@@ -412,12 +356,6 @@ const stats = [
   /* Reduced Motion */
 
   @media (prefers-reduced-motion: reduce) {
-    #traction [data-reveal] {
-      opacity: 1;
-      transform: none;
-      transition: none;
-    }
-
     .stat-card {
       transition: none;
     }

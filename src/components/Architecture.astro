@@ -29,7 +29,7 @@ const applicationTypes = [
   <div class="infra-container">
 
     <!-- Intro -->
-    <div class="section-intro" data-reveal>
+    <div class="section-intro">
       <h2>Why traditional infra fails AI code</h2>
 
       <p>
@@ -40,12 +40,12 @@ const applicationTypes = [
     </div>
 
     <!-- Comparison -->
-    <div class="comparison-wrapper" data-reveal>
+    <div class="comparison-wrapper">
 
       <!-- WITHOUT NIXORA -->
       <div class="comparison-section without-section">
 
-        <div class="section-label" data-reveal>
+        <div class="section-label">
           <span class="label-cross">×</span>
           <p>Without Nixora: manual, fragile</p>
         </div>
@@ -53,11 +53,7 @@ const applicationTypes = [
         <!-- Traditional flow -->
         <ul class="traditional-flow" aria-label="Without Nixora: manual, fragile">
           {withoutSteps.map((step, index) => (
-            <li
-              class="traditional-step"
-              data-reveal
-              style={`--reveal-delay: ${index * 70}ms`}
-            >
+            <li class="traditional-step">
               <div class:list={[
                 "traditional-step-card",
                 index === 0 ? "first-step" : "",
@@ -81,7 +77,7 @@ const applicationTypes = [
 
         <div class="with-background"></div>
 
-        <div class="section-label with-label" data-reveal>
+        <div class="section-label with-label">
           <span class="label-check">✓</span>
           <p>With Nixora: automated deploy, hosting &amp; HTTPS</p>
         </div>
@@ -90,7 +86,7 @@ const applicationTypes = [
         <ol class="nixora-flow" aria-label="With Nixora: automated deploy, hosting and HTTPS">
 
           <!-- Input -->
-          <li class="flow-input" data-reveal>
+          <li class="flow-input">
             <p class="input-label">AI-generated application</p>
             <p class="input-title">AI generates code</p>
             <p class="input-subtitle">agent outputs</p>
@@ -100,7 +96,7 @@ const applicationTypes = [
           <li class="flow-arrow" aria-hidden="true">→</li>
 
           <!-- Command -->
-          <li class="flow-command" data-reveal>
+          <li class="flow-command">
             <span>nixora deploy</span>
           </li>
 
@@ -108,19 +104,15 @@ const applicationTypes = [
           <li class="flow-arrow" aria-hidden="true">→</li>
 
           <!-- Result -->
-          <li class="flow-result" data-reveal>
+          <li class="flow-result">
             <div class="result-heading">
               <span class="status-dot"></span>
               <p>Live &amp; running</p>
             </div>
 
             <div class="result-checks">
-              {withChecks.map((item, index) => (
-                <div
-                  class="result-check"
-                  data-reveal
-                  style={`--reveal-delay: ${index * 70}ms`}
-                >
+              {withChecks.map((item) => (
+                <div class="result-check">
                   <span>✓</span>
                   <p>{item}</p>
                 </div>
@@ -133,7 +125,7 @@ const applicationTypes = [
     </div>
 
     <!-- Application scope -->
-    <div class="application-scope" data-reveal>
+    <div class="application-scope">
 
       <div class="scope-intro">
         <p class="scope-label">Broader product direction</p>
@@ -150,12 +142,8 @@ const applicationTypes = [
       </div>
 
       <div class="application-types">
-        {applicationTypes.map((type, index) => (
-          <span
-            class="application-type"
-            data-reveal
-            style={`--reveal-delay: ${index * 70}ms`}
-          >
+        {applicationTypes.map((type) => (
+          <span class="application-type">
             {type}
           </span>
         ))}
@@ -163,7 +151,7 @@ const applicationTypes = [
     </div>
 
     <!-- Diagnose context -->
-    <p class="diagnose-context" data-reveal>
+    <p class="diagnose-context">
       Deployment is only one part of the workflow. When a deployment fails,
       Nixora&apos;s Diagnose capability is intended to help developers
       understand what went wrong and identify what needs attention.
@@ -539,24 +527,6 @@ const applicationTypes = [
     text-align: center;
   }
 
-  /* Scroll reveal */
-
-  .product-why-infra [data-reveal] {
-    opacity: 0;
-    transform: translateY(14px);
-    transition:
-      opacity 0.75s cubic-bezier(0.22, 1, 0.36, 1),
-      transform 0.75s cubic-bezier(0.22, 1, 0.36, 1);
-    transition-delay: var(--reveal-delay, 0ms);
-    will-change: opacity, transform;
-  }
-
-  .product-why-infra [data-reveal].is-visible {
-    opacity: 1;
-    transform: translateY(0);
-    will-change: auto;
-  }
-
   /* Tablet and desktop */
 
   @media (min-width: 640px) {
@@ -719,61 +689,4 @@ const applicationTypes = [
       font-size: 0.75rem;
     }
   }
-
-  /* Reduced motion */
-
-  @media (prefers-reduced-motion: reduce) {
-    .product-why-infra [data-reveal] {
-      opacity: 1;
-      transform: none;
-      transition: none;
-      will-change: auto;
-    }
-  }
 </style>
-
-<script>
-  const initProductReveal = () => {
-    const revealElements = document.querySelectorAll(
-      ".product-why-infra [data-reveal]:not(.is-visible)"
-    );
-
-    const prefersReducedMotion = window.matchMedia(
-      "(prefers-reduced-motion: reduce)"
-    ).matches;
-
-    if (
-      prefersReducedMotion ||
-      !("IntersectionObserver" in window)
-    ) {
-      revealElements.forEach((element) => {
-        element.classList.add("is-visible");
-      });
-
-      return;
-    }
-
-    const revealObserver = new IntersectionObserver(
-      (entries, observer) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("is-visible");
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      {
-        threshold: 0.1,
-        rootMargin: "0px 0px -35px 0px",
-      }
-    );
-
-    revealElements.forEach((element) => {
-      revealObserver.observe(element);
-    });
-  };
-
-  initProductReveal();
-
-  document.addEventListener("astro:page-load", initProductReveal);
-</script>
