@@ -35,6 +35,13 @@ const modes = [
 <section class="ai-companion">
   <div class="companion-container">
 
+    <!-- MCP notification CTA -->
+    <div class="mcp-notify-wrapper">
+      <a href="/#early-access" class="mcp-notify-pill">
+        Notify me when access opens <span aria-hidden="true">→</span>
+      </a>
+    </div>
+
     <!-- Section introduction -->
     <div class="companion-intro">
       <h2>
@@ -204,6 +211,34 @@ const modes = [
     margin: 0 auto;
     padding: 0 24px;
     box-sizing: border-box;
+  }
+
+  /* MCP Notification CTA */
+  .mcp-notify-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2.25rem;
+  }
+
+  .mcp-notify-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    padding: 0.4rem 1.1rem;
+    border: 1px solid rgba(167, 139, 250, 0.25);
+    border-radius: 9999px;
+    background: rgba(167, 139, 250, 0.06);
+    color: #c4b5fd;
+    font-size: 0.8125rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.2s ease;
+  }
+
+  .mcp-notify-pill:hover {
+    background: rgba(167, 139, 250, 0.14);
+    border-color: rgba(167, 139, 250, 0.45);
+    color: #fff;
   }
 
   /* Introduction */

@@ -264,7 +264,7 @@ const companionDescription =
             </div>
 
             <div class="terminal-area">
-              <div class="terminal-window">
+              <div class="terminal-window" id="group01-terminal">
                 <div class="terminal-header">
                   <div class="terminal-dots">
                     <span class="terminal-dot red"></span>
@@ -276,7 +276,7 @@ const companionDescription =
                   <span class="terminal-spacer" aria-hidden="true"></span>
                 </div>
 
-                <div class="terminal-content">
+                <div class="terminal-content" id="group01-terminal-content">
                   <p class="terminal-command">
                     <span class="terminal-prompt">$</span>
                     nixora deploy
@@ -357,21 +357,21 @@ const companionDescription =
                 ))}
               </div>
 
-              <div class="agent-flow">
+              <div class="agent-flow" id="group02-agent-flow">
                 <div class="agent-flow-grid">
-                  <div class="agent-flow-node" data-reveal>
+                  <div class="agent-flow-node" data-flow-step="1" data-reveal>
                     <p>MCP Agent</p>
                   </div>
 
                   <span class="agent-flow-arrow" aria-hidden="true">→</span>
 
-                  <div class="agent-flow-node" data-reveal>
+                  <div class="agent-flow-node" data-flow-step="2" data-reveal>
                     <p>Permissions</p>
                   </div>
 
                   <span class="agent-flow-arrow" aria-hidden="true">→</span>
 
-                  <div class="agent-flow-node" data-reveal>
+                  <div class="agent-flow-node" data-flow-step="3" data-reveal>
                     <p>Audit Log</p>
                   </div>
                 </div>
@@ -423,7 +423,7 @@ const companionDescription =
                         ))}
                       </div>
 
-                      <div class="autopilot-visual">
+                      <div class="autopilot-visual" id="group08-autopilot-flow">
                         <p class="autopilot-flow-heading" data-reveal>
                           Autonomous Operations Workflow
                         </p>
@@ -433,10 +433,11 @@ const companionDescription =
                             <>
                               <div
                                 class="autopilot-step"
+                                data-autopilot-step={index + 1}
                                 data-reveal
                                 style={`--reveal-delay: ${400 + index * 80}ms`}
                               >
-                              
+                                <span class="autopilot-step-number">0{index + 1}</span>
                                 <span>{step}</span>
                               </div>
 
@@ -466,6 +467,33 @@ const companionDescription =
                           {tag}
                         </span>
                       ))}
+                    </div>
+                  )}
+
+                  {item.group === "GROUP 03" && (
+                    <div class="observability-visual" data-reveal>
+                      <div class="observability-header">
+                        <span class="telemetry-live-dot"></span>
+                        <span class="telemetry-title">TELEMETRY STREAM · ACTIVE</span>
+                      </div>
+                      <div class="observability-grid">
+                        <div class="obs-metric">
+                          <span class="obs-label">App Health</span>
+                          <span class="obs-value">100% Optimal</span>
+                        </div>
+                        <div class="obs-metric">
+                          <span class="obs-label">Tool Accuracy</span>
+                          <span class="obs-value">99.8%</span>
+                        </div>
+                        <div class="obs-metric">
+                          <span class="obs-label">P99 Latency</span>
+                          <span class="obs-value">24ms</span>
+                        </div>
+                        <div class="obs-metric">
+                          <span class="obs-label">Diagnosis</span>
+                          <span class="obs-value obs-optimal">0 Critical Errors</span>
+                        </div>
+                      </div>
                     </div>
                   )}
 
@@ -1712,6 +1740,129 @@ const companionDescription =
     }
   }
 
+  /* Live active states for flows */
+  .agent-flow-node {
+    transition: all 300ms ease;
+  }
+
+  .agent-flow-node.is-active-step {
+    border-color: #a78bfa;
+    background: rgba(167, 139, 250, 0.22);
+    box-shadow: 0 0 16px rgba(167, 139, 250, 0.25);
+    transform: translateY(-2px);
+  }
+
+  .agent-flow-node.is-active-step p {
+    color: #fff;
+    font-weight: 600;
+  }
+
+  .autopilot-step {
+    transition: all 300ms ease;
+  }
+
+  .autopilot-step.is-active-step {
+    border-color: #a78bfa;
+    background: rgba(167, 139, 250, 0.22);
+    box-shadow: 0 0 18px rgba(167, 139, 250, 0.3);
+    color: #fff;
+    transform: translateY(-2px);
+  }
+
+  .autopilot-step.is-active-step .autopilot-step-number {
+    color: #fff;
+    font-weight: 700;
+  }
+
+  /* Group 03: Observability telemetry card */
+  .observability-visual {
+    margin-top: 20px;
+    padding: 16px;
+    border: 1px solid rgba(167, 139, 250, 0.25);
+    border-radius: 10px;
+    background: rgba(167, 139, 250, 0.04);
+  }
+
+  .observability-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 12px;
+    font-family: monospace;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    color: #a78bfa;
+  }
+
+  .telemetry-live-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #a78bfa;
+    box-shadow: 0 0 8px rgba(167, 139, 250, 0.8);
+    animation: telemetryPulse 2s infinite ease-in-out;
+  }
+
+  @keyframes telemetryPulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.4; transform: scale(0.85); }
+  }
+
+  .observability-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+
+  .obs-metric {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    padding: 8px 10px;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 6px;
+    background: rgba(0, 0, 0, 0.3);
+  }
+
+  .obs-label {
+    font-size: 10px;
+    color: rgba(255, 255, 255, 0.45);
+    font-family: monospace;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  .obs-value {
+    font-size: 12px;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.9);
+    font-family: monospace;
+  }
+
+  .obs-value.obs-optimal {
+    color: #a78bfa;
+  }
+
+  :global(.tw-caret) {
+    display: inline-block;
+    color: #a78bfa;
+    font-weight: 700;
+    margin-left: 3px;
+    vertical-align: baseline;
+    animation: caretBlink 1s infinite steps(1);
+  }
+
+  @keyframes caretBlink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+  }
+
+  @keyframes progressFillAnim {
+    from { width: 0%; }
+    to { width: 100%; }
+  }
+
   /* Reduced motion */
   @media (prefers-reduced-motion: reduce) {
     [data-reveal] {
@@ -1780,4 +1931,231 @@ const companionDescription =
       roadmapObserver.observe(element);
     });
   }
+
+  // Group 01 Live Terminal Animation
+  function initGroup01Terminal() {
+    const container = document.getElementById("group01-terminal-content");
+    const terminal = document.getElementById("group01-terminal");
+    if (!container || !terminal) return;
+
+    const defaultHTML = container.innerHTML;
+    let isVisible = false;
+    let cycleId = 0;
+
+    function createCaret() {
+      const caret = document.createElement("span");
+      caret.className = "tw-caret";
+      caret.textContent = "▍";
+      return caret;
+    }
+
+    function removeCarets() {
+      container.querySelectorAll(".tw-caret").forEach((c) => c.remove());
+    }
+
+    function sleep(ms: number, currentCycle: number) {
+      return new Promise<boolean>((resolve) => {
+        window.setTimeout(() => {
+          resolve(currentCycle === cycleId && isVisible);
+        }, ms);
+      });
+    }
+
+    async function typeText(el: HTMLElement, text: string, speed = 32, currentCycle: number) {
+      for (const ch of text) {
+        if (currentCycle !== cycleId || !isVisible) return false;
+        el.textContent += ch;
+        removeCarets();
+        el.appendChild(createCaret());
+        const ok = await sleep(speed, currentCycle);
+        if (!ok) return false;
+      }
+      return true;
+    }
+
+    async function runCycle(currentCycle: number) {
+      if (currentCycle !== cycleId || !isVisible) return;
+
+      container.innerHTML = "";
+
+      // Command prompt
+      const cmdLine = document.createElement("p");
+      cmdLine.className = "terminal-command";
+      cmdLine.style.display = "flex";
+      cmdLine.style.alignItems = "center";
+      cmdLine.style.gap = "0.35rem";
+      cmdLine.innerHTML = `<span class="terminal-prompt" style="color:#a78bfa;font-weight:600;">$</span> <span style="color:#71717a;">~/my-ai-app</span> <span style="color:#a78bfa;font-weight:600;">$</span> <span style="color:#fff;font-weight:500;" id="g01-cmd-text"></span>`;
+      container.appendChild(cmdLine);
+
+      const cmdText = cmdLine.querySelector("#g01-cmd-text") as HTMLElement;
+      cmdText.appendChild(createCaret());
+
+      let ok = await sleep(350, currentCycle);
+      if (!ok) return;
+
+      ok = await typeText(cmdText, "nixora deploy", 30, currentCycle);
+      if (!ok) return;
+
+      ok = await sleep(250, currentCycle);
+      if (!ok) return;
+
+      removeCarets();
+
+      // Output container
+      const outDiv = document.createElement("div");
+      outDiv.className = "terminal-output";
+      outDiv.style.marginTop = "14px";
+      outDiv.style.gap = "10px";
+      container.appendChild(outDiv);
+
+      // Detection
+      const lineDetect = document.createElement("p");
+      lineDetect.style.margin = "0";
+      lineDetect.style.color = "rgba(255, 255, 255, 0.55)";
+      lineDetect.innerHTML = `└─ scanning runtime: <span style="color:#c4b5fd;">node@20</span>`;
+      outDiv.appendChild(lineDetect);
+      lineDetect.appendChild(createCaret());
+
+      ok = await sleep(300, currentCycle);
+      if (!ok) return;
+
+      removeCarets();
+
+      // Build & Progress
+      const buildDiv = document.createElement("div");
+      buildDiv.style.margin = "4px 0";
+      buildDiv.innerHTML = `
+        <div style="color:rgba(255,255,255,0.7);font-size:11px;">building container...</div>
+        <div style="height:3px;width:100%;max-width:220px;background:rgba(255,255,255,0.08);border-radius:999px;overflow:hidden;margin-top:4px;">
+          <div style="height:100%;width:0%;background:linear-gradient(90deg,#7c3aed,#a78bfa);border-radius:999px;animation:progressFillAnim 1.1s cubic-bezier(0.22, 1, 0.36, 1) forwards;"></div>
+        </div>
+      `;
+      outDiv.appendChild(buildDiv);
+      buildDiv.appendChild(createCaret());
+
+      ok = await sleep(1100, currentCycle);
+      if (!ok) return;
+
+      removeCarets();
+
+      // Line 1: Container built
+      const line1 = document.createElement("p");
+      line1.className = "terminal-line";
+      line1.style.opacity = "1";
+      line1.style.animation = "none";
+      line1.innerHTML = `<span class="terminal-check">✓</span> Container built (8.4s)`;
+      outDiv.appendChild(line1);
+      line1.appendChild(createCaret());
+
+      ok = await sleep(450, currentCycle);
+      if (!ok) return;
+
+      removeCarets();
+
+      // Line 2: HTTPS SSL issued
+      const line2 = document.createElement("p");
+      line2.className = "terminal-line";
+      line2.style.opacity = "1";
+      line2.style.animation = "none";
+      line2.innerHTML = `<span class="terminal-check">✓</span> HTTPS SSL issued`;
+      outDiv.appendChild(line2);
+      line2.appendChild(createCaret());
+
+      ok = await sleep(450, currentCycle);
+      if (!ok) return;
+
+      removeCarets();
+
+      // Line 3: Live URL
+      const line3 = document.createElement("p");
+      line3.className = "terminal-line";
+      line3.style.opacity = "1";
+      line3.style.animation = "none";
+      line3.innerHTML = `<span class="terminal-check">✓</span> <span class="terminal-live">Live: </span><span class="terminal-url">https://my-app.nixora.co.in</span>`;
+      outDiv.appendChild(line3);
+      line3.appendChild(createCaret());
+
+      // Footer
+      const footer = document.createElement("div");
+      footer.className = "terminal-footer";
+      footer.innerHTML = `
+        <span>nixora-cli v0.1.0</span>
+        <span class="terminal-ready">
+          <span class="ready-indicator"></span>
+          running · 100% uptime
+        </span>
+      `;
+      container.appendChild(footer);
+
+      // Hold complete state for 3.5s then restart
+      ok = await sleep(3500, currentCycle);
+      if (!ok) return;
+
+      removeCarets();
+      runCycle(currentCycle);
+    }
+
+    const obs = new IntersectionObserver(([e]) => {
+      if (e.isIntersecting) {
+        isVisible = true;
+        cycleId++;
+        runCycle(cycleId);
+      } else {
+        isVisible = false;
+        cycleId++;
+        removeCarets();
+        if (container) container.innerHTML = defaultHTML;
+      }
+    }, { threshold: 0.1 });
+
+    obs.observe(terminal);
+  }
+
+  // Active Flow Sequencers for Group 02 and Group 08
+  function initFlowSequencer() {
+    // Group 02: MCP Agent Flow (MCP Agent -> Permissions -> Audit Log)
+    const g2Container = document.getElementById("group02-agent-flow");
+    if (g2Container) {
+      const nodes = g2Container.querySelectorAll<HTMLElement>("[data-flow-step]");
+      if (nodes.length) {
+        let activeIdx = 0;
+        window.setInterval(() => {
+          nodes.forEach((n, idx) => {
+            if (idx === activeIdx) {
+              n.classList.add("is-active-step");
+            } else {
+              n.classList.remove("is-active-step");
+            }
+          });
+          activeIdx = (activeIdx + 1) % nodes.length;
+        }, 1200);
+      }
+    }
+
+    // Group 08: Autopilot Autonomous Workflow (01 Detect -> 02 Diagnose -> 03 Recommend -> 04 Verify)
+    const g8Container = document.getElementById("group08-autopilot-flow");
+    if (g8Container) {
+      const steps = g8Container.querySelectorAll<HTMLElement>("[data-autopilot-step]");
+      if (steps.length) {
+        let activeStep = 0;
+        window.setInterval(() => {
+          steps.forEach((s, idx) => {
+            if (idx === activeStep) {
+              s.classList.add("is-active-step");
+            } else {
+              s.classList.remove("is-active-step");
+            }
+          });
+          activeStep = (activeStep + 1) % steps.length;
+        }, 1300);
+      }
+    }
+  }
+
+  initGroup01Terminal();
+  initFlowSequencer();
+  document.addEventListener("astro:page-load", () => {
+    initGroup01Terminal();
+    initFlowSequencer();
+  });
 </script>

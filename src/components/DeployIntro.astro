@@ -78,7 +78,7 @@ const capabilities = [
           <div class="terminal-column terminal-input">
             <p class="terminal-heading">Input</p>
 
-            <div class="terminal-content">
+            <div class="terminal-content" id="cli-input-area">
               <p class="terminal-step terminal-command">
                 <span class="terminal-primary">$</span>
                 ~/my-ai-app $ nixora deploy
@@ -128,7 +128,7 @@ const capabilities = [
           <div class="terminal-column terminal-output">
             <p class="terminal-heading">Output</p>
 
-            <div class="terminal-content">
+            <div class="terminal-content" id="cli-output-area">
               <div class="terminal-output-lines">
                 {outputLines.map((line, index) => (
                   <p class={`terminal-step terminal-output-${index}`}>
@@ -250,225 +250,171 @@ const capabilities = [
 </section>
 
 <script>
-  const section = document.querySelector("#deploy-intro");
-  const terminal = document.querySelector("#deploy-terminal");
+  function setupDeployTerminal() {
+    const section = document.querySelector("#deploy-intro");
+    const terminal = document.querySelector("#deploy-terminal");
 
-  if (section && terminal) {
-    const steps = terminal.querySelectorAll(".terminal-step");
+    if (!section || !terminal) return;
+
+    // Cleanup previous instance if already initialized to avoid duplicate loops
+    if ((terminal as any)._terminalCleanup) {
+      (terminal as any)._terminalCleanup();
+    }
+
+    const steps = Array.from(terminal.querySelectorAll(".terminal-step"));
     const progress = terminal.querySelector(".terminal-progress");
 
-    const reducedMotion = window.matchMedia(
-      "(prefers-reduced-motion: reduce)",
-    ).matches;
+    // Scroll reveal for capability cards and section elements
+    const revealElements = section.querySelectorAll(".reveal");
+    const revealObserver = new IntersectionObserver(
+      (entries, obs) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            obs.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.15 }
+    );
+    revealElements.forEach((el) => revealObserver.observe(el));
 
-    // Terminal ki existing animation (as it is)
-    let isInView = false;
-    let isRunning = false;
-    let cycleId = 0;
-    let timer: ReturnType<typeof setTimeout> | undefined;
-    let resolveWait: (() => void) | undefined;
+    let isVisible = false;
+    let animActive = false;
+    let abortController: AbortController | null = null;
 
-    const wait = (ms: number, currentCycle: number) =>
-      new Promise<void>((resolve) => {
-        if (currentCycle !== cycleId) {
-          resolve();
+    const sleep = (ms: number, signal: AbortSignal) => {
+      return new Promise<void>((resolve, reject) => {
+        if (signal.aborted) {
+          reject(new Error("aborted"));
           return;
         }
-
-        resolveWait = resolve;
-
-        timer = setTimeout(() => {
-          timer = undefined;
-          resolveWait = undefined;
+        const timerId = window.setTimeout(() => {
+          signal.removeEventListener("abort", onAbort);
           resolve();
         }, ms);
+        const onAbort = () => {
+          window.clearTimeout(timerId);
+          reject(new Error("aborted"));
+        };
+        signal.addEventListener("abort", onAbort, { once: true });
       });
-
-    const reveal = async (
-      element: Element | null,
-      currentCycle: number,
-      duration = 350,
-    ) => {
-      if (!element || currentCycle !== cycleId) return;
-
-      element.classList.add("is-visible");
-
-      await wait(reducedMotion ? 0 : duration, currentCycle);
     };
 
-    const revealSequentially = async (
-      elements: Element[],
-      currentCycle: number,
-      duration = 350,
-      interval = 280,
-    ) => {
-      for (const element of elements) {
-        if (currentCycle !== cycleId) return;
-
-        await reveal(element, currentCycle, duration);
-
-        if (currentCycle !== cycleId) return;
-
-        await wait(reducedMotion ? 0 : interval, currentCycle);
-      }
-    };
-
-    const resetTerminal = () => {
-      steps.forEach((step) => {
-        step.classList.remove("is-visible");
-      });
-
+    const resetSteps = () => {
+      steps.forEach((s) => s.classList.remove("is-visible"));
       progress?.classList.remove("is-filled");
     };
 
-    const runCycle = async (currentCycle: number) => {
-      resetTerminal();
-
-      await wait(300, currentCycle);
-
-      if (currentCycle !== cycleId) return;
-
-      await reveal(
-        terminal.querySelector(".terminal-command"),
-        currentCycle,
-        450,
-      );
-
-      await revealSequentially(
-        Array.from(
-          terminal.querySelectorAll(
-            ".terminal-input-0, .terminal-input-1, .terminal-input-2, .terminal-input-3",
-          ),
-        ),
-        currentCycle,
-      );
-
-      await reveal(
-        terminal.querySelector(".terminal-build-start"),
-        currentCycle,
-      );
-
-      if (currentCycle !== cycleId) return;
-
-      progress?.classList.add("is-filled");
-
-      await wait(reducedMotion ? 0 : 2800, currentCycle);
-
-      await reveal(
-        terminal.querySelector(".terminal-build-complete"),
-        currentCycle,
-      );
-
-      await reveal(
-        terminal.querySelector(".terminal-provision"),
-        currentCycle,
-      );
-
-      await reveal(
-        terminal.querySelector(".terminal-tls"),
-        currentCycle,
-      );
-
-      await reveal(
-        terminal.querySelector(".terminal-routing"),
-        currentCycle,
-      );
-
-      await revealSequentially(
-        Array.from(
-          terminal.querySelectorAll(
-            ".terminal-output-0, .terminal-output-1, .terminal-output-2",
-          ),
-        ),
-        currentCycle,
-        350,
-        350,
-      );
-
-      await reveal(
-        terminal.querySelector(".terminal-live-url"),
-        currentCycle,
-        400,
-      );
-
-      await reveal(
-        terminal.querySelector(".terminal-deployed-time"),
-        currentCycle,
-      );
-
-      await reveal(
-        terminal.querySelector(".terminal-lifecycle"),
-        currentCycle,
-        400,
-      );
-
-      if (currentCycle !== cycleId) return;
-
-      if (reducedMotion) return;
-
-      await wait(900, currentCycle);
-
-      if (currentCycle !== cycleId) return;
-
-      resetTerminal();
-
-      await wait(150, currentCycle);
-
-      if (currentCycle !== cycleId) return;
-
-      void runCycle(currentCycle);
+    const showStep = async (selector: string, duration: number, signal: AbortSignal) => {
+      const el = terminal.querySelector(selector);
+      if (el) el.classList.add("is-visible");
+      await sleep(duration, signal);
     };
 
-    const startAnimation = () => {
-      if (isRunning || !isInView) return;
+    const playSequence = async (signal: AbortSignal) => {
+      while (!signal.aborted) {
+        resetSteps();
+        await sleep(350, signal);
 
-      isRunning = true;
-      cycleId += 1;
+        // 1. $ ~/my-ai-app $ nixora deploy
+        await showStep(".terminal-command", 450, signal);
 
-      if (reducedMotion) {
-        steps.forEach((step) => {
-          step.classList.add("is-visible");
-        });
+        // 2. Scan lines
+        for (let i = 0; i < 4; i++) {
+          await showStep(`.terminal-input-${i}`, 220, signal);
+        }
 
+        // 3. Building container...
+        await showStep(".terminal-build-start", 250, signal);
+
+        // 4. Fill progress bar smoothly
         progress?.classList.add("is-filled");
-        return;
-      }
+        await sleep(1800, signal);
 
-      void runCycle(cycleId);
+        // 5. Image built complete
+        await showStep(".terminal-build-complete", 250, signal);
+
+        // 6. Provisioning compute...
+        await showStep(".terminal-provision", 250, signal);
+
+        // 7. Issuing TLS certificate...
+        await showStep(".terminal-tls", 250, signal);
+
+        // 8. Routing traffic...
+        await showStep(".terminal-routing", 250, signal);
+
+        // 9. Output checks
+        for (let i = 0; i < 3; i++) {
+          await showStep(`.terminal-output-${i}`, 280, signal);
+        }
+
+        // 10. Live URL Card
+        await showStep(".terminal-live-url", 350, signal);
+
+        // 11. Deployed time
+        await showStep(".terminal-deployed-time", 250, signal);
+
+        // 12. Lifecycle confirmation
+        await showStep(".terminal-lifecycle", 350, signal);
+
+        // Hold complete view for 4.5 seconds so user can read everything comfortably
+        await sleep(4500, signal);
+      }
     };
 
-    const stopAnimation = () => {
-      isRunning = false;
-      cycleId += 1;
-
-      if (timer !== undefined) {
-        clearTimeout(timer);
-        timer = undefined;
-      }
-
-      resolveWait?.();
-      resolveWait = undefined;
-
-      resetTerminal();
+    const start = () => {
+      if (animActive || !isVisible) return;
+      animActive = true;
+      abortController = new AbortController();
+      playSequence(abortController.signal)
+        .catch(() => {})
+        .finally(() => {
+          animActive = false;
+        });
     };
 
-    const terminalObserver = new IntersectionObserver(
+    const stop = () => {
+      if (abortController) {
+        abortController.abort();
+        abortController = null;
+      }
+      animActive = false;
+    };
+
+    // Check if initially in view
+    const rect = terminal.getBoundingClientRect();
+    if (rect.top < window.innerHeight + 100 && rect.bottom > -100) {
+      isVisible = true;
+      start();
+    }
+
+    const observer = new IntersectionObserver(
       ([entry]) => {
-        isInView = entry.isIntersecting;
-
-        if (isInView) {
-          startAnimation();
+        isVisible = entry.isIntersecting;
+        if (isVisible) {
+          start();
         } else {
-          stopAnimation();
+          stop();
         }
       },
       {
-        threshold: 0.2,
-      },
+        threshold: 0.05,
+        rootMargin: "120px 0px 120px 0px",
+      }
     );
 
-    terminalObserver.observe(terminal);
+    observer.observe(terminal);
+
+    (terminal as any)._terminalCleanup = () => {
+      stop();
+      observer.disconnect();
+      revealObserver.disconnect();
+    };
   }
+
+  setupDeployTerminal();
+  document.addEventListener("astro:page-load", setupDeployTerminal);
 </script>
 
 <style>
@@ -904,7 +850,38 @@ const capabilities = [
     }
   }
 
+  :global(.tw-caret) {
+    display: inline-block;
+    color: #a78bfa;
+    font-weight: 700;
+    margin-left: 3px;
+    vertical-align: baseline;
+    animation: caretBlink 1s infinite steps(1);
+  }
+
+  @keyframes caretBlink {
+    0%, 100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0;
+    }
+  }
+
+  @keyframes progressFillAnim {
+    from {
+      width: 0%;
+    }
+    to {
+      width: 100%;
+    }
+  }
+
   @media (prefers-reduced-motion: reduce) {
+    :global(.tw-caret) {
+      display: none !important;
+    }
+
     .terminal-step,
     .capability-card,
     .capability-icon,

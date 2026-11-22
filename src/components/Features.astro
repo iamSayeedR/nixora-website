@@ -185,6 +185,27 @@ const groups = [
         </svg>
       </a>
     </div>
+
+    <div class="prefer-talk-card">
+      <div class="talk-card-main">
+        <div class="talk-icon-badge" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+          </svg>
+        </div>
+        <div class="talk-text-block">
+          <p class="talk-card-title">Prefer to talk?</p>
+          <p class="talk-card-desc">Discuss your architecture or agent workloads with our team.</p>
+        </div>
+      </div>
+      <a href="https://calendly.com/ceo-nixora/30min" class="talk-card-btn" data-calendly>
+        <span>Book a 15-min Call</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M5 12h14" />
+          <path d="m12 5 7 7-7 7" />
+        </svg>
+      </a>
+    </div>
   </div>
 </section>
 
@@ -422,6 +443,136 @@ const groups = [
 
   .arch-product-link:hover svg {
     transform: translateX(2px);
+  }
+
+  /* Modern Prefer to Talk Card */
+  .prefer-talk-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    width: 100%;
+    max-width: 580px;
+    margin: 1.75rem auto 0;
+    padding: 1.125rem 1.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 14px;
+    background: rgba(18, 18, 22, 0.7);
+    backdrop-filter: blur(12px);
+    box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.06);
+    box-sizing: border-box;
+    transition: border-color 220ms ease;
+  }
+
+  .prefer-talk-card:hover {
+    border-color: rgba(255, 255, 255, 0.16);
+  }
+
+  .talk-card-main {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    min-width: 0;
+  }
+
+  .talk-icon-badge {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    flex-shrink: 0;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(255, 255, 255, 0.03);
+    color: #a78bfa;
+  }
+
+  .talk-icon-badge svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .talk-text-block {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+    text-align: left;
+  }
+
+  .talk-card-title {
+    margin: 0;
+    color: #fff;
+    font-size: 0.9375rem;
+    font-weight: 500;
+    line-height: 1.4;
+  }
+
+  .talk-card-desc {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.55);
+    font-size: 0.8125rem;
+    line-height: 1.45;
+  }
+
+  .talk-card-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    flex-shrink: 0;
+    min-height: 38px;
+    padding: 0.5rem 1.125rem;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 9999px;
+    background: rgba(255, 255, 255, 0.04);
+    color: #fff;
+    font-size: 0.875rem;
+    font-weight: 500;
+    text-decoration: none;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: border-color 200ms ease, background-color 200ms ease, color 200ms ease;
+  }
+
+  .talk-card-btn:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.24);
+    color: #fff;
+  }
+
+  .talk-card-btn svg {
+    width: 14px;
+    height: 14px;
+    flex-shrink: 0;
+    transition: transform 200ms ease;
+  }
+
+  .talk-card-btn:hover svg {
+    transform: translateX(2px);
+  }
+
+  @media (max-width: 640px) {
+    .prefer-talk-card {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 1rem;
+      padding: 1.25rem;
+      text-align: center;
+    }
+
+    .talk-card-main {
+      flex-direction: column;
+      text-align: center;
+    }
+
+    .talk-text-block {
+      text-align: center;
+    }
+
+    .talk-card-btn {
+      width: 100%;
+    }
   }
 
   /* Small mobile */

@@ -8,6 +8,12 @@
 
     <!-- Heading -->
     <div class="journey-heading">
+      <div class="journey-badge-wrapper">
+        <a href="/#early-access" class="journey-badge-link">
+          Skip the Dockerfile. Get early access <span aria-hidden="true">→</span>
+        </a>
+      </div>
+
       <h2>
         Building software
         <br class="desktop-break" /> is only the beginning.
@@ -130,6 +136,33 @@
     max-width: 56rem;
     margin: 0 auto;
     text-align: center;
+  }
+
+  .journey-badge-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1.25rem;
+  }
+
+  .journey-badge-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.35rem 0.95rem;
+    border: 1px solid rgba(167, 139, 250, 0.25);
+    border-radius: 9999px;
+    background: rgba(167, 139, 250, 0.06);
+    color: #c4b5fd;
+    font-size: 0.8125rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.2s ease;
+  }
+
+  .journey-badge-link:hover {
+    background: rgba(167, 139, 250, 0.14);
+    border-color: rgba(167, 139, 250, 0.45);
+    color: #fff;
   }
 
   .journey-heading h2 {

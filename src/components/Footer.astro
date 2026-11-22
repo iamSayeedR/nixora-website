@@ -18,6 +18,17 @@
         />
       </a>
 
+      <!-- Contact Info -->
+      <div class="footer-contact-info">
+        <a href="mailto:ceo@nixora.co.in" class="footer-link footer-contact-email">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect width="20" height="16" x="2" y="4" rx="2"></rect>
+            <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+          </svg>
+          ceo@nixora.co.in
+        </a>
+      </div>
+
       <div class="footer-social">
         <a
           href="https://x.com/wearenixora"
@@ -57,8 +68,17 @@
       <a href="mailto:ceo@nixora.co.in" class="footer-link">Contact</a>
     </div>
 
-    <!-- Column 2: Legal -->
-    <div class="footer-column footer-reveal" data-footer-reveal style="--footer-delay: 220ms;">
+    <!-- Column 2: Comparison -->
+    <div class="footer-column footer-reveal" data-footer-reveal style="--footer-delay: 180ms;">
+      <div class="footer-heading">Comparison</div>
+
+      <a href="/compare/" class="footer-link">Overview</a>
+      <a href="/compare/nixora-vs-vercel/" class="footer-link">Nixora vs Vercel</a>
+      <a href="/compare/nixora-vs-traditional-cloud/" class="footer-link">Nixora vs Traditional Cloud</a>
+    </div>
+
+    <!-- Column 3: Legal -->
+    <div class="footer-column footer-reveal" data-footer-reveal style="--footer-delay: 240ms;">
       <div class="footer-heading">Legal</div>
 
       <a href="/terms/" class="footer-link">Terms of Service</a>
@@ -103,7 +123,7 @@
 
   .footer-grid {
     display: grid;
-    grid-template-columns: 2fr 1fr 1fr;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
     gap: 3rem;
     align-items: start;
   }
@@ -116,6 +136,31 @@
     gap: 1.25rem;
     min-width: 0;
     padding-right: 1rem;
+  }
+
+  .footer-contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .footer-contact-email {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #a1a1aa;
+    font-size: 0.85rem;
+    text-decoration: none;
+    transition: color 250ms ease;
+  }
+
+  .footer-contact-email:hover {
+    color: #fff;
+  }
+
+  .footer-contact-email svg {
+    color: #a78bfa;
+    flex-shrink: 0;
   }
 
   .footer-logo {
@@ -250,6 +295,13 @@
   }
 
   /* Tablet and Mobile */
+
+  @media (max-width: 960px) and (min-width: 769px) {
+    .footer-grid {
+      grid-template-columns: 1.5fr 1fr 1fr 1fr;
+      gap: 1.75rem;
+    }
+  }
 
   @media (max-width: 768px) {
     .site-footer {
