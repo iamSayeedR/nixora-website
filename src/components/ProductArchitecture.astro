@@ -1938,6 +1938,10 @@ const companionDescription =
     const terminal = document.getElementById("group01-terminal");
     if (!container || !terminal) return;
 
+    if ((terminal as any)._terminalCleanup) {
+      (terminal as any)._terminalCleanup();
+    }
+
     const defaultHTML = container.innerHTML;
     let isVisible = false;
     let cycleId = 0;
@@ -1961,12 +1965,10 @@ const companionDescription =
       });
     }
 
-    async function typeText(el: HTMLElement, text: string, speed = 32, currentCycle: number) {
+    async function typeText(targetSpan: HTMLElement, text: string, speed = 32, currentCycle: number) {
       for (const ch of text) {
         if (currentCycle !== cycleId || !isVisible) return false;
-        el.textContent += ch;
-        removeCarets();
-        el.appendChild(createCaret());
+        targetSpan.textContent += ch;
         const ok = await sleep(speed, currentCycle);
         if (!ok) return false;
       }
@@ -1988,18 +1990,21 @@ const companionDescription =
       container.appendChild(cmdLine);
 
       const cmdText = cmdLine.querySelector("#g01-cmd-text") as HTMLElement;
-      cmdText.appendChild(createCaret());
+      const textSpan = document.createElement("span");
+      const caret = createCaret();
+      cmdText.appendChild(textSpan);
+      cmdText.appendChild(caret);
 
       let ok = await sleep(350, currentCycle);
       if (!ok) return;
 
-      ok = await typeText(cmdText, "nixora deploy", 30, currentCycle);
+      ok = await typeText(textSpan, "nixora deploy", 32, currentCycle);
       if (!ok) return;
 
       ok = await sleep(250, currentCycle);
       if (!ok) return;
 
-      removeCarets();
+      caret.remove();
 
       // Output container
       const outDiv = document.createElement("div");
@@ -2014,12 +2019,9 @@ const companionDescription =
       lineDetect.style.color = "rgba(255, 255, 255, 0.55)";
       lineDetect.innerHTML = `└─ scanning runtime: <span style="color:#c4b5fd;">node@20</span>`;
       outDiv.appendChild(lineDetect);
-      lineDetect.appendChild(createCaret());
 
       ok = await sleep(300, currentCycle);
       if (!ok) return;
-
-      removeCarets();
 
       // Build & Progress
       const buildDiv = document.createElement("div");
@@ -2031,12 +2033,9 @@ const companionDescription =
         </div>
       `;
       outDiv.appendChild(buildDiv);
-      buildDiv.appendChild(createCaret());
 
       ok = await sleep(1100, currentCycle);
       if (!ok) return;
-
-      removeCarets();
 
       // Line 1: Container built
       const line1 = document.createElement("p");
@@ -2045,12 +2044,9 @@ const companionDescription =
       line1.style.animation = "none";
       line1.innerHTML = `<span class="terminal-check">✓</span> Container built (8.4s)`;
       outDiv.appendChild(line1);
-      line1.appendChild(createCaret());
 
       ok = await sleep(450, currentCycle);
       if (!ok) return;
-
-      removeCarets();
 
       // Line 2: HTTPS SSL issued
       const line2 = document.createElement("p");
@@ -2059,12 +2055,9 @@ const companionDescription =
       line2.style.animation = "none";
       line2.innerHTML = `<span class="terminal-check">✓</span> HTTPS SSL issued`;
       outDiv.appendChild(line2);
-      line2.appendChild(createCaret());
 
       ok = await sleep(450, currentCycle);
       if (!ok) return;
-
-      removeCarets();
 
       // Line 3: Live URL
       const line3 = document.createElement("p");
@@ -2073,7 +2066,6 @@ const companionDescription =
       line3.style.animation = "none";
       line3.innerHTML = `<span class="terminal-check">✓</span> <span class="terminal-live">Live: </span><span class="terminal-url">https://my-app.nixora.co.in</span>`;
       outDiv.appendChild(line3);
-      line3.appendChild(createCaret());
 
       // Footer
       const footer = document.createElement("div");
@@ -2091,7 +2083,6 @@ const companionDescription =
       ok = await sleep(3500, currentCycle);
       if (!ok) return;
 
-      removeCarets();
       runCycle(currentCycle);
     }
 
@@ -2109,17 +2100,27 @@ const companionDescription =
     }, { threshold: 0.1 });
 
     obs.observe(terminal);
+
+    (terminal as any)._terminalCleanup = () => {
+      cycleId++;
+      obs.disconnect();
+      removeCarets();
+    };
   }
 
   // Active Flow Sequencers for Group 02 and Group 08
+  let flowIntervals: number[] = [];
   function initFlowSequencer() {
+    flowIntervals.forEach((id) => window.clearInterval(id));
+    flowIntervals = [];
+
     // Group 02: MCP Agent Flow (MCP Agent -> Permissions -> Audit Log)
     const g2Container = document.getElementById("group02-agent-flow");
     if (g2Container) {
       const nodes = g2Container.querySelectorAll<HTMLElement>("[data-flow-step]");
       if (nodes.length) {
         let activeIdx = 0;
-        window.setInterval(() => {
+        const id1 = window.setInterval(() => {
           nodes.forEach((n, idx) => {
             if (idx === activeIdx) {
               n.classList.add("is-active-step");
@@ -2129,6 +2130,7 @@ const companionDescription =
           });
           activeIdx = (activeIdx + 1) % nodes.length;
         }, 1200);
+        flowIntervals.push(id1);
       }
     }
 
@@ -2138,7 +2140,7 @@ const companionDescription =
       const steps = g8Container.querySelectorAll<HTMLElement>("[data-autopilot-step]");
       if (steps.length) {
         let activeStep = 0;
-        window.setInterval(() => {
+        const id2 = window.setInterval(() => {
           steps.forEach((s, idx) => {
             if (idx === activeStep) {
               s.classList.add("is-active-step");
@@ -2148,6 +2150,7 @@ const companionDescription =
           });
           activeStep = (activeStep + 1) % steps.length;
         }, 1300);
+        flowIntervals.push(id2);
       }
     }
   }
