@@ -234,40 +234,40 @@ const {
   .final-cta-card[data-reveal] .final-cta-actions,
   .final-cta-card[data-reveal] .cta-perks-strip {
     opacity: 0;
-    transform: translate3d(0, 20px, 0);
+    transform: translate3d(0, 16px, 0);
     transition:
-      opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1),
-      transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+      opacity 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+      transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
   .final-cta-card[data-reveal].is-visible .card-badge {
     opacity: 1;
     transform: translate3d(0, 0, 0);
-    transition-delay: 120ms;
+    transition-delay: 0ms;
   }
 
   .final-cta-card[data-reveal].is-visible .final-cta-title {
     opacity: 1;
     transform: translate3d(0, 0, 0);
-    transition-delay: 220ms;
+    transition-delay: 40ms;
   }
 
   .final-cta-card[data-reveal].is-visible .final-cta-description {
     opacity: 1;
     transform: translate3d(0, 0, 0);
-    transition-delay: 340ms;
+    transition-delay: 80ms;
   }
 
   .final-cta-card[data-reveal].is-visible .final-cta-actions {
     opacity: 1;
     transform: translate3d(0, 0, 0);
-    transition-delay: 460ms;
+    transition-delay: 120ms;
   }
 
   .final-cta-card[data-reveal].is-visible .cta-perks-strip {
     opacity: 1;
     transform: translate3d(0, 0, 0);
-    transition-delay: 580ms;
+    transition-delay: 160ms;
   }
 
   @media (max-width: 640px) {
@@ -323,8 +323,8 @@ const {
         }
       });
     }, {
-      threshold: 0.15,
-      rootMargin: '0px 0px -40px 0px'
+      threshold: 0.05,
+      rootMargin: '0px 0px 60px 0px'
     });
 
     cards.forEach(c => observer.observe(c));

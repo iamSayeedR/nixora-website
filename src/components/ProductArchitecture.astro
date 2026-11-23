@@ -255,7 +255,7 @@ const companionDescription =
                   <span
                     class="roadmap-tag roadmap-tag-active"
                     data-reveal
-                    style={`--reveal-delay: ${400 + index * 80}ms`}
+                    style={`--reveal-delay: ${index * 40}ms`}
                   >
                     {tag}
                   </span>
@@ -350,7 +350,7 @@ const companionDescription =
                   <span
                     class="roadmap-tag roadmap-tag-active"
                     data-reveal
-                    style={`--reveal-delay: ${400 + index * 80}ms`}
+                    style={`--reveal-delay: ${index * 40}ms`}
                   >
                     {tag}
                   </span>
@@ -416,7 +416,7 @@ const companionDescription =
                           <span
                             class="roadmap-tag roadmap-tag-later"
                             data-reveal
-                            style={`--reveal-delay: ${400 + index * 60}ms`}
+                            style={`--reveal-delay: ${index * 30}ms`}
                           >
                             {tag}
                           </span>
@@ -435,7 +435,7 @@ const companionDescription =
                                 class="autopilot-step"
                                 data-autopilot-step={index + 1}
                                 data-reveal
-                                style={`--reveal-delay: ${400 + index * 80}ms`}
+                                style={`--reveal-delay: ${index * 40}ms`}
                               >
                                 <span class="autopilot-step-number">0{index + 1}</span>
                                 <span>{step}</span>
@@ -462,7 +462,7 @@ const companionDescription =
                         <span
                           class="roadmap-tag roadmap-tag-later"
                           data-reveal
-                          style={`--reveal-delay: ${400 + index * 60}ms`}
+                          style={`--reveal-delay: ${index * 30}ms`}
                         >
                           {tag}
                         </span>
@@ -503,7 +503,7 @@ const companionDescription =
                         <div
                           class="scaling-visual-card"
                           data-reveal
-                          style={`--reveal-delay: ${400 + index * 80}ms`}
+                          style={`--reveal-delay: ${index * 40}ms`}
                         >
                           <span class="scaling-icon">{visual.icon}</span>
                           <p>{visual.label}</p>
@@ -529,7 +529,7 @@ const companionDescription =
                         <div
                           class="integration-visual-card"
                           data-reveal
-                          style={`--reveal-delay: ${400 + index * 80}ms`}
+                          style={`--reveal-delay: ${index * 40}ms`}
                         >
                           {label}
                         </div>
@@ -543,7 +543,7 @@ const companionDescription =
                         <div
                           class="intelligence-visual-card"
                           data-reveal
-                          style={`--reveal-delay: ${400 + index * 80}ms`}
+                          style={`--reveal-delay: ${index * 40}ms`}
                         >
                           <span class="intelligence-dot"></span>
                           {label}
@@ -569,7 +569,7 @@ const companionDescription =
                           <span
                             class="roadmap-tag roadmap-tag-later"
                             data-reveal
-                            style={`--reveal-delay: ${400 + index * 60}ms`}
+                            style={`--reveal-delay: ${index * 30}ms`}
                           >
                             {tag}
                           </span>
@@ -581,7 +581,7 @@ const companionDescription =
                           <div
                             class="companion-mode"
                             data-reveal
-                            style={`--reveal-delay: ${400 + index * 80}ms`}
+                            style={`--reveal-delay: ${index * 40}ms`}
                           >
                             <span class="companion-icon">
                               {mode.icon === "message" && (
@@ -698,10 +698,10 @@ const companionDescription =
   /* Roadmap intro - slow and smooth reveal */
 .roadmap-intro[data-reveal] {
   opacity: 0;
-  transform: translate3d(0, 24px, 0);
+  transform: translate3d(0, 20px, 0);
   transition:
-    opacity 1.5s cubic-bezier(0.22, 1, 0.36, 1),
-    transform 1.5s cubic-bezier(0.22, 1, 0.36, 1);
+    opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .roadmap-intro[data-reveal].is-visible {
@@ -1484,10 +1484,10 @@ const companionDescription =
   /* Scroll reveal */
   [data-reveal] {
     opacity: 0;
-    transform: translateY(18px);
+    transform: translateY(14px);
     transition:
-      opacity 0.7s ease,
-      transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+      opacity 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+      transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
     transition-delay: var(--reveal-delay, 0ms);
   }
 
@@ -1922,8 +1922,8 @@ const companionDescription =
         });
       },
       {
-        threshold: 0.12,
-        rootMargin: "0px 0px -30px 0px",
+        threshold: 0.05,
+        rootMargin: "0px 0px 60px 0px",
       }
     );
 

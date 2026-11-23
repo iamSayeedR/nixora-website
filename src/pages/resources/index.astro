@@ -42,7 +42,7 @@ const breadcrumbSchema = {
       <h1
         class="section-headline"
         data-reveal
-        style="--reveal-delay: 400ms;"
+        style="--reveal-delay: 40ms;"
       >
         Nixora <span class="accent">Resources</span>
       </h1>
@@ -50,7 +50,7 @@ const breadcrumbSchema = {
       <p
         class="section-para"
         data-reveal
-        style="--reveal-delay: 800ms;"
+        style="--reveal-delay: 80ms;"
       >
         Technical guides, developer infrastructure concepts, and tutorials
         on automating deployment for AI-generated applications and AI agents.
@@ -93,8 +93,8 @@ const breadcrumbSchema = {
         });
       },
       {
-        threshold: 0.08,
-        rootMargin: "0px 0px -45px 0px",
+        threshold: 0.05,
+        rootMargin: "0px 0px 60px 0px",
       }
     );
 
@@ -145,10 +145,10 @@ const breadcrumbSchema = {
   @media (prefers-reduced-motion: no-preference) {
     .resources-header [data-reveal] {
       opacity: 0;
-      transform: translate3d(0, 22px, 0);
+      transform: translate3d(0, 16px, 0);
       transition:
-        opacity 1400ms cubic-bezier(0.22, 1, 0.36, 1),
-        transform 1400ms cubic-bezier(0.22, 1, 0.36, 1);
+        opacity 450ms cubic-bezier(0.16, 1, 0.3, 1),
+        transform 450ms cubic-bezier(0.16, 1, 0.3, 1);
       transition-delay: var(--reveal-delay, 0ms);
       will-change: transform, opacity;
     }
