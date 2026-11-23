@@ -6,8 +6,9 @@ const links = [
     label: "Get early access",
   },
   {
-    href: "mailto:ceo@nixora.co.in?subject=Book%20a%2015-min%20Call",
+    href: "https://calendly.com/ceo-nixora/30min",
     label: "Book a 15-min Call",
+    external: true,
   },
 ];
 ---
@@ -34,7 +35,12 @@ const links = [
 
       <div class="hero-links">
         {links.map((link) => (
-          <a href={link.href} class="hero-link">
+          <a
+            href={link.href}
+            class="hero-link"
+            target={link.external ? "_blank" : undefined}
+            rel={link.external ? "noopener noreferrer" : undefined}
+          >
             {link.label}
             <span class="link-arrow">→</span>
           </a>
