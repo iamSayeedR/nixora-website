@@ -20,7 +20,7 @@
     <h3
       class="lifecycle-subtitle"
       data-reveal
-      style="--reveal-delay: 500ms"
+      style="--reveal-delay: 80ms"
     >
       Understand what changes. Know what needs attention.
     </h3>
@@ -29,7 +29,7 @@
     <p
       class="lifecycle-description"
       data-reveal
-      style="--reveal-delay: 1000ms"
+      style="--reveal-delay: 160ms"
     >
       Nixora aims to build on deployment history and application signals to
       track changes, understand their impact, and help identify potential
@@ -70,8 +70,8 @@
         });
       },
       {
-        threshold: 0.1,
-        rootMargin: "0px 0px -50px 0px",
+        threshold: 0.08,
+        rootMargin: "0px 0px 40px 0px",
       }
     );
 
@@ -90,7 +90,7 @@
     position: relative;
     isolation: isolate;
     overflow: hidden;
-    padding: 5rem 1.25rem;
+    padding: 4rem 1.25rem 2rem;
   }
 
   .lifecycle-content {
@@ -108,8 +108,8 @@
     transform: translate3d(0, 20px, 0);
 
     transition:
-      opacity 1400ms cubic-bezier(0.22, 1, 0.36, 1),
-      transform 1400ms cubic-bezier(0.22, 1, 0.36, 1);
+      opacity 650ms cubic-bezier(0.16, 1, 0.3, 1),
+      transform 650ms cubic-bezier(0.16, 1, 0.3, 1);
 
     transition-delay: var(--reveal-delay, 0ms);
     will-change: opacity, transform;
@@ -164,7 +164,7 @@
 
   @media (min-width: 640px) {
     .lifecycle-section {
-      padding: 6rem 2rem;
+      padding: 4.5rem 2rem 2.25rem;
     }
 
     .lifecycle-title {
@@ -188,7 +188,7 @@
 
   @media (min-width: 1024px) {
     .lifecycle-section {
-      padding: 7rem 3rem;
+      padding: 5rem 3rem 2.5rem;
     }
 
     .lifecycle-title {
